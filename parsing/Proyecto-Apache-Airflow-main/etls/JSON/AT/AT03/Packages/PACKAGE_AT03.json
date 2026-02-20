@@ -1,0 +1,2942 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "AT03"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ODS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "46040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ATSUDEBAN_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "67040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "SOURCE_COB_CONTAB_HIS_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "30040",
+        "Txt": "jdbc:weblogic:sybase://10.0.24.14:2025;DatabaseName=cob_conta_his"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ATSUDEBAN"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_SOURCE_COB_CONTA_HIS"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_RELOFI",
+      "ITable": "388011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_CUENTA",
+      "ITable": "259011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_HIST_SALDO_AT03",
+      "ITable": "703012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "SIIF_AT03_CUENTACONTABLE",
+      "ITable": "1005011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT03",
+      "ITable": "1157011",
+      "SnpCond": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1157011",
+          "CondName": "SALDO_1",
+          "ITxtCondSql": "142200012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "142200012",
+              "Txt": "SUBSTR(ATS_TH_AT03.OFICINA,1,1) IN ('V','I') AND (SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,5) IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549') OR \nSUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,3) IN ('129','139','149','159','169') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,8) IN ('18101102','18101202','18102102','18102202','18103102','18103202','18105102','18105202','18105104',\n'18105204','18105106','18105206','18106102','18106202','18107102','18107202','18902102','18902202','18902101',\n'18902201','13136102','13236102','13336102','13436102','13136202','13236202','13336202','13436202','13138102',\n'13238102','13338102','13438102','13138202','13238202','13338202','13438202','13140102','13240102','13340102',\n'13440102','13140202','13240202','13340202','13440202','13142102','13242102','13342102','13442102','13142202',\n'13242202','13342202','13442202','13144102','13244102','13344102','13444102','13144202','13244202','13344202',\n'13444202','13146102','13246102','13346102','13446102','13146202','13246202','13346202','13446202','13148102',\n'13248102','13348102','13448102','13148202','13248202','13348202','13448202','13150102','13250102','13350102',\n'13450102','13150202','13250202','13350202','13450202','13152102','13252102','13352102','13452102','13152202',\n'13252202','13352202','13452202','13154102','13254102','13354102','13454102','13154202','13254202','13354202',\n'13454202') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,6) IN ('189011','189012') OR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,10) IN ('1810810102', \n'1810820102','1810810202','1810820202','1810810302','1810820302','1810810402','1810820402','1810810502','1810820502','1881610102',\n'1881620102','1881610202','1881620202','1881610302','1881620302','1881610402','1881620402','1881610502','1881620502','1881610602',\n'1881620602','1881610702','1881620702','1881610802','1881620802'))\nAND ATS_TH_AT03.SALDO <= 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1157011",
+          "CondName": "SALDO_2",
+          "ITxtCondSql": "142202012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "142202012",
+              "Txt": "SUBSTR(ATS_TH_AT03.OFICINA,1,1) IN ('V','I') AND SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,1) = '1'  AND (SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,5) NOT IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549') OR \nSUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,3) NOT IN ('129','139','149','159','169') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,8) NOT IN ('18101102','18101202','18102102','18102202','18103102','18103202','18105102','18105202','18105104',\n'18105204','18105106','18105206','18106102','18106202','18107102','18107202','18902102','18902202','18902101',\n'18902201','13136102','13236102','13336102','13436102','13136202','13236202','13336202','13436202','13138102',\n'13238102','13338102','13438102','13138202','13238202','13338202','13438202','13140102','13240102','13340102',\n'13440102','13140202','13240202','13340202','13440202','13142102','13242102','13342102','13442102','13142202',\n'13242202','13342202','13442202','13144102','13244102','13344102','13444102','13144202','13244202','13344202',\n'13444202','13146102','13246102','13346102','13446102','13146202','13246202','13346202','13446202','13148102',\n'13248102','13348102','13448102','13148202','13248202','13348202','13448202','13150102','13250102','13350102',\n'13450102','13150202','13250202','13350202','13450202','13152102','13252102','13352102','13452102','13152202',\n'13252202','13352202','13452202','13154102','13254102','13354102','13454102','13154202','13254202','13354202',\n'13454202') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,6) NOT IN ('189011','189012') OR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,10) NOT IN ('1810810102', \n'1810820102','1810810202','1810820202','1810810302','1810820302','1810810402','1810820402','1810810502','1810820502','1881610102',\n'1881620102','1881610202','1881620202','1881610302','1881620302','1881610402','1881620402','1881610502','1881620502','1881610602',\n'1881620602','1881610702','1881620702','1881610802','1881620802'))\nAND ATS_TH_AT03.SALDO >= 0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_HIST_SALDO_AT",
+      "ITable": "1249011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT03BG",
+      "ITable": "716011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "cb_hist_saldo",
+      "ITable": "666012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_HIST_SALDO",
+      "ITable": "260011"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "AT03_Max_Periodo",
+      "ITxtVar": "null",
+      "ITxtVarIn": "17041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "17041",
+          "Txt": "select   case\nwhen to_char(sysdate,'mm')  = '01' then '2'||(to_char(sysdate,'yy') -1)\nwhen to_char(sysdate,'mm')  < '08' then '1'||to_char(sysdate,'yy') \nelse  '2'||to_char(sysdate,'yy') \nend\nfrom dual\n\n/*select   case\nwhen to_char(sysdate,'mm')  < '08' then '1'||to_char(sysdate,'yy') \nelse  '2'||to_char(sysdate,'yy') \nend\nfrom dual*/\n/*select   case\nwhen to_char(sysdate-28,'mm')  < '08' then '1'||to_char(sysdate-28,'yy') \nelse  '2'||to_char(sysdate-28,'yy') \nend\nfrom dual*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "AT03_Max_Corte",
+      "ITxtVar": "3121012",
+      "ITxtVarIn": "16041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16041",
+          "Txt": "select  max (co_corte)\nfrom cb_corte\nwhere to_char(co_periodo) = '#AT03_Max_Periodo' \nand   to_char(co_fecha_fin,'yyyymmdd') =to_char(last_day( sysdate-28),'yyyymmdd')\ngroup by co_periodo"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT03_AGRUPACION_CONTABLE_BANCARIBE",
+      "TableName (Target Table)": "AGRUPACION_BANCARIBE"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT03_AGRUPACION_OFICINAS_BANCARIBE",
+      "TableName (Target Table)": "AT03_OFICINA"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT03_AGRUPACION_OFICINAS_BANCARIBE_SOBREGIRADA",
+      "TableName (Target Table)": "AT03_OFICINA_SOBREG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT03_AGRUPACION_OFICINAS_BANCARIBE_FINAL",
+      "TableName (Target Table)": "AT03_OFICINA_FINAL"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT_AGRUPACION_V001_BANCARIBE",
+      "TableName (Target Table)": "AT03_V001_BANCARIBE"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TT_AT03",
+      "TableName (Target Table)": "ATS_TH_AT03"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT03_AGRUPACION_CONTABLE_BG",
+      "TableName (Target Table)": "AGRUPACION_BG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT03_AGRUPACION_OFICINAS_BG",
+      "TableName (Target Table)": "AT03_OFICINA_BG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT03_AGRUPACION_OFICINAS_BANCARIBE_SOBREGIRADA_BG",
+      "TableName (Target Table)": "AT03_OFICINA_SOBREG_BG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT03_AGRUPACION_OFICINAS_BANCARIBE_FINAL_BG",
+      "TableName (Target Table)": "AT03_OFICINA_FINAL_BG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT_AGRUPACION_V001_BANCARIBE_BG",
+      "TableName (Target Table)": "AT03_V001_BG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TT_AT03_BG",
+      "TableName (Target Table)": "ATS_TH_AT03BG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ODS",
+      "PopName": "IT_CB_HIST_SALDO_ODS_BANCARIBE_AT03",
+      "TableName (Target Table)": "CB_HIST_SALDO_AT03"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ODS",
+      "PopName": "IT_CB_HIST_SALDO_ODS_BANGENTE_AT03",
+      "TableName (Target Table)": "CB_HIST_SALDO_AT"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ODS",
+      "PopName": "IT_CB_HIST_SALDO_ODS_BANCARIBE_AT03_ODS",
+      "TableName (Target Table)": "CB_HIST_SALDO_AT03"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_AGRUPACION_CONTABLE_BANCARIBE",
+      "StepType": "F",
+      "Nno": "1",
+      "TableName (Target Table)": "AGRUPACION_BANCARIBE",
+      "OkNextStep": "null",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA\tNUMBER(10) NULL,\n\tC2_CUENTA\tVARCHAR2(12) NULL,\n\tC3_SALDO\tNUMBER(32,7) NULL,\n\tC4_EMPRESA\tNUMBER(3) NULL,\n\tC5_CATEGORIA\tVARCHAR2(1) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tNVL(CB_RELOFI.RE_OFCONTA,CB_HIST_SALDO_AT03.HI_OFICINA)\t   C1_OFICINA,\n\tSUBSTR(RPAD(CB_HIST_SALDO_AT03.HI_CUENTA,20,0),1,12)\t   C2_CUENTA,\n\tCB_HIST_SALDO_AT03.HI_SALDO\t   C3_SALDO,\n\tCB_HIST_SALDO_AT03.HI_EMPRESA\t   C4_EMPRESA,\n\tCB_CUENTA.CU_CATEGORIA\t   C5_CATEGORIA\nfrom\t<?=snpRef.getObjectName(\"L\", \"CB_CUENTA\", \"ODS\", \"\", \"D\")?>   CB_CUENTA, <?=snpRef.getObjectName(\"L\", \"CB_RELOFI\", \"ODS\", \"\", \"D\")?>   CB_RELOFI, <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\")?>   CB_HIST_SALDO_AT03\nwhere\t(1=1)\nAnd (CB_HIST_SALDO_AT03.HI_PERIODO= {AT03_Max_Periodo})\n And (CB_HIST_SALDO_AT03.HI_CORTE= {AT03_Max_Corte})\n And (CB_HIST_SALDO_AT03.HI_OFICINA not in (700,701,702,703,703,704,705,708,709,710,711,713,714,715) )\n And (CB_HIST_SALDO_AT03.HI_AREA>=0)\n And (CB_HIST_SALDO_AT03.HI_CUENTA BETWEEN '1' and '9')\n And (CB_CUENTA.CU_CATEGORIA IS NOT NULL)\n\n And (CB_HIST_SALDO_AT03.HI_CUENTA=CB_CUENTA.CU_CUENTA)\nAND (CB_HIST_SALDO_AT03.HI_OFICINA=CB_RELOFI.RE_OFADMIN AND CB_HIST_SALDO_AT03.HI_EMPRESA=CB_RELOFI.RE_EMPRESA)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA,\n\tC2_CUENTA,\n\tC3_SALDO,\n\tC4_EMPRESA,\n\tC5_CATEGORIA\n)\nvalues\n(\n\t:C1_OFICINA,\n\t:C2_CUENTA,\n\t:C3_SALDO,\n\t:C4_EMPRESA,\n\t:C5_CATEGORIA\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCATEGORIA\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tOFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA \n\t \n) \n\nselect\n    OFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_OFICINA OFICINA,\n\tC2_CUENTA CUENTA,\n\tC3_SALDO SALDO,\n\tC4_EMPRESA EMPRESA,\n\tC5_CATEGORIA CATEGORIA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tSALDO \n\t,OFICINA,\n\tCONSTANTE \n) \n\nselect\n    CUENTA,\n\tSALDO   \n  ,'V001',\n\t'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_FINAL.CUENTA CUENTA,\n\tSUM(AT03_OFICINA_FINAL.SALDO) SALDO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA_FINAL\nwhere\t\t(1=1)\t\n\n\n\nGroup By AT03_OFICINA_FINAL.CUENTA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=1)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=2)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select  max (co_corte)\nfrom cb_corte\nwhere to_char(co_periodo) = '{AT03_Max_Periodo}' \nand   to_char(co_fecha_fin,'yyyymmdd') =to_char(last_day( sysdate-28),'yyyymmdd')\ngroup by co_periodo",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_AGRUPACION_V001_BANCARIBE",
+      "StepType": "F",
+      "Nno": "1",
+      "TableName (Target Table)": "AT03_V001_BANCARIBE",
+      "OkNextStep": "null",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA\tNUMBER(10) NULL,\n\tC2_CUENTA\tVARCHAR2(12) NULL,\n\tC3_SALDO\tNUMBER(32,7) NULL,\n\tC4_EMPRESA\tNUMBER(3) NULL,\n\tC5_CATEGORIA\tVARCHAR2(1) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tNVL(CB_RELOFI.RE_OFCONTA,CB_HIST_SALDO_AT03.HI_OFICINA)\t   C1_OFICINA,\n\tSUBSTR(RPAD(CB_HIST_SALDO_AT03.HI_CUENTA,20,0),1,12)\t   C2_CUENTA,\n\tCB_HIST_SALDO_AT03.HI_SALDO\t   C3_SALDO,\n\tCB_HIST_SALDO_AT03.HI_EMPRESA\t   C4_EMPRESA,\n\tCB_CUENTA.CU_CATEGORIA\t   C5_CATEGORIA\nfrom\t<?=snpRef.getObjectName(\"L\", \"CB_CUENTA\", \"ODS\", \"\", \"D\")?>   CB_CUENTA, <?=snpRef.getObjectName(\"L\", \"CB_RELOFI\", \"ODS\", \"\", \"D\")?>   CB_RELOFI, <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\")?>   CB_HIST_SALDO_AT03\nwhere\t(1=1)\nAnd (CB_HIST_SALDO_AT03.HI_PERIODO= {AT03_Max_Periodo})\n And (CB_HIST_SALDO_AT03.HI_CORTE= {AT03_Max_Corte})\n And (CB_HIST_SALDO_AT03.HI_OFICINA not in (700,701,702,703,703,704,705,708,709,710,711,713,714,715) )\n And (CB_HIST_SALDO_AT03.HI_AREA>=0)\n And (CB_HIST_SALDO_AT03.HI_CUENTA BETWEEN '1' and '9')\n And (CB_CUENTA.CU_CATEGORIA IS NOT NULL)\n\n And (CB_HIST_SALDO_AT03.HI_CUENTA=CB_CUENTA.CU_CUENTA)\nAND (CB_HIST_SALDO_AT03.HI_OFICINA=CB_RELOFI.RE_OFADMIN AND CB_HIST_SALDO_AT03.HI_EMPRESA=CB_RELOFI.RE_EMPRESA)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA,\n\tC2_CUENTA,\n\tC3_SALDO,\n\tC4_EMPRESA,\n\tC5_CATEGORIA\n)\nvalues\n(\n\t:C1_OFICINA,\n\t:C2_CUENTA,\n\t:C3_SALDO,\n\t:C4_EMPRESA,\n\t:C5_CATEGORIA\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCATEGORIA\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tOFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA \n\t \n) \n\nselect\n    OFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_OFICINA OFICINA,\n\tC2_CUENTA CUENTA,\n\tC3_SALDO SALDO,\n\tC4_EMPRESA EMPRESA,\n\tC5_CATEGORIA CATEGORIA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tSALDO \n\t,OFICINA,\n\tCONSTANTE \n) \n\nselect\n    CUENTA,\n\tSALDO   \n  ,'V001',\n\t'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_FINAL.CUENTA CUENTA,\n\tSUM(AT03_OFICINA_FINAL.SALDO) SALDO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA_FINAL\nwhere\t\t(1=1)\t\n\n\n\nGroup By AT03_OFICINA_FINAL.CUENTA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=1)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=2)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select  max (co_corte)\nfrom cb_corte\nwhere to_char(co_periodo) = '{AT03_Max_Periodo}' \nand   to_char(co_fecha_fin,'yyyymmdd') =to_char(last_day( sysdate-28),'yyyymmdd')\ngroup by co_periodo",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CB_HIST_SALDO_ODS_BANCARIBE_AT03",
+      "StepType": "F",
+      "Nno": "1",
+      "TableName (Target Table)": "CB_HIST_SALDO_AT03",
+      "OkNextStep": "null",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA\tNUMBER(10) NULL,\n\tC2_CUENTA\tVARCHAR2(12) NULL,\n\tC3_SALDO\tNUMBER(32,7) NULL,\n\tC4_EMPRESA\tNUMBER(3) NULL,\n\tC5_CATEGORIA\tVARCHAR2(1) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tNVL(CB_RELOFI.RE_OFCONTA,CB_HIST_SALDO_AT03.HI_OFICINA)\t   C1_OFICINA,\n\tSUBSTR(RPAD(CB_HIST_SALDO_AT03.HI_CUENTA,20,0),1,12)\t   C2_CUENTA,\n\tCB_HIST_SALDO_AT03.HI_SALDO\t   C3_SALDO,\n\tCB_HIST_SALDO_AT03.HI_EMPRESA\t   C4_EMPRESA,\n\tCB_CUENTA.CU_CATEGORIA\t   C5_CATEGORIA\nfrom\t<?=snpRef.getObjectName(\"L\", \"CB_CUENTA\", \"ODS\", \"\", \"D\")?>   CB_CUENTA, <?=snpRef.getObjectName(\"L\", \"CB_RELOFI\", \"ODS\", \"\", \"D\")?>   CB_RELOFI, <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\")?>   CB_HIST_SALDO_AT03\nwhere\t(1=1)\nAnd (CB_HIST_SALDO_AT03.HI_PERIODO= {AT03_Max_Periodo})\n And (CB_HIST_SALDO_AT03.HI_CORTE= {AT03_Max_Corte})\n And (CB_HIST_SALDO_AT03.HI_OFICINA not in (700,701,702,703,703,704,705,708,709,710,711,713,714,715) )\n And (CB_HIST_SALDO_AT03.HI_AREA>=0)\n And (CB_HIST_SALDO_AT03.HI_CUENTA BETWEEN '1' and '9')\n And (CB_CUENTA.CU_CATEGORIA IS NOT NULL)\n\n And (CB_HIST_SALDO_AT03.HI_CUENTA=CB_CUENTA.CU_CUENTA)\nAND (CB_HIST_SALDO_AT03.HI_OFICINA=CB_RELOFI.RE_OFADMIN AND CB_HIST_SALDO_AT03.HI_EMPRESA=CB_RELOFI.RE_EMPRESA)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA,\n\tC2_CUENTA,\n\tC3_SALDO,\n\tC4_EMPRESA,\n\tC5_CATEGORIA\n)\nvalues\n(\n\t:C1_OFICINA,\n\t:C2_CUENTA,\n\t:C3_SALDO,\n\t:C4_EMPRESA,\n\t:C5_CATEGORIA\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCATEGORIA\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tOFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA \n\t \n) \n\nselect\n    OFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_OFICINA OFICINA,\n\tC2_CUENTA CUENTA,\n\tC3_SALDO SALDO,\n\tC4_EMPRESA EMPRESA,\n\tC5_CATEGORIA CATEGORIA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tSALDO \n\t,OFICINA,\n\tCONSTANTE \n) \n\nselect\n    CUENTA,\n\tSALDO   \n  ,'V001',\n\t'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_FINAL.CUENTA CUENTA,\n\tSUM(AT03_OFICINA_FINAL.SALDO) SALDO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA_FINAL\nwhere\t\t(1=1)\t\n\n\n\nGroup By AT03_OFICINA_FINAL.CUENTA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=1)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=2)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select  max (co_corte)\nfrom cb_corte\nwhere to_char(co_periodo) = '{AT03_Max_Periodo}' \nand   to_char(co_fecha_fin,'yyyymmdd') =to_char(last_day( sysdate-28),'yyyymmdd')\ngroup by co_periodo",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CB_HIST_SALDO_ODS_BANGENTE_AT03",
+      "StepType": "F",
+      "Nno": "1",
+      "TableName (Target Table)": "CB_HIST_SALDO_AT",
+      "OkNextStep": "null",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA\tNUMBER(10) NULL,\n\tC2_CUENTA\tVARCHAR2(12) NULL,\n\tC3_SALDO\tNUMBER(32,7) NULL,\n\tC4_EMPRESA\tNUMBER(3) NULL,\n\tC5_CATEGORIA\tVARCHAR2(1) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tNVL(CB_RELOFI.RE_OFCONTA,CB_HIST_SALDO_AT03.HI_OFICINA)\t   C1_OFICINA,\n\tSUBSTR(RPAD(CB_HIST_SALDO_AT03.HI_CUENTA,20,0),1,12)\t   C2_CUENTA,\n\tCB_HIST_SALDO_AT03.HI_SALDO\t   C3_SALDO,\n\tCB_HIST_SALDO_AT03.HI_EMPRESA\t   C4_EMPRESA,\n\tCB_CUENTA.CU_CATEGORIA\t   C5_CATEGORIA\nfrom\t<?=snpRef.getObjectName(\"L\", \"CB_CUENTA\", \"ODS\", \"\", \"D\")?>   CB_CUENTA, <?=snpRef.getObjectName(\"L\", \"CB_RELOFI\", \"ODS\", \"\", \"D\")?>   CB_RELOFI, <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\")?>   CB_HIST_SALDO_AT03\nwhere\t(1=1)\nAnd (CB_HIST_SALDO_AT03.HI_PERIODO= {AT03_Max_Periodo})\n And (CB_HIST_SALDO_AT03.HI_CORTE= {AT03_Max_Corte})\n And (CB_HIST_SALDO_AT03.HI_OFICINA not in (700,701,702,703,703,704,705,708,709,710,711,713,714,715) )\n And (CB_HIST_SALDO_AT03.HI_AREA>=0)\n And (CB_HIST_SALDO_AT03.HI_CUENTA BETWEEN '1' and '9')\n And (CB_CUENTA.CU_CATEGORIA IS NOT NULL)\n\n And (CB_HIST_SALDO_AT03.HI_CUENTA=CB_CUENTA.CU_CUENTA)\nAND (CB_HIST_SALDO_AT03.HI_OFICINA=CB_RELOFI.RE_OFADMIN AND CB_HIST_SALDO_AT03.HI_EMPRESA=CB_RELOFI.RE_EMPRESA)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA,\n\tC2_CUENTA,\n\tC3_SALDO,\n\tC4_EMPRESA,\n\tC5_CATEGORIA\n)\nvalues\n(\n\t:C1_OFICINA,\n\t:C2_CUENTA,\n\t:C3_SALDO,\n\t:C4_EMPRESA,\n\t:C5_CATEGORIA\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCATEGORIA\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tOFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA \n\t \n) \n\nselect\n    OFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_OFICINA OFICINA,\n\tC2_CUENTA CUENTA,\n\tC3_SALDO SALDO,\n\tC4_EMPRESA EMPRESA,\n\tC5_CATEGORIA CATEGORIA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tSALDO \n\t,OFICINA,\n\tCONSTANTE \n) \n\nselect\n    CUENTA,\n\tSALDO   \n  ,'V001',\n\t'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_FINAL.CUENTA CUENTA,\n\tSUM(AT03_OFICINA_FINAL.SALDO) SALDO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA_FINAL\nwhere\t\t(1=1)\t\n\n\n\nGroup By AT03_OFICINA_FINAL.CUENTA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=1)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=2)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select  max (co_corte)\nfrom cb_corte\nwhere to_char(co_periodo) = '{AT03_Max_Periodo}' \nand   to_char(co_fecha_fin,'yyyymmdd') =to_char(last_day( sysdate-28),'yyyymmdd')\ngroup by co_periodo",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_Max_Periodo",
+      "StepType": "V",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "1",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select   case\nwhen to_char(sysdate,'mm')  = '01' then '2'||(to_char(sysdate,'yy') -1)\nwhen to_char(sysdate,'mm')  < '08' then '1'||to_char(sysdate,'yy') \nelse  '2'||to_char(sysdate,'yy') \nend\nfrom dual\n\n/*select   case\nwhen to_char(sysdate,'mm')  < '08' then '1'||to_char(sysdate,'yy') \nelse  '2'||to_char(sysdate,'yy') \nend\nfrom dual*/\n/*select   case\nwhen to_char(sysdate-28,'mm')  < '08' then '1'||to_char(sysdate-28,'yy') \nelse  '2'||to_char(sysdate-28,'yy') \nend\nfrom dual*/",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT03_Max_Periodo",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_Max_Corte",
+      "StepType": "V",
+      "Nno": "1",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "2",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA\tNUMBER(10) NULL,\n\tC2_CUENTA\tVARCHAR2(12) NULL,\n\tC3_SALDO\tNUMBER(32,7) NULL,\n\tC4_EMPRESA\tNUMBER(3) NULL,\n\tC5_CATEGORIA\tVARCHAR2(1) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tNVL(CB_RELOFI.RE_OFCONTA,CB_HIST_SALDO_AT03.HI_OFICINA)\t   C1_OFICINA,\n\tSUBSTR(RPAD(CB_HIST_SALDO_AT03.HI_CUENTA,20,0),1,12)\t   C2_CUENTA,\n\tCB_HIST_SALDO_AT03.HI_SALDO\t   C3_SALDO,\n\tCB_HIST_SALDO_AT03.HI_EMPRESA\t   C4_EMPRESA,\n\tCB_CUENTA.CU_CATEGORIA\t   C5_CATEGORIA\nfrom\t<?=snpRef.getObjectName(\"L\", \"CB_CUENTA\", \"ODS\", \"\", \"D\")?>   CB_CUENTA, <?=snpRef.getObjectName(\"L\", \"CB_RELOFI\", \"ODS\", \"\", \"D\")?>   CB_RELOFI, <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\")?>   CB_HIST_SALDO_AT03\nwhere\t(1=1)\nAnd (CB_HIST_SALDO_AT03.HI_PERIODO= {AT03_Max_Periodo})\n And (CB_HIST_SALDO_AT03.HI_CORTE= {AT03_Max_Corte})\n And (CB_HIST_SALDO_AT03.HI_OFICINA not in (700,701,702,703,703,704,705,708,709,710,711,713,714,715) )\n And (CB_HIST_SALDO_AT03.HI_AREA>=0)\n And (CB_HIST_SALDO_AT03.HI_CUENTA BETWEEN '1' and '9')\n And (CB_CUENTA.CU_CATEGORIA IS NOT NULL)\n\n And (CB_HIST_SALDO_AT03.HI_CUENTA=CB_CUENTA.CU_CUENTA)\nAND (CB_HIST_SALDO_AT03.HI_OFICINA=CB_RELOFI.RE_OFADMIN AND CB_HIST_SALDO_AT03.HI_EMPRESA=CB_RELOFI.RE_EMPRESA)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA,\n\tC2_CUENTA,\n\tC3_SALDO,\n\tC4_EMPRESA,\n\tC5_CATEGORIA\n)\nvalues\n(\n\t:C1_OFICINA,\n\t:C2_CUENTA,\n\t:C3_SALDO,\n\t:C4_EMPRESA,\n\t:C5_CATEGORIA\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCATEGORIA\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tOFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA \n\t \n) \n\nselect\n    OFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_OFICINA OFICINA,\n\tC2_CUENTA CUENTA,\n\tC3_SALDO SALDO,\n\tC4_EMPRESA EMPRESA,\n\tC5_CATEGORIA CATEGORIA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tSALDO \n\t,OFICINA,\n\tCONSTANTE \n) \n\nselect\n    CUENTA,\n\tSALDO   \n  ,'V001',\n\t'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_FINAL.CUENTA CUENTA,\n\tSUM(AT03_OFICINA_FINAL.SALDO) SALDO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA_FINAL\nwhere\t\t(1=1)\t\n\n\n\nGroup By AT03_OFICINA_FINAL.CUENTA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=1)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=2)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select  max (co_corte)\nfrom cb_corte\nwhere to_char(co_periodo) = '{AT03_Max_Periodo}' \nand   to_char(co_fecha_fin,'yyyymmdd') =to_char(last_day( sysdate-28),'yyyymmdd')\ngroup by co_periodo",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT03_Max_Corte",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CB_HIST_SALDO_ODS_BANCARIBE_AT03_ODS",
+      "StepType": "F",
+      "Nno": "2",
+      "TableName (Target Table)": "CB_HIST_SALDO_AT03",
+      "OkNextStep": "252",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME,\n\tHI_DEBITO,\n\tHI_CREDITO,\n\tHI_DEBITO_ME,\n\tHI_CREDITO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME,\n\tHI_DEBITO,\n\tHI_CREDITO,\n\tHI_DEBITO_ME,\n\tHI_CREDITO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tCB_HIST_SALDO.hi_empresa HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta)) HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina HI_OFICINA,\n\tCB_HIST_SALDO.hi_area HI_AREA,\n\tCB_HIST_SALDO.hi_corte HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me HI_SALDO_ME,\n\tCB_HIST_SALDO.HI_DEBITO HI_DEBITO,\n\tCB_HIST_SALDO.HI_CREDITO HI_CREDITO,\n\tCB_HIST_SALDO.HI_DEBITO_ME HI_DEBITO_ME,\n\tCB_HIST_SALDO.HI_CREDITO_ME HI_CREDITO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO\", \"ODS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t\t(1=1)\t\n\nAnd (CB_HIST_SALDO.HI_PERIODO={AT03_Max_Periodo})\n And (CB_HIST_SALDO.HI_CORTE = {AT03_Max_Corte})\n And (CB_HIST_SALDO.HI_EMPRESA='1')\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_AGRUPACION_CONTABLE_BANCARIBE",
+      "StepType": "F",
+      "Nno": "252",
+      "TableName (Target Table)": "AGRUPACION_BANCARIBE",
+      "OkNextStep": "4",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "252",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "252",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "252",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "252",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tOFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA \n\t \n) \n\nselect\n    OFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_OFICINA OFICINA,\n\tC2_CUENTA CUENTA,\n\tC3_SALDO SALDO,\n\tC4_EMPRESA EMPRESA,\n\tC5_CATEGORIA CATEGORIA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "252",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "252",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "252",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA\tNUMBER(10) NULL,\n\tC2_CUENTA\tVARCHAR2(12) NULL,\n\tC3_SALDO\tNUMBER(32,7) NULL,\n\tC4_EMPRESA\tNUMBER(3) NULL,\n\tC5_CATEGORIA\tVARCHAR2(1) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "252",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tNVL(CB_RELOFI.RE_OFCONTA,CB_HIST_SALDO_AT03.HI_OFICINA)\t   C1_OFICINA,\n\tSUBSTR(RPAD(CB_HIST_SALDO_AT03.HI_CUENTA,20,0),1,12)\t   C2_CUENTA,\n\tCB_HIST_SALDO_AT03.HI_SALDO\t   C3_SALDO,\n\tCB_HIST_SALDO_AT03.HI_EMPRESA\t   C4_EMPRESA,\n\tCB_CUENTA.CU_CATEGORIA\t   C5_CATEGORIA\nfrom\t<?=snpRef.getObjectName(\"L\", \"CB_CUENTA\", \"ODS\", \"\", \"D\")?>   CB_CUENTA, <?=snpRef.getObjectName(\"L\", \"CB_RELOFI\", \"ODS\", \"\", \"D\")?>   CB_RELOFI, <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\")?>   CB_HIST_SALDO_AT03\nwhere\t(1=1)\nAnd (CB_HIST_SALDO_AT03.HI_PERIODO= {AT03_Max_Periodo})\n And (CB_HIST_SALDO_AT03.HI_CORTE= {AT03_Max_Corte})\n And (CB_HIST_SALDO_AT03.HI_OFICINA not in (700,701,702,703,703,704,705,708,709,710,711,713,714,715) )\n And (CB_HIST_SALDO_AT03.HI_AREA>=0)\n And (CB_HIST_SALDO_AT03.HI_CUENTA BETWEEN '1' and '9')\n And (CB_CUENTA.CU_CATEGORIA IS NOT NULL)\n\n And (CB_HIST_SALDO_AT03.HI_CUENTA=CB_CUENTA.CU_CUENTA)\nAND (CB_HIST_SALDO_AT03.HI_OFICINA=CB_RELOFI.RE_OFADMIN AND CB_HIST_SALDO_AT03.HI_EMPRESA=CB_RELOFI.RE_EMPRESA)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\") ?>\n(\n\tC1_OFICINA,\n\tC2_CUENTA,\n\tC3_SALDO,\n\tC4_EMPRESA,\n\tC5_CATEGORIA\n)\nvalues\n(\n\t:C1_OFICINA,\n\t:C2_CUENTA,\n\t:C3_SALDO,\n\t:C4_EMPRESA,\n\t:C5_CATEGORIA\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "252",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BANCARIBE\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "252",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCATEGORIA\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Actualizar cuenta formato Sudeban",
+      "StepType": "T",
+      "Nno": "4",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "5",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '714001000000'\nWHERE CUENTA = '714011000000'",
+          "TaskName3": "Actualizar cuenta 714001000000",
+          "OrdTrt": "0"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '751001000000'\nWHERE CUENTA = '751011000000'",
+          "TaskName3": "Actualizar cuenta 751001000000",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '712002000000'\nWHERE CUENTA = '712012010000'",
+          "TaskName3": "Actualizar cuenta 712002000000",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '717001000000'\nWHERE CUENTA = '717011010000'",
+          "TaskName3": "Actualizar cuenta 717001000000",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '722001000000'\nWHERE CUENTA = '722011010000'",
+          "TaskName3": "Actualizar cuenta 722001000000",
+          "OrdTrt": "40"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '732001000000'\nWHERE CUENTA = '732011010000'",
+          "TaskName3": "Actualizar cuenta 732001000000",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '743001000000'\nWHERE CUENTA = '743011010000'",
+          "TaskName3": "Actualizar cuenta 743001000000",
+          "OrdTrt": "60"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '744001000000'\n/*WHERE CUENTA = '744011010000'*/\nWHERE CUENTA = '744010000000'",
+          "TaskName3": "Actualizar cuenta 744001000000",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '753001000000'\nWHERE CUENTA = '753011010000'",
+          "TaskName3": "Actualizar cuenta 753001000000",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '712001000000'\nWHERE CUENTA = '712011010000'",
+          "TaskName3": "Actualizar cuenta 712001000000",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '734001000000'\nWHERE CUENTA = '734011010000'",
+          "TaskName3": "Actualizar cuenta 734001000000",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "/*UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '714002000000'\nWHERE CUENTA = '714020000000'*/",
+          "TaskName3": "Actualizar cuenta 714002000000",
+          "OrdTrt": "120"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '722002000000'\nWHERE CUENTA = '722012000000'",
+          "TaskName3": "Actualizar cuenta 722002000000",
+          "OrdTrt": "130"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '751002000000'\nWHERE CUENTA = '751012000000'",
+          "TaskName3": "Actualizar cuenta 751002000000",
+          "OrdTrt": "140"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ATSUDEBAN.AGRUPACION_BANCARIBE\nSET CUENTA = '744002000000'\nWHERE CUENTA = '744020000000'",
+          "TaskName3": "Actualizar cuenta 744002000000",
+          "OrdTrt": "150"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_AGRUPACION_OFICINAS_BANCARIBE",
+      "StepType": "F",
+      "Nno": "5",
+      "TableName (Target Table)": "AT03_OFICINA",
+      "OkNextStep": "6",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCATEGORIA\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tOFICINA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA \n\t,CONSTANTE \n) \n\nselect\n    CUENTA,\n\tOFICINA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA   \n  ,'1' \nFROM (\t\n\n\nselect \t\n\tAGRUPACION_BANCARIBE.CUENTA CUENTA,\n\tTO_CHAR(LPAD(AGRUPACION_BANCARIBE.OFICINA,4,0)) OFICINA,\n\tSUM(AGRUPACION_BANCARIBE.SALDO) SALDO,\n\tAGRUPACION_BANCARIBE.EMPRESA EMPRESA,\n\tAGRUPACION_BANCARIBE.CATEGORIA CATEGORIA \nfrom\t<?=snpRef.getObjectName(\"L\", \"AGRUPACION_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\")?>   AGRUPACION_BANCARIBE, <?=snpRef.getObjectName(\"L\", \"SIIF_AT03_CUENTACONTABLE\", \"ATSUDEBAN\", \"\", \"D\")?>   SIIF_AT03_CUENTACONTABLE\nwhere\t\t(1=1)\t\n And (TRIM(SIIF_AT03_CUENTACONTABLE.CUENTACONTABLE)=TRIM(AGRUPACION_BANCARIBE.CUENTA) AND TRIM(AGRUPACION_BANCARIBE.EMPRESA)=TRIM(SIIF_AT03_CUENTACONTABLE.IDBANCO))\nAnd (AGRUPACION_BANCARIBE.OFICINA not in ('157', '306')\n/*AGRUPACION_BANCARIBE.OFICINA not in ('148', '149', '157', '306')*/)\n\nGroup By AGRUPACION_BANCARIBE.CUENTA,\n TO_CHAR(LPAD(AGRUPACION_BANCARIBE.OFICINA,4,0)),\n AGRUPACION_BANCARIBE.EMPRESA,\n AGRUPACION_BANCARIBE.CATEGORIA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_AGRUPACION_OFICINAS_BANCARIBE_SOBREGIRADA",
+      "StepType": "F",
+      "Nno": "6",
+      "TableName (Target Table)": "AT03_OFICINA_SOBREG",
+      "OkNextStep": "7",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_SOBREG\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_SOBREG\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_SOBREG\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tSALDO,\n\tEMPRESA \n\t,OFICINA,\n\tCONSTANTE \n) \n\nselect\n    CUENTA,\n\tSALDO,\n\tEMPRESA   \n  ,'0147',\n\t'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA.CUENTA CUENTA,\n\tSUM(AT03_OFICINA.SALDO) SALDO,\n\tAT03_OFICINA.EMPRESA EMPRESA \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA\nwhere\t\t(1=1)\t\n\nAnd (AT03_OFICINA.SALDO < 0)\n And (AT03_OFICINA.CATEGORIA = 'D')\n\nGroup By AT03_OFICINA.CUENTA,\n AT03_OFICINA.EMPRESA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_AGRUPACION_OFICINAS_BANCARIBE_FINAL",
+      "StepType": "F",
+      "Nno": "7",
+      "TableName (Target Table)": "AT03_OFICINA_FINAL",
+      "OkNextStep": "8",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tOFICINA,\n\tSALDO,\n\tEMPRESA \n\t,CONSTANTE \n) \n\nselect\n    CUENTA,\n\tOFICINA,\n\tSALDO,\n\tEMPRESA   \n  ,'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA.CUENTA CUENTA,\n\tAT03_OFICINA.OFICINA OFICINA,\n\tAT03_OFICINA.SALDO SALDO,\n\tAT03_OFICINA.EMPRESA EMPRESA \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA\nwhere\t\t(1=1)\t\n\nAnd (AT03_OFICINA.SALDO <> 0)\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ACTUALIZACION_DE_LA_CUENTA_0147_POR_SOBREGIRO",
+      "StepType": "T",
+      "Nno": "8",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "9",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "/* update ATSUDEBAN.AT03_OFICINA_SOBREG\nset SALDO = SALDO * (-1) */",
+          "TaskName3": "Actualizar Saldo Negativos",
+          "OrdTrt": "0"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "/* DECLARE\n            cursor get_data IS\n            SELECT B.CUENTA, B.OFICINA, B.SALDO from ATSUDEBAN.AT03_OFICINA_SOBREG B;\n          BEGIN\n            FOR i IN get_data loop\n                    UPDATE ATSUDEBAN.AT03_OFICINA_FINAL A\n                    SET A.SALDO = A.SALDO + i.SALDO\n                   WHERE A.CUENTA = i.CUENTA\n                   and A.OFICINA = i.OFICINA;\n            END loop;\n \n           commit;\n \n        END; */",
+          "TaskName3": "Actualizar Cuentas de la 0147",
+          "OrdTrt": "10"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_AGRUPACION_V001_BANCARIBE",
+      "StepType": "F",
+      "Nno": "9",
+      "TableName (Target Table)": "AT03_V001_BANCARIBE",
+      "OkNextStep": "10",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tSALDO \n\t,OFICINA,\n\tCONSTANTE \n) \n\nselect\n    CUENTA,\n\tSALDO   \n  ,'V001',\n\t'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_FINAL.CUENTA CUENTA,\n\tSUM(AT03_OFICINA_FINAL.SALDO) SALDO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA_FINAL\nwhere\t\t(1=1)\t\n\n\n\nGroup By AT03_OFICINA_FINAL.CUENTA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TT_AT03",
+      "StepType": "F",
+      "Nno": "10",
+      "TableName (Target Table)": "ATS_TH_AT03",
+      "OkNextStep": "null",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tOFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO \n\t \n) \n\nselect\n    OFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO   \n   \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_FINAL.OFICINA OFICINA,\n\tSUBSTR(AT03_OFICINA_FINAL.CUENTA,1,10) CODIGO_CONTABLE,\n\tAT03_OFICINA_FINAL.SALDO SALDO,\n\tAT03_OFICINA_FINAL.CONSTANTE CONSECUTIVO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA_FINAL\nwhere\t\t(1=1)\t\n\nAnd (AT03_OFICINA_FINAL.SALDO <> 0)\n\n\n\n\nUNION\nselect \t\n\tAT03_V001_BANCARIBE.OFICINA OFICINA,\n\tSUBSTR(AT03_V001_BANCARIBE.CUENTA,1,10) CODIGO_CONTABLE,\n\tAT03_V001_BANCARIBE.SALDO SALDO,\n\tAT03_V001_BANCARIBE.CONSTANTE CONSECUTIVO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_V001_BANCARIBE\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_V001_BANCARIBE\nwhere\t\t(1=1)\t\n\nAnd (AT03_V001_BANCARIBE.SALDO <> 0)\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ACTUALIZACION_DE_LA_CUENTA_0147_POR_SOBREGIRO_BG",
+      "StepType": "T",
+      "Nno": "11",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "12",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "/* update ATSUDEBAN.AT03_OFICINA_SOBREG_BG\nset SALDO = SALDO * (-1) */",
+          "TaskName3": "Actualizar Saldo Negativos",
+          "OrdTrt": "0"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "/* DECLARE\n            cursor get_data IS\n            SELECT B.CUENTA, B.OFICINA, B.SALDO from ATSUDEBAN.AT03_OFICINA_SOBREG_BG B;\n          BEGIN\n            FOR i IN get_data loop\n                    UPDATE ATSUDEBAN.AT03_OFICINA_FINAL_BG A\n                    SET A.SALDO = A.SALDO + i.SALDO\n                   WHERE A.CUENTA = i.CUENTA\n                   and A.OFICINA = i.OFICINA;\n            END loop;\n \n           commit;\n \n        END; */",
+          "TaskName3": "Actualizar Cuentas de la 0147",
+          "OrdTrt": "10"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_AGRUPACION_V001_BANCARIBE_BG",
+      "StepType": "F",
+      "Nno": "12",
+      "TableName (Target Table)": "AT03_V001_BG",
+      "OkNextStep": "19",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BG\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_V001_BG\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_V001_BG\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tSALDO \n\t,OFICINA,\n\tCONSTANTE \n) \n\nselect\n    CUENTA,\n\tSALDO   \n  ,'V001',\n\t'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_FINAL_BG.CUENTA CUENTA,\n\tSUM(AT03_OFICINA_FINAL_BG.SALDO) SALDO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL_BG\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA_FINAL_BG\nwhere\t\t(1=1)\t\n\n\n\nGroup By AT03_OFICINA_FINAL_BG.CUENTA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TT_AT03_BG",
+      "StepType": "F",
+      "Nno": "19",
+      "TableName (Target Table)": "ATS_TH_AT03BG",
+      "OkNextStep": "null",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03BG\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tVARCHAR2(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGO_CONTABLE\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSECUTIVO\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03BG\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03BG\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03BG\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tOFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO \n\t \n) \n\nselect\n    OFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO   \n   \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_BG.OFICINA OFICINA,\n\tSUBSTR(AT03_OFICINA_BG.CUENTA,1,10) CODIGO_CONTABLE,\n\tAT03_OFICINA_BG.SALDO SALDO,\n\tAT03_OFICINA_BG.CONSTANTE CONSECUTIVO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_BG\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA_BG\nwhere\t\t(1=1)\t\n\nAnd (AT03_OFICINA_BG.SALDO <> 0)\n\n\n\n\nUNION\nselect \t\n\tAT03_V001_BG.OFICINA OFICINA,\n\tSUBSTR(AT03_V001_BG.CUENTA,1,10) CODIGO_CONTABLE,\n\tAT03_V001_BG.SALDO SALDO,\n\tAT03_V001_BG.CONSTANTE CONSECUTIVO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_V001_BG\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_V001_BG\nwhere\t\t(1=1)\t\n\nAnd (AT03_V001_BG.SALDO <> 0)\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_AGRUPACION_OFICINAS_BANCARIBE_FINAL_BG",
+      "StepType": "F",
+      "Nno": "13",
+      "TableName (Target Table)": "AT03_OFICINA_FINAL_BG",
+      "OkNextStep": "11",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL_BG\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL_BG\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_FINAL_BG\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tOFICINA,\n\tSALDO,\n\tEMPRESA \n\t,CONSTANTE \n) \n\nselect\n    CUENTA,\n\tOFICINA,\n\tSALDO,\n\tEMPRESA   \n  ,'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_BG.CUENTA CUENTA,\n\tAT03_OFICINA_BG.OFICINA OFICINA,\n\tAT03_OFICINA_BG.SALDO SALDO,\n\tAT03_OFICINA_BG.EMPRESA EMPRESA \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_BG\", \"ATSUDEBAN\", \"\", \"D\")?>   AT03_OFICINA_BG\nwhere\t\t(1=1)\t\n\nAnd (AT03_OFICINA_BG.SALDO <> 0)\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_AGRUPACION_OFICINAS_BANCARIBE_SOBREGIRADA_BG",
+      "StepType": "F",
+      "Nno": "14",
+      "TableName (Target Table)": "AT03_OFICINA_SOBREG_BG",
+      "OkNextStep": "13",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_SOBREG_BG\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tVARCHAR2(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_SOBREG_BG\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_SOBREG_BG\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tSALDO,\n\tEMPRESA \n\t,OFICINA,\n\tCONSTANTE \n) \n\nselect\n    CUENTA,\n\tSALDO,\n\tEMPRESA   \n  ,'0147',\n\t'1' \nFROM (\t\n\n\nselect \t\n\tAT03_OFICINA_BG.CUENTA CUENTA,\n\tSUM(AT03_OFICINA_BG.SALDO) SALDO,\n\tAT03_OFICINA_BG.EMPRESA EMPRESA \nfrom\t(\n\nselect \t\n\tAGRUPACION_BG.CUENTA    CUENTA,\tTO_CHAR(LPAD(AGRUPACION_BG.OFICINA,4,0))    OFICINA,\tSUM(AGRUPACION_BG.SALDO)    SALDO,\tAGRUPACION_BG.EMPRESA    EMPRESA,\tAGRUPACION_BG.CATEGORIA    CATEGORIA,\t'1'    CONSTANTE\nfrom\t<?=snpRef.getObjectName(\"L\", \"AGRUPACION_BG\", \"ATSUDEBAN\", \"\", \"D\")?>   AGRUPACION_BG, <?=snpRef.getObjectName(\"L\", \"SIIF_AT03_CUENTACONTABLE\", \"ATSUDEBAN\", \"\", \"D\")?>   SIIF_AT03_CUENTACONTABLE\nwhere\t(1=1)\n And (SIIF_AT03_CUENTACONTABLE.CUENTACONTABLE=AGRUPACION_BG.CUENTA AND SIIF_AT03_CUENTACONTABLE.IDBANCO=AGRUPACION_BG.EMPRESA)\nAnd (AGRUPACION_BG.OFICINA not in ('0149', '0157', '0250', '0306'))\nGroup By AGRUPACION_BG.CUENTA,\n TO_CHAR(LPAD(AGRUPACION_BG.OFICINA,4,0)),\n AGRUPACION_BG.EMPRESA,\n AGRUPACION_BG.CATEGORIA\n\n)   AT03_OFICINA_BG\nwhere\t\t(1=1)\t\n\nAnd (AT03_OFICINA_BG.CATEGORIA = 'D')\n And (AT03_OFICINA_BG.SALDO = 0)\n\nGroup By AT03_OFICINA_BG.CUENTA,\n AT03_OFICINA_BG.EMPRESA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_AGRUPACION_OFICINAS_BG",
+      "StepType": "F",
+      "Nno": "15",
+      "TableName (Target Table)": "AT03_OFICINA_BG",
+      "OkNextStep": "14",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_BG\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tVARCHAR2(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSTANTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCATEGORIA\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_BG\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT03_OFICINA_BG\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tCUENTA,\n\tOFICINA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA \n\t,CONSTANTE \n) \n\nselect\n    CUENTA,\n\tOFICINA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA   \n  ,'1' \nFROM (\t\n\n\nselect \t\n\tAGRUPACION_BG.CUENTA CUENTA,\n\tTO_CHAR(LPAD(AGRUPACION_BG.OFICINA,4,0)) OFICINA,\n\tSUM(AGRUPACION_BG.SALDO) SALDO,\n\tAGRUPACION_BG.EMPRESA EMPRESA,\n\tAGRUPACION_BG.CATEGORIA CATEGORIA \nfrom\t<?=snpRef.getObjectName(\"L\", \"AGRUPACION_BG\", \"ATSUDEBAN\", \"\", \"D\")?>   AGRUPACION_BG, <?=snpRef.getObjectName(\"L\", \"SIIF_AT03_CUENTACONTABLE\", \"ATSUDEBAN\", \"\", \"D\")?>   SIIF_AT03_CUENTACONTABLE\nwhere\t\t(1=1)\t\n And (SIIF_AT03_CUENTACONTABLE.CUENTACONTABLE=AGRUPACION_BG.CUENTA AND SIIF_AT03_CUENTACONTABLE.IDBANCO=AGRUPACION_BG.EMPRESA)\nAnd (AGRUPACION_BG.OFICINA not in ('0149', '0157', '0250', '0306'))\n\nGroup By AGRUPACION_BG.CUENTA,\n TO_CHAR(LPAD(AGRUPACION_BG.OFICINA,4,0)),\n AGRUPACION_BG.EMPRESA,\n AGRUPACION_BG.CATEGORIA\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_AGRUPACION_CONTABLE_BG",
+      "StepType": "F",
+      "Nno": "16",
+      "TableName (Target Table)": "AGRUPACION_BG",
+      "OkNextStep": "15",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BG\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BG\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BG\", \"W\") ?>\n(\n\tC1_OFICINA\tNUMBER(10) NULL,\n\tC2_CUENTA\tVARCHAR2(12) NULL,\n\tC3_SALDO\tNUMBER(32,7) NULL,\n\tC4_EMPRESA\tNUMBER(3) NULL,\n\tC5_CATEGORIA\tVARCHAR2(1) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tCB_RELOFI.RE_OFCONTA\t   C1_OFICINA,\n\tSUBSTR(RPAD(CB_HIST_SALDO_AT.HI_CUENTA,20,0),1,12)\t   C2_CUENTA,\n\tCB_HIST_SALDO_AT.HI_SALDO\t   C3_SALDO,\n\tCB_HIST_SALDO_AT.HI_EMPRESA\t   C4_EMPRESA,\n\tCB_CUENTA.CU_CATEGORIA\t   C5_CATEGORIA\nfrom\t<?=snpRef.getObjectName(\"L\", \"CB_CUENTA\", \"ODS\", \"\", \"D\")?>   CB_CUENTA, <?=snpRef.getObjectName(\"L\", \"CB_RELOFI\", \"ODS\", \"\", \"D\")?>   CB_RELOFI, <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\")?>   CB_HIST_SALDO_AT\nwhere\t(1=1)\nAnd (CB_HIST_SALDO_AT.HI_CORTE= {AT03_Max_Corte})\n And (CB_HIST_SALDO_AT.HI_OFICINA IN (148,147,700,701,702,703,703,704,705,708,709,710,711,713,714,715,716,747))\n And (CB_HIST_SALDO_AT.HI_SALDO <> 0)\n And (CB_HIST_SALDO_AT.HI_PERIODO= {AT03_Max_Periodo})\n And (CB_HIST_SALDO_AT.HI_CUENTA BETWEEN '1' and '9')\n And (CB_HIST_SALDO_AT.HI_AREA>=0)\n And (CB_HIST_SALDO_AT.HI_EMPRESA = 2)\n\n And (CB_HIST_SALDO_AT.HI_OFICINA=CB_RELOFI.RE_OFADMIN)\nAND (CB_HIST_SALDO_AT.HI_CUENTA=CB_CUENTA.CU_CUENTA)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BG\", \"W\") ?>\n(\n\tC1_OFICINA,\n\tC2_CUENTA,\n\tC3_SALDO,\n\tC4_EMPRESA,\n\tC5_CATEGORIA\n)\nvalues\n(\n\t:C1_OFICINA,\n\t:C2_CUENTA,\n\t:C3_SALDO,\n\t:C4_EMPRESA,\n\t:C5_CATEGORIA\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BG\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BG\", \"ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tOFICINA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTA\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCATEGORIA\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)",
+          "TaskName3": "Create target table",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AGRUPACION_BG\", \"ATSUDEBAN\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AGRUPACION_BG\", \"ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tOFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA \n\t \n) \n\nselect\n    OFICINA,\n\tCUENTA,\n\tSALDO,\n\tEMPRESA,\n\tCATEGORIA   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_OFICINA OFICINA,\n\tC2_CUENTA CUENTA,\n\tC3_SALDO SALDO,\n\tC4_EMPRESA EMPRESA,\n\tC5_CATEGORIA CATEGORIA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AGRUPACION_BG\", \"ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CB_HIST_SALDO_ODS_BANGENTE_AT03",
+      "StepType": "F",
+      "Nno": "17",
+      "TableName (Target Table)": "CB_HIST_SALDO_AT",
+      "OkNextStep": "2",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=2)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CB_HIST_SALDO_ODS_BANCARIBE_AT03",
+      "StepType": "F",
+      "Nno": "18",
+      "TableName (Target Table)": "CB_HIST_SALDO_AT03",
+      "OkNextStep": "null",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo={AT03_Max_Periodo})\n And (CB_HIST_SALDO.hi_empresa=1)\n And (CB_HIST_SALDO.hi_corte = {AT03_Max_Corte})",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t:C1_HI_EMPRESA,\n\t:C2_HI_CUENTA,\n\t:C3_HI_OFICINA,\n\t:C4_HI_AREA,\n\t:C5_HI_CORTE,\n\t:C6_HI_PERIODO,\n\t:C7_HI_SALDO,\n\t:C8_HI_SALDO_ME\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "80"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?>",
+          "TaskName3": "Delete target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_AT03\", \"ODS\", \"\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,SYSDATE,\n\tSYSDATE \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0CB_HIST_SALDO_AT03\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "100"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "110"
+        }
+      ]
+    }
+  ]
+}

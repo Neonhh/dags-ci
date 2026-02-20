@@ -1,0 +1,1558 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "AT13_PRINCIPAL"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ATSUDEBAN_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "67040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "AT_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "76040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ODS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "46040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ATSUDEBAN"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_AT_STG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODS"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT13",
+      "ITable": "727011",
+      "SnpCond": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Oficina",
+          "ITxtCondSql": "22122011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22122011",
+              "Txt": "ATS_TH_AT13.OFICINA != '0'\nOR\nATS_TH_AT13.OFICINA IS NOT NULL"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Tipo de Cliente",
+          "ITxtCondSql": "22123011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22123011",
+              "Txt": "ATS_TH_AT13.TIPOCLIENTE IS NOT NULL OR ATS_TH_AT13.TIPOCLIENTE NOT IN ('0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Identificacion del Cliente",
+          "ITxtCondSql": "22125011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22125011",
+              "Txt": "(ATS_TH_AT13.TIPOCLIENTE IN ('V') AND TO_NUMBER(ATS_TH_AT13.IDCLIENTE) BETWEEN 1 AND 40000000)\nOR\n(ATS_TH_AT13.TIPOCLIENTE IN ('E') AND (TO_NUMBER(ATS_TH_AT13.IDCLIENTE)\nBETWEEN 1 AND 1500000 OR TO_NUMBER(ATS_TH_AT13.IDCLIENTE)\nBETWEEN 80000000 AND 90000000))\nOR \n(ATS_TH_AT13.TIPOCLIENTE IN ('J','G','R','P') AND TO_NUMBER(ATS_TH_AT13.IDCLIENTE) > 0)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Fecha de Reclamo",
+          "ITxtCondSql": "22127011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22127011",
+              "Txt": "ATS_TH_AT13.FECHARECLAMO > '20081231'"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Tipo de Reclamo",
+          "ITxtCondSql": "22129011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22129011",
+              "Txt": "ATS_TH_AT13.TIPOINSTRUMENTO IN ('30') AND ATS_TH_AT13.TIPORECLAMO IN\n('2','4','5','6','8','9','10','11','12','18','21','22','23','25')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('31') AND ATS_TH_AT13.TIPORECLAMO IN\n('2','3','5','8','9','11','12','13','21','25')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('32') AND ATS_TH_AT13.TIPORECLAMO IN\n('2','5','7','8','9','11','12','21')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('33') AND ATS_TH_AT13.TIPORECLAMO IN\n('3','13','21','23')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('50') AND ATS_TH_AT13.TIPORECLAMO IN\n('8','15','16','18','19','20','21')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('34') AND ATS_TH_AT13.TIPORECLAMO IN\n('1','9','11','12')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('35') AND ATS_TH_AT13.TIPORECLAMO IN\n('8','9','11','12','20')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('36') AND ATS_TH_AT13.TIPORECLAMO IN\n('1','9','11','12','21')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN('43','44','45','46','47','48','49') AND \nATS_TH_AT13.TIPORECLAMO IN ('9','10','11','14','23','24')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('40') AND ATS_TH_AT13.TIPORECLAMO IN\n('3','7','9','10','11','12','13','18','21','23')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('41') AND ATS_TH_AT13.TIPORECLAMO IN\n('3','7','9','11','12','13','21','23')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('37') AND ATS_TH_AT13.TIPORECLAMO IN\n('9','11')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('38') AND ATS_TH_AT13.TIPORECLAMO IN\n('17','22')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('39') AND ATS_TH_AT13.TIPORECLAMO IN\n('3','7','9','11','12')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('42') AND ATS_TH_AT13.TIPORECLAMO IN\n('3','7','9','11','12')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Monto de Reclamo",
+          "ITxtCondSql": "22134011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22134011",
+              "Txt": "(ATS_TH_AT13.TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.MONTORECLAMO > 0)\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.MONTORECLAMO = 0)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Codigo Cuenta Cliente",
+          "ITxtCondSql": "22136011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22136011",
+              "Txt": "(ATS_TH_AT13.TIPOINSTRUMENTO IN ('31','34','41','40') \nAND ATS_TH_AT13.CODIGOCUENTA IS NOT NULL)\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('31','34','41','40') \nAND ATS_TH_AT13.CODIGOCUENTA IS NULL)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Numero del Credito Afectado",
+          "ITxtCondSql": "22139011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22139011",
+              "Txt": "(ATS_TH_AT13.TIPORECLAMO IN ('9') AND ATS_TH_AT13.TIPOINSTRUMENTO IN\n('43','44','45','46','47','48','49') AND ATS_TH_AT13.CREDITOAFECTADO IS NULL)\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('9') AND ATS_TH_AT13.TIPOINSTRUMENTO IN\n('43','44','45','46','47','48','49') AND ATS_TH_AT13.CREDITOAFECTADO IS NOT NULL)\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('43','44','45','46','47','48','49') AND ATS_TH_AT13.CREDITOAFECTADO IS NULL)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Numero de Tarjeta Afectada",
+          "ITxtCondSql": "22141011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22141011",
+              "Txt": "(ATS_TH_AT13.TIPORECLAMO IN ('9') AND ATS_TH_AT13.TIPOINSTRUMENTO IN ('30','31','32')\nAND ATS_TH_AT13.TARJETAAFECTADA IS NULL)\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('9') AND \nATS_TH_AT13.TIPOINSTRUMENTO IN ('30','31','32')\nAND ATS_TH_AT13.TARJETAAFECTADA IS NOT NULL)\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('30','31','32')\nAND ATS_TH_AT13.TARJETAAFECTADA IS NULL)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Ente Supervisado Distinto de los Fondos",
+          "ITxtCondSql": "22142011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22142011",
+              "Txt": "(ATS_TH_AT13.TIPORECLAMO IN ('13') AND ATS_TH_AT13.ENTESUPERVISADO != '0')\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('13') AND ATS_TH_AT13.ENTESUPERVISADO = '0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Fecha Solucion",
+          "ITxtCondSql": "22146011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22146011",
+              "Txt": "(ATS_TH_AT13.ESTADORECLAMO IN ('2','3')\nAND TO_DATE(ATS_TH_AT13.FECHASOLUCION,'YYYYMMDD') >= TO_DATE(ATS_TH_AT13.FECHARECLAMO,'YYYYMMDD'))\nOR\n(ATS_TH_AT13.ESTADORECLAMO NOT IN ('2','3') \nAND ATS_TH_AT13.FECHASOLUCION = '19000101')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Monto del Reintegro o Reverso",
+          "ITxtCondSql": "22148011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22148011",
+              "Txt": "(ATS_TH_AT13.TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') \nAND ATS_TH_AT13.ESTADORECLAMO IN ('2','5') AND ATS_TH_AT13.MONTOREINTEGRO > 0)\nOR\n(ATS_TH_AT13.TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') \nAND ATS_TH_AT13.ESTADORECLAMO NOT IN ('2','5') AND ATS_TH_AT13.MONTOREINTEGRO = 0)\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') \nAND ATS_TH_AT13.MONTOREINTEGRO = 0)\nOR\n(ATS_TH_AT13.TIPORECLAMO IN ('14') \nAND ATS_TH_AT13.ESTADORECLAMO IN ('2','5') AND ATS_TH_AT13.MONTOREINTEGRO >= 0)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Fecha de Reintegro o Reverso",
+          "ITxtCondSql": "22150011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22150011",
+              "Txt": "(ATS_TH_AT13.TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.ESTADORECLAMO IN ('2','5') AND \n(ATS_TH_AT13.FECHAREINTEGRO >= ATS_TH_AT13.FECHARECLAMO))\nOR\n(ATS_TH_AT13.TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.ESTADORECLAMO IN ('1','3') AND \n(ATS_TH_AT13.FECHAREINTEGRO = '19000101'))\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.MONTOREINTEGRO = 0 AND \nATS_TH_AT13.FECHAREINTEGRO = '19000101')\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.MONTOREINTEGRO > 0 AND (ATS_TH_AT13.TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.MONTOREINTEGRO > 0))\nOR\n(ATS_TH_AT13.MONTOREINTEGRO = 0 AND \nATS_TH_AT13.FECHAREINTEGRO = '19000101')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Fecha de Notificacion al Cliente",
+          "ITxtCondSql": "22152011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22152011",
+              "Txt": "(ATS_TH_AT13.ESTADORECLAMO IN ('2','3','5') AND \n(TO_DATE(ATS_TH_AT13.FECHANOTIFICACION,'YYYYMMDD') >= TO_DATE(ATS_TH_AT13.FECHASOLUCION,'YYYYMMDD')\nOR TO_DATE(ATS_TH_AT13.FECHANOTIFICACION,'YYYYMMDD') <= \nLAST_DAY(TO_DATE(ATS_TH_AT13.FECHARECLAMO,'YYYYMMDD'))))\nOR\n(ATS_TH_AT13.ESTADORECLAMO NOT IN ('2','3','5') AND \nATS_TH_AT13.FECHANOTIFICACION = '19000101')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Codigo del Ente Supervisado POS o ATM",
+          "ITxtCondSql": "22154011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22154011",
+              "Txt": "(ATS_TH_AT13.TIPORECLAMO IN ('2','3','5','6','11','13') AND ATS_TH_AT13.TIPOINSTRUMENTO\nIN ('30','31','32') AND (ATS_TH_AT13.CODIGOENTE NOT IN ('0') OR ATS_TH_AT13.CODIGOENTE IS NOT NULL))\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('2','3','5','6','11','13') AND ATS_TH_AT13.TIPOINSTRUMENTO\nIN ('30','31','32') AND ATS_TH_AT13.CODIGOENTE = '0')\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('30','31','32') AND ATS_TH_AT13.CODIGOENTE =  '0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Identificacion POS o ATM",
+          "ITxtCondSql": "22156011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22156011",
+              "Txt": "(ATS_TH_AT13.TIPORECLAMO IN ('2','3','5','6','11','13') AND ATS_TH_AT13.TIPOINSTRUMENTO\nIN (30,31,32) AND ATS_TH_AT13.IDPOS IS NOT NULL)  AND IDPOS <> '0'\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('2','3','5','6','11','13') AND ATS_TH_AT13.TIPOINSTRUMENTO\nIN ('30','31','32') AND IDPOS = '0')\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('30','31','32') AND IDPOS =  '0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Nombre del Sistema de Informacion",
+          "ITxtCondSql": "22158011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22158011",
+              "Txt": "(ATS_TH_AT13.TIPORECLAMO IN ('19') AND ATS_TH_AT13.SISTEMA IS NOT NULL)\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('19') AND \nATS_TH_AT13.SISTEMA IS NULL)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Oficina Objeto del Reclamo",
+          "ITxtCondSql": "22160011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22160011",
+              "Txt": "(ATS_TH_AT13.TIPORECLAMO IN ('15','16','20','21') AND ATS_TH_AT13.OFICINARECLAMO != '0')\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('15','16','20','21') \nAND ATS_TH_AT13.OFICINARECLAMO = '0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Canal",
+          "ITxtCondSql": "22163011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22163011",
+              "Txt": "(ATS_TH_AT13.TIPOINSTRUMENTO IN ('30','31','32') AND ATS_TH_AT13.CANAL NOT IN ('5'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('33') AND ATS_TH_AT13.CANAL NOT IN ('3','5','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('34') AND ATS_TH_AT13.CANAL NOT IN ('2','3','5'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('35') AND ATS_TH_AT13.CANAL NOT IN ('1','2','3','4','5','6','7','9','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('36','37') \nAND ATS_TH_AT13.CANAL NOT IN ('1','2','3','5','7','9','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('38','39') \nAND ATS_TH_AT13.CANAL NOT IN ('1','2','5','7','9','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('40','41') \nAND ATS_TH_AT13.CANAL NOT IN ('1','2','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('42','43','44','45','46','47','48','49') \nAND ATS_TH_AT13.CANAL NOT IN ('1','2','5','7','9','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('50') \nAND ATS_TH_AT13.CANAL IN ('8','0'))"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Franquicia",
+          "ITxtCondSql": "22164011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22164011",
+              "Txt": "(ATS_TH_AT13.TIPOINSTRUMENTO IN ('30','32') AND ATS_TH_AT13.FRANQUICIA != '0')\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('30','32') AND ATS_TH_AT13.FRANQUICIA = '0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "727011",
+          "CondName": "Red",
+          "ITxtCondSql": "22167011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "22167011",
+              "Txt": "(ATS_TH_AT13.TIPOINSTRUMENTO IN ('30','31','32') AND ATS_TH_AT13.RED !='0')\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('30','31','32') AND ATS_TH_AT13.RED ='0')"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT13BG",
+      "ITable": "732011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT13_H",
+      "ITable": "358012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT13BG_H",
+      "ITable": "357012"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "RutaDirectorioAnterior",
+      "ITxtVar": "null",
+      "ITxtVarIn": "45041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "45041",
+          "Txt": "SELECT (SUBSTR(directorio,1,LENGTH(directorio)-LENGTH('#FileAT'))) FROM RUTA_DIRAT \nWHERE nombreat = '#FileAT'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "AT12",
+      "LschemaName": "null",
+      "VarName": "FileAT",
+      "ITxtVar": "40041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "40041",
+          "Txt": "Nombre del archivo de transmisión, AT número que identifica el archivo de transmisión. Ejemplo: ?AT03?."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01410",
+      "LschemaName": "null",
+      "VarName": "FileCodSupervisado",
+      "ITxtVar": "41041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "41041",
+          "Txt": "Código del Ente Supervisado, \nSuministrado por la Sudeban y utilizado en las transmisiones electrónicas. Para Bancaribe el código es 01410 y para Bangente 01422.\n\n\nBancaribe  =  01410\n Bangente =  01422"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "FechaFile",
+      "ITxtVar": "null",
+      "ITxtVarIn": "35041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "35041",
+          "Txt": "select TO_CHAR(TO_DATE('#FechaFin','MM/DD/YY'),'YYMMDD') from dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "09/01/2018",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaFin",
+      "ITxtVar": "13041",
+      "ITxtVarIn": "14041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "14041",
+          "Txt": "SELECT '#FechaFin_M' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaFin_M",
+      "ITxtVar": "null",
+      "ITxtVarIn": "15041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15041",
+          "Txt": "SELECT TO_CHAR(LAST_DAY(SYSDATE-28),'mm/dd/yyyy') FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "RutaDirectorio",
+      "ITxtVar": "null",
+      "ITxtVarIn": "44041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "44041",
+          "Txt": "select directorio from RUTA_DIRAT\nwhere nombreat = '#FileAT'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01422",
+      "LschemaName": "null",
+      "VarName": "FileCodSupervisadoBg",
+      "ITxtVar": "52041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "52041",
+          "Txt": "Código del Ente Supervisado, \nSuministrado por la Sudeban y utilizado en las transmisiones electrónicas. Para Bancaribe el código es 01410 y para Bangente 01422.\n\n\nBancaribe  =  01410\n Bangente =  01422"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "ErrorValid",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "FileName_Error",
+      "ITxtVar": "null",
+      "ITxtVarIn": "46041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "46041",
+          "Txt": "SELECT 'ErrorValid' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "GenerateGuid",
+      "ITxtVar": "33041",
+      "ITxtVarIn": "34041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "34041",
+          "Txt": "select sys_guid() from dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaInicio_M",
+      "ITxtVar": "null",
+      "ITxtVarIn": "3041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "3041",
+          "Txt": "SELECT TO_CHAR(TRUNC(SYSDATE-28,'MM'),'mm/dd/yyyy') FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "08/26/2018",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaInicio",
+      "ITxtVar": "1041",
+      "ITxtVarIn": "2041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "2041",
+          "Txt": "SELECT '#FechaInicio_M' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "FileDate",
+      "ITxtVar": "42041",
+      "ITxtVarIn": "43041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "43041",
+          "Txt": "Select TO_CHAR(sysdate, 'YYMMDD')   from DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "AT_CountValid",
+      "ITxtVar": "53041",
+      "ITxtVarIn": "54041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "54041",
+          "Txt": "SELECT COUNT(*) FROM #AT_TablaValidacion"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "null",
+      "VarName": "AT_TablaValidacion",
+      "ITxtVar": "55041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "55041",
+          "Txt": "Variable para declarar el nombre de la tabla de validación para el envío de los correos de errores."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "AT_DIA_HABIL",
+      "ITxtVar": "null",
+      "ITxtVarIn": "4545041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "4545041",
+          "Txt": "select 0 from dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "AT_DIAS_FERIADOS",
+      "ITxtVar": "null",
+      "ITxtVarIn": "97041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "97041",
+          "Txt": "select \n case when to_char(SYSDATE,'dd/mm/yy') in (select to_char(df_fecha,'dd/mm/yy') from ods.cl_dias_feriados where substr(df_year,3,2)=substr(to_char(sysdate,'dd/mm/yy'),7,2)) then 1\n else 0\n end status\nfrom dual"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TH_AT13_H",
+      "TableName (Target Table)": "ATS_TH_AT13_H"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TH_AT13BG_H",
+      "TableName (Target Table)": "ATS_TH_AT13BG_H"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_DIA_HABIL",
+      "StepType": "V",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select 0 from dual",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT_DIA_HABIL",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_DIAS_FERIADOS",
+      "StepType": "V",
+      "Nno": "1",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select \n case when to_char(SYSDATE,'dd/mm/yy') in (select to_char(df_fecha,'dd/mm/yy') from ods.cl_dias_feriados where substr(df_year,3,2)=substr(to_char(sysdate,'dd/mm/yy'),7,2)) then 1\n else 0\n end status\nfrom dual",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT_DIAS_FERIADOS",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_DIAS_HABILES",
+      "StepType": "VE",
+      "Nno": "2",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiGenerateAllScen 12",
+      "StepType": "SE",
+      "Nno": "3",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiGenerateAllScen \"-PROJECT=ODI_AT_SUDEBAN_DEV\" \"-FOLDER=116012\" \"-MODE=REGENERATE\" \"-GENERATE_PACK=YES\" \"-GENERATE_POP=YES\" \"-GENERATE_TRT=NO\" \"-GENERATE_VAR=YES\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "GenerateGuid",
+      "StepType": "V",
+      "Nno": "4",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select sys_guid() from dual",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "GenerateGuid",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaInicio_M",
+      "StepType": "V",
+      "Nno": "5",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT TO_CHAR(TRUNC(SYSDATE-28,'MM'),'mm/dd/yyyy') FROM DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaInicio_M",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaFin_M",
+      "StepType": "V",
+      "Nno": "6",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT TO_CHAR(LAST_DAY(SYSDATE-28),'mm/dd/yyyy') FROM DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaFin_M",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaInicio",
+      "StepType": "V",
+      "Nno": "7",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT '#ODI_AT_SUDEBAN_DEV.FechaInicio_M' FROM DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaInicio",
+              "DefV": "08/26/2018"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaFin",
+      "StepType": "V",
+      "Nno": "8",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT '#ODI_AT_SUDEBAN_DEV.FechaFin_M' FROM DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaFin",
+              "DefV": "09/01/2018"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaFile",
+      "StepType": "V",
+      "Nno": "9",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select TO_CHAR(TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin','MM/DD/YY'),'YYMMDD') from dual",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaFile",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileAT",
+      "StepType": "VS",
+      "Nno": "10",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileAT",
+              "DefV": "AT12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileCodSupervisado",
+      "StepType": "VD",
+      "Nno": "11",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileCodSupervisado",
+              "DefV": "01410"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileCodSupervisadoBg",
+      "StepType": "VD",
+      "Nno": "12",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileCodSupervisadoBg",
+              "DefV": "01422"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileDate",
+      "StepType": "V",
+      "Nno": "13",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "Select TO_CHAR(sysdate, 'YYMMDD')   from DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileDate",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "RutaDirectorio",
+      "StepType": "V",
+      "Nno": "14",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select directorio from RUTA_DIRAT\nwhere nombreat = '#ODI_AT_SUDEBAN_DEV.FileAT'",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "RutaDirectorio",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "RutaDirectorioAnterior",
+      "StepType": "V",
+      "Nno": "15",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT (SUBSTR(directorio,1,LENGTH(directorio)-LENGTH('#ODI_AT_SUDEBAN_DEV.FileAT'))) FROM RUTA_DIRAT \nWHERE nombreat = '#ODI_AT_SUDEBAN_DEV.FileAT'",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "RutaDirectorioAnterior",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario AT13 version 001",
+      "StepType": "SE",
+      "Nno": "16",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen -SCEN_NAME=AT13 -SCEN_VERSION=001"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TH_AT13",
+      "StepType": "CD",
+      "Nno": "17",
+      "TableName (Target Table)": "ATS_TH_AT13",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\n(\n\tCATALOG_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tSCHEMA_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tRESOURCE_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFULL_RES_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"1\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_MESS\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"250\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tCHECK_DATE\t<?=snpRef.getDataType(\"DEST_DATE\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tORIGIN\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONS_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"128\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONS_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"2\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_COUNT\t\t<?=snpRef.getDataType(\"DEST_NUMERIC\", \"10\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from\t<?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\nwhere\tSCHEMA_NAME\t= '<?=snpRef.getSchemaName(\"LS_ATSUDEBAN\", \"D\") ?>'\nand\tORIGIN \t\t= 'ATS_TH_AT13'\nand\tERR_TYPE \t\t= 'S'"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\n\tODI_ROW_ID \t\tUROWID,\n\tODI_ERR_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"1\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>, \n\tODI_ERR_MESS\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"250\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CHECK_DATE\t<?=snpRef.getDataType(\"DEST_DATE\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>, \n\tRECLAMO\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCLIENTE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDCLIENTE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECLIENTE\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHARECLAMO\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOINSTRUMENTO\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPORECLAMO\tVARCHAR2(150) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTORECLAMO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCUENTA\tVARCHAR2(24) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCREDITOAFECTADO\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTARJETAAFECTADA\tVARCHAR2(24) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tENTESUPERVISADO\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tESTADORECLAMO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHASOLUCION\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOREINTEGRO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHAREINTEGRO\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHANOTIFICACION\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOENTE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDPOS\tVARCHAR2(30) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSISTEMA\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINARECLAMO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOOPERACION\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANAL\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCLIENTEDESTINO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDCLIENTEDESTINO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECLIENTEDESTINO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNROCUENTADESTINO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCUENTADESTINO\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTODESTINO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_ORIGIN\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CONS_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"128\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CONS_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"2\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_PK\t\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"32\") ?> PRIMARY KEY,\n\tODI_SESS_NO\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"19\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from \t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\nwhere\t(ODI_ERR_TYPE = 'S'\tand 'S' = 'S')\nor\t(ODI_ERR_TYPE = 'S'\tand ODI_ORIGIN = 'ATS_TH_AT13')"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Oficina',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\tATS_TH_AT13.OFICINA != '0'\nOR\nATS_TH_AT13.OFICINA IS NOT NULL\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Tipo de Cliente',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\tATS_TH_AT13.TIPOCLIENTE IS NOT NULL OR ATS_TH_AT13.TIPOCLIENTE NOT IN ('0')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor del campo Tipo de Cliente es igual que V ? Venezolano, entonces el valor de este campo debe estar entre 1 y 40.000.000.\n\n2. Si el valor del campo Tipo de Cliente es igual que E ? Extranjero entonces el valor de este campo debe estar en',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Identificacion del Cliente',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPOCLIENTE IN ('V') AND TO_NUMBER(ATS_TH_AT13.IDCLIENTE) BETWEEN 1 AND 40000000)\nOR\n(ATS_TH_AT13.TIPOCLIENTE IN ('E') AND (TO_NUMBER(ATS_TH_AT13.IDCLIENTE)\nBETWEEN 1 AND 1500000 OR TO_NUMBER(ATS_TH_AT13.IDCLIENTE)\nBETWEEN 80000000 AND 90000000))\nOR \n(ATS_TH_AT13.TIPOCLIENTE IN ('J','G','R','P') AND TO_NUMBER(ATS_TH_AT13.IDCLIENTE) > 0)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. El valor de este campo debe ser mayor que ?20081231? y menor o igual que la fecha de cierre del mes que se reporta. ',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Fecha de Reclamo',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\tATS_TH_AT13.FECHARECLAMO > '20081231'\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Instrumento es igual a 30, este campo debe ser igual a 2, 4, 5, 6, 8, 9, 10, 11, 12, 18, 21, 22, 23 o 25\n\n2. Si Tipo de Instrumento es igual que 31, este campo debe ser igual a 2, 3, 5, 8, 9, 11, 12, 13, 21 o 25\n\n3. Si Tipo de Instrumen',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Tipo de Reclamo',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\tATS_TH_AT13.TIPOINSTRUMENTO IN ('30') AND ATS_TH_AT13.TIPORECLAMO IN\n('2','4','5','6','8','9','10','11','12','18','21','22','23','25')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('31') AND ATS_TH_AT13.TIPORECLAMO IN\n('2','3','5','8','9','11','12','13','21','25')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('32') AND ATS_TH_AT13.TIPORECLAMO IN\n('2','5','7','8','9','11','12','21')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('33') AND ATS_TH_AT13.TIPORECLAMO IN\n('3','13','21','23')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('50') AND ATS_TH_AT13.TIPORECLAMO IN\n('8','15','16','18','19','20','21')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('34') AND ATS_TH_AT13.TIPORECLAMO IN\n('1','9','11','12')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('35') AND ATS_TH_AT13.TIPORECLAMO IN\n('8','9','11','12','20')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('36') AND ATS_TH_AT13.TIPORECLAMO IN\n('1','9','11','12','21')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN('43','44','45','46','47','48','49') AND \nATS_TH_AT13.TIPORECLAMO IN ('9','10','11','14','23','24')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('40') AND ATS_TH_AT13.TIPORECLAMO IN\n('3','7','9','10','11','12','13','18','21','23')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('41') AND ATS_TH_AT13.TIPORECLAMO IN\n('3','7','9','11','12','13','21','23')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('37') AND ATS_TH_AT13.TIPORECLAMO IN\n('9','11')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('38') AND ATS_TH_AT13.TIPORECLAMO IN\n('17','22')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('39') AND ATS_TH_AT13.TIPORECLAMO IN\n('3','7','9','11','12')\nOR\nATS_TH_AT13.TIPOINSTRUMENTO IN ('42') AND ATS_TH_AT13.TIPORECLAMO IN\n('3','7','9','11','12')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor de Tipo de Reclamo es igual a 1, 2, 3, 4, 5, 7, 11, 13, 17, 22 o 23, este campo debe ser > 0\n\n2. Si el valor de Tipo de Reclamo es distinto a 1, 2, 3, 4, 5, 7, 11, 13, 17, 22 y 23, este campo debe ser = 0\n',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Monto de Reclamo',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.MONTORECLAMO > 0)\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.MONTORECLAMO = 0)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Instrumento es igual a 31, 34, 41 o 40, este campo debe ajustarse a la Normativa Nº 5 del Consejo Bancario Nacional (CBN).\n\n2. Si Tipo de Instrumento es distinto que 31, 34, 41 o 40, este campo debe ser igual que  vacío ',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Codigo Cuenta Cliente',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPOINSTRUMENTO IN ('31','34','41','40') \nAND ATS_TH_AT13.CODIGOCUENTA IS NOT NULL)\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('31','34','41','40') \nAND ATS_TH_AT13.CODIGOCUENTA IS NULL)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Reclamo es igual a 9 y Tipo de Instrumento es igual a 43, 44, 45, 46, 47, 48, 49, este campo debe ser igual a  vacío . \n\n2. Si Tipo de Reclamo es distinto que 9 y Tipo de Instrumento es igual a 43, 44, 45, 46, 47, 48 o 49, este campo de',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Numero del Credito Afectado',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPORECLAMO IN ('9') AND ATS_TH_AT13.TIPOINSTRUMENTO IN\n('43','44','45','46','47','48','49') AND ATS_TH_AT13.CREDITOAFECTADO IS NULL)\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('9') AND ATS_TH_AT13.TIPOINSTRUMENTO IN\n('43','44','45','46','47','48','49') AND ATS_TH_AT13.CREDITOAFECTADO IS NOT NULL)\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('43','44','45','46','47','48','49') AND ATS_TH_AT13.CREDITOAFECTADO IS NULL)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Reclamo es igual a 9 y Tipo de Instrumento es igual a 30, 31 o 32, este campo debe ser igual a  vacío .\n\n2. Si Tipo de Reclamo es distinto que 9 y Tipo de Instrumento es igual a 30, 31 o 32, este campo debe ser distinto que  vacío .\n\n3.',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Numero de Tarjeta Afectada',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPORECLAMO IN ('9') AND ATS_TH_AT13.TIPOINSTRUMENTO IN ('30','31','32')\nAND ATS_TH_AT13.TARJETAAFECTADA IS NULL)\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('9') AND \nATS_TH_AT13.TIPOINSTRUMENTO IN ('30','31','32')\nAND ATS_TH_AT13.TARJETAAFECTADA IS NOT NULL)\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('30','31','32')\nAND ATS_TH_AT13.TARJETAAFECTADA IS NULL)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Reclamo es igual a 13, este campo debe ser distinto que 0\n\n2. Si Tipo de Reclamo es distinto que 13, este campo debe ser igual que 0\n',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Ente Supervisado Distinto de los Fondos',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPORECLAMO IN ('13') AND ATS_TH_AT13.ENTESUPERVISADO != '0')\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('13') AND ATS_TH_AT13.ENTESUPERVISADO = '0')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el Estado de Reclamo es igual a 2, 3 o 5, el valor de este campo debe ser mayor o igual que la fecha de cierre del mes\n\n2. Si el Estado de Reclamo es distinto que 2, 3 y 5, el valor de este cambo debe ser igual que 19000101\n',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Fecha Solucion',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.ESTADORECLAMO IN ('2','3')\nAND TO_DATE(ATS_TH_AT13.FECHASOLUCION,'YYYYMMDD') >= TO_DATE(ATS_TH_AT13.FECHARECLAMO,'YYYYMMDD'))\nOR\n(ATS_TH_AT13.ESTADORECLAMO NOT IN ('2','3') \nAND ATS_TH_AT13.FECHASOLUCION = '19000101')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Reclamo es igual que 1, 2, 3, 4, 5, 7, 11, 13, 17, 22 o 23 y Estado de Reclamo es igual que 2 o 5, el valor de este campo debe ser mayor que cero.\n\n2. Si Tipo de Reclamo es igual que 1, 2, 3, 4, 5, 7, 11, 13, 17, 22 o 23 y Estado Reclam',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Monto del Reintegro o Reverso',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') \nAND ATS_TH_AT13.ESTADORECLAMO IN ('2','5') AND ATS_TH_AT13.MONTOREINTEGRO > 0)\nOR\n(ATS_TH_AT13.TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') \nAND ATS_TH_AT13.ESTADORECLAMO NOT IN ('2','5') AND ATS_TH_AT13.MONTOREINTEGRO = 0)\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') \nAND ATS_TH_AT13.MONTOREINTEGRO = 0)\nOR\n(ATS_TH_AT13.TIPORECLAMO IN ('14') \nAND ATS_TH_AT13.ESTADORECLAMO IN ('2','5') AND ATS_TH_AT13.MONTOREINTEGRO >= 0)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Reclamo es igual a 1, 2, 3, 4, 5, 7, 11, 13, 17, 22 o 23 y Estado de Reclamo es igual a 2 o 5, este campo debe ser mayor o igual que el valor del campo Fecha de Reclamo y menor o igual que la fecha de cierre del mes.\n\n2. Si Tipo de Recl',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Fecha de Reintegro o Reverso',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.ESTADORECLAMO IN ('2','5') AND \n(ATS_TH_AT13.FECHAREINTEGRO >= ATS_TH_AT13.FECHARECLAMO))\nOR\n(ATS_TH_AT13.TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.ESTADORECLAMO IN ('1','3') AND \n(ATS_TH_AT13.FECHAREINTEGRO = '19000101'))\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.MONTOREINTEGRO = 0 AND \nATS_TH_AT13.FECHAREINTEGRO = '19000101')\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.MONTOREINTEGRO > 0 AND (ATS_TH_AT13.TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND\nATS_TH_AT13.MONTOREINTEGRO > 0))\nOR\n(ATS_TH_AT13.MONTOREINTEGRO = 0 AND \nATS_TH_AT13.FECHAREINTEGRO = '19000101')\n\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el Estado de Reclamo es igual a 2, 3 o 5, este campo debe ser mayor o igual que Fecha de Solución y menor o igual que fecha de cierre del mes que se reporta.\n\n2. Si el Estado de Reclamo es distinto que 2, 3 y 5, el valor de este campo debe ser ',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Fecha de Notificacion al Cliente',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.ESTADORECLAMO IN ('2','3','5') AND \n(TO_DATE(ATS_TH_AT13.FECHANOTIFICACION,'YYYYMMDD') >= TO_DATE(ATS_TH_AT13.FECHASOLUCION,'YYYYMMDD')\nOR TO_DATE(ATS_TH_AT13.FECHANOTIFICACION,'YYYYMMDD') <= \nLAST_DAY(TO_DATE(ATS_TH_AT13.FECHARECLAMO,'YYYYMMDD'))))\nOR\n(ATS_TH_AT13.ESTADORECLAMO NOT IN ('2','3','5') AND \nATS_TH_AT13.FECHANOTIFICACION = '19000101')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Reclamo es igual que 2, 3, 5, 6, 11 o 13 y Tipo de Instrumento es igual que 30, 31, 32, este campo debe ser distinto que 0\n\n2. Si Tipo de Reclamo es distinto que 2, 3, 5, 6, 11, 13 y Tipo de Instrumento es igual que 30, 31, 32, este cam',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Codigo del Ente Supervisado POS o ATM',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPORECLAMO IN ('2','3','5','6','11','13') AND ATS_TH_AT13.TIPOINSTRUMENTO\nIN ('30','31','32') AND (ATS_TH_AT13.CODIGOENTE NOT IN ('0') OR ATS_TH_AT13.CODIGOENTE IS NOT NULL))\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('2','3','5','6','11','13') AND ATS_TH_AT13.TIPOINSTRUMENTO\nIN ('30','31','32') AND ATS_TH_AT13.CODIGOENTE = '0')\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('30','31','32') AND ATS_TH_AT13.CODIGOENTE =  '0')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Reclamo es igual a 2, 3, 5, 6, 11 o 13 y Tipo de Instrumento es igual a 30, 31 o 32, este campo debe ser distinto a  vacío .\n\n2. Si Tipo de Reclamo es distinto que 2, 3, 5, 6, 11 y 13 y Tipo de Instrumento es igual que 30, 31 o 32, este',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Identificacion POS o ATM',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPORECLAMO IN ('2','3','5','6','11','13') AND ATS_TH_AT13.TIPOINSTRUMENTO\nIN (30,31,32) AND ATS_TH_AT13.IDPOS IS NOT NULL)  AND IDPOS <> '0'\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('2','3','5','6','11','13') AND ATS_TH_AT13.TIPOINSTRUMENTO\nIN ('30','31','32') AND IDPOS = '0')\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('30','31','32') AND IDPOS =  '0')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Reclamo es igual a 19, el valor de este campo es distinto a  vacío . \n\n2. Si Tipo de Reclamo es distinto a 19, el valor de este campo es  vacío .',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Nombre del Sistema de Informacion',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPORECLAMO IN ('19') AND ATS_TH_AT13.SISTEMA IS NOT NULL)\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('19') AND \nATS_TH_AT13.SISTEMA IS NULL)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el Tipo de Reclamo es igual a 15, 16, 20 o 21, este campo debe ser distinto a 0\n\n2. Si el Tipo de Reclamo es distinto que 15, 16, 20 y 21, el valor de este campo debe ser igual a 0',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Oficina Objeto del Reclamo',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPORECLAMO IN ('15','16','20','21') AND ATS_TH_AT13.OFICINARECLAMO != '0')\nOR\n(ATS_TH_AT13.TIPORECLAMO NOT IN ('15','16','20','21') \nAND ATS_TH_AT13.OFICINARECLAMO = '0')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si Tipo de Instrumento es igual a 30, 31 o 32, este campo debe ser distinto a 5\n\n2. Si el Tipo de Instrumento es igual a 33, este campo debe ser distinto a 3, 5, 10\n\n3. Si el Tipo de Instrumento es igual a 34, este campo debe ser distinto a 2, 3, ',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Canal',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPOINSTRUMENTO IN ('30','31','32') AND ATS_TH_AT13.CANAL NOT IN ('5'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('33') AND ATS_TH_AT13.CANAL NOT IN ('3','5','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('34') AND ATS_TH_AT13.CANAL NOT IN ('2','3','5'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('35') AND ATS_TH_AT13.CANAL NOT IN ('1','2','3','4','5','6','7','9','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('36','37') \nAND ATS_TH_AT13.CANAL NOT IN ('1','2','3','5','7','9','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('38','39') \nAND ATS_TH_AT13.CANAL NOT IN ('1','2','5','7','9','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('40','41') \nAND ATS_TH_AT13.CANAL NOT IN ('1','2','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('42','43','44','45','46','47','48','49') \nAND ATS_TH_AT13.CANAL NOT IN ('1','2','5','7','9','10'))\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO IN ('50') \nAND ATS_TH_AT13.CANAL IN ('8','0'))\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el Tipo de Instrumento es igual a 30 o 32, este campo debe ser distinto que 0\n\n2. Si el Tipo de Instrumento es distinto que 30 o 32, este campo debe ser igual que 0',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Franquicia',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPOINSTRUMENTO IN ('30','32') AND ATS_TH_AT13.FRANQUICIA != '0')\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('30','32') AND ATS_TH_AT13.FRANQUICIA = '0')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el Tipo de Instrumento es igual a 30, 31 o 32, este campo debe ser distinto a 0.\n\n2. Si el Tipo de Instrumento es distinto que 30, 31 o 32, el valor de este campo debe ser igual que 0.',\n\tsysdate,\n\t'ATS_TH_AT13',\n\t'Red',\n\t'CK',\t\n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"D\") ?>  ATS_TH_AT13\nwhere\tnot \t(\n\t\t(ATS_TH_AT13.TIPOINSTRUMENTO IN ('30','31','32') AND ATS_TH_AT13.RED !='0')\nOR\n(ATS_TH_AT13.TIPOINSTRUMENTO NOT IN ('30','31','32') AND ATS_TH_AT13.RED ='0')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\n(\n\tSCHEMA_NAME,\n\tRESOURCE_NAME,\n\tFULL_RES_NAME,\n\tERR_TYPE,\n\tERR_MESS,\n\tCHECK_DATE,\n\tORIGIN,\n\tCONS_NAME,\n\tCONS_TYPE,\n\tERR_COUNT\n)\nselect\t\n\t'<?=snpRef.getSchemaName(\"LS_ATSUDEBAN\", \"D\") ?>',\n\t'ATS_TH_AT13',\n\t'<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>',\n\tE.ODI_ERR_TYPE,\n\tE.ODI_ERR_MESS,\n\tE.ODI_CHECK_DATE,\n\tE.ODI_ORIGIN,\n\tE.ODI_CONS_NAME,\n\tE.ODI_CONS_TYPE,\n\tcount(1) \nfrom\t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13\", \"W\") ?> E\nwhere\tE.ODI_ERR_TYPE\t= 'S'\nand\tE.ODI_ORIGIN \t= 'ATS_TH_AT13'\ngroup by\tE.ODI_ERR_TYPE,\n\tE.ODI_ERR_MESS,\n\tE.ODI_CHECK_DATE,\n\tE.ODI_ORIGIN,\n\tE.ODI_CONS_NAME,\n\tE.ODI_CONS_TYPE"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TH_AT13BG",
+      "StepType": "CD",
+      "Nno": "18",
+      "TableName (Target Table)": "ATS_TH_AT13BG",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\n(\n\tCATALOG_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tSCHEMA_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tRESOURCE_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFULL_RES_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"1\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_MESS\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"250\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tCHECK_DATE\t<?=snpRef.getDataType(\"DEST_DATE\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tORIGIN\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONS_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"128\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONS_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"2\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_COUNT\t\t<?=snpRef.getDataType(\"DEST_NUMERIC\", \"10\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from\t<?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\nwhere\tSCHEMA_NAME\t= '<?=snpRef.getSchemaName(\"LS_ATSUDEBAN\", \"D\") ?>'\nand\tORIGIN \t\t= 'ATS_TH_AT13BG'\nand\tERR_TYPE \t\t= 'S'"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13BG\", \"W\") ?>\n(\n\tODI_ROW_ID \t\tUROWID,\n\tODI_ERR_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"1\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>, \n\tODI_ERR_MESS\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"250\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CHECK_DATE\t<?=snpRef.getDataType(\"DEST_DATE\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>, \n\tRECLAMO\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCLIENTE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDCLIENTE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECLIENTE\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHARECLAMO\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOINSTRUMENTO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPORECLAMO\tVARCHAR2(150) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTORECLAMO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCUENTA\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCREDITOAFECTADO\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTARJETAAFECTADA\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tENTESUPERVISADO\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tESTADORECLAMO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHASOLUCION\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOREINTEGRO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHAREINTEGRO\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHANOTIFICACION\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOENTE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDPOS\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSISTEMA\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINARECLAMO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOOPERACION\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANAL\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCLIENTEDESTINO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDCLIENTEDESTINO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECLIENTEDESTINO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNROCUENTADESTINO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCUENTADESTINO\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTODESTINO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_ORIGIN\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CONS_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"128\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CONS_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"2\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_PK\t\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"32\") ?> PRIMARY KEY,\n\tODI_SESS_NO\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"19\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from \t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13BG\", \"W\") ?>\nwhere\t(ODI_ERR_TYPE = 'S'\tand 'S' = 'S')\nor\t(ODI_ERR_TYPE = 'S'\tand ODI_ORIGIN = 'ATS_TH_AT13BG')"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\n(\n\tSCHEMA_NAME,\n\tRESOURCE_NAME,\n\tFULL_RES_NAME,\n\tERR_TYPE,\n\tERR_MESS,\n\tCHECK_DATE,\n\tORIGIN,\n\tCONS_NAME,\n\tCONS_TYPE,\n\tERR_COUNT\n)\nselect\t\n\t'<?=snpRef.getSchemaName(\"LS_ATSUDEBAN\", \"D\") ?>',\n\t'ATS_TH_AT13BG',\n\t'<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13BG\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>',\n\tE.ODI_ERR_TYPE,\n\tE.ODI_ERR_MESS,\n\tE.ODI_CHECK_DATE,\n\tE.ODI_ORIGIN,\n\tE.ODI_CONS_NAME,\n\tE.ODI_CONS_TYPE,\n\tcount(1) \nfrom\t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT13BG\", \"W\") ?> E\nwhere\tE.ODI_ERR_TYPE\t= 'S'\nand\tE.ODI_ORIGIN \t= 'ATS_TH_AT13BG'\ngroup by\tE.ODI_ERR_TYPE,\n\tE.ODI_ERR_MESS,\n\tE.ODI_CHECK_DATE,\n\tE.ODI_ORIGIN,\n\tE.ODI_CONS_NAME,\n\tE.ODI_CONS_TYPE"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario AT13_TO_FILE version 001",
+      "StepType": "SE",
+      "Nno": "19",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=AT13_TO_FILE\" \"-SCEN_VERSION=001\" \"-ODI_AT_SUDEBAN_DEV.FileName=#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFile.txt\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario AT13_TO_FILEBG version 001",
+      "StepType": "SE",
+      "Nno": "20",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=AT13_TO_FILEBG\" \"-SCEN_VERSION=001\" \"-ODI_AT_SUDEBAN_DEV.FileName=#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisadoBg#ODI_AT_SUDEBAN_DEV.FechaFile.txt\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario AT13_TO_FILE_ERROR version 001",
+      "StepType": "SE",
+      "Nno": "21",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=AT13_TO_FILE_ERROR\" \"-SCEN_VERSION=001\" \"-ODI_AT_SUDEBAN_DEV.FileName_Error=#ODI_AT_SUDEBAN_DEV.FileName_Error#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FechaFile.txt\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT13_CHECK_HIS",
+      "StepType": "T",
+      "Nno": "22",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "22",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "DELETE FROM ATS_TH_AT12BG_H WHERE FECHA_CIERRE IN ('#ODI_AT_SUDEBAN_DEV.FechaFin')"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "22",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "DELETE FROM ATS_TH_AT13BG_H WHERE FECHA_CIERRE IN ('#ODI_AT_SUDEBAN_DEV.FechaFin')"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TH_AT13_H",
+      "StepType": "F",
+      "Nno": "23",
+      "TableName (Target Table)": "ATS_TH_AT13_H",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "23",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13_H\", \"LS_ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO \n\t,FECHA_CIERRE \n) \n\nselect\n    RECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO   \n  ,'#ODI_AT_SUDEBAN_DEV.FechaFin' \nFROM (\t\n\n\nselect \t\n\tATS_TH_AT13.RECLAMO RECLAMO,\n\tATS_TH_AT13.OFICINA OFICINA,\n\tATS_TH_AT13.TIPOCLIENTE TIPOCLIENTE,\n\tATS_TH_AT13.IDCLIENTE IDCLIENTE,\n\tATS_TH_AT13.NOMBRECLIENTE NOMBRECLIENTE,\n\tATS_TH_AT13.FECHARECLAMO FECHARECLAMO,\n\tATS_TH_AT13.TIPOINSTRUMENTO TIPOINSTRUMENTO,\n\tATS_TH_AT13.TIPORECLAMO TIPORECLAMO,\n\tATS_TH_AT13.MONTORECLAMO MONTORECLAMO,\n\tATS_TH_AT13.CODIGOCUENTA CODIGOCUENTA,\n\tATS_TH_AT13.CREDITOAFECTADO CREDITOAFECTADO,\n\tATS_TH_AT13.TARJETAAFECTADA TARJETAAFECTADA,\n\tATS_TH_AT13.ENTESUPERVISADO ENTESUPERVISADO,\n\tATS_TH_AT13.ESTADORECLAMO ESTADORECLAMO,\n\tATS_TH_AT13.FECHASOLUCION FECHASOLUCION,\n\tATS_TH_AT13.MONTOREINTEGRO MONTOREINTEGRO,\n\tATS_TH_AT13.FECHAREINTEGRO FECHAREINTEGRO,\n\tATS_TH_AT13.FECHANOTIFICACION FECHANOTIFICACION,\n\tATS_TH_AT13.CODIGOENTE CODIGOENTE,\n\tATS_TH_AT13.IDPOS IDPOS,\n\tATS_TH_AT13.SISTEMA SISTEMA,\n\tATS_TH_AT13.OFICINARECLAMO OFICINARECLAMO,\n\tATS_TH_AT13.TIPOOPERACION TIPOOPERACION,\n\tATS_TH_AT13.CANAL CANAL,\n\tATS_TH_AT13.FRANQUICIA FRANQUICIA,\n\tATS_TH_AT13.RED RED,\n\tATS_TH_AT13.TIPOCLIENTEDESTINO TIPOCLIENTEDESTINO,\n\tATS_TH_AT13.IDCLIENTEDESTINO IDCLIENTEDESTINO,\n\tATS_TH_AT13.NOMBRECLIENTEDESTINO NOMBRECLIENTEDESTINO,\n\tATS_TH_AT13.NROCUENTADESTINO NROCUENTADESTINO,\n\tATS_TH_AT13.CODIGOCUENTADESTINO CODIGOCUENTADESTINO,\n\tATS_TH_AT13.MONTODESTINO MONTODESTINO \nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   ATS_TH_AT13\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "23",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TH_AT13BG_H",
+      "StepType": "F",
+      "Nno": "24",
+      "TableName (Target Table)": "ATS_TH_AT13BG_H",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "24",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13BG_H\", \"LS_ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tRECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO \n\t,FECHA_CIERRE \n) \n\nselect\n    RECLAMO,\n\tOFICINA,\n\tTIPOCLIENTE,\n\tIDCLIENTE,\n\tNOMBRECLIENTE,\n\tFECHARECLAMO,\n\tTIPOINSTRUMENTO,\n\tTIPORECLAMO,\n\tMONTORECLAMO,\n\tCODIGOCUENTA,\n\tCREDITOAFECTADO,\n\tTARJETAAFECTADA,\n\tENTESUPERVISADO,\n\tESTADORECLAMO,\n\tFECHASOLUCION,\n\tMONTOREINTEGRO,\n\tFECHAREINTEGRO,\n\tFECHANOTIFICACION,\n\tCODIGOENTE,\n\tIDPOS,\n\tSISTEMA,\n\tOFICINARECLAMO,\n\tTIPOOPERACION,\n\tCANAL,\n\tFRANQUICIA,\n\tRED,\n\tTIPOCLIENTEDESTINO,\n\tIDCLIENTEDESTINO,\n\tNOMBRECLIENTEDESTINO,\n\tNROCUENTADESTINO,\n\tCODIGOCUENTADESTINO,\n\tMONTODESTINO   \n  ,'#ODI_AT_SUDEBAN_DEV.FechaFin' \nFROM (\t\n\n\nselect \t\n\tATS_TH_AT13BG.RECLAMO RECLAMO,\n\tATS_TH_AT13BG.OFICINA OFICINA,\n\tATS_TH_AT13BG.TIPOCLIENTE TIPOCLIENTE,\n\tATS_TH_AT13BG.IDCLIENTE IDCLIENTE,\n\tATS_TH_AT13BG.NOMBRECLIENTE NOMBRECLIENTE,\n\tATS_TH_AT13BG.FECHARECLAMO FECHARECLAMO,\n\tATS_TH_AT13BG.TIPOINSTRUMENTO TIPOINSTRUMENTO,\n\tATS_TH_AT13BG.TIPORECLAMO TIPORECLAMO,\n\tATS_TH_AT13BG.MONTORECLAMO MONTORECLAMO,\n\tATS_TH_AT13BG.CODIGOCUENTA CODIGOCUENTA,\n\tATS_TH_AT13BG.CREDITOAFECTADO CREDITOAFECTADO,\n\tATS_TH_AT13BG.TARJETAAFECTADA TARJETAAFECTADA,\n\tATS_TH_AT13BG.ENTESUPERVISADO ENTESUPERVISADO,\n\tATS_TH_AT13BG.ESTADORECLAMO ESTADORECLAMO,\n\tATS_TH_AT13BG.FECHASOLUCION FECHASOLUCION,\n\tATS_TH_AT13BG.MONTOREINTEGRO MONTOREINTEGRO,\n\tATS_TH_AT13BG.FECHAREINTEGRO FECHAREINTEGRO,\n\tATS_TH_AT13BG.FECHANOTIFICACION FECHANOTIFICACION,\n\tATS_TH_AT13BG.CODIGOENTE CODIGOENTE,\n\tATS_TH_AT13BG.IDPOS IDPOS,\n\tATS_TH_AT13BG.SISTEMA SISTEMA,\n\tATS_TH_AT13BG.OFICINARECLAMO OFICINARECLAMO,\n\tATS_TH_AT13BG.TIPOOPERACION TIPOOPERACION,\n\tATS_TH_AT13BG.CANAL CANAL,\n\tATS_TH_AT13BG.FRANQUICIA FRANQUICIA,\n\tATS_TH_AT13BG.RED RED,\n\tATS_TH_AT13BG.TIPOCLIENTEDESTINO TIPOCLIENTEDESTINO,\n\tATS_TH_AT13BG.IDCLIENTEDESTINO IDCLIENTEDESTINO,\n\tATS_TH_AT13BG.NOMBRECLIENTEDESTINO NOMBRECLIENTEDESTINO,\n\tATS_TH_AT13BG.NROCUENTADESTINO NROCUENTADESTINO,\n\tATS_TH_AT13BG.CODIGOCUENTADESTINO CODIGOCUENTADESTINO,\n\tATS_TH_AT13BG.MONTODESTINO MONTODESTINO \nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT13BG\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   ATS_TH_AT13BG\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "24",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_CountValid",
+      "StepType": "V",
+      "Nno": "25",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "25",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT COUNT(*) FROM #ODI_AT_SUDEBAN_DEV.AT_TablaValidacion",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT_CountValid",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_TablaValidacion",
+      "StepType": "VS",
+      "Nno": "26",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "26",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT_TablaValidacion",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Envio de Correo",
+      "StepType": "SE",
+      "Nno": "27",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "27",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=SMTPINT.tpr.bancaribe\" \"-FROM=archivostransmisionsiif@bancaribe.com.ve\" \"-SUBJECT=AT13  - ARCHIVOS DE TRANSMISION (SIIF) - DWH EN LA NUBE - GALIPAN TECNOLOGICO\" \"-TO=SIFTecnologia@bancaribe.com.ve\" \"-TO=AtenciondeReclamosEntesOficialesyDefensoria@bancaribe.com.ve  \" \"-TO=CoordinadoresUACU@bancaribe.com.ve\" \"-BCC=soporte-da@gruposannet.com\"\nBuen dia,\n\nSe ha generadoen la nube de forma automatica el '#ODI_AT_SUDEBAN_DEV.FileAT' correspondiente. El mismo fue Generado conFecha Desde:'#ODI_AT_SUDEBAN_DEV.FechaInicio_M' Hasta '#ODI_AT_SUDEBAN_DEV.FechaFin_M'\n\nEl proceso de transferencia hacia el server en la ruta: \\\\sam2fp07\\siif_gcp\\AUTOMATIZACION_AT\\SALIDAS_AT\\'#ODI_AT_SUDEBAN_DEV.FileAT', está planificada en la ventana de tiempo comprendida entre 9am a 7pm con una frecuencia de copiado cada 60 minutos.\n\nSe encontraron las siguintes Validaciones que deben ser Revisadas:'#ODI_AT_SUDEBAN_DEV.AT_CountValid'\n\nNOTA: NO responda este correo, el mismo fue enviado desde una cuenta NO monitoreada\n\n\nSaludos Cordiales, \n\nSIF Tecnologia\nUnidad de Soluciones Internas / Vicepresidencia Ingeniería TI\nTelf.: +58 (212) 954.5345 / 5735 / 5107 / 5401 / 6418 \nEmail: SIFTecnologia@bancaribe.com.ve"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiMkDir_Insumos",
+      "StepType": "SE",
+      "Nno": "28",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "28",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiMkDir \"-DIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio/INSUMOS/#ODI_AT_SUDEBAN_DEV.FechaFile\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiFileMove_Insumos",
+      "StepType": "SE",
+      "Nno": "29",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "29",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorio/INSUMOS/TRANS_PROCESADAS.csv\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio/INSUMOS/#ODI_AT_SUDEBAN_DEV.FechaFile/\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiSleep_Dias_Feriados",
+      "StepType": "SE",
+      "Nno": "30",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "30",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSleep \"-DELAY=86400000\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiFileWaiT_AT13",
+      "StepType": "SE",
+      "Nno": "31",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "31",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileWait \"-ACTION=NONE\" \"-DIR=/home/FILES_ODI/AT\" \"-PATTERN=TRANS_PROCESADAS.csv\" \"-CASESENS=NO\" \"-OVERWRITE=YES\" \"-FILECOUNT=1\" \"-TIMEOUT=3600000\" \"-POLLINT=3600000\" \"-HEADER=0\" \"-KEEP_FIRST_HEADER=YES\" \"-NOFILE_ERROR=YES\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiSendMail 17",
+      "StepType": "SE",
+      "Nno": "32",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "32",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=SMTPINT.tpr.bancaribe\" \"-FROM=archivostransmisionsiif@bancaribe.com.ve\" \"-SUBJECT=ARCHIVOS DE TRANSMISION (SIIF) - DWH EN LA NUBE - GALIPAN TECNOLOGICO\" \"-TO=SIFTecnologia@bancaribe.com.ve\" \"-TO=AtenciondeReclamosEntesOficialesyDefensoria@bancaribe.com.ve\" \"-TO=CoordinadoresUACU@bancaribe.com.ve\" \"-BCC=soporte-da@sannet.com.ve\"\nBuen dia,\n\nSe informa que el '#ODI_AT_SUDEBAN_DEV.FileAT' correspondiente a la Fecha Desde:'#ODI_AT_SUDEBAN_DEV.FechaInicio' Hasta '#ODI_AT_SUDEBAN_DEV.FechaFin' no se ha generado debido a que falta el insumo: TRANS_PROCESADAS.csv\n\n\nSe solicita su apoyo en colocar el mismo en la ruta: \\\\sam2fp01\\siif\\Automatizacion%AT\\SALIDAS_AT\\INSUMOS_AT\n\n\nNOTA: NO responda este correo, el mismo fue enviado desde una cuenta NO monitoreada\n\n \nSistema SIIF (AT)"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiFileWait 13",
+      "StepType": "SE",
+      "Nno": "33",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "33",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileWait \"-ACTION=NONE\" \"-DIR=/home/FILES_ODI/AT\" \"-PATTERN=TRANS_PROCESADAS.csv\" \"-CASESENS=NO\" \"-OVERWRITE=YES\" \"-FILECOUNT=1\" \"-TIMEOUT=86400000\" \"-POLLINT=3600000\" \"-HEADER=0\" \"-KEEP_FIRST_HEADER=YES\" \"-NOFILE_ERROR=YES\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Move File BC",
+      "StepType": "SE",
+      "Nno": "34",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "34",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFile.txt\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Move File BG",
+      "StepType": "SE",
+      "Nno": "35",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "35",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisadoBg#ODI_AT_SUDEBAN_DEV.FechaFile.txt\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Move File Error",
+      "StepType": "SE",
+      "Nno": "36",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "36",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileName_Error#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FechaFile.txt\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "AT03_TO_FILE"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ATSUDEBAN_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "67040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "FILE_AT",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "43011",
+        "Txt": "jdbc:snps:dbfile"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ATSUDEBAN"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "ARCHIVOSUDEBAN"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT03",
+      "ITable": "1157011",
+      "SnpCond": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1157011",
+          "CondName": "SALDO_1",
+          "ITxtCondSql": "142200012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "142200012",
+              "Txt": "SUBSTR(ATS_TH_AT03.OFICINA,1,1) IN ('V','I') AND (SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,5) IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549') OR \nSUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,3) IN ('129','139','149','159','169') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,8) IN ('18101102','18101202','18102102','18102202','18103102','18103202','18105102','18105202','18105104',\n'18105204','18105106','18105206','18106102','18106202','18107102','18107202','18902102','18902202','18902101',\n'18902201','13136102','13236102','13336102','13436102','13136202','13236202','13336202','13436202','13138102',\n'13238102','13338102','13438102','13138202','13238202','13338202','13438202','13140102','13240102','13340102',\n'13440102','13140202','13240202','13340202','13440202','13142102','13242102','13342102','13442102','13142202',\n'13242202','13342202','13442202','13144102','13244102','13344102','13444102','13144202','13244202','13344202',\n'13444202','13146102','13246102','13346102','13446102','13146202','13246202','13346202','13446202','13148102',\n'13248102','13348102','13448102','13148202','13248202','13348202','13448202','13150102','13250102','13350102',\n'13450102','13150202','13250202','13350202','13450202','13152102','13252102','13352102','13452102','13152202',\n'13252202','13352202','13452202','13154102','13254102','13354102','13454102','13154202','13254202','13354202',\n'13454202') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,6) IN ('189011','189012') OR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,10) IN ('1810810102', \n'1810820102','1810810202','1810820202','1810810302','1810820302','1810810402','1810820402','1810810502','1810820502','1881610102',\n'1881620102','1881610202','1881620202','1881610302','1881620302','1881610402','1881620402','1881610502','1881620502','1881610602',\n'1881620602','1881610702','1881620702','1881610802','1881620802'))\nAND ATS_TH_AT03.SALDO <= 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1157011",
+          "CondName": "SALDO_2",
+          "ITxtCondSql": "142202012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "142202012",
+              "Txt": "SUBSTR(ATS_TH_AT03.OFICINA,1,1) IN ('V','I') AND SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,1) = '1'  AND (SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,5) NOT IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549') OR \nSUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,3) NOT IN ('129','139','149','159','169') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,8) NOT IN ('18101102','18101202','18102102','18102202','18103102','18103202','18105102','18105202','18105104',\n'18105204','18105106','18105206','18106102','18106202','18107102','18107202','18902102','18902202','18902101',\n'18902201','13136102','13236102','13336102','13436102','13136202','13236202','13336202','13436202','13138102',\n'13238102','13338102','13438102','13138202','13238202','13338202','13438202','13140102','13240102','13340102',\n'13440102','13140202','13240202','13340202','13440202','13142102','13242102','13342102','13442102','13142202',\n'13242202','13342202','13442202','13144102','13244102','13344102','13444102','13144202','13244202','13344202',\n'13444202','13146102','13246102','13346102','13446102','13146202','13246202','13346202','13446202','13148102',\n'13248102','13348102','13448102','13148202','13248202','13348202','13448202','13150102','13250102','13350102',\n'13450102','13150202','13250202','13350202','13450202','13152102','13252102','13352102','13452102','13152202',\n'13252202','13352202','13452202','13154102','13254102','13354102','13454102','13154202','13254202','13354202',\n'13454202') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,6) NOT IN ('189011','189012') OR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,10) NOT IN ('1810810102', \n'1810820102','1810810202','1810820202','1810810302','1810820302','1810810402','1810820402','1810810502','1810820502','1881610102',\n'1881620102','1881610202','1881620202','1881610302','1881620302','1881610402','1881620402','1881610502','1881620502','1881610602',\n'1881620602','1881610702','1881620702','1881610802','1881620802'))\nAND ATS_TH_AT03.SALDO >= 0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT03",
+      "ITable": "704011"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "#ODI_AT_SUDEBAN_DEV.FileName",
+      "LschemaName": "null",
+      "VarName": "FileName",
+      "ITxtVar": "51041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "51041",
+          "Txt": "a. Parte I: Nombre del archivo de transmisión,\n AT número que identifica el archivo de transmisión. Ejemplo: ?AT03?. \n\n\nb. Parte II: Código del Ente Supervisado,\n Suministrado por la Sudeban y utilizado en las transmisiones electrónicas. Para Bancaribe el código es 01410 y para Bangente 01422.\n\nc. Parte III: Fecha de reporte de la información,\n El archivo debe identificarse en formato de fecha ?AAMMDD?. Ejemplo: ?091231? para transmitir los datos correspondientes al 31 de diciembre de 2009. Cabe señalar que este es el único caso donde se utilizan dos (2) dígitos para identificar el año. \n\nd. Extensión: \nComo el tipo de archivo a generar es un archivo de texto plano, se debe utilizar la extensión ?TXT?. \n\n\ne. Por ejemplo, el nombre del archivo de transmisión para Bancaribe está compuesto de la siguiente manera\n\nAT3701410170517.TXT"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT03_ATSUDEBAN_TOFILE",
+      "TableName (Target Table)": "AT03"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_ATSUDEBAN_TOFILE",
+      "StepType": "F",
+      "Nno": "1",
+      "TableName (Target Table)": "AT03",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table \"<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName\", \"ARCHIVOSUDEBAN\", \"\", \"D\") ?>\"\n\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT03SNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x007eSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLINE_OFFSET=1SNP$CRLENGTH=5SNP$CRSCALE=0SNP$CRPRECISION=5SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGO_CONTABLESNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLINE_OFFSET=6SNP$CRLENGTH=10SNP$CRSCALE=0SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=SALDOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLINE_OFFSET=16SNP$CRLENGTH=20SNP$CRSCALE=0SNP$CRPRECISION=20SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CONSECUTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLINE_OFFSET=36SNP$CRLENGTH=1SNP$CRSCALE=0SNP$CRPRECISION=1SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table \"<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName\", \"ARCHIVOSUDEBAN\", \"\", \"D\") ?>\"\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT03SNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x007eSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLINE_OFFSET=1SNP$CRLENGTH=5SNP$CRSCALE=0SNP$CRPRECISION=5SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGO_CONTABLESNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLINE_OFFSET=6SNP$CRLENGTH=10SNP$CRSCALE=0SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=SALDOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLINE_OFFSET=16SNP$CRLENGTH=20SNP$CRSCALE=0SNP$CRPRECISION=20SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CONSECUTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLINE_OFFSET=36SNP$CRLENGTH=1SNP$CRSCALE=0SNP$CRPRECISION=1SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "select \t\n\tATS_TH_AT03.OFICINA\t   OFICINA,\n\tATS_TH_AT03.CODIGO_CONTABLE\t   CODIGO_CONTABLE,\n\tTO_CHAR(ATS_TH_AT03.SALDO,'FM999999999999999990D00', 'NLS_NUMERIC_CHARACTERS = '',.''')\t   SALDO,\n\tATS_TH_AT03.CONSECUTIVO\t   CONSECUTIVO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   ATS_TH_AT03\nwhere\t\n\t(1=1)\t\n\t\n\n\n\n\n\n\nORDER BY OFICINA, CODIGO_CONTABLE",
+          "DefTxt": "insert into \"<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName\", \"ARCHIVOSUDEBAN\", \"\", \"D\") ?>\"\n(\n\tOFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO\n                     \n)\nvalues \n(\n\t<?= (char) 58 + \"OFICINA\" ?>,\n\t<?= (char) 58 + \"CODIGO_CONTABLE\" ?>,\n\t<?= (char) 58 + \"SALDO\" ?>,\n\t<?= (char) 58 + \"CONSECUTIVO\" ?>\n                     \n)\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT03SNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x007eSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLINE_OFFSET=1SNP$CRLENGTH=5SNP$CRSCALE=0SNP$CRPRECISION=5SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGO_CONTABLESNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLINE_OFFSET=6SNP$CRLENGTH=10SNP$CRSCALE=0SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=SALDOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLINE_OFFSET=16SNP$CRLENGTH=20SNP$CRSCALE=0SNP$CRPRECISION=20SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CONSECUTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLINE_OFFSET=36SNP$CRLENGTH=1SNP$CRSCALE=0SNP$CRPRECISION=1SNP$CR$$SNPS_END_KEY*/"
+        }
+      ]
+    }
+  ]
+}

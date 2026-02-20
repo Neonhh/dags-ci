@@ -1,0 +1,357 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "PKG_FL_DIM_PROCCESSVAL_STG_ACTIVITY_COMISION"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "PRD_ODI",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "489000",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "DEV_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "3000",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODI"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_STG"
+    }
+  ],
+  "SnpTable": [],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaInicio",
+      "ITxtVar": "20826001",
+      "ITxtVarIn": "6911060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "6911060",
+          "Txt": "<$String vFechaInicio = \"#vStgFechaInicio\".toLowerCase().contains(\"sysdate\") ? \"#vStgFechaInicio\" : \"'#vStgFechaInicio'\";$>\nSELECT TO_CHAR(MAX(NVL(to_date(<$=vFechaInicio$>, '#vStgFormatoFecha'),to_date('01/01/1801', '#vStgFormatoFecha'))),'#vStgFormatoFecha')\nFROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "MM/DD/RRRR",
+      "LschemaName": "LS_ODI",
+      "VarName": "vStgFormatoFecha",
+      "ITxtVar": "16699001",
+      "ITxtVarIn": "8670060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "8670060",
+          "Txt": "SELECT 'MM/DD/YYYY' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaFin",
+      "ITxtVar": "20827001",
+      "ITxtVarIn": "7225060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "7225060",
+          "Txt": "SELECT NVL (\n(SELECT TO_CHAR(TRUNC(SYSDATE-1,'DD'),'#vStgFormatoFecha') \nFROM DUAL \nWHERE UPPER ('#vStgFechaFin') LIKE '%SYSDATE%'),'#vStgFechaFin') \nFROM DUAL\n\n/*SELECT nvl(MAX(to_char(COS_END_DATE, '#vStgFormatoFecha')), '01/01/1801')\nFROM BAN_CONFIG_STG S\nWHERE COS_SOURCE = '#vStgNombreTablaStg'\nAND COS_STATUS_CARGA ='POR PROCESAR'*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "EMPTY",
+      "LschemaName": "null",
+      "VarName": "vStgNombreTablaStg",
+      "ITxtVar": "16707001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16707001",
+          "Txt": "Define el nombre de la tabla de STG que se está procesando."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaCarga",
+      "ITxtVar": "16702001",
+      "ITxtVarIn": "41040",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "41040",
+          "Txt": "SELECT NVL(TO_CHAR(MIN(bcsd.cds_date), '#vStgFormatoFecha'), '01/01/1801')\n\t    FROM BAN_CONFIG_STG_DATE bcsd,\n                                   BAN_CONFIG_STG d\n\t    WHERE bcsd.cds_source = '#vStgNombreTablaStg'\n\t      AND bcsd.cds_status_carga = 'POR PROCESAR' \n                           AND d.cos_source = bcsd.cds_source\n                          AND bcsd.cds_date between d.cos_start_date and d.cos_end_date\n/*select TO_CHAR(TO_DATE(SYSDATE-1,'MM/DD/YY'),'MM/DD/YYYY') from dual*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgSysdate",
+      "ITxtVar": "null",
+      "ITxtVarIn": "2863060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "2863060",
+          "Txt": "SELECT TO_CHAR(SYSDATE-20,'#vStgFormatoFecha') FROM DUAL"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario PKG_DIM_COM_PROCCESSVAL_FL_ODS version 001",
+      "StepType": "SE",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "1",
+      "KoNextStep": "1",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=PKG_DIM_COM_PROCCESSVAL_FL_ODS\" \"-SCEN_VERSION=001\" \"-SESSION_NAME=DIM Com - Process - PKG_DIM_COM_PROCCESSVAL_FL_ODS\"",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgSysdate",
+      "StepType": "V",
+      "Nno": "1",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "2",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT TO_CHAR(SYSDATE-20,'{vStgFormatoFecha}') FROM DUAL",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgSysdate",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgNombreTablaStg",
+      "StepType": "VS",
+      "Nno": "2",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "3",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgNombreTablaStg",
+              "DefV": "EMPTY"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgFechaFin",
+      "StepType": "VD",
+      "Nno": "3",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "4",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgFechaFin",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgFechaInicio",
+      "StepType": "VD",
+      "Nno": "4",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "5",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgFechaInicio",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "PKG_UPD_CONFIG",
+      "StepType": "SE",
+      "Nno": "5",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "6",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=PKG_UPD_CONFIG\" \"-SCEN_VERSION=001\" \"-SESSION_NAME=DIM Com - Process - PKG_UPD_CONFIG\" \"-SIG.vStgFechaFin={vStgFechaFin}\" \"-SIG.vStgNombreTablaStg={vStgNombreTablaStg}\" \"-SIG.vStgFechaInicio={vStgFechaInicio}\"",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgFechaCarga",
+      "StepType": "V",
+      "Nno": "6",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "7",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT \nCASE \nWHEN {vStgTipoFechaCarga} = 3 THEN -- Transformacion sysdate\n\tTO_CHAR({vStgFechaInicio}, '{vStgFormatoFecha}') \n\nELSE --Normal\n\t  (SELECT NVL(TO_CHAR(MIN(bcsd.cds_date), '{vStgFormatoFecha}'), '01/01/1801')\n\t    FROM BAN_CONFIG_STG_DATE bcsd,\n                                   BAN_CONFIG_STG d\n\t    WHERE bcsd.cds_source = '{vStgNombreTablaStg}'\n\t      AND bcsd.cds_status_carga = 'POR PROCESAR' \n                           AND d.cos_source = bcsd.cds_source\n                          AND bcsd.cds_date between d.cos_start_date and d.cos_end_date\n                           )\nEND\nFROM DUAL",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgFechaCarga",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "PKG_FL_COM_LOAD_STG_DIM_COMISION",
+      "StepType": "SE",
+      "Nno": "7",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "8",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=PKG_FL_DIM_LOAD_STG_ACTIVITY_COMISION\" \"-SCEN_VERSION=001\" \"-SESSION_NAME=DIM Com - Process - PKG_FL_DIM_LOAD_STG_ACTIVITY_COMISION\" \"-SIG.vStgSessionPadre=<?=snpRef.getSession(\"SESS_NO\") ?>\" \"-SIG.vStgFechaCarga={vStgFechaCarga}\" \"-SIG.vStgNombreTablaStg={vStgNombreTablaStg}\"",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Actualizar Status ulltima Carga",
+      "StepType": "T",
+      "Nno": "8",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "null",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "DECLARE\ncontEstatus NUMBER;\nnuevoEstatus VARCHAR2(255);\n\nBEGIN\n  SELECT COUNT(1) into contEstatus \n  FROM stg.ban_config_stg_date bcsd, stg.ban_config_stg bcs\n  where bcsd.cds_status_carga = 'ERROR'\n  and bcs.cos_source = '{vStgNombreTablaStg}'\n  and bcs.cos_source = bcsd.cds_source\n  and bcsd.CDS_SESSION_PROCCES = <?=snpRef.getSession(\"SESS_NO\") ?>\n  and (bcsd.cds_date between bcs.cos_start_date and bcs.cos_end_date);\n\n  IF (contEstatus = 0) THEN\n    SELECT COUNT(1) into contEstatus\n    FROM stg.ban_config_stg_date bcsd, stg.ban_config_stg bcs\n    where bcsd.cds_status_carga = 'CONTINGENCIA'\n    and bcs.cos_source = '{vStgNombreTablaStg}'\n    and bcs.cos_source = bcsd.cds_source\n    and bcsd.CDS_SESSION_PROCCES = <?=snpRef.getSession(\"SESS_NO\") ?>\n    and (bcsd.cds_date between bcs.cos_start_date and bcs.cos_end_date);\n\n    if (contEstatus = 0) THEN\n       nuevoEstatus := 'PROCESADO';\n    else\n      nuevoEstatus := 'CONTINGENCIA';\n    END IF;\n\n  else\n   nuevoEstatus := 'ERROR';\n\n  END IF;\n\nSELECT COUNT(1) into contEstatus \n  FROM stg.ban_config_stg_date bcsd, stg.ban_config_stg bcs\n  where bcs.cos_source = '{vStgNombreTablaStg}'\n  and bcs.cos_source = bcsd.cds_source\n  and bcsd.CDS_SESSION_PROCCES = <?=snpRef.getSession(\"SESS_NO\") ?>;\n\nUPDATE stg.BAN_CONFIG_STG\nSET COS_STATUS_CARGA = nuevoEstatus\nWHERE COS_SOURCE = '{vStgNombreTablaStg}' AND contEstatus !=0;\n\nEND;",
+          "TaskName3": "Actualiza el status  de STG  en la tabla ban_config_stg",
+          "OrdTrt": "0"
+        }
+      ]
+    }
+  ]
+}

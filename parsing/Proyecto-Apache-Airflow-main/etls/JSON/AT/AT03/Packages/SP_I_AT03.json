@@ -1,0 +1,23 @@
+{
+  "tipo": "procedure",
+  "SnpTrt": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTrt",
+      "TrtName": "ACTUALIZACION_DE_LA_CUENTA_0147_POR_SOBREGIRO"
+    }
+  ],
+  "SnpTxtHeader": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "/* update ATSUDEBAN.AT03_OFICINA_SOBREG\nset SALDO = SALDO * (-1) */"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "/* DECLARE\n            cursor get_data IS\n            SELECT B.CUENTA, B.OFICINA, B.SALDO from ATSUDEBAN.AT03_OFICINA_SOBREG B;\n          BEGIN\n            FOR i IN get_data loop\n                    UPDATE ATSUDEBAN.AT03_OFICINA_FINAL A\n                    SET A.SALDO = A.SALDO + i.SALDO\n                   WHERE A.CUENTA = i.CUENTA\n                   and A.OFICINA = i.OFICINA;\n            END loop;\n \n           commit;\n \n        END; */"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_OFICINA_FINAL\nSET\nSALDO = (SELECT SUM(SALDO) FROM ATSUDEBAN.AGRUPACION_BANCARIBE\nWHERE CUENTA IN ('712032000000','712092000000','712012000000') )\nWHERE CUENTA IN ('712002000000')"
+    }
+  ]
+}

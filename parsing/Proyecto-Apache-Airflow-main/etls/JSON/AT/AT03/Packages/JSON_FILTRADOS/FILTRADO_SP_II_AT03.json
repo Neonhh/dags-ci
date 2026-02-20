@@ -1,0 +1,51 @@
+{
+  "tipo": "procedure",
+  "SnpTrt": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTrt",
+      "TrtName": "Actualizar cuenta formato Sudeban_II"
+    }
+  ],
+  "SnpTxtHeader": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_OFICINA_FINAL\nSET CUENTA = '7330010000'\nWHERE CUENTA = '733011000000'"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_OFICINA_FINAL\nSET CUENTA = '7340020000'\nWHERE CUENTA = '734012000000'"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_OFICINA_FINAL\nSET CUENTA = '7430020000'\nWHERE CUENTA = '743012000000'"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_OFICINA_FINAL\nSET CUENTA = '7530020000'\nWHERE CUENTA = '753042000000'"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_V001_BANCARIBE\nSET CUENTA = '7330010000'\nWHERE CUENTA = '733011000000'"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_V001_BANCARIBE\nSET CUENTA = '7340020000'\nWHERE CUENTA = '734012000000'"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_V001_BANCARIBE\nSET CUENTA = '7430020000'\nWHERE CUENTA = '743012000000'"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_V001_BANCARIBE\nSET CUENTA = '7530020000'\nWHERE CUENTA = '753042000000'"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_OFICINA_FINAL\nSET CUENTA = '7340010000'\nWHERE CUENTA = '734011000000'"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+      "Txt": "UPDATE ATSUDEBAN.AT03_V001_BANCARIBE\nSET CUENTA = '7340010000'\nWHERE CUENTA = '734011000000'"
+    }
+  ]
+}

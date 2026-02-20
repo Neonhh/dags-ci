@@ -1,0 +1,840 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "AT03_PRINCIPAL"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "AT_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "76040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ATSUDEBAN_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "67040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ODS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "46040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_AT_STG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ATSUDEBAN"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODS"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT03",
+      "ITable": "1157011",
+      "SnpCond": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1157011",
+          "CondName": "SALDO_1",
+          "ITxtCondSql": "142200012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "142200012",
+              "Txt": "SUBSTR(ATS_TH_AT03.OFICINA,1,1) IN ('V','I') AND (SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,5) IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549') OR \nSUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,3) IN ('129','139','149','159','169') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,8) IN ('18101102','18101202','18102102','18102202','18103102','18103202','18105102','18105202','18105104',\n'18105204','18105106','18105206','18106102','18106202','18107102','18107202','18902102','18902202','18902101',\n'18902201','13136102','13236102','13336102','13436102','13136202','13236202','13336202','13436202','13138102',\n'13238102','13338102','13438102','13138202','13238202','13338202','13438202','13140102','13240102','13340102',\n'13440102','13140202','13240202','13340202','13440202','13142102','13242102','13342102','13442102','13142202',\n'13242202','13342202','13442202','13144102','13244102','13344102','13444102','13144202','13244202','13344202',\n'13444202','13146102','13246102','13346102','13446102','13146202','13246202','13346202','13446202','13148102',\n'13248102','13348102','13448102','13148202','13248202','13348202','13448202','13150102','13250102','13350102',\n'13450102','13150202','13250202','13350202','13450202','13152102','13252102','13352102','13452102','13152202',\n'13252202','13352202','13452202','13154102','13254102','13354102','13454102','13154202','13254202','13354202',\n'13454202') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,6) IN ('189011','189012') OR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,10) IN ('1810810102', \n'1810820102','1810810202','1810820202','1810810302','1810820302','1810810402','1810820402','1810810502','1810820502','1881610102',\n'1881620102','1881610202','1881620202','1881610302','1881620302','1881610402','1881620402','1881610502','1881620502','1881610602',\n'1881620602','1881610702','1881620702','1881610802','1881620802'))\nAND ATS_TH_AT03.SALDO <= 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1157011",
+          "CondName": "SALDO_2",
+          "ITxtCondSql": "142202012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "142202012",
+              "Txt": "SUBSTR(ATS_TH_AT03.OFICINA,1,1) IN ('V','I') AND SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,1) = '1'  AND (SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,5) NOT IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549') OR \nSUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,3) NOT IN ('129','139','149','159','169') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,8) NOT IN ('18101102','18101202','18102102','18102202','18103102','18103202','18105102','18105202','18105104',\n'18105204','18105106','18105206','18106102','18106202','18107102','18107202','18902102','18902202','18902101',\n'18902201','13136102','13236102','13336102','13436102','13136202','13236202','13336202','13436202','13138102',\n'13238102','13338102','13438102','13138202','13238202','13338202','13438202','13140102','13240102','13340102',\n'13440102','13140202','13240202','13340202','13440202','13142102','13242102','13342102','13442102','13142202',\n'13242202','13342202','13442202','13144102','13244102','13344102','13444102','13144202','13244202','13344202',\n'13444202','13146102','13246102','13346102','13446102','13146202','13246202','13346202','13446202','13148102',\n'13248102','13348102','13448102','13148202','13248202','13348202','13448202','13150102','13250102','13350102',\n'13450102','13150202','13250202','13350202','13450202','13152102','13252102','13352102','13452102','13152202',\n'13252202','13352202','13452202','13154102','13254102','13354102','13454102','13154202','13254202','13354202',\n'13454202') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,6) NOT IN ('189011','189012') OR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,10) NOT IN ('1810810102', \n'1810820102','1810810202','1810820202','1810810302','1810820302','1810810402','1810820402','1810810502','1810820502','1881610102',\n'1881620102','1881610202','1881620202','1881610302','1881620302','1881610402','1881620402','1881610502','1881620502','1881610602',\n'1881620602','1881610702','1881620702','1881610802','1881620802'))\nAND ATS_TH_AT03.SALDO >= 0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT03BG",
+      "ITable": "716011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT03_H",
+      "ITable": "350012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT03BG_H",
+      "ITable": "349012"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "COMPARACION_FECHA_FINAL",
+      "ITxtVar": "null",
+      "ITxtVarIn": "13572041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "13572041",
+          "Txt": "SELECT ORDINAL FROM AT_DIAS_HABILES_FIN WHERE ('#COMPARACION_FECHA' = AT_DIAS_HABILES_FIN.MES_DIA)"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "COMPARACION_FECHA",
+      "ITxtVar": "null",
+      "ITxtVarIn": "13571041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "13571041",
+          "Txt": "select to_char(SYSDATE,'yy-mm-dd') from dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "GenerateGuid",
+      "ITxtVar": "33041",
+      "ITxtVarIn": "34041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "34041",
+          "Txt": "select sys_guid() from dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "AT12",
+      "LschemaName": "null",
+      "VarName": "FileAT",
+      "ITxtVar": "40041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "40041",
+          "Txt": "Nombre del archivo de transmisión, AT número que identifica el archivo de transmisión. Ejemplo: ?AT03?."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01410",
+      "LschemaName": "null",
+      "VarName": "FileCodSupervisado",
+      "ITxtVar": "41041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "41041",
+          "Txt": "Código del Ente Supervisado, \nSuministrado por la Sudeban y utilizado en las transmisiones electrónicas. Para Bancaribe el código es 01410 y para Bangente 01422.\n\n\nBancaribe  =  01410\n Bangente =  01422"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaInicio_M",
+      "ITxtVar": "null",
+      "ITxtVarIn": "3041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "3041",
+          "Txt": "SELECT TO_CHAR(TRUNC(SYSDATE-28,'MM'),'mm/dd/yyyy') FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaFin_M",
+      "ITxtVar": "null",
+      "ITxtVarIn": "15041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15041",
+          "Txt": "SELECT TO_CHAR(LAST_DAY(SYSDATE-28),'mm/dd/yyyy') FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01422",
+      "LschemaName": "null",
+      "VarName": "FileCodSupervisadoBg",
+      "ITxtVar": "52041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "52041",
+          "Txt": "Código del Ente Supervisado, \nSuministrado por la Sudeban y utilizado en las transmisiones electrónicas. Para Bancaribe el código es 01410 y para Bangente 01422.\n\n\nBancaribe  =  01410\n Bangente =  01422"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "08/26/2018",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaInicio",
+      "ITxtVar": "1041",
+      "ITxtVarIn": "2041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "2041",
+          "Txt": "SELECT '#FechaInicio_M' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "ErrorValid",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "FileName_Error",
+      "ITxtVar": "null",
+      "ITxtVarIn": "46041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "46041",
+          "Txt": "SELECT 'ErrorValid' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "09/01/2018",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaFin",
+      "ITxtVar": "13041",
+      "ITxtVarIn": "14041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "14041",
+          "Txt": "SELECT '#FechaFin_M' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "FileDate",
+      "ITxtVar": "42041",
+      "ITxtVarIn": "43041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "43041",
+          "Txt": "Select TO_CHAR(sysdate, 'YYMMDD')   from DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "RutaDirectorio",
+      "ITxtVar": "null",
+      "ITxtVarIn": "44041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "44041",
+          "Txt": "select directorio from RUTA_DIRAT\nwhere nombreat = '#FileAT'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "RutaDirectorioAnterior",
+      "ITxtVar": "null",
+      "ITxtVarIn": "45041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "45041",
+          "Txt": "SELECT (SUBSTR(directorio,1,LENGTH(directorio)-LENGTH('#FileAT'))) FROM RUTA_DIRAT \nWHERE nombreat = '#FileAT'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "FechaFile",
+      "ITxtVar": "null",
+      "ITxtVarIn": "35041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "35041",
+          "Txt": "select TO_CHAR(TO_DATE('#FechaFin','MM/DD/YY'),'YYMMDD') from dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "AT03_Max_Periodo",
+      "ITxtVar": "null",
+      "ITxtVarIn": "17041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "17041",
+          "Txt": "select   case\nwhen to_char(sysdate,'mm')  = '01' then '2'||(to_char(sysdate,'yy') -1)\nwhen to_char(sysdate,'mm')  < '08' then '1'||to_char(sysdate,'yy') \nelse  '2'||to_char(sysdate,'yy') \nend\nfrom dual\n\n/*select   case\nwhen to_char(sysdate,'mm')  < '08' then '1'||to_char(sysdate,'yy') \nelse  '2'||to_char(sysdate,'yy') \nend\nfrom dual*/\n/*select   case\nwhen to_char(sysdate-28,'mm')  < '08' then '1'||to_char(sysdate-28,'yy') \nelse  '2'||to_char(sysdate-28,'yy') \nend\nfrom dual*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "AT03_Max_Corte",
+      "ITxtVar": "3121012",
+      "ITxtVarIn": "16041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16041",
+          "Txt": "select  max (co_corte)\nfrom cb_corte\nwhere to_char(co_periodo) = '#AT03_Max_Periodo' \nand   to_char(co_fecha_fin,'yyyymmdd') =to_char(last_day( sysdate-28),'yyyymmdd')\ngroup by co_periodo"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "EXIST_COMPARACION",
+      "ITxtVar": "null",
+      "ITxtVarIn": "20370041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "20370041",
+          "Txt": "select \n case when '#COMPARACION_FECHA' in (select MES_DIA from AT_DIAS_HABILES_FIN) then 1\n else 0\n end \nfrom AT_DIAS_HABILES_FIN"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TH_AT03_H",
+      "TableName (Target Table)": "ATS_TH_AT03_H"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TH_AT03BG_H",
+      "TableName (Target Table)": "ATS_TH_AT03BG_H"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileAT",
+      "StepType": "VS",
+      "Nno": "1",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileAT",
+              "DefV": "AT03"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileCodSupervisado",
+      "StepType": "VD",
+      "Nno": "2",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileCodSupervisado",
+              "DefV": "01410"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaInicio_M",
+      "StepType": "V",
+      "Nno": "3",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT TO_CHAR(TRUNC(SYSDATE-28,'MM'),'mm/dd/yyyy') FROM DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaInicio_M",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaFin_M",
+      "StepType": "V",
+      "Nno": "4",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT TO_CHAR(LAST_DAY(SYSDATE-28),'mm/dd/yyyy') FROM DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaFin_M",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileCodSupervisadoBg",
+      "StepType": "VD",
+      "Nno": "5",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileCodSupervisadoBg",
+              "DefV": "01422"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileDate",
+      "StepType": "V",
+      "Nno": "9",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "Select TO_CHAR(sysdate, 'YYMMDD')   from DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileDate",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_Max_Periodo",
+      "StepType": "V",
+      "Nno": "13",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select   case\nwhen to_char(sysdate,'mm')  = '01' then '2'||(to_char(sysdate,'yy') -1)\nwhen to_char(sysdate,'mm')  < '08' then '1'||to_char(sysdate,'yy') \nelse  '2'||to_char(sysdate,'yy') \nend\nfrom dual\n\n/*select   case\nwhen to_char(sysdate,'mm')  < '08' then '1'||to_char(sysdate,'yy') \nelse  '2'||to_char(sysdate,'yy') \nend\nfrom dual*/\n/*select   case\nwhen to_char(sysdate-28,'mm')  < '08' then '1'||to_char(sysdate-28,'yy') \nelse  '2'||to_char(sysdate-28,'yy') \nend\nfrom dual*/",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT03_Max_Periodo",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_Max_Corte",
+      "StepType": "V",
+      "Nno": "14",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select  max (co_corte)\nfrom cb_corte\nwhere to_char(co_periodo) = '#ODI_AT_SUDEBAN_DEV.AT03_Max_Periodo' \nand   to_char(co_fecha_fin,'yyyymmdd') =to_char(last_day( sysdate-28),'yyyymmdd')\ngroup by co_periodo",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT03_Max_Corte",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario AT03 version 001",
+      "StepType": "SE",
+      "Nno": "15",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen -SCEN_NAME=AT03 -SCEN_VERSION=001"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario AT03_TO_FILE version 001",
+      "StepType": "SE",
+      "Nno": "16",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=AT03_TO_FILE\" \"-SCEN_VERSION=001\" \"-ODI_AT_SUDEBAN_DEV.FileName=#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFile.txt\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario AT03_TO_FILE_BG version 001",
+      "StepType": "SE",
+      "Nno": "17",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=AT03_TO_FILE_BG\" \"-SCEN_VERSION=001\" \"-ODI_AT_SUDEBAN_DEV.FileName=#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisadoBg#ODI_AT_SUDEBAN_DEV.FechaFile.txt\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TH_AT03",
+      "StepType": "CD",
+      "Nno": "18",
+      "TableName (Target Table)": "ATS_TH_AT03",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\n(\n\tCATALOG_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tSCHEMA_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tRESOURCE_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFULL_RES_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"1\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_MESS\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"250\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tCHECK_DATE\t<?=snpRef.getDataType(\"DEST_DATE\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tORIGIN\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONS_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"128\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONS_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"2\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_COUNT\t\t<?=snpRef.getDataType(\"DEST_NUMERIC\", \"10\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from\t<?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\nwhere\tSCHEMA_NAME\t= '<?=snpRef.getSchemaName(\"LS_ATSUDEBAN\", \"D\") ?>'\nand\tORIGIN \t\t= 'ATS_TH_AT03'\nand\tERR_TYPE \t\t= 'S'"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT03\", \"W\") ?>\n(\n\tODI_ROW_ID \t\tUROWID,\n\tODI_ERR_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"1\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>, \n\tODI_ERR_MESS\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"250\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CHECK_DATE\t<?=snpRef.getDataType(\"DEST_DATE\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>, \n\tOFICINA\tVARCHAR2(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGO_CONTABLE\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSECUTIVO\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_ORIGIN\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CONS_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"128\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CONS_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"2\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_PK\t\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"32\") ?> PRIMARY KEY,\n\tODI_SESS_NO\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"19\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from \t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT03\", \"W\") ?>\nwhere\t(ODI_ERR_TYPE = 'S'\tand 'S' = 'S')\nor\t(ODI_ERR_TYPE = 'S'\tand ODI_ORIGIN = 'ATS_TH_AT03')"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT03\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tOFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1- El valor de este campo debe ser <=0 cuando las cta. contables esten en los parametros Sudeban AT03-1',\n\tsysdate,\n\t'ATS_TH_AT03',\n\t'SALDO_1',\n\t'CK',\t\n\tOFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03\", \"D\") ?>  ATS_TH_AT03\nwhere\tnot \t(\n\t\tSUBSTR(ATS_TH_AT03.OFICINA,1,1) IN ('V','I') AND (SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,5) IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549') OR \nSUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,3) IN ('129','139','149','159','169') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,8) IN ('18101102','18101202','18102102','18102202','18103102','18103202','18105102','18105202','18105104',\n'18105204','18105106','18105206','18106102','18106202','18107102','18107202','18902102','18902202','18902101',\n'18902201','13136102','13236102','13336102','13436102','13136202','13236202','13336202','13436202','13138102',\n'13238102','13338102','13438102','13138202','13238202','13338202','13438202','13140102','13240102','13340102',\n'13440102','13140202','13240202','13340202','13440202','13142102','13242102','13342102','13442102','13142202',\n'13242202','13342202','13442202','13144102','13244102','13344102','13444102','13144202','13244202','13344202',\n'13444202','13146102','13246102','13346102','13446102','13146202','13246202','13346202','13446202','13148102',\n'13248102','13348102','13448102','13148202','13248202','13348202','13448202','13150102','13250102','13350102',\n'13450102','13150202','13250202','13350202','13450202','13152102','13252102','13352102','13452102','13152202',\n'13252202','13352202','13452202','13154102','13254102','13354102','13454102','13154202','13254202','13354202',\n'13454202') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,6) IN ('189011','189012') OR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,10) IN ('1810810102', \n'1810820102','1810810202','1810820202','1810810302','1810820302','1810810402','1810820402','1810810502','1810820502','1881610102',\n'1881620102','1881610202','1881620202','1881610302','1881620302','1881610402','1881620402','1881610502','1881620502','1881610602',\n'1881620602','1881610702','1881620702','1881610802','1881620802'))\nAND ATS_TH_AT03.SALDO <= 0\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT03\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tOFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'2- El valor de este campo debe ser >=0 cuando las cta. contables esten en los parametros Sudeban AT03-2',\n\tsysdate,\n\t'ATS_TH_AT03',\n\t'SALDO_2',\n\t'CK',\t\n\tOFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03\", \"D\") ?>  ATS_TH_AT03\nwhere\tnot \t(\n\t\tSUBSTR(ATS_TH_AT03.OFICINA,1,1) IN ('V','I') AND SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,1) = '1'  AND (SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,5) NOT IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549') OR \nSUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,3) NOT IN ('129','139','149','159','169') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,8) NOT IN ('18101102','18101202','18102102','18102202','18103102','18103202','18105102','18105202','18105104',\n'18105204','18105106','18105206','18106102','18106202','18107102','18107202','18902102','18902202','18902101',\n'18902201','13136102','13236102','13336102','13436102','13136202','13236202','13336202','13436202','13138102',\n'13238102','13338102','13438102','13138202','13238202','13338202','13438202','13140102','13240102','13340102',\n'13440102','13140202','13240202','13340202','13440202','13142102','13242102','13342102','13442102','13142202',\n'13242202','13342202','13442202','13144102','13244102','13344102','13444102','13144202','13244202','13344202',\n'13444202','13146102','13246102','13346102','13446102','13146202','13246202','13346202','13446202','13148102',\n'13248102','13348102','13448102','13148202','13248202','13348202','13448202','13150102','13250102','13350102',\n'13450102','13150202','13250202','13350202','13450202','13152102','13252102','13352102','13452102','13152202',\n'13252202','13352202','13452202','13154102','13254102','13354102','13454102','13154202','13254202','13354202',\n'13454202') \nOR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,6) NOT IN ('189011','189012') OR SUBSTR(ATS_TH_AT03.CODIGO_CONTABLE,1,10) NOT IN ('1810810102', \n'1810820102','1810810202','1810820202','1810810302','1810820302','1810810402','1810820402','1810810502','1810820502','1881610102',\n'1881620102','1881610202','1881620202','1881610302','1881620302','1881610402','1881620402','1881610502','1881620502','1881610602',\n'1881620602','1881610702','1881620702','1881610802','1881620802'))\nAND ATS_TH_AT03.SALDO >= 0\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "null"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03\", \"D\") ?>  T\nwhere\texists \t(\n\t\tselect\t1\n\t\tfrom\t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT03\", \"W\") ?> E\n\t\twhere ODI_SESS_NO = <?=snpRef.getSession(\"SESS_NO\") ?>\n\t\tand T.rowid = E.ODI_ROW_ID\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\n(\n\tSCHEMA_NAME,\n\tRESOURCE_NAME,\n\tFULL_RES_NAME,\n\tERR_TYPE,\n\tERR_MESS,\n\tCHECK_DATE,\n\tORIGIN,\n\tCONS_NAME,\n\tCONS_TYPE,\n\tERR_COUNT\n)\nselect\t\n\t'<?=snpRef.getSchemaName(\"LS_ATSUDEBAN\", \"D\") ?>',\n\t'ATS_TH_AT03',\n\t'<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>',\n\tE.ODI_ERR_TYPE,\n\tE.ODI_ERR_MESS,\n\tE.ODI_CHECK_DATE,\n\tE.ODI_ORIGIN,\n\tE.ODI_CONS_NAME,\n\tE.ODI_CONS_TYPE,\n\tcount(1) \nfrom\t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT03\", \"W\") ?> E\nwhere\tE.ODI_ERR_TYPE\t= 'S'\nand\tE.ODI_ORIGIN \t= 'ATS_TH_AT03'\ngroup by\tE.ODI_ERR_TYPE,\n\tE.ODI_ERR_MESS,\n\tE.ODI_CHECK_DATE,\n\tE.ODI_ORIGIN,\n\tE.ODI_CONS_NAME,\n\tE.ODI_CONS_TYPE"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TH_AT03BG",
+      "StepType": "CD",
+      "Nno": "19",
+      "TableName (Target Table)": "ATS_TH_AT03BG",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\n(\n\tCATALOG_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tSCHEMA_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tRESOURCE_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFULL_RES_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"1\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_MESS\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"250\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tCHECK_DATE\t<?=snpRef.getDataType(\"DEST_DATE\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tORIGIN\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONS_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"128\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONS_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"2\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_COUNT\t\t<?=snpRef.getDataType(\"DEST_NUMERIC\", \"10\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from\t<?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\nwhere\tSCHEMA_NAME\t= '<?=snpRef.getSchemaName(\"LS_ATSUDEBAN\", \"D\") ?>'\nand\tORIGIN \t\t= 'ATS_TH_AT03BG'\nand\tERR_TYPE \t\t= 'S'"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT03BG\", \"W\") ?>\n(\n\tODI_ROW_ID \t\tUROWID,\n\tODI_ERR_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"1\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>, \n\tODI_ERR_MESS\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"250\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CHECK_DATE\t<?=snpRef.getDataType(\"DEST_DATE\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>, \n\tOFICINA\tVARCHAR2(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGO_CONTABLE\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSALDO\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONSECUTIVO\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_ORIGIN\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CONS_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"128\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CONS_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"2\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_PK\t\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"32\") ?> PRIMARY KEY,\n\tODI_SESS_NO\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"19\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from \t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT03BG\", \"W\") ?>\nwhere\t(ODI_ERR_TYPE = 'S'\tand 'S' = 'S')\nor\t(ODI_ERR_TYPE = 'S'\tand ODI_ORIGIN = 'ATS_TH_AT03BG')"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "null"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT03BG\", \"W\") ?>\n(\n\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_ORIGIN,\n\tODI_CHECK_DATE,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tOFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'ODI-15064: The primary key PK_ATS_TH_AT03BG is not unique.',\n\t'ATS_TH_AT03BG',\n\tsysdate,\n\t'PK_ATS_TH_AT03BG',\n\t'PK',\t\n\tATS_TH_AT03BG.OFICINA,\n\tATS_TH_AT03BG.CODIGO_CONTABLE,\n\tATS_TH_AT03BG.SALDO,\n\tATS_TH_AT03BG.CONSECUTIVO\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03BG\", \"D\") ?>   ATS_TH_AT03BG\nwhere\texists  (\n\t\tselect\tSUB.OFICINA,\n\t\t\tSUB.CODIGO_CONTABLE\n\t\tfrom \t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03BG\", \"D\") ?> SUB\n\t\twhere \tSUB.OFICINA=ATS_TH_AT03BG.OFICINA\n\t\t\tand SUB.CODIGO_CONTABLE=ATS_TH_AT03BG.CODIGO_CONTABLE\n\t\tgroup by \tSUB.OFICINA,\n\t\t\tSUB.CODIGO_CONTABLE\n\t\thaving \tcount(1) > 1\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\n(\n\tSCHEMA_NAME,\n\tRESOURCE_NAME,\n\tFULL_RES_NAME,\n\tERR_TYPE,\n\tERR_MESS,\n\tCHECK_DATE,\n\tORIGIN,\n\tCONS_NAME,\n\tCONS_TYPE,\n\tERR_COUNT\n)\nselect\t\n\t'<?=snpRef.getSchemaName(\"LS_ATSUDEBAN\", \"D\") ?>',\n\t'ATS_TH_AT03BG',\n\t'<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT03BG\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>',\n\tE.ODI_ERR_TYPE,\n\tE.ODI_ERR_MESS,\n\tE.ODI_CHECK_DATE,\n\tE.ODI_ORIGIN,\n\tE.ODI_CONS_NAME,\n\tE.ODI_CONS_TYPE,\n\tcount(1) \nfrom\t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT03BG\", \"W\") ?> E\nwhere\tE.ODI_ERR_TYPE\t= 'S'\nand\tE.ODI_ORIGIN \t= 'ATS_TH_AT03BG'\ngroup by\tE.ODI_ERR_TYPE,\n\tE.ODI_ERR_MESS,\n\tE.ODI_CHECK_DATE,\n\tE.ODI_ORIGIN,\n\tE.ODI_CONS_NAME,\n\tE.ODI_CONS_TYPE"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario AT03_TO_FILE_ERROR version 001",
+      "StepType": "SE",
+      "Nno": "20",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=AT03_TO_FILE_ERROR\" \"-SCEN_VERSION=001\" \"-ODI_AT_SUDEBAN_DEV.FileName_Error=#ODI_AT_SUDEBAN_DEV.FileName_Error#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FechaFile.txt\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Envio de Correo",
+      "StepType": "SE",
+      "Nno": "24",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "24",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=SMTPINT.tpr.bancaribe\" \"-FROM=archivostransmisionsiif@bancaribe.com.ve\" \"-SUBJECT=AT03 - ARCHIVOS DE TRANSMISION (SIIF) - DWH EN LA NUBE - GALIPAN TECNOLOGICO\" \"-TO=URFER@bancaribe.com.ve\" \"-CC=SIFTecnologia@bancaribe.com.ve\" \"-CC=GMMartinez@bancaribe.com.ve\"\nBuen dia, \n\nSe ha generado en la nube, de forma automatica el '#ODI_AT_SUDEBAN_DEV.FileAT' correspondiente. El mismo fue Generado con Fecha Desde:'#ODI_AT_SUDEBAN_DEV.FechaInicio_M' Hasta '#ODI_AT_SUDEBAN_DEV.FechaFin_M'\n\nEl proceso de transferencia hacia el server en la ruta: \\\\sam2fp07\\siif_gcp\\AUTOMATIZACION_AT\\SALIDAS_AT\\'#ODI_AT_SUDEBAN_DEV.FileAT', esta planificado a las 9am de mañana, despues de esta hora Ud. consultar el archivo en la ruta indicada al principio del parrafo.\n\nSaludos Cordiales, \n\nSIF Tecnologia\nUnidad de Soluciones Internas / Vicepresidencia Ingeniería TI\nTelf.: +58 (212) 954.5345 / 5735 / 5107 / 5401 / 6418 \nEmail: SIFTecnologia@bancaribe.com.ve"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Move File txt",
+      "StepType": "SE",
+      "Nno": "31",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "31",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFile.txt\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileMove_Error",
+      "StepType": "SE",
+      "Nno": "32",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "32",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileName_Error#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FechaFile.txt\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Move File BG",
+      "StepType": "SE",
+      "Nno": "33",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "33",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisadoBg#ODI_AT_SUDEBAN_DEV.FechaFile.txt\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    }
+  ]
+}

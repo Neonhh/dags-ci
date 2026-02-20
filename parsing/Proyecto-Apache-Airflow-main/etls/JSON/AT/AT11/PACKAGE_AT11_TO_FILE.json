@@ -1,0 +1,791 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "AT11"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ODS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "46040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "AT_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "76040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ATSUDEBAN_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "67040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "FILE_AT",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "43011",
+        "Txt": "jdbc:snps:dbfile"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_AT_STG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ATSUDEBAN"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "ARCHIVOSUDEBAN"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_COTIZACION",
+      "ITable": "166041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CL_MONEDA",
+      "ITable": "38041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_HIST_SALDO_GEN",
+      "ITable": "294041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_CUENTA",
+      "ITable": "259011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT11_FINAL",
+      "ITable": "295041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT11_SALIDA",
+      "ITable": "296041"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaFileS",
+      "ITxtVar": "null",
+      "ITxtVarIn": "4542041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "4542041",
+          "Txt": "select TO_CHAR(TO_DATE('#FechafinS','MM/DD/YY'),'YYMMDD') from dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "FechafinS",
+      "ITxtVar": "null",
+      "ITxtVarIn": "4541041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "4541041",
+          "Txt": "/*SELECT TO_CHAR(TO_DATE(MAX('#FechaFin_Sem'),'DD/MM/YYYY'),'dd/mm/yyyy') FROM DUAL*/\n\nSELECT '#FechaFin_Sem' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "FechaFin_Sem",
+      "ITxtVar": "null",
+      "ITxtVarIn": "4538041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "4538041",
+          "Txt": "/*select \n\nto_char(sysdate-(7+(to_char(sysdate-7,'d')-1))+6,'dd/mm/yyyy')\n\nfrom dual*/\nselect \n\nto_char(sysdate-(7+(to_char(sysdate-7,'d')-1))+6,'mm/dd/yyyy')\n\nfrom dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01410",
+      "LschemaName": "null",
+      "VarName": "FileCodSupervisado",
+      "ITxtVar": "41041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "41041",
+          "Txt": "Código del Ente Supervisado, \nSuministrado por la Sudeban y utilizado en las transmisiones electrónicas. Para Bancaribe el código es 01410 y para Bangente 01422.\n\n\nBancaribe  =  01410\n Bangente =  01422"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "AT12",
+      "LschemaName": "null",
+      "VarName": "FileAT",
+      "ITxtVar": "40041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "40041",
+          "Txt": "Nombre del archivo de transmisión, AT número que identifica el archivo de transmisión. Ejemplo: ?AT03?."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "Vcorte",
+      "ITxtVar": "null",
+      "ITxtVarIn": "14945041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "14945041",
+          "Txt": "SELECT \nCO_CORTE\n FROM \nODS.CB_CORTE\nWHERE\nCO_FECHA_INI =(SELECT TO_DATE( DIAHABILANT2,'dd/mm/yy')  FROM ODS.VALIDARDIAHABIL)\nand\nCO_EMPRESA='1'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "Vperiodo",
+      "ITxtVar": "null",
+      "ITxtVarIn": "14946041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "14946041",
+          "Txt": "SELECT \nCO_PERIODO\n FROM \nODS.CB_CORTE\nWHERE\nCO_FECHA_INI =(SELECT TO_DATE( DIAHABILANT2,'dd/mm/yy') FROM ODS.VALIDARDIAHABIL)\nand\nCO_EMPRESA='1'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "FechaFin_Sem2",
+      "ITxtVar": "null",
+      "ITxtVarIn": "20371041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "20371041",
+          "Txt": "select \n\nto_char(sysdate-(7+(to_char(sysdate-7,'d')-1))+6,'dd/mm/yyyy')\n\nfrom dual\n/*select \n\nto_char(sysdate-(7+(to_char(sysdate-7,'d')-1))+6,'mm/dd/yyyy')\n\nfrom dual*/"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT11_CB_COTIZACION",
+      "TableName (Target Table)": "AT11_CB_COTIZACION"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT11_SALDOS_CUENTAS",
+      "TableName (Target Table)": "AT11_SALDOS_CUENTAS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT11_ALL",
+      "TableName (Target Table)": "AT11_ALL"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT11_FINAL",
+      "TableName (Target Table)": "AT11_FINAL"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT11_TO_FILE",
+      "TableName (Target Table)": "AT11_SALIDA"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaFin_Sem2",
+      "StepType": "V",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select \n\nto_char(sysdate-(7+(to_char(sysdate-7,'d')-1))+6,'dd/mm/yyyy')\n\nfrom dual\n/*select \n\nto_char(sysdate-(7+(to_char(sysdate-7,'d')-1))+6,'mm/dd/yyyy')\n\nfrom dual*/",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaFin_Sem2",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaFileS",
+      "StepType": "V",
+      "Nno": "250",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "250",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select TO_CHAR(TO_DATE('#ODI_AT_SUDEBAN_DEV.FechafinS','MM/DD/YY'),'YYMMDD') from dual",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaFileS",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaFin_Sem",
+      "StepType": "V",
+      "Nno": "2",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "/*select \n\nto_char(sysdate-(7+(to_char(sysdate-7,'d')-1))+6,'dd/mm/yyyy')\n\nfrom dual*/\nselect \n\nto_char(sysdate-(7+(to_char(sysdate-7,'d')-1))+6,'mm/dd/yyyy')\n\nfrom dual",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaFin_Sem",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechafinS",
+      "StepType": "V",
+      "Nno": "3",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "/*SELECT TO_CHAR(TO_DATE(MAX('#ODI_AT_SUDEBAN_DEV.FechaFin_Sem'),'DD/MM/YYYY'),'dd/mm/yyyy') FROM DUAL*/\nSELECT '#ODI_AT_SUDEBAN_DEV.FechaFin_Sem' FROM DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechafinS",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileCodSupervisado",
+      "StepType": "VS",
+      "Nno": "4",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileCodSupervisado",
+              "DefV": "01410"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileAT",
+      "StepType": "VS",
+      "Nno": "5",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileAT",
+              "DefV": "AT12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Vcorte",
+      "StepType": "V",
+      "Nno": "6",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT \nCO_CORTE\n FROM \nODS.CB_CORTE\nWHERE\nCO_FECHA_INI =(SELECT TO_DATE( DIAHABILANT2,'dd/mm/yy')  FROM ODS.VALIDARDIAHABIL)\nand\nCO_EMPRESA='1'",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "Vcorte",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Vperiodo",
+      "StepType": "V",
+      "Nno": "7",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT \nCO_PERIODO\n FROM \nODS.CB_CORTE\nWHERE\nCO_FECHA_INI =(SELECT TO_DATE( DIAHABILANT2,'dd/mm/yy') FROM ODS.VALIDARDIAHABIL)\nand\nCO_EMPRESA='1'",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "Vperiodo",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ELIMINAR REGISTROS DIARIOS",
+      "StepType": "T",
+      "Nno": "8",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "DELETE FROM AT11_FINAL WHERE FECHACARGA >= TO_DATE(SYSDATE)"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT11_CB_COTIZACION",
+      "StepType": "F",
+      "Nno": "9",
+      "TableName (Target Table)": "AT11_CB_COTIZACION",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_CB_COTIZACION\", \"W\") ?>\n(\n\tC1_CT_EMPRESA\tNUMBER(3) NULL,\n\tC2_CT_MONEDA\tNUMBER(3) NULL,\n\tC3_CT_FECHA\tDATE NULL,\n\tC4_CT_VALOR\tNUMBER(32,7) NULL,\n\tC5_MO_ABREVIATURA\tCHAR(3) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_CB_COTIZACION\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_COTIZACION.CT_EMPRESA\t   C1_CT_EMPRESA,\n\tCB_COTIZACION.CT_MONEDA\t   C2_CT_MONEDA,\n\tCB_COTIZACION.CT_FECHA\t   C3_CT_FECHA,\n\tCB_COTIZACION.CT_VALOR\t   C4_CT_VALOR,\n\tCL_MONEDA.MO_ABREVIATURA\t   C5_MO_ABREVIATURA\nfrom\t<?=snpRef.getObjectName(\"L\", \"CB_COTIZACION\", \"LS_ODS\", \"\", \"D\")?>   CB_COTIZACION, <?=snpRef.getObjectName(\"L\", \"CL_MONEDA\", \"LS_ODS\", \"\", \"D\")?>   CL_MONEDA\nwhere\t(1=1)\nAnd ((TO_CHAR(TO_DATE(CB_COTIZACION.CT_FECHA,'DD/MM/YY'),'DD/MM/YY') = TO_CHAR((TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin_Sem2','DD/MM/YY') -1),'DD/MM/YY'))\n\n\n/*TO_DATE(CB_COTIZACION.CT_FECHA, 'MM/DD/YY') = TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin_Sem','MM/DD/YY') -1*/)\n\n And (CB_COTIZACION.CT_MONEDA=CL_MONEDA.MO_MONEDA)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_CB_COTIZACION\", \"W\") ?>\n(\n\tC1_CT_EMPRESA,\n\tC2_CT_MONEDA,\n\tC3_CT_FECHA,\n\tC4_CT_VALOR,\n\tC5_MO_ABREVIATURA\n)\nvalues\n(\n\t:C1_CT_EMPRESA,\n\t:C2_CT_MONEDA,\n\t:C3_CT_FECHA,\n\t:C4_CT_VALOR,\n\t:C5_MO_ABREVIATURA\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_CB_COTIZACION\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT11_CB_COTIZACION\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tCT_EMPRESA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCT_MONEDA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCT_FECHA\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCT_VALOR\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMO_ABREVIATURA\tCHAR(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT11_CB_COTIZACION\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT11_CB_COTIZACION\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tCT_EMPRESA,\n\tCT_MONEDA,\n\tCT_FECHA,\n\tCT_VALOR,\n\tMO_ABREVIATURA \n\t \n) \n\nselect\n    CT_EMPRESA,\n\tCT_MONEDA,\n\tCT_FECHA,\n\tCT_VALOR,\n\tMO_ABREVIATURA   \n   \nFROM (\t\n\n\nselect \t\n\tC1_CT_EMPRESA CT_EMPRESA,\n\tC2_CT_MONEDA CT_MONEDA,\n\tC3_CT_FECHA CT_FECHA,\n\tC4_CT_VALOR CT_VALOR,\n\tC5_MO_ABREVIATURA MO_ABREVIATURA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_CB_COTIZACION\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_CB_COTIZACION\", \"W\") ?> purge"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT11_SALDOS_CUENTAS",
+      "StepType": "F",
+      "Nno": "10",
+      "TableName (Target Table)": "AT11_SALDOS_CUENTAS",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_SALDOS_CUENTAS\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_SALDOS_CUENTAS\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_SALDOS_CUENTAS\", \"W\") ?>\n(\n\tC1_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC2_HI_SALDO_ME\tNUMBER(32,7) NULL,\n\tC3_CU_MONEDA\tNUMBER(3) NULL,\n\tC4_CU_NOMBRE\tVARCHAR2(80) NULL,\n\tC5_HI_OFICINA\tNUMBER(10) NULL,\n\tC6_HI_AREA\tNUMBER(10) NULL,\n\tC7_HI_CORTE\tNUMBER(10) NULL,\n\tC8_HI_PERIODO\tNUMBER(10) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO_GEN.HI_CUENTA\t   C1_HI_CUENTA,\n\tCB_HIST_SALDO_GEN.HI_SALDO_ME\t   C2_HI_SALDO_ME,\n\tCB_CUENTA.CU_MONEDA\t   C3_CU_MONEDA,\n\tCB_CUENTA.CU_NOMBRE\t   C4_CU_NOMBRE,\n\tCB_HIST_SALDO_GEN.HI_OFICINA\t   C5_HI_OFICINA,\n\tCB_HIST_SALDO_GEN.HI_AREA\t   C6_HI_AREA,\n\tCB_HIST_SALDO_GEN.HI_CORTE\t   C7_HI_CORTE,\n\tCB_HIST_SALDO_GEN.HI_PERIODO\t   C8_HI_PERIODO\nfrom\t<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO_GEN\", \"LS_ODS\", \"\", \"D\")?>   CB_HIST_SALDO_GEN, <?=snpRef.getObjectName(\"L\", \"CB_CUENTA\", \"LS_ODS\", \"\", \"D\")?>   CB_CUENTA\nwhere\t(1=1)\nAnd (CB_CUENTA.CU_ESTADO IN ('V','C'))\n And (CB_HIST_SALDO_GEN.HI_SALDO <> 0)\n And (CB_HIST_SALDO_GEN.HI_SALDO_ME <> 0)\n And (CB_HIST_SALDO_GEN.HI_OFICINA >= '0')\n And (CB_HIST_SALDO_GEN.HI_EMPRESA = '1')\n And (CB_HIST_SALDO_GEN.HI_CORTE ='#ODI_AT_SUDEBAN_DEV.Vcorte'\n/*CB_HIST_SALDO_GEN.HI_CORTE ='152'*/\n)\n And (CB_CUENTA.FECHACARGA = TO_CHAR(TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin_Sem2','DD/MM/YY') -1,'DDMM')\n/*TO_CHAR(CB_CUENTA.FECHACARGA,'DDMM') = TO_CHAR(TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin_Sem2','MM/DD/YY') -1,'DDMM')*/)\n And (CB_CUENTA.CU_MONEDA <> 0)\n And ((SUBSTR(CB_HIST_SALDO_GEN.HI_CUENTA, 1, 3) = 114))\n And (CB_HIST_SALDO_GEN.HI_PERIODO ='#ODI_AT_SUDEBAN_DEV.Vperiodo')\n\n And (CB_HIST_SALDO_GEN.HI_CUENTA=CB_CUENTA.CU_CUENTA)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_SALDOS_CUENTAS\", \"W\") ?>\n(\n\tC1_HI_CUENTA,\n\tC2_HI_SALDO_ME,\n\tC3_CU_MONEDA,\n\tC4_CU_NOMBRE,\n\tC5_HI_OFICINA,\n\tC6_HI_AREA,\n\tC7_HI_CORTE,\n\tC8_HI_PERIODO\n)\nvalues\n(\n\t:C1_HI_CUENTA,\n\t:C2_HI_SALDO_ME,\n\t:C3_CU_MONEDA,\n\t:C4_CU_NOMBRE,\n\t:C5_HI_OFICINA,\n\t:C6_HI_AREA,\n\t:C7_HI_CORTE,\n\t:C8_HI_PERIODO\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_SALDOS_CUENTAS\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT11_SALDOS_CUENTAS\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tTIPOCLASIFICACION\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_CUENTA\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tINSTRUMENTOINVERSION\tVARCHAR2(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_SALDO_ME\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCU_MONEDA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCAMBIO\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOEMISOR\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCUSTODIA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCU_NOMBRE\tVARCHAR2(80) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tACTIVOSUBYACENTE\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tVALORNOMINALACTIVO\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONEDAACTIVOSUB\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCCACTIVOSUB\tVARCHAR2(15) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTASACACTIVOSUB\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHAVENCACTIVOSUB\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_OFICINA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_AREA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_CORTE\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_PERIODO\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOEMISORACTIVO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCUSTODIOACTIVO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT11_SALDOS_CUENTAS\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT11_SALDOS_CUENTAS\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tHI_CUENTA,\n\tHI_SALDO_ME,\n\tCU_MONEDA,\n\tCU_NOMBRE,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO \n\t,TIPOCLASIFICACION,\n\tINSTRUMENTOINVERSION,\n\tTIPOCAMBIO,\n\tCODIGOEMISOR,\n\tCODIGOCUSTODIA,\n\tACTIVOSUBYACENTE,\n\tVALORNOMINALACTIVO,\n\tMONEDAACTIVOSUB,\n\tTIPOCCACTIVOSUB,\n\tTASACACTIVOSUB,\n\tFECHAVENCACTIVOSUB,\n\tCODIGOEMISORACTIVO,\n\tCODIGOCUSTODIOACTIVO \n) \n\nselect\n    HI_CUENTA,\n\tHI_SALDO_ME,\n\tCU_MONEDA,\n\tCU_NOMBRE,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO   \n  ,'1',\n\t'78',\n\t'0,0000',\n\t'0',\n\t'0',\n\t'0',\n\t'0,0000',\n\t'0',\n\t'0,00000000',\n\t'0,0000',\n\t'19000101',\n\t'0',\n\t'0' \nFROM (\t\n\n\nselect \t\n\tC1_HI_CUENTA HI_CUENTA,\n\tC2_HI_SALDO_ME HI_SALDO_ME,\n\tC3_CU_MONEDA CU_MONEDA,\n\tC4_CU_NOMBRE CU_NOMBRE,\n\tC5_HI_OFICINA HI_OFICINA,\n\tC6_HI_AREA HI_AREA,\n\tC7_HI_CORTE HI_CORTE,\n\tC8_HI_PERIODO HI_PERIODO \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_SALDOS_CUENTAS\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT11_ALL",
+      "StepType": "F",
+      "Nno": "11",
+      "TableName (Target Table)": "AT11_ALL",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT11_ALL\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tTIPOCLASIFICACION\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_CUENTA\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tINSTRUMENTOINVERSION\tVARCHAR2(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_SALDO_ME\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMO_ABREVIATURA\tCHAR(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCT_VALOR\tNUMBER(32,7) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOEMISOR\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCUSTODIA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCU_NOMBRE\tVARCHAR2(80) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tACTIVOSUBYACENTE\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tVALORNOMINALACTIVO\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONEDAACTIVOSUB\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCCACTIVOSUB\tVARCHAR2(15) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOEMISORACTIVO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCUSTODIOACTIVO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTASACACTIVOSUB\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHAVENCACTIVOSUB\tVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_OFICINA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_AREA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_CORTE\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHI_PERIODO\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT11_ALL\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT11_ALL\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tTIPOCLASIFICACION,\n\tHI_CUENTA,\n\tINSTRUMENTOINVERSION,\n\tHI_SALDO_ME,\n\tMO_ABREVIATURA,\n\tCT_VALOR,\n\tCODIGOEMISOR,\n\tCODIGOCUSTODIA,\n\tCU_NOMBRE,\n\tACTIVOSUBYACENTE,\n\tVALORNOMINALACTIVO,\n\tMONEDAACTIVOSUB,\n\tTIPOCCACTIVOSUB,\n\tCODIGOEMISORACTIVO,\n\tCODIGOCUSTODIOACTIVO,\n\tTASACACTIVOSUB,\n\tFECHAVENCACTIVOSUB,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO \n\t \n) \n\nselect\n    TIPOCLASIFICACION,\n\tHI_CUENTA,\n\tINSTRUMENTOINVERSION,\n\tHI_SALDO_ME,\n\tMO_ABREVIATURA,\n\tCT_VALOR,\n\tCODIGOEMISOR,\n\tCODIGOCUSTODIA,\n\tCU_NOMBRE,\n\tACTIVOSUBYACENTE,\n\tVALORNOMINALACTIVO,\n\tMONEDAACTIVOSUB,\n\tTIPOCCACTIVOSUB,\n\tCODIGOEMISORACTIVO,\n\tCODIGOCUSTODIOACTIVO,\n\tTASACACTIVOSUB,\n\tFECHAVENCACTIVOSUB,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO   \n   \nFROM (\t\n\n\nselect \t\n\tAT11_SALDOS_CUENTAS.TIPOCLASIFICACION TIPOCLASIFICACION,\n\t(SUBSTR(AT11_SALDOS_CUENTAS.HI_CUENTA, 1, 6)) HI_CUENTA,\n\tAT11_SALDOS_CUENTAS.INSTRUMENTOINVERSION INSTRUMENTOINVERSION,\n\tAT11_SALDOS_CUENTAS.HI_SALDO_ME HI_SALDO_ME,\n\tAT11_CB_COTIZACION.MO_ABREVIATURA MO_ABREVIATURA,\n\tAT11_CB_COTIZACION.CT_VALOR CT_VALOR,\n\tAT11_SALDOS_CUENTAS.CODIGOEMISOR CODIGOEMISOR,\n\tAT11_SALDOS_CUENTAS.CODIGOCUSTODIA CODIGOCUSTODIA,\n\tAT11_SALDOS_CUENTAS.CU_NOMBRE CU_NOMBRE,\n\tAT11_SALDOS_CUENTAS.ACTIVOSUBYACENTE ACTIVOSUBYACENTE,\n\tAT11_SALDOS_CUENTAS.VALORNOMINALACTIVO VALORNOMINALACTIVO,\n\tAT11_SALDOS_CUENTAS.MONEDAACTIVOSUB MONEDAACTIVOSUB,\n\tAT11_SALDOS_CUENTAS.TIPOCCACTIVOSUB TIPOCCACTIVOSUB,\n\tAT11_SALDOS_CUENTAS.CODIGOEMISORACTIVO CODIGOEMISORACTIVO,\n\tAT11_SALDOS_CUENTAS.CODIGOCUSTODIOACTIVO CODIGOCUSTODIOACTIVO,\n\tAT11_SALDOS_CUENTAS.TASACACTIVOSUB TASACACTIVOSUB,\n\tAT11_SALDOS_CUENTAS.FECHAVENCACTIVOSUB FECHAVENCACTIVOSUB,\n\tAT11_SALDOS_CUENTAS.HI_OFICINA HI_OFICINA,\n\tAT11_SALDOS_CUENTAS.HI_AREA HI_AREA,\n\tAT11_SALDOS_CUENTAS.HI_CORTE HI_CORTE,\n\tAT11_SALDOS_CUENTAS.HI_PERIODO HI_PERIODO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT11_CB_COTIZACION\", \"LS_AT_STG\", \"\", \"D\")?>   AT11_CB_COTIZACION, <?=snpRef.getObjectName(\"L\", \"AT11_SALDOS_CUENTAS\", \"LS_AT_STG\", \"\", \"D\")?>   AT11_SALDOS_CUENTAS\nwhere\t\t(1=1)\t\n And (AT11_CB_COTIZACION.CT_MONEDA=AT11_SALDOS_CUENTAS.CU_MONEDA)\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT11_FINAL",
+      "StepType": "F",
+      "Nno": "12",
+      "TableName (Target Table)": "AT11_FINAL",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_FINAL\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_FINAL\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_FINAL\", \"W\") ?>\n(\n\tC1_TIPOCLASIFICACION\tVARCHAR2(2) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_INSTRUMENTOINVERSION\tVARCHAR2(5) NULL,\n\tC4_HI_SALDO_ME\tVARCHAR2(36) NULL,\n\tC5_MO_ABREVIATURA\tCHAR(3) NULL,\n\tC6_CT_VALOR\tVARCHAR2(36) NULL,\n\tC7_CODIGOEMISOR\tVARCHAR2(2) NULL,\n\tC8_CODIGOCUSTODIA\tVARCHAR2(2) NULL,\n\tC9_CU_NOMBRE\tVARCHAR2(80) NULL,\n\tC10_ACTIVOSUBYACENTE\tVARCHAR2(2) NULL,\n\tC11_VALORNOMINALACTIVO\tVARCHAR2(10) NULL,\n\tC12_MONEDAACTIVOSUB\tVARCHAR2(2) NULL,\n\tC13_TIPOCCACTIVOSUB\tVARCHAR2(15) NULL,\n\tC14_CODIGOEMISORACTIVO\tVARCHAR2(2) NULL,\n\tC15_CODIGOCUSTODIOACTIVO\tVARCHAR2(2) NULL,\n\tC16_TASACACTIVOSUB\tVARCHAR2(10) NULL,\n\tC17_FECHAVENCACTIVOSUB\tVARCHAR2(12) NULL,\n\tC18_HI_OFICINA\tNUMBER(10) NULL,\n\tC19_HI_AREA\tNUMBER(10) NULL,\n\tC20_HI_CORTE\tNUMBER(10) NULL,\n\tC21_HI_PERIODO\tNUMBER(10) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tAT11_ALL.TIPOCLASIFICACION\t   C1_TIPOCLASIFICACION,\n\tRPAD(AT11_ALL.HI_CUENTA,10,'0')\t   C2_HI_CUENTA,\n\tAT11_ALL.INSTRUMENTOINVERSION\t   C3_INSTRUMENTOINVERSION,\n\tTRIM(TO_CHAR(AT11_ALL.HI_SALDO_ME,'FM99999999999990D0000', 'NLS_NUMERIC_CHARACTERS = '',.'''))\t   C4_HI_SALDO_ME,\n\tAT11_ALL.MO_ABREVIATURA\t   C5_MO_ABREVIATURA,\n\tTRIM(TO_CHAR(AT11_ALL.CT_VALOR,'FM99999999999990D0000', 'NLS_NUMERIC_CHARACTERS = '',.'''))\t   C6_CT_VALOR,\n\tAT11_ALL.CODIGOEMISOR\t   C7_CODIGOEMISOR,\n\tAT11_ALL.CODIGOCUSTODIA\t   C8_CODIGOCUSTODIA,\n\tAT11_ALL.CU_NOMBRE\t   C9_CU_NOMBRE,\n\tAT11_ALL.ACTIVOSUBYACENTE\t   C10_ACTIVOSUBYACENTE,\n\tAT11_ALL.VALORNOMINALACTIVO\t   C11_VALORNOMINALACTIVO,\n\tAT11_ALL.MONEDAACTIVOSUB\t   C12_MONEDAACTIVOSUB,\n\tAT11_ALL.TIPOCCACTIVOSUB\t   C13_TIPOCCACTIVOSUB,\n\tAT11_ALL.CODIGOEMISORACTIVO\t   C14_CODIGOEMISORACTIVO,\n\tAT11_ALL.CODIGOCUSTODIOACTIVO\t   C15_CODIGOCUSTODIOACTIVO,\n\tAT11_ALL.TASACACTIVOSUB\t   C16_TASACACTIVOSUB,\n\tAT11_ALL.FECHAVENCACTIVOSUB\t   C17_FECHAVENCACTIVOSUB,\n\tAT11_ALL.HI_OFICINA\t   C18_HI_OFICINA,\n\tAT11_ALL.HI_AREA\t   C19_HI_AREA,\n\tAT11_ALL.HI_CORTE\t   C20_HI_CORTE,\n\tAT11_ALL.HI_PERIODO\t   C21_HI_PERIODO\nfrom\t<?=snpRef.getObjectName(\"L\", \"AT11_ALL\", \"LS_AT_STG\", \"\", \"D\")?>   AT11_ALL\nwhere\t(1=1)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_FINAL\", \"W\") ?>\n(\n\tC1_TIPOCLASIFICACION,\n\tC2_HI_CUENTA,\n\tC3_INSTRUMENTOINVERSION,\n\tC4_HI_SALDO_ME,\n\tC5_MO_ABREVIATURA,\n\tC6_CT_VALOR,\n\tC7_CODIGOEMISOR,\n\tC8_CODIGOCUSTODIA,\n\tC9_CU_NOMBRE,\n\tC10_ACTIVOSUBYACENTE,\n\tC11_VALORNOMINALACTIVO,\n\tC12_MONEDAACTIVOSUB,\n\tC13_TIPOCCACTIVOSUB,\n\tC14_CODIGOEMISORACTIVO,\n\tC15_CODIGOCUSTODIOACTIVO,\n\tC16_TASACACTIVOSUB,\n\tC17_FECHAVENCACTIVOSUB,\n\tC18_HI_OFICINA,\n\tC19_HI_AREA,\n\tC20_HI_CORTE,\n\tC21_HI_PERIODO\n)\nvalues\n(\n\t:C1_TIPOCLASIFICACION,\n\t:C2_HI_CUENTA,\n\t:C3_INSTRUMENTOINVERSION,\n\t:C4_HI_SALDO_ME,\n\t:C5_MO_ABREVIATURA,\n\t:C6_CT_VALOR,\n\t:C7_CODIGOEMISOR,\n\t:C8_CODIGOCUSTODIA,\n\t:C9_CU_NOMBRE,\n\t:C10_ACTIVOSUBYACENTE,\n\t:C11_VALORNOMINALACTIVO,\n\t:C12_MONEDAACTIVOSUB,\n\t:C13_TIPOCCACTIVOSUB,\n\t:C14_CODIGOEMISORACTIVO,\n\t:C15_CODIGOCUSTODIOACTIVO,\n\t:C16_TASACACTIVOSUB,\n\t:C17_FECHAVENCACTIVOSUB,\n\t:C18_HI_OFICINA,\n\t:C19_HI_AREA,\n\t:C20_HI_CORTE,\n\t:C21_HI_PERIODO\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_FINAL\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT11_FINAL\", \"LS_ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tTIPOCLASIFICACION,\n\tHI_CUENTA,\n\tINSTRUMENTOINVERSION,\n\tHI_SALDO_ME,\n\tMO_ABREVIATURA,\n\tCT_VALOR,\n\tCODIGOEMISOR,\n\tCODIGOCUSTODIA,\n\tCU_NOMBRE,\n\tACTIVOSUBYACENTE,\n\tVALORNOMINALACTIVO,\n\tMONEDAACTIVOSUB,\n\tTIPOCCACTIVOSUB,\n\tCODIGOEMISORACTIVO,\n\tCODIGOCUSTODIOACTIVO,\n\tTASACACTIVOSUB,\n\tFECHAVENCACTIVOSUB,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO \n\t \n) \n\nselect\n    TIPOCLASIFICACION,\n\tHI_CUENTA,\n\tINSTRUMENTOINVERSION,\n\tHI_SALDO_ME,\n\tMO_ABREVIATURA,\n\tCT_VALOR,\n\tCODIGOEMISOR,\n\tCODIGOCUSTODIA,\n\tCU_NOMBRE,\n\tACTIVOSUBYACENTE,\n\tVALORNOMINALACTIVO,\n\tMONEDAACTIVOSUB,\n\tTIPOCCACTIVOSUB,\n\tCODIGOEMISORACTIVO,\n\tCODIGOCUSTODIOACTIVO,\n\tTASACACTIVOSUB,\n\tFECHAVENCACTIVOSUB,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO   \n   \nFROM (\t\n\n\nselect \t\n\tC1_TIPOCLASIFICACION TIPOCLASIFICACION,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_INSTRUMENTOINVERSION INSTRUMENTOINVERSION,\n\tC4_HI_SALDO_ME HI_SALDO_ME,\n\tC5_MO_ABREVIATURA MO_ABREVIATURA,\n\tC6_CT_VALOR CT_VALOR,\n\tC7_CODIGOEMISOR CODIGOEMISOR,\n\tC8_CODIGOCUSTODIA CODIGOCUSTODIA,\n\tC9_CU_NOMBRE CU_NOMBRE,\n\tC10_ACTIVOSUBYACENTE ACTIVOSUBYACENTE,\n\tC11_VALORNOMINALACTIVO VALORNOMINALACTIVO,\n\tC12_MONEDAACTIVOSUB MONEDAACTIVOSUB,\n\tC13_TIPOCCACTIVOSUB TIPOCCACTIVOSUB,\n\tC14_CODIGOEMISORACTIVO CODIGOEMISORACTIVO,\n\tC15_CODIGOCUSTODIOACTIVO CODIGOCUSTODIOACTIVO,\n\tC16_TASACACTIVOSUB TASACACTIVOSUB,\n\tC17_FECHAVENCACTIVOSUB FECHAVENCACTIVOSUB,\n\tC18_HI_OFICINA HI_OFICINA,\n\tC19_HI_AREA HI_AREA,\n\tC20_HI_CORTE HI_CORTE,\n\tC21_HI_PERIODO HI_PERIODO \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT11_FINAL\", \"LS_ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT11_TO_FILE",
+      "StepType": "F",
+      "Nno": "13",
+      "TableName (Target Table)": "AT11_SALIDA",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table \"<?=snpRef.getObjectName(\"L\", \"DEV/SEMANALES/#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFileS.txt\", \"ARCHIVOSUDEBAN\", \"\", \"D\") ?>\"\n\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT11_SALIDASNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"DEV/SEMANALES/#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFileS.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x007eSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TIPOCLASIFICACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=HI_CUENTASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=20SNP$CRPRECISION=20SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=INSTRUMENTOINVERSIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=5SNP$CRPRECISION=5SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=HI_SALDO_MESNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=36SNP$CRPRECISION=36SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MO_ABREVIATURASNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=3SNP$CRPRECISION=3SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CT_VALORSNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=36SNP$CRPRECISION=36SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOEMISORSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOCUSTODIASNP$CRTYPE_NAME=STRINGSNP$CRORDER=8SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CU_NOMBRESNP$CRTYPE_NAME=STRINGSNP$CRORDER=9SNP$CRLENGTH=80SNP$CRPRECISION=80SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ACTIVOSUBYACENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=10SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=VALORNOMINALACTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=11SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MONEDAACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=12SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TIPOCCACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=13SNP$CRLENGTH=15SNP$CRPRECISION=15SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOEMISORACTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=14SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOCUSTODIOACTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=15SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TASACACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=16SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHAVENCACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=17SNP$CRLENGTH=12SNP$CRPRECISION=12SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table \"<?=snpRef.getObjectName(\"L\", \"DEV/SEMANALES/#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFileS.txt\", \"ARCHIVOSUDEBAN\", \"\", \"D\") ?>\"\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT11_SALIDASNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"DEV/SEMANALES/#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFileS.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x007eSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TIPOCLASIFICACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=HI_CUENTASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=20SNP$CRPRECISION=20SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=INSTRUMENTOINVERSIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=5SNP$CRPRECISION=5SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=HI_SALDO_MESNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=36SNP$CRPRECISION=36SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MO_ABREVIATURASNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=3SNP$CRPRECISION=3SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CT_VALORSNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=36SNP$CRPRECISION=36SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOEMISORSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOCUSTODIASNP$CRTYPE_NAME=STRINGSNP$CRORDER=8SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CU_NOMBRESNP$CRTYPE_NAME=STRINGSNP$CRORDER=9SNP$CRLENGTH=80SNP$CRPRECISION=80SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ACTIVOSUBYACENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=10SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=VALORNOMINALACTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=11SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MONEDAACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=12SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TIPOCCACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=13SNP$CRLENGTH=15SNP$CRPRECISION=15SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOEMISORACTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=14SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOCUSTODIOACTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=15SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TASACACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=16SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHAVENCACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=17SNP$CRLENGTH=12SNP$CRPRECISION=12SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Integration",
+          "ColTxt": "select \t\n\tAT11_FINAL.TIPOCLASIFICACION\t   TIPOCLASIFICACION,\n\tAT11_FINAL.HI_CUENTA\t   HI_CUENTA,\n\tAT11_FINAL.INSTRUMENTOINVERSION\t   INSTRUMENTOINVERSION,\n\tAT11_FINAL.HI_SALDO_ME\t   HI_SALDO_ME,\n\tAT11_FINAL.MO_ABREVIATURA\t   MO_ABREVIATURA,\n\tAT11_FINAL.CT_VALOR\t   CT_VALOR,\n\tAT11_FINAL.CODIGOEMISOR\t   CODIGOEMISOR,\n\tAT11_FINAL.CODIGOCUSTODIA\t   CODIGOCUSTODIA,\n\tAT11_FINAL.CU_NOMBRE\t   CU_NOMBRE,\n\tAT11_FINAL.ACTIVOSUBYACENTE\t   ACTIVOSUBYACENTE,\n\tAT11_FINAL.VALORNOMINALACTIVO\t   VALORNOMINALACTIVO,\n\tAT11_FINAL.MONEDAACTIVOSUB\t   MONEDAACTIVOSUB,\n\tAT11_FINAL.TIPOCCACTIVOSUB\t   TIPOCCACTIVOSUB,\n\tAT11_FINAL.CODIGOEMISORACTIVO\t   CODIGOEMISORACTIVO,\n\tAT11_FINAL.CODIGOCUSTODIOACTIVO\t   CODIGOCUSTODIOACTIVO,\n\tAT11_FINAL.TASACACTIVOSUB\t   TASACACTIVOSUB,\n\tAT11_FINAL.FECHAVENCACTIVOSUB\t   FECHAVENCACTIVOSUB\nfrom\t<?=snpRef.getObjectName(\"L\", \"AT11_FINAL\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   AT11_FINAL\nwhere\t\n\t(1=1)\t\n\t\n\nAnd (AT11_FINAL.FECHACARGA >= TO_DATE(SYSDATE))\n\n\n\n\nORDER BY HI_CUENTA",
+          "DefTxt": "insert into \"<?=snpRef.getObjectName(\"L\", \"DEV/SEMANALES/#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFileS.txt\", \"ARCHIVOSUDEBAN\", \"\", \"D\") ?>\"\n(\n\tTIPOCLASIFICACION,\n\tHI_CUENTA,\n\tINSTRUMENTOINVERSION,\n\tHI_SALDO_ME,\n\tMO_ABREVIATURA,\n\tCT_VALOR,\n\tCODIGOEMISOR,\n\tCODIGOCUSTODIA,\n\tCU_NOMBRE,\n\tACTIVOSUBYACENTE,\n\tVALORNOMINALACTIVO,\n\tMONEDAACTIVOSUB,\n\tTIPOCCACTIVOSUB,\n\tCODIGOEMISORACTIVO,\n\tCODIGOCUSTODIOACTIVO,\n\tTASACACTIVOSUB,\n\tFECHAVENCACTIVOSUB\n                     \n)\nvalues \n(\n\t<?= (char) 58 + \"TIPOCLASIFICACION\" ?>,\n\t<?= (char) 58 + \"HI_CUENTA\" ?>,\n\t<?= (char) 58 + \"INSTRUMENTOINVERSION\" ?>,\n\t<?= (char) 58 + \"HI_SALDO_ME\" ?>,\n\t<?= (char) 58 + \"MO_ABREVIATURA\" ?>,\n\t<?= (char) 58 + \"CT_VALOR\" ?>,\n\t<?= (char) 58 + \"CODIGOEMISOR\" ?>,\n\t<?= (char) 58 + \"CODIGOCUSTODIA\" ?>,\n\t<?= (char) 58 + \"CU_NOMBRE\" ?>,\n\t<?= (char) 58 + \"ACTIVOSUBYACENTE\" ?>,\n\t<?= (char) 58 + \"VALORNOMINALACTIVO\" ?>,\n\t<?= (char) 58 + \"MONEDAACTIVOSUB\" ?>,\n\t<?= (char) 58 + \"TIPOCCACTIVOSUB\" ?>,\n\t<?= (char) 58 + \"CODIGOEMISORACTIVO\" ?>,\n\t<?= (char) 58 + \"CODIGOCUSTODIOACTIVO\" ?>,\n\t<?= (char) 58 + \"TASACACTIVOSUB\" ?>,\n\t<?= (char) 58 + \"FECHAVENCACTIVOSUB\" ?>\n                     \n)\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT11_SALIDASNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"DEV/SEMANALES/#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFileS.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x007eSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TIPOCLASIFICACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=HI_CUENTASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=20SNP$CRPRECISION=20SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=INSTRUMENTOINVERSIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=5SNP$CRPRECISION=5SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=HI_SALDO_MESNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=36SNP$CRPRECISION=36SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MO_ABREVIATURASNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=3SNP$CRPRECISION=3SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CT_VALORSNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=36SNP$CRPRECISION=36SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOEMISORSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOCUSTODIASNP$CRTYPE_NAME=STRINGSNP$CRORDER=8SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CU_NOMBRESNP$CRTYPE_NAME=STRINGSNP$CRORDER=9SNP$CRLENGTH=80SNP$CRPRECISION=80SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ACTIVOSUBYACENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=10SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=VALORNOMINALACTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=11SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MONEDAACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=12SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TIPOCCACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=13SNP$CRLENGTH=15SNP$CRPRECISION=15SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOEMISORACTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=14SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGOCUSTODIOACTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=15SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TASACACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=16SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHAVENCACTIVOSUBSNP$CRTYPE_NAME=STRINGSNP$CRORDER=17SNP$CRLENGTH=12SNP$CRPRECISION=12SNP$CR$$SNPS_END_KEY*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiSendMail 2",
+      "StepType": "SE",
+      "Nno": "14",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=smtpint.tpr.bancaribe\" \"-FROM=archivostransmisionsiif@bancaribe.com.ve\" \"-SUBJECT=AT11 - ARCHIVOS DE TRANSMISION (SIIF) DWH EN LA NUBE - GALIPAN TECNOLOGICO\" \"-TO=pomeyconciliacionbcocorresponsales@bancaribe.com.ve\" \"-CC=siftecnologia@bancaribe.com.ve\" \"-CC=GMMartinez@bancaribe.com.ve\"\nBuenas tardes, \n\nSe ha generado en la nube de forma automatica el '#ODI_AT_SUDEBAN_DEV.FileAT' correspondiente a las cuentas 114 en moneda extrangera. El mismo fue Generado con Fecha al cierre: '#ODI_AT_SUDEBAN_DEV.FechafinS'\n\nEl proceso de transferencia hacia el server en la ruta: \\\\sam2fp07\\siif_gcp\\AUTOMATIZACION_AT\\SALIDAS_AT\\AT11,esta planificada para las 03pm, transcurrido estas horas podrá Ud. consultar el archivo en la ruta indicada al principio del parrafo.\n\nNOTA: NO responda este correo, el mismo fue enviado desde una cuenta NO monitoreada\n\nSaludos Cordiales, \n\nSIF Tecnologia\nUnidad de Soluciones Internas / Vicepresidencia Ingeniería TI\nTelf.: +58 (212) 954.5345 / 5735 / 5107 / 5401 / 6418 \nEmail: SIFTecnologia@bancaribe.com.ve"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiFileMove 1",
+      "StepType": "SE",
+      "Nno": "15",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFileS.txt\" \"-TODIR=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/AT09 y AT11\" \"-OVERWRITE=NO\" \"-CASESENS=NO\" \"-RECURSE=YES\""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "PKG_CON_PROCCESSVAL_CB_HIST_SALDO_ODS"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "PRD_ODS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "2000",
+        "Txt": "jdbc:oracle:thin:@172.16.24.10:1521:ODS"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "PRD_ODI",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "489000",
+        "Txt": "jdbc:oracle:thin:@172.16.24.10:1521:OBI"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODI"
+    }
+  ],
+  "SnpTable": [],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "x",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcNombreTablaOds",
+      "ITxtVar": "16620001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16620001",
+          "Txt": "Se define la tabla a Consultar"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_ODS",
+      "VarName": "vOdsFechaInicio",
+      "ITxtVar": "10120060",
+      "ITxtVarIn": "10121060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "10121060",
+          "Txt": "SELECT NVL(MAX(TO_CHAR(TRUNC(DECODE('#vOdsFechaInicio','SYSDATE',SYSDATE,SYSDATE-1),'DD'),'#vSrcFormatoFecha')),'#vOdsFechaInicio') \nFROM DUAL WHERE UPPER ('#vOdsFechaInicio') LIKE '%SYSDATE%'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "MM/DD/YYYY",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcFormatoFecha",
+      "ITxtVar": "17334001",
+      "ITxtVarIn": "8669060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "8669060",
+          "Txt": "SELECT 'MM/DD/YYYY' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_ODS",
+      "VarName": "vOdsFechaFin",
+      "ITxtVar": "10122060",
+      "ITxtVarIn": "10123060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "10123060",
+          "Txt": "SELECT NVL (\n(SELECT TO_CHAR(TRUNC(SYSDATE-1,'DD'),'#vSrcFormatoFecha') \nFROM DUAL \nWHERE UPPER ('#vOdsFechaFin') LIKE '%SYSDATE%'),'#vOdsFechaFin') \nFROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODI",
+      "VarName": "vOdsSessionProccessval",
+      "ITxtVar": "null",
+      "ITxtVarIn": "15926001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15926001",
+          "Txt": "select \n<%=odiRef.getPrevStepLog(\"SESS_NO\")%>\nfrom dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcFechaCarga",
+      "ITxtVar": "1892001",
+      "ITxtVarIn": "1699001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "1699001",
+          "Txt": "SELECT NVL(TO_CHAR(MIN(bcs.cds_date),'#SIG.vSrcFormatoFecha'), '01/01/1801')\nFROM BAN_CONFIG_ODS_DATE bcs,\n        BAN_CONFIG_ODS o\nWHERE bcs.cds_source =  '#SIG.vSrcNombreTablaOds'\nAND bcs.cds_status_carga =  'POR PROCESAR'\n AND O.COO_SOURCE = BCS.cds_source\n  and  bcs.cds_date BETWEEN o.coo_start_date and o.coo_end_date"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vSrcNombreTablaOds",
+      "StepType": "VS",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vSrcNombreTablaOds",
+              "DefV": "x"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vOdsFechaInicio",
+      "StepType": "VD",
+      "Nno": "1",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vOdsFechaInicio",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vOdsFechaFin",
+      "StepType": "VD",
+      "Nno": "2",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vOdsFechaFin",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "PROC_UPD_CONFIG_ODS",
+      "StepType": "T",
+      "Nno": "3",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Procedimiento",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE ODS.BAN_CONFIG_ODS \n  SET \n    COO_END_DATE =TO_DATE(DECODE('{vOdsFechaFin}','01/01/1801','{vOdsFechaInicio}','{vOdsFechaFin}'),'{vSrcFormatoFecha}')\n  ,COO_START_DATE = TO_DATE('{vOdsFechaInicio}','{vSrcFormatoFecha}'), \n    COO_STATUS_CARGA='POR PROCESAR'\n  WHERE COO_UPDATE_DATE_USER = 'NOUSAR' \n  AND COO_SOURCE = '{vSrcNombreTablaOds}'\n  AND '{vOdsFechaInicio}' <> '01/01/1801'  \n and TO_DATE('{vOdsFechaInicio}','{vSrcFormatoFecha}') <= TO_DATE(DECODE('{vOdsFechaFin}','01/01/1801','{vOdsFechaInicio}','{vOdsFechaFin}'),'{vSrcFormatoFecha}')",
+          "TaskName3": "UPD_CONFIG_ONE",
+          "OrdTrt": "10"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdsSession Proccessval",
+      "StepType": "V",
+      "Nno": "4",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select \n<?=snpRef.getPrevStepLog(\"SESS_NO\") ?>\nfrom dual",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vSrcFechaCarga",
+      "StepType": "V",
+      "Nno": "5",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT NVL(TO_CHAR(MIN(bcs.cds_date),'{vSrcFormatoFecha}'), '01/01/1801')\nFROM BAN_CONFIG_ODS_DATE bcs,\n        BAN_CONFIG_ODS o\nWHERE bcs.cds_source =  '{vSrcNombreTablaOds}'\nAND bcs.cds_status_carga =  'POR PROCESAR'\n AND O.COO_SOURCE = BCS.cds_source\n  and  bcs.cds_date BETWEEN o.coo_start_date and o.coo_end_date",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vSrcFechaCarga",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Valida FechaCarga",
+      "StepType": "VE",
+      "Nno": "6",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "PKG_CON_LOAD_CB_HIST_SALDO_ODS_DIARIA",
+      "StepType": "SE",
+      "Nno": "7",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Comando de Oracle Data Integrator",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=PKG_CON_LOAD_CB_HIST_SALDO_ODS_DIARIA\" \"-SCEN_VERSION=001\" \"-SESSION_NAME=PKG_CON_LOAD_CB_HIST_SALDO_ODS_DIARIA '{vSrcFechaCarga}' \" \"-SIG.vOdsSessionProccessval={vOdsSessionProccessval}\" \"-SIG.vSrcNombreTablaOds={vSrcNombreTablaOds}\" \"-SIG.vSrcFechaCarga={vSrcFechaCarga}\"",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "PROC_UPD_STATUS_BAN_CONFIG_ODS",
+      "StepType": "T",
+      "Nno": "8",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Procedimiento",
+          "ColTxt": "null",
+          "DefTxt": "DECLARE\ncontEstatus NUMBER;\nnuevoEstatus VARCHAR2(255);\n\nBEGIN\n  SELECT COUNT(1) into contEstatus \n  FROM BAN_CONFIG_ODS_DATE bcsd, BAN_CONFIG_ODS bcs\n  where bcsd.cds_status_carga NOT IN  ('PROCESADO' , 'NO HABIL', 'REPROCESO MANUAL')\n  and bcs.coo_source = '{vSrcNombreTablaOds}'\n  and bcs.coo_source = bcsd.cds_source\n  and bcsd.cds_date between bcs.coo_start_date and bcs.coo_end_date;\n\n\n  IF (contEstatus = 0) THEN\n    SELECT COUNT(1) into contEstatus\n    FROM BAN_CONFIG_ODS_DATE bcsd, BAN_CONFIG_ODS bcs\n    where bcsd.cds_status_carga = 'NO HABIL'\n    and bcs.coo_source = '{vSrcNombreTablaOds}'\n    and bcs.coo_source = bcsd.cds_source\n    and (bcsd.cds_date= bcs.coo_end_date);\n\n    if (contEstatus = 0) THEN\n       nuevoEstatus := 'PROCESADO';\n    else\n       nuevoEstatus := 'NO HABIL';\n    END IF;\n\n  else\n  SELECT COUNT(1) into contEstatus \n  FROM BAN_CONFIG_ODS_DATE bcsd, BAN_CONFIG_ODS bcs\n  where bcsd.cds_status_carga = 'ERROR'\n  and bcs.coo_source = '{vSrcNombreTablaOds}'\n  and bcs.coo_source = bcsd.cds_source\n  and bcsd.cds_date between bcs.coo_start_date and bcs.coo_end_date;\n\n     if (contEstatus = 0) THEN\n       nuevoEstatus := 'POR PROCESAR';\n    else\n       nuevoEstatus := 'ERROR';\n    END IF;\n   \n\n  END IF;\n\nIF nuevoEstatus IS NOT NULL THEN\nUPDATE BAN_CONFIG_ODS\n   SET COO_STATUS_CARGA = nuevoEstatus\nWHERE COO_SOURCE = '{vSrcNombreTablaOds}'\n  and COO_STATUS_CARGA != nuevoEstatus;\nEND IF;\n\nEND;",
+          "TaskName3": "Actualiza el status en la tabla BAN_CONFIG_ODS",
+          "OrdTrt": "0"
+        }
+      ]
+    }
+  ]
+}

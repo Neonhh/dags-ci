@@ -1,0 +1,997 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "PKG_CON_LOAD_CB_HIST_SALDO_ODS_DIARIA"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "PRD_ODS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "2000",
+        "Txt": "jdbc:oracle:thin:@172.16.24.10:1521:ODS"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "PRD_ODI",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "489000",
+        "Txt": "jdbc:oracle:thin:@172.16.24.10:1521:OBI"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "SOURCE_COB_CONTA_HIS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "462000",
+        "Txt": "jdbc:weblogic:sybase://10.0.0.45:2025;DatabaseName=cob_conta_his"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "SIIF_cob_conta_his",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "62030",
+        "Txt": "jdbc:weblogic:sybase://10.0.52.40:2025;DatabaseName=cob_conta_his"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODI"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_SOURCE_COB_CONTA_HIS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_SIIF_cob_conta_his"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "cb_hist_saldo",
+      "ITable": "1251001"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_HIST_SALDO",
+      "ITable": "1255001"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "cb_hist_saldo",
+      "ITable": "725060"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "x",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcNombreTablaOds",
+      "ITxtVar": "16620001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16620001",
+          "Txt": "Se define la tabla a Consultar"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODI",
+      "VarName": "vOdsSessionProccessval",
+      "ITxtVar": "null",
+      "ITxtVarIn": "15926001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15926001",
+          "Txt": "select \n<%=odiRef.getPrevStepLog(\"SESS_NO\")%>\nfrom dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODI",
+      "VarName": "vOdsSessionLoad",
+      "ITxtVar": "15932001",
+      "ITxtVarIn": "15999001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15999001",
+          "Txt": "select \n<%=odiRef.getPrevStepLog(\"SESS_NO\")%>\nfrom dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcFechaCarga",
+      "ITxtVar": "1892001",
+      "ITxtVarIn": "1699001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "1699001",
+          "Txt": "SELECT NVL(TO_CHAR(MIN(bcs.cds_date),'#SIG.vSrcFormatoFecha'), '01/01/1801')\nFROM BAN_CONFIG_ODS_DATE bcs,\n        BAN_CONFIG_ODS o\nWHERE bcs.cds_source =  '#SIG.vSrcNombreTablaOds'\nAND bcs.cds_status_carga =  'POR PROCESAR'\n AND O.COO_SOURCE = BCS.cds_source\n  and  bcs.cds_date BETWEEN o.coo_start_date and o.coo_end_date"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "MM/DD/YYYY",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcFormatoFecha",
+      "ITxtVar": "17334001",
+      "ITxtVarIn": "8669060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "8669060",
+          "Txt": "SELECT 'MM/DD/YYYY' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcPeriodoFechaCarga",
+      "ITxtVar": "17338001",
+      "ITxtVarIn": "3703001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "3703001",
+          "Txt": "SELECT cbc.co_periodo\nFROM CB_CORTE cbc\nWHERE cbc.co_fecha_ini = TO_DATE( '#vSrcFechaCarga','#vSrcFormatoFecha')"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcCorteFechaCarga",
+      "ITxtVar": "17331001",
+      "ITxtVarIn": "3702001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "3702001",
+          "Txt": "SELECT cbc.co_corte\nFROM CB_CORTE cbc\nWHERE cbc.co_fecha_ini = TO_DATE( '#vSrcFechaCarga','#vSrcFormatoFecha')"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcTipoCarga",
+      "ITxtVar": "17339001",
+      "ITxtVarIn": "2058001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "2058001",
+          "Txt": "SELECT bcsd.COO_ATTRIBUTE1\nFROM BAN_CONFIG_ODS bcsd\nWHERE bcsd.COO_SOURCE = '#vSrcNombreTablaOds'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "NADA",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcPartition",
+      "ITxtVar": "17336001",
+      "ITxtVarIn": "16779001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16779001",
+          "Txt": "SELECT MAX(GET_PARTITION(to_date('#vSrcFechaCarga','#vSrcFormatoFecha'),'#vSrcNombreTablaOds'))\nFROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "null",
+      "VarName": "vStgNumLote",
+      "ITxtVar": "null",
+      "ITxtVarIn": "null"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "null",
+      "VarName": "vSrcCargaStatus",
+      "ITxtVar": "16621001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16621001",
+          "Txt": "Definir el Status del proceso"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "vOdsCountHist",
+      "ITxtVar": "null",
+      "ITxtVarIn": "9872060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "9872060",
+          "Txt": "SELECT COUNT(1)\nFROM #vSrcNombreTablaOds\nWHERE #vSrcFecha"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "vSrcFecha",
+      "ITxtVar": "null",
+      "ITxtVarIn": "11795060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "11795060",
+          "Txt": "SELECT\n  CASE \n    WHEN Campo = 'NADA' THEN\n        ' 1=1'\n    WHEN Campo = 'FechaCarga' THEN\n          Campo ||   '='  || 'TO_CHAR(TO_DATE(' ||  ''''  ||  '#vSrcFechaCarga'   ||  '''' ||  ' ,'  ||  '''' ||   '#vSrcFormatoFecha'  || ''''  || ' ),'  || ''''  ||  'DDMM'  ||  ''''  || ')' \n    ELSE\n           Campo ||   '='  || 'TO_DATE(' ||  ''''  ||  '#vSrcFechaCarga'   ||  '''' ||  ' ,'  ||  '''' ||   '#vSrcFormatoFecha'  || ''''  || ' )' \n   END\nFROM (\nSELECT NVL(MAX(PARTITION_COL), 'NADA') Campo\nFROM BAN_CONFIG_MTTO_TABLAS_ODS O\nWHERE O.TABLE_NAME = '#vSrcNombreTablaOds'\n AND PARTITION_COL IS NOT NULL \n AND PARTITION_COL != 'N/A'\n)"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "null",
+      "VarName": "vSrcMostrarError",
+      "ITxtVar": "768060",
+      "ITxtVarIn": "769060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "769060",
+          "Txt": "Select Error from Dual"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ODS",
+      "PopName": "IT_CB_HIST_SALDO_ODS_INICIAL",
+      "TableName (Target Table)": "CB_HIST_SALDO"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ODS",
+      "PopName": "IT_CB_HIST_SALDO_ODS_DIARIA",
+      "TableName (Target Table)": "CB_HIST_SALDO"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ODS",
+      "PopName": "IT_CB_HIST_SALDO_ODS_DIARIA_SIIF_18082021",
+      "TableName (Target Table)": "CB_HIST_SALDO"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vSrcNombreTablaOds",
+      "StepType": "VD",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vSrcNombreTablaOds",
+              "DefV": "x"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdsSession Proccessval",
+      "StepType": "VD",
+      "Nno": "1",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdsSession Load",
+      "StepType": "V",
+      "Nno": "2",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select \n<?=snpRef.getPrevStepLog(\"SESS_NO\") ?>\nfrom dual",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vSrcFechaCarga",
+      "StepType": "VD",
+      "Nno": "3",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vSrcFechaCarga",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vSrcPeriodoFechaCarga",
+      "StepType": "V",
+      "Nno": "4",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT cbc.co_periodo\nFROM CB_CORTE cbc\nWHERE cbc.co_fecha_ini = TO_DATE( '{vSrcFechaCarga}','{vSrcFormatoFecha}')",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vSrcPeriodoFechaCarga",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vSrcCorteFechaCarga",
+      "StepType": "V",
+      "Nno": "5",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT cbc.co_corte\nFROM CB_CORTE cbc\nWHERE cbc.co_fecha_ini = TO_DATE( '{vSrcFechaCarga}','{vSrcFormatoFecha}')",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vSrcCorteFechaCarga",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vSrcTipoCarga",
+      "StepType": "V",
+      "Nno": "6",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT bcsd.COO_ATTRIBUTE1\nFROM BAN_CONFIG_ODS bcsd\nWHERE bcsd.COO_SOURCE = '{vSrcNombreTablaOds}'",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vSrcTipoCarga",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vSrcTipoCarga",
+      "StepType": "VE",
+      "Nno": "7",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vSrcTipoCarga",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CB_HIST_SALDO_ODS_INICIAL",
+      "StepType": "F",
+      "Nno": "8",
+      "TableName (Target Table)": "CB_HIST_SALDO",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>",
+          "TaskName3": "Declarar variable sesion paralelismo",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Carga",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"GLOBAL\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo=CONVERT(INT,'{vSrcPeriodoFechaCarga}'))\n And (CB_HIST_SALDO.hi_empresa=1)\n And (CB_HIST_SALDO.hi_corte = CONVERT(INT,'{vSrcCorteFechaCarga}') )",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO\", \"ODS\", \"GLOBAL\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "insert /*+ APPEND */  into\t   <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO\", \"ODS\", \"GLOBAL\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,TO_DATE('{vSrcFechaCarga}','{vSrcFormatoFecha}'),\n\tTO_DATE('{vSrcFechaCarga}','{vSrcFormatoFecha}') \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "120"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "DECLARE\n\nBEGIN\n PR_ACTUALIZA_ESTADISTICAS('<?=snpRef.getInfo(\"DEST_SCHEMA\") ?>',  '<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO\", \"ODS\", \"GLOBAL\", \"D\") ?>', '{vSrcPartition}', TO_DATE('{vSrcFechaCarga}', '{vSrcFormatoFecha}'));\nEND;",
+          "TaskName3": "STATS",
+          "OrdTrt": "160"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Status = PROCESADO",
+      "StepType": "VS",
+      "Nno": "9",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "PROC_UPD_STATUS_CARGA_ODS",
+      "StepType": "T",
+      "Nno": "10",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Procedimiento",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE BAN_CONFIG_ODS_DATE\nSET cds_status_carga = '{vSrcCargaStatus}', \n       cds_num_rows = NVL({vOdsCountHist}, -1),\n       cds_last_upd_date = sysdate\nWHERE cds_source = '{vSrcNombreTablaOds}'\nand cds_date = TO_DATE( '{vSrcFechaCarga}', '{vSrcFormatoFecha}')",
+          "TaskName3": "UPD BAN_CONF_ODS_DATE Status Carga",
+          "OrdTrt": "0"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Procedimiento",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE BAN_CONFIG_ODS\n         SET coo_last_date_sucess = TO_DATE('{vSrcFechaCarga}', '{vSrcFormatoFecha}')\n    WHERE coo_source = '{vSrcNombreTablaOds}'\n      AND  '{vSrcCargaStatus}' = 'PROCESADO'",
+          "TaskName3": "UPD BAN_CONF_ODS Last Date Sucess",
+          "OrdTrt": "10"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ValidaStatus = ERROR?",
+      "StepType": "VE",
+      "Nno": "11",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Error - PKG_CON_LOAD_CB_HIST_SALDO_ODS_DIARIA",
+      "StepType": "V",
+      "Nno": "12",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "Select Error from Dual",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "CargaStatus = Error",
+      "StepType": "VS",
+      "Nno": "13",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Ejecuciï¿½n del Caso PKG_REGISTRAR_LOG_ODS versiï¿½n 001",
+      "StepType": "SE",
+      "Nno": "14",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Comando de Oracle Data Integrator",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=PKG_REGISTRAR_LOG_ODS\" \"-SCEN_VERSION=001\" \"-SESSION_NAME=<?=snpRef.getSession(\"SESS_NO\") ?> PKG_REGISTRAR_LOG_ODS\" \"-SIG.vOdsSessionProccessval={vOdsSessionProccessval}\" \"-SIG.vSrcCargaStatus={vSrcCargaStatus}\" \"-SIG.vSrcNombreTablaOds={vSrcNombreTablaOds}\" \"-SIG.vSrcFechaCarga={vSrcFechaCarga}\" \"-SIG.vOdsSessionLoad={vOdsSessionLoad}\"",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CB_HIST_SALDO_ODS_DIARIA",
+      "StepType": "F",
+      "Nno": "15",
+      "TableName (Target Table)": "CB_HIST_SALDO",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>",
+          "TaskName3": "Declarar variable sesion paralelismo",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Carga",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SOURCE_COB_CONTA_HIS\", \"GLOBAL\", \"D\")?>   CB_HIST_SALDO\nwhere\t(1=1)\nAnd (CB_HIST_SALDO.hi_periodo=CONVERT(INT,'{vSrcPeriodoFechaCarga}'))\n And (CB_HIST_SALDO.hi_empresa=1)\n And (CB_HIST_SALDO.hi_corte = CONVERT(INT,'{vSrcCorteFechaCarga}') )",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "delete from  <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO\", \"ODS\", \"GLOBAL\", \"D\") ?>  where HI_FECHA_INI = to_date('{vSrcFechaCarga}','{vSrcFormatoFecha}')",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "insert /*+ APPEND */  into\t   <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO\", \"ODS\", \"GLOBAL\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,TO_DATE('{vSrcFechaCarga}','{vSrcFormatoFecha}'),\n\tTO_DATE('{vSrcFechaCarga}','{vSrcFormatoFecha}') \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "120"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "DECLARE\n\nBEGIN\n PR_ACTUALIZA_ESTADISTICAS('<?=snpRef.getInfo(\"DEST_SCHEMA\") ?>',  '<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO\", \"ODS\", \"GLOBAL\", \"D\") ?>', '{vSrcPartition}', TO_DATE('{vSrcFechaCarga}', '{vSrcFormatoFecha}'));\nEND;",
+          "TaskName3": "STATS",
+          "OrdTrt": "160"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vSrcFecha",
+      "StepType": "V",
+      "Nno": "16",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT\n  CASE \n    WHEN Campo = 'NADA' THEN\n        ' 1=1'\n    WHEN Campo = 'FechaCarga' THEN\n          Campo ||   '='  || 'TO_CHAR(TO_DATE(' ||  ''''  ||  '{vSrcFechaCarga}'   ||  '''' ||  ' ,'  ||  '''' ||   '{vSrcFormatoFecha}'  || ''''  || ' ),'  || ''''  ||  'DDMM'  ||  ''''  || ')' \n    ELSE\n           Campo ||   '='  || 'TO_DATE(' ||  ''''  ||  '{vSrcFechaCarga}'   ||  '''' ||  ' ,'  ||  '''' ||   '{vSrcFormatoFecha}'  || ''''  || ' )' \n   END\nFROM (\nSELECT NVL(MAX(PARTITION_COL), 'NADA') Campo\nFROM BAN_CONFIG_MTTO_TABLAS_ODS O\nWHERE O.TABLE_NAME = '{vSrcNombreTablaOds}'\n AND PARTITION_COL IS NOT NULL \n AND PARTITION_COL != 'N/A'\n)",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vSrcFecha",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Cuenta  Registros Cargados",
+      "StepType": "V",
+      "Nno": "17",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT COUNT(1)\nFROM {vSrcNombreTablaOds}\nWHERE {vSrcFecha}",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Evaluar cantidad registros cargados?",
+      "StepType": "VE",
+      "Nno": "18",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Status = CONTINGENCIA (0 Registros)",
+      "StepType": "VS",
+      "Nno": "19",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CB_HIST_SALDO_ODS_DIARIA_BCK_18082021",
+      "StepType": "F",
+      "Nno": "20",
+      "TableName (Target Table)": "CB_HIST_SALDO",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>",
+          "TaskName3": "Declarar variable sesion paralelismo",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?>\n(\n\tC1_HI_EMPRESA\tNUMBER(3) NULL,\n\tC2_HI_CUENTA\tVARCHAR2(20) NULL,\n\tC3_HI_OFICINA\tNUMBER(10) NULL,\n\tC4_HI_AREA\tNUMBER(10) NULL,\n\tC5_HI_CORTE\tNUMBER(10) NULL,\n\tC6_HI_PERIODO\tNUMBER(10) NULL,\n\tC7_HI_SALDO\tNUMBER(32,7) NULL,\n\tC8_HI_SALDO_ME\tNUMBER(32,7) NULL\n)\nNOLOGGING",
+          "TaskName3": "Create work table",
+          "OrdTrt": "30"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Carga",
+          "ColTxt": "select\t\n\tCB_HIST_SALDO1.hi_empresa\t   C1_HI_EMPRESA,\n\tLTRIM(RTRIM(CB_HIST_SALDO1.hi_cuenta))\t   C2_HI_CUENTA,\n\tCB_HIST_SALDO1.hi_oficina\t   C3_HI_OFICINA,\n\tCB_HIST_SALDO1.hi_area\t   C4_HI_AREA,\n\tCB_HIST_SALDO1.hi_corte\t   C5_HI_CORTE,\n\tCB_HIST_SALDO1.hi_periodo\t   C6_HI_PERIODO,\n\tCB_HIST_SALDO1.hi_saldo\t   C7_HI_SALDO,\n\tCB_HIST_SALDO1.hi_saldo_me\t   C8_HI_SALDO_ME\nfrom\t<?=snpRef.getObjectName(\"L\", \"cb_hist_saldo\", \"SIIF_cob_conta_his\", \"GLOBAL\", \"D\")?>   CB_HIST_SALDO1\nwhere\t(1=1)\nAnd (CB_HIST_SALDO1.hi_corte = CONVERT(INT,'{vSrcCorteFechaCarga}') )\n And (CB_HIST_SALDO1.hi_periodo=CONVERT(INT,'{vSrcPeriodoFechaCarga}'))\n And (CB_HIST_SALDO1.hi_empresa=1)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?>\n(\n\tC1_HI_EMPRESA,\n\tC2_HI_CUENTA,\n\tC3_HI_OFICINA,\n\tC4_HI_AREA,\n\tC5_HI_CORTE,\n\tC6_HI_PERIODO,\n\tC7_HI_SALDO,\n\tC8_HI_SALDO_ME\n)\nvalues\n(\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s,\n\t%s\n)",
+          "TaskName3": "Load data",
+          "OrdTrt": "50"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;",
+          "TaskName3": "Analyze work table",
+          "OrdTrt": "70"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Carga",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"W\") ?> purge",
+          "TaskName3": "Drop work table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "delete from  <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO\", \"ODS\", \"GLOBAL\", \"D\") ?>  where HI_FECHA_INI = to_date('{vSrcFechaCarga}','{vSrcFormatoFecha}')",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "90"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "insert /*+ APPEND */  into\t   <?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO\", \"ODS\", \"GLOBAL\", \"D\") ?> \n( \n\tHI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME \n\t,HI_FECHA_INI,\n\tHI_FECHA_FIN \n) \n\nselect\n    HI_EMPRESA,\n\tHI_CUENTA,\n\tHI_OFICINA,\n\tHI_AREA,\n\tHI_CORTE,\n\tHI_PERIODO,\n\tHI_SALDO,\n\tHI_SALDO_ME   \n  ,TO_DATE('{vSrcFechaCarga}','{vSrcFormatoFecha}'),\n\tTO_DATE('{vSrcFechaCarga}','{vSrcFormatoFecha}') \nFROM (\t\n\n\nselect \t\n\tC1_HI_EMPRESA HI_EMPRESA,\n\tC2_HI_CUENTA HI_CUENTA,\n\tC3_HI_OFICINA HI_OFICINA,\n\tC4_HI_AREA HI_AREA,\n\tC5_HI_CORTE HI_CORTE,\n\tC6_HI_PERIODO HI_PERIODO,\n\tC7_HI_SALDO HI_SALDO,\n\tC8_HI_SALDO_ME HI_SALDO_ME \nfrom\t<?=snpRef.getObjectName(\"L\", \"COL_PRF0CB_HIST_SALDO\", \"ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "110"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "120"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Integraciï¿½n",
+          "ColTxt": "null",
+          "DefTxt": "DECLARE\n\nBEGIN\n PR_ACTUALIZA_ESTADISTICAS('<?=snpRef.getInfo(\"DEST_SCHEMA\") ?>',  '<?=snpRef.getObjectName(\"L\", \"CB_HIST_SALDO\", \"ODS\", \"GLOBAL\", \"D\") ?>', '{vSrcPartition}', TO_DATE('{vSrcFechaCarga}', '{vSrcFormatoFecha}'));\nEND;",
+          "TaskName3": "STATS",
+          "OrdTrt": "160"
+        }
+      ]
+    }
+  ]
+}

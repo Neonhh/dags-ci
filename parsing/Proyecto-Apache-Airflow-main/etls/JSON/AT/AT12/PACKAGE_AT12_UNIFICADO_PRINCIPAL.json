@@ -1,0 +1,1374 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "AT12_UNIFICADO_PRINCIPAL"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ODS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "46040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ATSUDEBAN_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "67040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "AT_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "76040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ATSUDEBAN"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_AT_STG"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT12",
+      "ITable": "1421011",
+      "SnpCond": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "PAISCONSUMO1",
+          "ITxtCondSql": "77427011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77427011",
+              "Txt": "((ATS_TH_AT12.EXTRANJERA<> 2) OR (PAISCONSUMO = 'VE'))"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "PAISCONSUMO2",
+          "ITxtCondSql": "77429011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77429011",
+              "Txt": "(ATS_TH_AT12.EXTRANJERA = 2 OR ATS_TH_AT12.PAISCONSUMO <> '0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "MUNICIPIO2",
+          "ITxtCondSql": "77431011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77431011",
+              "Txt": "ATS_TH_AT12.PAISCONSUMO <> 'VE' OR ATS_TH_AT12.MUNICIPIO <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "MUNICIPIO1",
+          "ITxtCondSql": "77433011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77433011",
+              "Txt": "ATS_TH_AT12.PAISCONSUMO <> 'VE' OR ATS_TH_AT12.MUNICIPIO <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "EXTRANJERA",
+          "ITxtCondSql": "77435011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77435011",
+              "Txt": "ATS_TH_AT12.EXTRANJERA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "TIPOTARJETA1",
+          "ITxtCondSql": "77437011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77437011",
+              "Txt": "ATS_TH_AT12.EXTRANJERA <> 2 OR ATS_TH_AT12.CLASETARJETA <> 1 OR ATS_TH_AT12.TIPOTARJETA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "TIPOTARJETA2",
+          "ITxtCondSql": "77439011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77439011",
+              "Txt": "ATS_TH_AT12.EXTRANJERA = 2 OR ATS_TH_AT12.CLASETARJETA <> 1 OR  ATS_TH_AT12.TIPOTARJETA NOT IN (0,5)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "TIPOTARJETA3",
+          "ITxtCondSql": "77441011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77441011",
+              "Txt": "ATS_TH_AT12.CLASETARJETA = 2 OR ATS_TH_AT12.TIPOTARJETA  <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "CONCEPTO1",
+          "ITxtCondSql": "77443011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77443011",
+              "Txt": "ATS_TH_AT12.CLASETARJETA <> 1 OR ATS_TH_AT12.CONCEPTO <> 18"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "CONCEPTO2",
+          "ITxtCondSql": "77445011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77445011",
+              "Txt": "ATS_TH_AT12.CLASETARJETA <> 2 OR ATS_TH_AT12.CONCEPTO <> 9"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "FRANQUICIA1",
+          "ITxtCondSql": "77447011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77447011",
+              "Txt": "ATS_TH_AT12.CLASETARJETA <> 1 OR ATS_TH_AT12.FRANQUICIA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "FRANQUICIA2",
+          "ITxtCondSql": "77449011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77449011",
+              "Txt": "ATS_TH_AT12.CLASETARJETA = 1 OR ATS_TH_AT12.FRANQUICIA = 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "CANTIDADDECONSUMOS",
+          "ITxtCondSql": "77451011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77451011",
+              "Txt": "ATS_TH_AT12.CANTIDADCONSUMOS >= 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "COMISIONESPROPIAS",
+          "ITxtCondSql": "77453011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77453011",
+              "Txt": "ATS_TH_AT12.COMISIONESPROPIAS >=  0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "MONTOCONSUMO",
+          "ITxtCondSql": "77455011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77455011",
+              "Txt": "ATS_TH_AT12.MONTOCONSUMO >=0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "COMISIONESTERCEROS",
+          "ITxtCondSql": "77457011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77457011",
+              "Txt": "ATS_TH_AT12.COMISIONESTERCEROS >=  0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT12_BG",
+      "ITable": "1422011",
+      "SnpCond": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "CANTIDADDECONSUMOS",
+          "ITxtCondSql": "5378012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5378012",
+              "Txt": "ATS_TH_AT12_BG.CANTIDADCONSUMOS >= 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "COMISIONESPROPIAS",
+          "ITxtCondSql": "5381012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5381012",
+              "Txt": "ATS_TH_AT12_BG.COMISIONESPROPIAS >=  0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "COMISIONESTERCEROS",
+          "ITxtCondSql": "5383012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5383012",
+              "Txt": "ATS_TH_AT12_BG.COMISIONESTERCEROS >=  0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "CONCEPTO1",
+          "ITxtCondSql": "5385012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5385012",
+              "Txt": "ATS_TH_AT12_BG.CLASETARJETA <> 1 OR ATS_TH_AT12_BG.CONCEPTO <> 18"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "CONCEPTO2",
+          "ITxtCondSql": "5387012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5387012",
+              "Txt": "ATS_TH_AT12_BG.CLASETARJETA <> 2 OR ATS_TH_AT12_BG.CONCEPTO <> 9"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "EXTRANJERA",
+          "ITxtCondSql": "5389012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5389012",
+              "Txt": "ATS_TH_AT12_BG.EXTRANJERA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "FRANQUICIA1",
+          "ITxtCondSql": "5391012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5391012",
+              "Txt": "ATS_TH_AT12_BG.CLASETARJETA <> 1 OR ATS_TH_AT12_BG.FRANQUICIA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "FRANQUICIA2",
+          "ITxtCondSql": "5393012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5393012",
+              "Txt": "ATS_TH_AT12_BG.CLASETARJETA = 1 OR ATS_TH_AT12_BG.FRANQUICIA = 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "MONTOCONSUMO",
+          "ITxtCondSql": "5395012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5395012",
+              "Txt": "ATS_TH_AT12_BG.MONTOCONSUMO >=0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "MUNICIPIO1",
+          "ITxtCondSql": "5397012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5397012",
+              "Txt": "ATS_TH_AT12_BG.PAISCONSUMO <> 'VE' OR ATS_TH_AT12_BG.MUNICIPIO <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "MUNICIPIO2",
+          "ITxtCondSql": "5399012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5399012",
+              "Txt": "ATS_TH_AT12_BG.PAISCONSUMO <> 'VE' OR ATS_TH_AT12_BG.MUNICIPIO <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "PAISCONSUMO1",
+          "ITxtCondSql": "5401012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5401012",
+              "Txt": "((ATS_TH_AT12_BG.EXTRANJERA<> 2) OR (ATS_TH_AT12_BG.PAISCONSUMO = 'VE'))"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "PAISCONSUMO2",
+          "ITxtCondSql": "5403012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5403012",
+              "Txt": "(ATS_TH_AT12_BG.EXTRANJERA = 2 OR ATS_TH_AT12_BG.PAISCONSUMO <> '0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "TIPOTARJETA1",
+          "ITxtCondSql": "5405012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5405012",
+              "Txt": "ATS_TH_AT12_BG.EXTRANJERA <> 2 OR ATS_TH_AT12_BG.CLASETARJETA <> 1 OR ATS_TH_AT12_BG.TIPOTARJETA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "TIPOTARJETA2",
+          "ITxtCondSql": "5407012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5407012",
+              "Txt": "ATS_TH_AT12_BG.EXTRANJERA = 2 OR ATS_TH_AT12_BG.CLASETARJETA <> 1 OR  ATS_TH_AT12_BG.TIPOTARJETA NOT IN (0,5)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "TIPOTARJETA3",
+          "ITxtCondSql": "5409012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5409012",
+              "Txt": "ATS_TH_AT12_BG.CLASETARJETA = 2 OR ATS_TH_AT12_BG.TIPOTARJETA  <> 0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT12_H",
+      "ITable": "356012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT12BG_H",
+      "ITable": "374012"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "AT_DIAS_FERIADOS",
+      "ITxtVar": "null",
+      "ITxtVarIn": "97041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "97041",
+          "Txt": "select \n case when to_char(SYSDATE,'dd/mm/yy') in (select to_char(df_fecha,'dd/mm/yy') from ods.cl_dias_feriados where substr(df_year,3,2)=substr(to_char(sysdate,'dd/mm/yy'),7,2)) then 1\n else 0\n end status\nfrom dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "AT_DIA_HABIL",
+      "ITxtVar": "null",
+      "ITxtVarIn": "4545041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "4545041",
+          "Txt": "select 0 from dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "GenerateGuid",
+      "ITxtVar": "33041",
+      "ITxtVarIn": "34041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "34041",
+          "Txt": "select sys_guid() from dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "AT12",
+      "LschemaName": "null",
+      "VarName": "FileAT",
+      "ITxtVar": "40041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "40041",
+          "Txt": "Nombre del archivo de transmisión, AT número que identifica el archivo de transmisión. Ejemplo: ?AT03?."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "RutaDirectorio",
+      "ITxtVar": "null",
+      "ITxtVarIn": "44041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "44041",
+          "Txt": "select directorio from RUTA_DIRAT\nwhere nombreat = '#FileAT'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "RutaDirectorioAnterior",
+      "ITxtVar": "null",
+      "ITxtVarIn": "45041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "45041",
+          "Txt": "SELECT (SUBSTR(directorio,1,LENGTH(directorio)-LENGTH('#FileAT'))) FROM RUTA_DIRAT \nWHERE nombreat = '#FileAT'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "09/01/2018",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaFin",
+      "ITxtVar": "13041",
+      "ITxtVarIn": "14041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "14041",
+          "Txt": "SELECT '#FechaFin_M' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaFin_M",
+      "ITxtVar": "null",
+      "ITxtVarIn": "15041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15041",
+          "Txt": "SELECT TO_CHAR(LAST_DAY(SYSDATE-28),'mm/dd/yyyy') FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "08/26/2018",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaInicio",
+      "ITxtVar": "1041",
+      "ITxtVarIn": "2041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "2041",
+          "Txt": "SELECT '#FechaInicio_M' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaInicio_M",
+      "ITxtVar": "null",
+      "ITxtVarIn": "3041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "3041",
+          "Txt": "SELECT TO_CHAR(TRUNC(SYSDATE-28,'MM'),'mm/dd/yyyy') FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODS",
+      "VarName": "FechaFile",
+      "ITxtVar": "null",
+      "ITxtVarIn": "35041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "35041",
+          "Txt": "select TO_CHAR(TO_DATE('#FechaFin','MM/DD/YY'),'YYMMDD') from dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01410",
+      "LschemaName": "null",
+      "VarName": "FileCodSupervisado",
+      "ITxtVar": "41041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "41041",
+          "Txt": "Código del Ente Supervisado, \nSuministrado por la Sudeban y utilizado en las transmisiones electrónicas. Para Bancaribe el código es 01410 y para Bangente 01422.\n\n\nBancaribe  =  01410\n Bangente =  01422"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01422",
+      "LschemaName": "null",
+      "VarName": "FileCodSupervisadoBg",
+      "ITxtVar": "52041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "52041",
+          "Txt": "Código del Ente Supervisado, \nSuministrado por la Sudeban y utilizado en las transmisiones electrónicas. Para Bancaribe el código es 01410 y para Bangente 01422.\n\n\nBancaribe  =  01410\n Bangente =  01422"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "FileDate",
+      "ITxtVar": "42041",
+      "ITxtVarIn": "43041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "43041",
+          "Txt": "Select TO_CHAR(sysdate, 'YYMMDD')   from DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "ErrorValid",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "FileName_Error",
+      "ITxtVar": "null",
+      "ITxtVarIn": "46041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "46041",
+          "Txt": "SELECT 'ErrorValid' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "null",
+      "VarName": "AT_TablaValidacion",
+      "ITxtVar": "55041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "55041",
+          "Txt": "Variable para declarar el nombre de la tabla de validación para el envío de los correos de errores."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "AT_CountValid",
+      "ITxtVar": "53041",
+      "ITxtVarIn": "54041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "54041",
+          "Txt": "SELECT COUNT(*) FROM #AT_TablaValidacion"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TH_AT12_H",
+      "TableName (Target Table)": "ATS_TH_AT12_H"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TH_AT12BG_H",
+      "TableName (Target Table)": "ATS_TH_AT12BG_H"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_DIAS_FERIADOS",
+      "StepType": "V",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select \n case when to_char(SYSDATE,'dd/mm/yy') in (select to_char(df_fecha,'dd/mm/yy') from ods.cl_dias_feriados where substr(df_year,3,2)=substr(to_char(sysdate,'dd/mm/yy'),7,2)) then 1\n else 0\n end status\nfrom dual",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT_DIAS_FERIADOS",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_DIAS_LABORABLES",
+      "StepType": "VE",
+      "Nno": "1",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_DIA_HABIL",
+      "StepType": "VS",
+      "Nno": "2",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT_DIA_HABIL",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_DIA_HABIL",
+      "StepType": "VE",
+      "Nno": "3",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT_DIA_HABIL",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "GenerateGuid",
+      "StepType": "V",
+      "Nno": "4",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select sys_guid() from dual",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "GenerateGuid",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiSleep_DIAS_FERIADOS",
+      "StepType": "SE",
+      "Nno": "5",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSleep \"-DELAY=86400000\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaFin",
+      "StepType": "VD",
+      "Nno": "10",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaFin",
+              "DefV": "09/01/2018"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaInicio",
+      "StepType": "VD",
+      "Nno": "11",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaInicio",
+              "DefV": "08/26/2018"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FechaFile",
+      "StepType": "V",
+      "Nno": "12",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select TO_CHAR(TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin','MM/DD/YY'),'YYMMDD') from dual",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FechaFile",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileCodSupervisado",
+      "StepType": "VD",
+      "Nno": "13",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileCodSupervisado",
+              "DefV": "01410"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileCodSupervisadoBg",
+      "StepType": "VD",
+      "Nno": "14",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileCodSupervisadoBg",
+              "DefV": "01422"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileDate",
+      "StepType": "V",
+      "Nno": "15",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "15",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "Select TO_CHAR(sysdate, 'YYMMDD')   from DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileDate",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileName_Error",
+      "StepType": "V",
+      "Nno": "16",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT 'ErrorValid' FROM DUAL",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileName_Error",
+              "DefV": "ErrorValid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "LOG Insert",
+      "StepType": "T",
+      "Nno": "17",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "17",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "DECLARE  \n        AAA VARCHAR2(200);\nBEGIN\nINSERT INTO ATS_TH_AUDITORIA\n  (\n    ID_AT,\n    NOMBRE_AT,\n    CLIENTE,\n    FECHA_EJECUCION_INICIO,\n    FECHA_EJECUCION_FIN,\n    FECHA_LOG_INICIO,\n    ESTADO_EJECUCION\n  )  VALUES  (\n   '#ODI_AT_SUDEBAN_DEV.GenerateGuid',\n   '#ODI_AT_SUDEBAN_DEV.FileAT',\n   '#ODI_AT_SUDEBAN_DEV.FileCodSupervisado',\n   TO_DATE( '#ODI_AT_SUDEBAN_DEV.FechaInicio'  , 'mm/dd/yyyy' ),\n   TO_DATE( '#ODI_AT_SUDEBAN_DEV.FechaFin'  , 'mm/dd/yyyy' ),\n    sysdate,\n   'INICIO GENERANDO AT #ODI_AT_SUDEBAN_DEV.FileAT' \n  )\n    RETURNING Id_AT INTO AAA;\n    DBMS_OUTPUT.put_line(AAA);\nEND;"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario AT12_UNIFICADO version 001",
+      "StepType": "SE",
+      "Nno": "18",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen -SCEN_NAME=AT12_UNIFICADO -SCEN_VERSION=001"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "LOG Update",
+      "StepType": "T",
+      "Nno": "19",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE \n\tATS_TH_AUDITORIA\nSET \n\tFECHA_LOG_FIN =  sysdate,\n\tESTADO_EJECUCION = 'GENERANDO ARCHIVO TXT'\nWHERE \n\tID_AT   = '#ODI_AT_SUDEBAN_DEV.GenerateGuid'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Execution of the Scenario AT12_UNIFICADO_TO_FILE version 001",
+      "StepType": "SE",
+      "Nno": "20",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiStartScen \"-SCEN_NAME=AT12_UNIFICADO_TO_FILE\" \"-SCEN_VERSION=001\" \"-ODI_AT_SUDEBAN_DEV.FileName=#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFile.txt\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Envio de Correo",
+      "StepType": "SE",
+      "Nno": "37",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "37",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=smtpint.tpr.bancaribe\" \"-FROM=archivostransmisionsiif@bancaribe.com.ve\" \"-SUBJECT=AT12 UNIFICADO - ARCHIVOS DE TRANSMISION (SIIF) DWH EN LA NUBE - GALIPAN TECNOLOGICO\" \"-TO=SIFTecnologia@bancaribe.com.ve \" \"-TO=CoordinacionOperacionesdeTarjetas@bancaribe.com.ve\" \"-BCC=soporte-da@sannet.com.ve\"\nBuen dia, \nSe ha generado de forma automatica el '#ODI_AT_SUDEBAN_DEV.FileAT' UNIFICADO correspondiente. El mismo fue Generado con Fecha Desde:'#ODI_AT_SUDEBAN_DEV.FechaInicio' Hasta '#ODI_AT_SUDEBAN_DEV.FechaFin'\n\nPuede Usted, ubicar el archivo en la RUTA: \\\\sam2fp07\\siif_gcp\\AUTOMATIZACION_AT\\SALIDAS_AT\\#ODI_AT_SUDEBAN_DEV.FileAT\n\nNOTA: NO responda este correo, el mismo fue enviado desde una cuenta NO monitoreada\n\nSistema SIIF (AT)"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Move File AT12",
+      "StepType": "SE",
+      "Nno": "29",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "29",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisado#ODI_AT_SUDEBAN_DEV.FechaFile.txt\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileAT\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Move Error File",
+      "StepType": "SE",
+      "Nno": "30",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "30",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileName_Error#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FechaFile.txt\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileAT\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_TablaValidacion",
+      "StepType": "VS",
+      "Nno": "31",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "31",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT_TablaValidacion",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_CountValid",
+      "StepType": "V",
+      "Nno": "32",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "32",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT COUNT(*) FROM #ODI_AT_SUDEBAN_DEV.AT_TablaValidacion",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT_CountValid",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Move File AT12 Bg",
+      "StepType": "SE",
+      "Nno": "33",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "33",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileAT#ODI_AT_SUDEBAN_DEV.FileCodSupervisadoBg#ODI_AT_SUDEBAN_DEV.FechaFile.txt\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorioAnterior#ODI_AT_SUDEBAN_DEV.FileAT\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiMkDir_AT12",
+      "StepType": "SE",
+      "Nno": "34",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "34",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiMkDir \"-DIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio/INSUMOS/#ODI_AT_SUDEBAN_DEV.FechaFile\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiFileMove_AT12_Atomo",
+      "StepType": "SE",
+      "Nno": "35",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "35",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorio/INSUMOS/ATOMO12.ATOMO12\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio/INSUMOS/#ODI_AT_SUDEBAN_DEV.FechaFile/\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiFileMove_AT12",
+      "StepType": "SE",
+      "Nno": "36",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "36",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileMove \"-FILE=#ODI_AT_SUDEBAN_DEV.RutaDirectorio/INSUMOS/PMPFP301TT.PMPFP301TT\" \"-TODIR=#ODI_AT_SUDEBAN_DEV.RutaDirectorio/INSUMOS/#ODI_AT_SUDEBAN_DEV.FechaFile/\" \"-OVERWRITE=YES\" \"-CASESENS=NO\" \"-RECURSE=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT_DIA_HABIL",
+      "StepType": "V",
+      "Nno": "6",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select 0 from dual",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "AT_DIA_HABIL",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileAT",
+      "StepType": "VS",
+      "Nno": "7",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileAT",
+              "DefV": "AT12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "RutaDirectorio",
+      "StepType": "V",
+      "Nno": "8",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "select directorio from RUTA_DIRAT\nwhere nombreat = '#ODI_AT_SUDEBAN_DEV.FileAT'",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "RutaDirectorio",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "RutaDirectorioAnterior",
+      "StepType": "V",
+      "Nno": "9",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT (SUBSTR(directorio,1,LENGTH(directorio)-LENGTH('#ODI_AT_SUDEBAN_DEV.FileAT'))) FROM RUTA_DIRAT \nWHERE nombreat = '#ODI_AT_SUDEBAN_DEV.FileAT'",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "RutaDirectorioAnterior",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

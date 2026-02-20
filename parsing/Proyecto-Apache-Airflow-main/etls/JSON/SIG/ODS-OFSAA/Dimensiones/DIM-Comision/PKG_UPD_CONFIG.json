@@ -1,0 +1,309 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "PKG_UPD_CONFIG"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "PRD_ODI",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "489000",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "DEV_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "3000",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODI"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_STG"
+    }
+  ],
+  "SnpTable": [],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaInicio",
+      "ITxtVar": "20826001",
+      "ITxtVarIn": "6911060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "6911060",
+          "Txt": "<$String vFechaInicio = \"#vStgFechaInicio\".toLowerCase().contains(\"sysdate\") ? \"#vStgFechaInicio\" : \"'#vStgFechaInicio'\";$>\nSELECT TO_CHAR(MAX(NVL(to_date(<$=vFechaInicio$>, '#vStgFormatoFecha'),to_date('01/01/1801', '#vStgFormatoFecha'))),'#vStgFormatoFecha')\nFROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "MM/DD/RRRR",
+      "LschemaName": "LS_ODI",
+      "VarName": "vStgFormatoFecha",
+      "ITxtVar": "16699001",
+      "ITxtVarIn": "8670060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "8670060",
+          "Txt": "SELECT 'MM/DD/YYYY' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaFin",
+      "ITxtVar": "20827001",
+      "ITxtVarIn": "7225060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "7225060",
+          "Txt": "SELECT NVL (\n(SELECT TO_CHAR(TRUNC(SYSDATE-1,'DD'),'#vStgFormatoFecha') \nFROM DUAL \nWHERE UPPER ('#vStgFechaFin') LIKE '%SYSDATE%'),'#vStgFechaFin') \nFROM DUAL\n\n/*SELECT nvl(MAX(to_char(COS_END_DATE, '#vStgFormatoFecha')), '01/01/1801')\nFROM BAN_CONFIG_STG S\nWHERE COS_SOURCE = '#vStgNombreTablaStg'\nAND COS_STATUS_CARGA ='POR PROCESAR'*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "EMPTY",
+      "LschemaName": "null",
+      "VarName": "vStgNombreTablaStg",
+      "ITxtVar": "16707001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16707001",
+          "Txt": "Define el nombre de la tabla de STG que se está procesando."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgUltimoDiaHabilMesAnterior",
+      "ITxtVar": "15119060",
+      "ITxtVarIn": "15049060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15049060",
+          "Txt": "SELECT  TO_CHAR(MAX(DIA),'#vStgFormatoFecha')  FROM\n  (\n    SELECT  TRUNC(TO_DATE('#vStgFechaInicio','#vStgFormatoFecha'),'MM') - ROWNUM  DIA\n                    FROM dual \n                    CONNECT BY LEVEL <= 30\n  )\n  WHERE DIA NOT IN (SELECT ODS.CL_DIAS_FERIADOS.DF_FECHA FROM ODS.CL_DIAS_FERIADOS )"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgPrimerDiaHabilFechaInicio",
+      "ITxtVar": "15051060",
+      "ITxtVarIn": "15050060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15050060",
+          "Txt": "SELECT  TO_CHAR(MIN(DIA),'#vStgFormatoFecha')  FROM\n  (\n    SELECT  LAST_DAY(TO_DATE('#vStgFechaInicio','#vStgFormatoFecha')) - ROWNUM  DIA\n                    FROM dual \n                    CONNECT BY LEVEL <= 30\n  )\n  WHERE DIA NOT IN (SELECT ODS.CL_DIAS_FERIADOS.DF_FECHA FROM ODS.CL_DIAS_FERIADOS ) AND TRUNC(DIA,'MM')=TRUNC(TO_DATE('#vStgFechaInicio','#vStgFormatoFecha'),'MM')"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaCierreContable",
+      "ITxtVar": "15115060",
+      "ITxtVarIn": "15116060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15116060",
+          "Txt": "select TO_CHAR(TO_DATE(NGV_VALUE,'YYYYMMDD'),'#vStgFormatoFecha') from ODS.BAN_MASTER WHERE NGV_NAME='CIERRE_CONTABLE'"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgFechaInicio",
+      "StepType": "VD",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgFechaInicio",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgFechaInicio",
+      "StepType": "V",
+      "Nno": "1",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT NVL(MAX(TO_CHAR(TRUNC(DECODE('{vStgFechaInicio}','SYSDATE',SYSDATE,SYSDATE-1),'DD'),'{vStgFormatoFecha}')),'{vStgFechaInicio}') \nFROM DUAL WHERE UPPER ('{vStgFechaInicio}') LIKE '%SYSDATE%'",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgFechaInicio",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgFechaFin",
+      "StepType": "VD",
+      "Nno": "2",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgFechaFin",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgFechaFin",
+      "StepType": "V",
+      "Nno": "3",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "SELECT NVL (\n(SELECT TO_CHAR(TRUNC(SYSDATE-1,'DD'),'{vStgFormatoFecha}') \nFROM DUAL \nWHERE UPPER ('{vStgFechaFin}') LIKE '%SYSDATE%'),'{vStgFechaFin}') \nFROM DUAL\n\n/*SELECT nvl(MAX(to_char(COS_END_DATE, '{vStgFormatoFecha}')), '01/01/1801')\nFROM BAN_CONFIG_STG S\nWHERE COS_SOURCE = '{vStgNombreTablaStg}'\nAND COS_STATUS_CARGA ='POR PROCESAR'*/",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgFechaFin",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgNombreTablaStg",
+      "StepType": "VD",
+      "Nno": "4",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgNombreTablaStg",
+              "DefV": "EMPTY"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "PROC_UPD_CONFIG",
+      "StepType": "T",
+      "Nno": "5",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE STG.BAN_CONFIG_STG \n  SET COS_END_DATE =TO_DATE(DECODE('{vStgFechaFin}','01/01/1801','{vStgFechaInicio}','{vStgFechaFin}'),'{vStgFormatoFecha}')\n  ,COS_START_DATE = TO_DATE('{vStgFechaInicio}','{vStgFormatoFecha}')\n  WHERE COS_UPDATE_FOR_USER = 'NOUSAR' \n  AND COS_SOURCE = '{vStgNombreTablaStg}'\n  AND '{vStgFechaInicio}' <> '01/01/1801'",
+          "TaskName3": "UPD_CONFIG_ONE",
+          "OrdTrt": "20"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE STG.BAN_CONFIG_STG \n  SET COS_UPDATE_FOR_USER = 'NOUSAR'",
+          "TaskName3": "Actualizar eje  Manuales a NOUSAR",
+          "OrdTrt": "30"
+        }
+      ]
+    }
+  ]
+}

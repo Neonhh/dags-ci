@@ -1,0 +1,855 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "AT26"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ATSUDEBAN_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "67040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "FILE_AT26",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "255011",
+        "Txt": "jdbc:snps:dbfile"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "AT_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "76040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ATSUDEBAN"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "FILE_AT26"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_AT_STG"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT26",
+      "ITable": "832011",
+      "SnpCond": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Canal Fraude",
+          "ITxtCondSql": "18077011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18077011",
+              "Txt": "(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('30','31','32') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('5')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('33') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('3','5','10')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO IN ('34') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('2','3','5')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO IN ('35') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('1','2','3','4','5','6','7','9','10')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('36','37') AND\nATS_TH_AT26.CANALFRAUDE NOT IN ('1','2','3','5','7','9','10')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('38','39') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('1','2','5','7','9','10')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('40','41') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('1','2','10')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('42','43','44','45','46','47','48','49') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('1','2','5','7','9','10'))"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Codigo Contable",
+          "ITxtCondSql": "18079011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18079011",
+              "Txt": "ATS_TH_AT26.CODIGOCONTABLE != '0'"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Codigo Parroquia",
+          "ITxtCondSql": "18081011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18081011",
+              "Txt": "ATS_TH_AT26.CODIGOPARROQUIA != 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Fecha Fraude",
+          "ITxtCondSql": "18083011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18083011",
+              "Txt": "ATS_TH_AT26.FECHAFRAUDE > '20101231'"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Genero",
+          "ITxtCondSql": "18085011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18085011",
+              "Txt": "(ATS_TH_AT26.TIPOPERSONA IN ('E','P','V') AND ATS_TH_AT26.GENERO IN (1,2))\n\nOR \n\n(ATS_TH_AT26.TIPOPERSONA NOT IN ('E','P','V') AND ATS_TH_AT26.GENERO IN (0))\n\nOR \n\n(ATS_TH_AT26.AFECTACIONMONETARIA IN (3) AND ATS_TH_AT26.GENERO IN (1,2))"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Identificacion Cliente",
+          "ITxtCondSql": "18087011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18087011",
+              "Txt": "(ATS_TH_AT26.TIPOPERSONA IN ('V') AND ATS_TH_AT26.IDCLIENTE BETWEEN 1 AND 40000000)\n\nOR\n\n(ATS_TH_AT26.TIPOPERSONA IN ('E') AND \n(ATS_TH_AT26.IDCLIENTE BETWEEN 1 AND 1500000\nOR ATS_TH_AT26.IDCLIENTE BETWEEN 80000000 AND 100000000))\n\nOR \n\n(ATS_TH_AT26.TIPOPERSONA IN ('J', 'G') AND ATS_TH_AT26.IDCLIENTE > 0)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Monto Fraude",
+          "ITxtCondSql": "18089011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18089011",
+              "Txt": "ATS_TH_AT26.MONTOFRAUDE > 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Monto Fraude Externo",
+          "ITxtCondSql": "18091011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18091011",
+              "Txt": "(ATS_TH_AT26.AFECTACIONMONETARIA IN (2,3) AND ATS_TH_AT26.MONTOFRAUDEEXTERNO > 0)\nOR\n(ATS_TH_AT26.AFECTACIONMONETARIA IN (1) AND ATS_TH_AT26.MONTOFRAUDEEXTERNO = 0)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Monto Fraude Interno",
+          "ITxtCondSql": "18093011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18093011",
+              "Txt": "(ATS_TH_AT26.AFECTACIONMONETARIA IN (1,3) AND ATS_TH_AT26.MONTOFRAUDEINTERNO > 0)\nOR\n(ATS_TH_AT26.AFECTACIONMONETARIA IN (2) AND ATS_TH_AT26.MONTOFRAUDEINTERNO = 0)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Numero de Fraude",
+          "ITxtCondSql": "18097011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18097011",
+              "Txt": "ATS_TH_AT26.NROFRAUDE IS NOT NULL"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Pensionado IVSS",
+          "ITxtCondSql": "18099011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18099011",
+              "Txt": "(ATS_TH_AT26.TIPOPERSONA IN ('E','P','V') AND \nATS_TH_AT26.PENSIONADOIVSS NOT IN (0)) OR\n\n(ATS_TH_AT26.TIPOPERSONA NOT IN ('E','P','V') AND \nATS_TH_AT26.PENSIONADOIVSS IN (0))"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Rango Edad",
+          "ITxtCondSql": "18101011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18101011",
+              "Txt": "(ATS_TH_AT26.TIPOPERSONA IN ('E','P','V') AND ATS_TH_AT26.GENERO NOT IN (0))\nOR\n(ATS_TH_AT26.TIPOPERSONA NOT IN ('E','P','V') AND ATS_TH_AT26.GENERO IN (0))"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Red",
+          "ITxtCondSql": "18103011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18103011",
+              "Txt": "(ATS_TH_AT26.TIPOINSTRUMENTO IN (30,31,32) AND ATS_TH_AT26.RED != 0)\nOR\n(ATS_TH_AT26.TIPOINSTRUMENTO NOT IN (30,31,32) AND ATS_TH_AT26.RED = 0)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Tipo Franquicia",
+          "ITxtCondSql": "18105011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18105011",
+              "Txt": "ATS_TH_AT26.TIPOINSTRUMENTO IN ('30','32') \nAND ATS_TH_AT26.TIPOFRANQUICIA NOT IN ('0')\n\nOR\n\nATS_TH_AT26.TIPOINSTRUMENTO NOT IN ('30','32') \nAND ATS_TH_AT26.TIPOFRANQUICIA IN ('0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "832011",
+          "CondName": "Tipo Persona",
+          "ITxtCondSql": "18107011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "18107011",
+              "Txt": "(ATS_TH_AT26.AFECTACIONMONETARIA IN ('1') AND ATS_TH_AT26.TIPOPERSONA IN ('J','G'))\n\nOR\n\n(ATS_TH_AT26.AFECTACIONMONETARIA IN ('3') AND ATS_TH_AT26.TIPOPERSONA IN('0'))\n\nOR \n\nATS_TH_AT26.AFECTACIONMONETARIA NOT IN ('0')"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT26_FRAUDE",
+      "ITable": "185012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TM_CLIENTES",
+      "ITable": "612011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT26_FRAUDE",
+      "ITable": "186012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT26_UNION",
+      "ITable": "188012"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "AT12",
+      "LschemaName": "null",
+      "VarName": "FileAT",
+      "ITxtVar": "40041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "40041",
+          "Txt": "Nombre del archivo de transmisión, AT número que identifica el archivo de transmisión. Ejemplo: ?AT03?."
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT26_TH_BC",
+      "TableName (Target Table)": "AT26_TH_BC"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT26_TH_BG",
+      "TableName (Target Table)": "AT26_TH_BG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT26_FRAUDE",
+      "TableName (Target Table)": "AT26_FRAUDE"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT26_UNION",
+      "TableName (Target Table)": "AT26_UNION"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TH_AT26",
+      "TableName (Target Table)": "ATS_TH_AT26"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT26_FRAUDE",
+      "StepType": "F",
+      "Nno": "0",
+      "TableName (Target Table)": "AT26_FRAUDE",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_FRAUDE\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_FRAUDE\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_FRAUDE\", \"W\") ?>\n(\n\tC1_FRAUDE\tVARCHAR2(50) NULL,\n\tC2_CAUSA\tVARCHAR2(2) NULL,\n\tC3_INSTRUMENTO\tVARCHAR2(2) NULL,\n\tC4_CANAL\tVARCHAR2(2) NULL,\n\tC5_T_FRAUDE\tVARCHAR2(2) NULL,\n\tC6_FRANQUICIA\tVARCHAR2(50) NULL,\n\tC7_MTO\tVARCHAR2(15) NULL,\n\tC8_AFECTACION\tVARCHAR2(50) NULL,\n\tC9_CTA_CONTABLE\tVARCHAR2(50) NULL,\n\tC10_TIPO_P\tVARCHAR2(50) NULL,\n\tC11_ID_CLIENTE\tVARCHAR2(50) NULL,\n\tC12_GENERO\tVARCHAR2(2) NULL,\n\tC13_EDAD\tVARCHAR2(2) NULL,\n\tC14_IVSS\tVARCHAR2(2) NULL,\n\tC15_RECLAMO\tVARCHAR2(50) NULL,\n\tC16_FECHA_RCL\tVARCHAR2(10) NULL,\n\tC17_PARROQUIA\tVARCHAR2(50) NULL,\n\tC18_NOMBRE\tVARCHAR2(200) NULL,\n\tC19_T_OPE\tVARCHAR2(50) NULL,\n\tC20_MTO_FRAUDE\tVARCHAR2(15) NULL,\n\tC21_MTO_FRAUDE_2\tVARCHAR2(15) NULL,\n\tC22_RED\tVARCHAR2(50) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tAT26_FRAUDE.FRAUDE\t   C1_FRAUDE,\n\tAT26_FRAUDE.CAUSA\t   C2_CAUSA,\n\tAT26_FRAUDE.INSTRUMENTO\t   C3_INSTRUMENTO,\n\tAT26_FRAUDE.CANAL\t   C4_CANAL,\n\tAT26_FRAUDE.T_FRAUDE\t   C5_T_FRAUDE,\n\tAT26_FRAUDE.FRANQUICIA\t   C6_FRANQUICIA,\n\tAT26_FRAUDE.MTO\t   C7_MTO,\n\tAT26_FRAUDE.AFECTACION\t   C8_AFECTACION,\n\tAT26_FRAUDE.CTA_CONTABLE\t   C9_CTA_CONTABLE,\n\tAT26_FRAUDE.TIPO_P\t   C10_TIPO_P,\n\tAT26_FRAUDE.ID_CLIENTE\t   C11_ID_CLIENTE,\n\tAT26_FRAUDE.GENERO\t   C12_GENERO,\n\tAT26_FRAUDE.EDAD\t   C13_EDAD,\n\tAT26_FRAUDE.IVSS\t   C14_IVSS,\n\tAT26_FRAUDE.RECLAMO\t   C15_RECLAMO,\n\tAT26_FRAUDE.FECHA_RCL\t   C16_FECHA_RCL,\n\tAT26_FRAUDE.PARROQUIA\t   C17_PARROQUIA,\n\tAT26_FRAUDE.NOMBRE\t   C18_NOMBRE,\n\tAT26_FRAUDE.T_OPE\t   C19_T_OPE,\n\tAT26_FRAUDE.MTO_FRAUDE\t   C20_MTO_FRAUDE,\n\tAT26_FRAUDE.MTO_FRAUDE_2\t   C21_MTO_FRAUDE_2,\n\tAT26_FRAUDE.RED\t   C22_RED\nfrom\t<?=snpRef.getObjectName(\"L\", \"AT26_Fraude.csv\", \"FILE_AT26\", \"\", \"D\")?>   AT26_FRAUDE\nwhere\t(1=1)\n\n\n\n\n\n\n\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT26_FRAUDESNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"AT26_Fraude.csv\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x003bSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=1SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FRAUDESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CAUSASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=INSTRUMENTOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CANALSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=T_FRAUDESNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FRANQUICIASNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MTOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=15SNP$CRSCALE=2SNP$CRPRECISION=15SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=AFECTACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=8SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CTA_CONTABLESNP$CRTYPE_NAME=STRINGSNP$CRORDER=9SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TIPO_PSNP$CRTYPE_NAME=STRINGSNP$CRORDER=10SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ID_CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=11SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=GENEROSNP$CRTYPE_NAME=STRINGSNP$CRORDER=12SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=EDADSNP$CRTYPE_NAME=STRINGSNP$CRORDER=13SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=IVSSSNP$CRTYPE_NAME=STRINGSNP$CRORDER=14SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=RECLAMOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=15SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHA_RCLSNP$CRTYPE_NAME=STRINGSNP$CRORDER=16SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=PARROQUIASNP$CRTYPE_NAME=STRINGSNP$CRORDER=17SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=NOMBRESNP$CRTYPE_NAME=STRINGSNP$CRORDER=18SNP$CRLENGTH=200SNP$CRPRECISION=200SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=T_OPESNP$CRTYPE_NAME=STRINGSNP$CRORDER=19SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MTO_FRAUDESNP$CRTYPE_NAME=STRINGSNP$CRORDER=20SNP$CRLENGTH=15SNP$CRSCALE=2SNP$CRPRECISION=15SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MTO_FRAUDE_2SNP$CRTYPE_NAME=STRINGSNP$CRORDER=21SNP$CRLENGTH=15SNP$CRSCALE=2SNP$CRPRECISION=15SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=REDSNP$CRTYPE_NAME=STRINGSNP$CRORDER=22SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CR$$SNPS_END_KEY*/",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_FRAUDE\", \"W\") ?>\n(\n\tC1_FRAUDE,\n\tC2_CAUSA,\n\tC3_INSTRUMENTO,\n\tC4_CANAL,\n\tC5_T_FRAUDE,\n\tC6_FRANQUICIA,\n\tC7_MTO,\n\tC8_AFECTACION,\n\tC9_CTA_CONTABLE,\n\tC10_TIPO_P,\n\tC11_ID_CLIENTE,\n\tC12_GENERO,\n\tC13_EDAD,\n\tC14_IVSS,\n\tC15_RECLAMO,\n\tC16_FECHA_RCL,\n\tC17_PARROQUIA,\n\tC18_NOMBRE,\n\tC19_T_OPE,\n\tC20_MTO_FRAUDE,\n\tC21_MTO_FRAUDE_2,\n\tC22_RED\n)\nvalues\n(\n\t:C1_FRAUDE,\n\t:C2_CAUSA,\n\t:C3_INSTRUMENTO,\n\t:C4_CANAL,\n\t:C5_T_FRAUDE,\n\t:C6_FRANQUICIA,\n\t:C7_MTO,\n\t:C8_AFECTACION,\n\t:C9_CTA_CONTABLE,\n\t:C10_TIPO_P,\n\t:C11_ID_CLIENTE,\n\t:C12_GENERO,\n\t:C13_EDAD,\n\t:C14_IVSS,\n\t:C15_RECLAMO,\n\t:C16_FECHA_RCL,\n\t:C17_PARROQUIA,\n\t:C18_NOMBRE,\n\t:C19_T_OPE,\n\t:C20_MTO_FRAUDE,\n\t:C21_MTO_FRAUDE_2,\n\t:C22_RED\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_FRAUDE\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT26_FRAUDE\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tFRAUDE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCAUSA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tT_INSTRUMENTO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANAL\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPO_FRAUDE\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMTO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAFECTACION\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCTA_CONTABLE\tVARCHAR2(15) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tT_PERSONA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tID_CLIENTE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tGENERO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEDAD\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIVSS\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRECLAMO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_FRAUDE\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tPARROQUIA\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRE\tVARCHAR2(200) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOPERACION\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMTO_FRAUDE\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMTO_FRAUDE_2\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT26_FRAUDE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT26_FRAUDE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT26_FRAUDE\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tFRAUDE,\n\tCAUSA,\n\tT_INSTRUMENTO,\n\tCANAL,\n\tTIPO_FRAUDE,\n\tFRANQUICIA,\n\tMTO,\n\tAFECTACION,\n\tCTA_CONTABLE,\n\tT_PERSONA,\n\tID_CLIENTE,\n\tGENERO,\n\tEDAD,\n\tIVSS,\n\tRECLAMO,\n\tFECHA_FRAUDE,\n\tPARROQUIA,\n\tNOMBRE,\n\tOPERACION,\n\tMTO_FRAUDE,\n\tMTO_FRAUDE_2,\n\tRED \n\t \n) \n\nselect\n    FRAUDE,\n\tCAUSA,\n\tT_INSTRUMENTO,\n\tCANAL,\n\tTIPO_FRAUDE,\n\tFRANQUICIA,\n\tMTO,\n\tAFECTACION,\n\tCTA_CONTABLE,\n\tT_PERSONA,\n\tID_CLIENTE,\n\tGENERO,\n\tEDAD,\n\tIVSS,\n\tRECLAMO,\n\tFECHA_FRAUDE,\n\tPARROQUIA,\n\tNOMBRE,\n\tOPERACION,\n\tMTO_FRAUDE,\n\tMTO_FRAUDE_2,\n\tRED   \n   \nFROM (\t\n\n\nselect \t\n\tC1_FRAUDE FRAUDE,\n\tC2_CAUSA CAUSA,\n\tC3_INSTRUMENTO T_INSTRUMENTO,\n\tC4_CANAL CANAL,\n\tC5_T_FRAUDE TIPO_FRAUDE,\n\tC6_FRANQUICIA FRANQUICIA,\n\tTO_NUMBER(REPLACE(REPLACE(C7_MTO,'.',''),',','.')) MTO,\n\tC8_AFECTACION AFECTACION,\n\tC9_CTA_CONTABLE CTA_CONTABLE,\n\tC10_TIPO_P T_PERSONA,\n\tC11_ID_CLIENTE ID_CLIENTE,\n\tC12_GENERO GENERO,\n\tC13_EDAD EDAD,\n\tC14_IVSS IVSS,\n\tC15_RECLAMO RECLAMO,\n\tC16_FECHA_RCL FECHA_FRAUDE,\n\tC17_PARROQUIA PARROQUIA,\n\tC18_NOMBRE NOMBRE,\n\tC19_T_OPE OPERACION,\n\tTO_NUMBER(REPLACE(REPLACE(C20_MTO_FRAUDE,'.',''),',','.')) MTO_FRAUDE,\n\tTO_NUMBER(REPLACE(REPLACE(C21_MTO_FRAUDE_2,'.',''),',','.')) MTO_FRAUDE_2,\n\tC22_RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_FRAUDE\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT26_UNION",
+      "StepType": "F",
+      "Nno": "1",
+      "TableName (Target Table)": "AT26_UNION",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_UNION\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_UNION\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_UNION\", \"W\") ?>\n(\n\tC1_GENERO\tVARCHAR2(3) NULL,\n\tC2_EDAD\tVARCHAR2(50) NULL,\n\tC3_IVSS\tVARCHAR2(100) NULL,\n\tC4_PARROQUIA\tVARCHAR2(50) NULL,\n\tC5_IDENTIFICACIONCLIENTE\tVARCHAR2(19) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tATS_TM_CLIENTES.GENERO\t   C1_GENERO,\n\tROUND(MONTHS_BETWEEN(SYSDATE,TO_DATE(ATS_TM_CLIENTES.FECHANACIMIENTO,'YYMMDD'))/12)\t   C2_EDAD,\n\tATS_TM_CLIENTES.OFICINA\t   C3_IVSS,\n\tATS_TM_CLIENTES.CODPARROQUIA\t   C4_PARROQUIA,\n\tATS_TM_CLIENTES.IDENTIFICACIONCLIENTE\t   C5_IDENTIFICACIONCLIENTE\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TM_CLIENTES\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   ATS_TM_CLIENTES\nwhere\t(1=1)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_UNION\", \"W\") ?>\n(\n\tC1_GENERO,\n\tC2_EDAD,\n\tC3_IVSS,\n\tC4_PARROQUIA,\n\tC5_IDENTIFICACIONCLIENTE\n)\nvalues\n(\n\t:C1_GENERO,\n\t:C2_EDAD,\n\t:C3_IVSS,\n\t:C4_PARROQUIA,\n\t:C5_IDENTIFICACIONCLIENTE\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_UNION\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT26_UNION\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tFRAUDE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCAUSA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tT_INSTRUMENTO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANAL\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPO_FRAUDE\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMTO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAFECTACION\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCTA_CONTABLE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tT_PERSONA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tID_CLIENTE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tGENERO\tVARCHAR2(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEDAD\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIVSS\tVARCHAR2(100) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRECLAMO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_FRAUDE\tVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tPARROQUIA\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRE\tVARCHAR2(200) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOPERACION\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMTO_FRAUDE\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMTO_FRAUDE_2\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT26_UNION\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT26_UNION\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT26_UNION\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tGENERO,\n\tEDAD,\n\tIVSS,\n\tPARROQUIA,\n\tFRAUDE,\n\tCAUSA,\n\tT_INSTRUMENTO,\n\tCANAL,\n\tTIPO_FRAUDE,\n\tFRANQUICIA,\n\tMTO,\n\tAFECTACION,\n\tCTA_CONTABLE,\n\tT_PERSONA,\n\tID_CLIENTE,\n\tRECLAMO,\n\tFECHA_FRAUDE,\n\tNOMBRE,\n\tOPERACION,\n\tMTO_FRAUDE,\n\tMTO_FRAUDE_2,\n\tRED \n\t \n) \n\nselect\n    GENERO,\n\tEDAD,\n\tIVSS,\n\tPARROQUIA,\n\tFRAUDE,\n\tCAUSA,\n\tT_INSTRUMENTO,\n\tCANAL,\n\tTIPO_FRAUDE,\n\tFRANQUICIA,\n\tMTO,\n\tAFECTACION,\n\tCTA_CONTABLE,\n\tT_PERSONA,\n\tID_CLIENTE,\n\tRECLAMO,\n\tFECHA_FRAUDE,\n\tNOMBRE,\n\tOPERACION,\n\tMTO_FRAUDE,\n\tMTO_FRAUDE_2,\n\tRED   \n   \nFROM (\t\n\n\nselect \t\n\tC1_GENERO GENERO,\n\tC2_EDAD EDAD,\n\tC3_IVSS IVSS,\n\tC4_PARROQUIA PARROQUIA,\n\tAT26_FRAUDE.FRAUDE FRAUDE,\n\tAT26_FRAUDE.CAUSA CAUSA,\n\tAT26_FRAUDE.T_INSTRUMENTO T_INSTRUMENTO,\n\tAT26_FRAUDE.CANAL CANAL,\n\tAT26_FRAUDE.TIPO_FRAUDE TIPO_FRAUDE,\n\tAT26_FRAUDE.FRANQUICIA FRANQUICIA,\n\tAT26_FRAUDE.MTO MTO,\n\tAT26_FRAUDE.AFECTACION AFECTACION,\n\tAT26_FRAUDE.CTA_CONTABLE CTA_CONTABLE,\n\tAT26_FRAUDE.T_PERSONA T_PERSONA,\n\tAT26_FRAUDE.ID_CLIENTE ID_CLIENTE,\n\tAT26_FRAUDE.RECLAMO RECLAMO,\n\tAT26_FRAUDE.FECHA_FRAUDE FECHA_FRAUDE,\n\tAT26_FRAUDE.NOMBRE NOMBRE,\n\tAT26_FRAUDE.OPERACION OPERACION,\n\tAT26_FRAUDE.MTO_FRAUDE MTO_FRAUDE,\n\tAT26_FRAUDE.MTO_FRAUDE_2 MTO_FRAUDE_2,\n\tAT26_FRAUDE.RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT26_FRAUDE\", \"LS_AT_STG\", \"\", \"D\")?>   AT26_FRAUDE, <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT26_UNION\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n And (AT26_FRAUDE.ID_CLIENTE=C5_IDENTIFICACIONCLIENTE)\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TH_AT26",
+      "StepType": "F",
+      "Nno": "2",
+      "TableName (Target Table)": "ATS_TH_AT26",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT26\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT26\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT26\", \"W\") ?>\n(\n\tC1_NROFRAUDE\tVARCHAR2(20) NULL,\n\tC2_CAUSAFRAUDE\tVARCHAR2(20) NULL,\n\tC3_TIPOINSTRUMENTO\tVARCHAR2(2) NULL,\n\tC4_CANALFRAUDE\tVARCHAR2(255) NULL,\n\tC5_TIPOFRAUDE\tVARCHAR2(2) NULL,\n\tC6_TIPOFRANQUICIA\tVARCHAR2(255) NULL,\n\tC7_MONTOFRAUDE\tNUMBER(15,2) NULL,\n\tC8_AFECTACIONMONETARIA\tVARCHAR2(2) NULL,\n\tC9_CODIGOCONTABLE\tVARCHAR2(20) NULL,\n\tC10_TIPOPERSONA\tVARCHAR2(50) NULL,\n\tC11_IDCLIENTE\tVARCHAR2(50) NULL,\n\tC12_GENERO\tVARCHAR2(50) NULL,\n\tC13_RANGOEDAD\tVARCHAR2(50) NULL,\n\tC14_PENSIONADOIVSS\tVARCHAR2(50) NULL,\n\tC15_NRORECLAMO\tVARCHAR2(20) NULL,\n\tC16_FECHAFRAUDE\tVARCHAR2(8) NULL,\n\tC17_CODIGOPARROQUIA\tVARCHAR2(8) NULL,\n\tC18_NOMBRECLIENTE\tVARCHAR2(255) NULL,\n\tC19_TIPOOPERACION\tVARCHAR2(50) NULL,\n\tC20_MONTOFRAUDEINTERNO\tNUMBER(15,2) NULL,\n\tC21_MONTOFRAUDEEXTERNO\tNUMBER(15,2) NULL,\n\tC22_RED\tVARCHAR2(50) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tAT26_UNION.FRAUDE\t   C1_NROFRAUDE,\n\tAT26_UNION.CAUSA\t   C2_CAUSAFRAUDE,\n\tAT26_UNION.T_INSTRUMENTO\t   C3_TIPOINSTRUMENTO,\n\tAT26_UNION.CANAL\t   C4_CANALFRAUDE,\n\tAT26_UNION.TIPO_FRAUDE\t   C5_TIPOFRAUDE,\n\tAT26_UNION.FRANQUICIA\t   C6_TIPOFRANQUICIA,\n\tAT26_UNION.MTO\t   C7_MONTOFRAUDE,\n\tAT26_UNION.AFECTACION\t   C8_AFECTACIONMONETARIA,\n\tAT26_UNION.CTA_CONTABLE\t   C9_CODIGOCONTABLE,\n\tAT26_UNION.T_PERSONA\t   C10_TIPOPERSONA,\n\tAT26_UNION.ID_CLIENTE\t   C11_IDCLIENTE,\n\tAT26_UNION.GENERO\t   C12_GENERO,\n\tCASE\n WHEN TO_NUMBER(AT26_UNION.EDAD) <= 15 THEN '1'\n WHEN TO_NUMBER(AT26_UNION.EDAD) <= 30 THEN '2'\n WHEN TO_NUMBER(AT26_UNION.EDAD) <= 45 THEN '3'\n WHEN TO_NUMBER(AT26_UNION.EDAD) <= 60 THEN '4'\n WHEN TO_NUMBER(AT26_UNION.EDAD) <= 75 THEN '5'\n WHEN TO_NUMBER(AT26_UNION.EDAD) > 75 THEN '6'\n ELSE '0'\nEND\n\t   C13_RANGOEDAD,\n\tCASE\n WHEN AT26_UNION.IVSS IN ('169','179') THEN '2'\n ELSE\n '1'\nEND\t   C14_PENSIONADOIVSS,\n\tAT26_UNION.RECLAMO\t   C15_NRORECLAMO,\n\tAT26_UNION.FECHA_FRAUDE\t   C16_FECHAFRAUDE,\n\tCASE\n WHEN LENGTH(AT26_UNION.PARROQUIA) < 6 THEN LPAD(AT26_UNION.PARROQUIA,  6, '0')\n ELSE\n AT26_UNION.PARROQUIA\nEND\t   C17_CODIGOPARROQUIA,\n\tAT26_UNION.NOMBRE\t   C18_NOMBRECLIENTE,\n\tAT26_UNION.OPERACION\t   C19_TIPOOPERACION,\n\tAT26_UNION.MTO_FRAUDE\t   C20_MONTOFRAUDEINTERNO,\n\tAT26_UNION.MTO_FRAUDE_2\t   C21_MONTOFRAUDEEXTERNO,\n\tAT26_UNION.RED\t   C22_RED\nfrom\t<?=snpRef.getObjectName(\"L\", \"AT26_UNION\", \"LS_AT_STG\", \"\", \"D\")?>   AT26_UNION\nwhere\t(1=1)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT26\", \"W\") ?>\n(\n\tC1_NROFRAUDE,\n\tC2_CAUSAFRAUDE,\n\tC3_TIPOINSTRUMENTO,\n\tC4_CANALFRAUDE,\n\tC5_TIPOFRAUDE,\n\tC6_TIPOFRANQUICIA,\n\tC7_MONTOFRAUDE,\n\tC8_AFECTACIONMONETARIA,\n\tC9_CODIGOCONTABLE,\n\tC10_TIPOPERSONA,\n\tC11_IDCLIENTE,\n\tC12_GENERO,\n\tC13_RANGOEDAD,\n\tC14_PENSIONADOIVSS,\n\tC15_NRORECLAMO,\n\tC16_FECHAFRAUDE,\n\tC17_CODIGOPARROQUIA,\n\tC18_NOMBRECLIENTE,\n\tC19_TIPOOPERACION,\n\tC20_MONTOFRAUDEINTERNO,\n\tC21_MONTOFRAUDEEXTERNO,\n\tC22_RED\n)\nvalues\n(\n\t:C1_NROFRAUDE,\n\t:C2_CAUSAFRAUDE,\n\t:C3_TIPOINSTRUMENTO,\n\t:C4_CANALFRAUDE,\n\t:C5_TIPOFRAUDE,\n\t:C6_TIPOFRANQUICIA,\n\t:C7_MONTOFRAUDE,\n\t:C8_AFECTACIONMONETARIA,\n\t:C9_CODIGOCONTABLE,\n\t:C10_TIPOPERSONA,\n\t:C11_IDCLIENTE,\n\t:C12_GENERO,\n\t:C13_RANGOEDAD,\n\t:C14_PENSIONADOIVSS,\n\t:C15_NRORECLAMO,\n\t:C16_FECHAFRAUDE,\n\t:C17_CODIGOPARROQUIA,\n\t:C18_NOMBRECLIENTE,\n\t:C19_TIPOOPERACION,\n\t:C20_MONTOFRAUDEINTERNO,\n\t:C21_MONTOFRAUDEEXTERNO,\n\t:C22_RED\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT26\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tNROFRAUDE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCAUSAFRAUDE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOINSTRUMENTO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANALFRAUDE\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOFRAUDE\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOFRANQUICIA\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDE\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAFECTACIONMONETARIA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCONTABLE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOPERSONA\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDCLIENTE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tGENERO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRANGOEDAD\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tPENSIONADOIVSS\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRORECLAMO\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHAFRAUDE\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOPARROQUIA\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECLIENTE\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOOPERACION\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDEINTERNO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDEEXTERNO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCUENTA\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"LS_ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED \n\t,CODIGOCUENTA \n) \n\nselect\n    NROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED   \n  ,'' \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_NROFRAUDE NROFRAUDE,\n\tC2_CAUSAFRAUDE CAUSAFRAUDE,\n\tC3_TIPOINSTRUMENTO TIPOINSTRUMENTO,\n\tC4_CANALFRAUDE CANALFRAUDE,\n\tC5_TIPOFRAUDE TIPOFRAUDE,\n\tC6_TIPOFRANQUICIA TIPOFRANQUICIA,\n\tC7_MONTOFRAUDE MONTOFRAUDE,\n\tC8_AFECTACIONMONETARIA AFECTACIONMONETARIA,\n\tC9_CODIGOCONTABLE CODIGOCONTABLE,\n\tC10_TIPOPERSONA TIPOPERSONA,\n\tC11_IDCLIENTE IDCLIENTE,\n\tC12_GENERO GENERO,\n\tC13_RANGOEDAD RANGOEDAD,\n\tC14_PENSIONADOIVSS PENSIONADOIVSS,\n\tC15_NRORECLAMO NRORECLAMO,\n\tC16_FECHAFRAUDE FECHAFRAUDE,\n\tC17_CODIGOPARROQUIA CODIGOPARROQUIA,\n\tC18_NOMBRECLIENTE NOMBRECLIENTE,\n\tC19_TIPOOPERACION TIPOOPERACION,\n\tC20_MONTOFRAUDEINTERNO MONTOFRAUDEINTERNO,\n\tC21_MONTOFRAUDEEXTERNO MONTOFRAUDEEXTERNO,\n\tC22_RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT26\", \"LS_ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TH_AT26",
+      "StepType": "CD",
+      "Nno": "3",
+      "TableName (Target Table)": "ATS_TH_AT26",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\n(\n\tCATALOG_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tSCHEMA_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tRESOURCE_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFULL_RES_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"1\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_MESS\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"250\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?> ,\n\tCHECK_DATE\t<?=snpRef.getDataType(\"DEST_DATE\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tORIGIN\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONS_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"128\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONS_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"2\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tERR_COUNT\t\t<?=snpRef.getDataType(\"DEST_NUMERIC\", \"10\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from\t<?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\nwhere\tSCHEMA_NAME\t= '<?=snpRef.getSchemaName(\"LS_ATSUDEBAN\", \"D\") ?>'\nand\tORIGIN \t\t= 'ATS_TH_AT26'\nand\tERR_TYPE \t\t= 'S'"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\n\tODI_ROW_ID \t\tUROWID,\n\tODI_ERR_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"1\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>, \n\tODI_ERR_MESS\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"250\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CHECK_DATE\t<?=snpRef.getDataType(\"DEST_DATE\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>, \n\tNROFRAUDE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCAUSAFRAUDE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOINSTRUMENTO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANALFRAUDE\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOFRAUDE\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOFRANQUICIA\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDE\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAFECTACIONMONETARIA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCONTABLE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOPERSONA\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDCLIENTE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tGENERO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRANGOEDAD\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tPENSIONADOIVSS\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRORECLAMO\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHAFRAUDE\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOPARROQUIA\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECLIENTE\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOOPERACION\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDEINTERNO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDEEXTERNO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCUENTA\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_ORIGIN\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"100\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CONS_NAME\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"128\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_CONS_TYPE\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"2\") ?> <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tODI_PK\t\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"32\") ?> PRIMARY KEY,\n\tODI_SESS_NO\t\t<?=snpRef.getDataType(\"DEST_VARCHAR\", \"19\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from \t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\nwhere\t(ODI_ERR_TYPE = 'S'\tand 'S' = 'S')\nor\t(ODI_ERR_TYPE = 'S'\tand ODI_ORIGIN = 'ATS_TH_AT26')"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si [Tipo de Instrumento Fraude] es igual a 30, 31 y 32, el canal no puede ser 5\n2. Si [Tipo de Instrumento Fraude] es igual a 33 el canal no puede ser 3, 5 ni 10\n3. Si [Tipo de Instrumento Fraude] es igual a 34 el canal no puede ser 2, 3, 5\n4. Si ',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Canal Fraude',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\t(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('30','31','32') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('5')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('33') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('3','5','10')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO IN ('34') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('2','3','5')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO IN ('35') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('1','2','3','4','5','6','7','9','10')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('36','37') AND\nATS_TH_AT26.CANALFRAUDE NOT IN ('1','2','3','5','7','9','10')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('38','39') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('1','2','5','7','9','10')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('40','41') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('1','2','10')) OR\n\n(ATS_TH_AT26.TIPOINSTRUMENTO  IN ('42','43','44','45','46','47','48','49') AND\nATS_TH_AT26.CANALFRAUDE  NOT IN ('1','2','5','7','9','10'))\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. El valor de este campo debe ser distinto que (?0 ? No aplica?).',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Codigo Contable',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\tATS_TH_AT26.CODIGOCONTABLE != '0'\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. El valor de este campo debe ser distinto que (?0 ? No aplica?).',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Codigo Parroquia',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\tATS_TH_AT26.CODIGOPARROQUIA != 0\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'El valor de este campo debe ser mayor que ?20101231? y menor o igual que la fecha de cierre del mes que se reporta.',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Fecha Fraude',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\tATS_TH_AT26.FECHAFRAUDE > '20101231'\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor del campo [Tipo de Persona] es igual que (?E ? Extranjero?, ?P ? Pasaporte o ?V ? Venezolano); entonces el valor de este campo debe ser igual que (?1 ? Femenino? o ?2 ? Masculino?).\n\n2. Si el valor del campo [Tipo de Persona] es distin',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Genero',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\t(ATS_TH_AT26.TIPOPERSONA IN ('E','P','V') AND ATS_TH_AT26.GENERO IN (1,2))\n\nOR \n\n(ATS_TH_AT26.TIPOPERSONA NOT IN ('E','P','V') AND ATS_TH_AT26.GENERO IN (0))\n\nOR \n\n(ATS_TH_AT26.AFECTACIONMONETARIA IN (3) AND ATS_TH_AT26.GENERO IN (1,2))\n\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor del campo [Tipo de Persona] es igual que (?V ? Venezolano?); entonces el valor de este campo debe estar entre 1 y 40.000.000.\n\n2. Si el valor del campo [Tipo de Persona] es igual que (?E ? Extranjero?); entonces el valor de este campo ',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Identificacion Cliente',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\t(ATS_TH_AT26.TIPOPERSONA IN ('V') AND ATS_TH_AT26.IDCLIENTE BETWEEN 1 AND 40000000)\n\nOR\n\n(ATS_TH_AT26.TIPOPERSONA IN ('E') AND \n(ATS_TH_AT26.IDCLIENTE BETWEEN 1 AND 1500000\nOR ATS_TH_AT26.IDCLIENTE BETWEEN 80000000 AND 100000000))\n\nOR \n\n(ATS_TH_AT26.TIPOPERSONA IN ('J', 'G') AND ATS_TH_AT26.IDCLIENTE > 0)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. El valor de este campo debe ser mayor que cero (?0?).',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Monto Fraude',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\tATS_TH_AT26.MONTOFRAUDE > 0\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor del campo [Afectación Monetaria del Fraude] es igual que (?2 ? Externo? o ?3 ? Ambos?); entonces el valor de este campo debe ser mayor que cero (?0?).\n\n2. Si el valor del campo [Afectación Monetaria del Fraude] es igual que (?1 ? Inter',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Monto Fraude Externo',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\t(ATS_TH_AT26.AFECTACIONMONETARIA IN (2,3) AND ATS_TH_AT26.MONTOFRAUDEEXTERNO > 0)\nOR\n(ATS_TH_AT26.AFECTACIONMONETARIA IN (1) AND ATS_TH_AT26.MONTOFRAUDEEXTERNO = 0)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor del campo [Afectación Monetaria del Fraude] es igual que (?1 ? Interno? o ?3 ? Ambos?); entonces el valor de este campo debe ser mayor que cero (?0?).\n\n2. Si el valor del campo [Afectación Monetaria del Fraude] es igual que (?2 ? Exter',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Monto Fraude Interno',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\t(ATS_TH_AT26.AFECTACIONMONETARIA IN (1,3) AND ATS_TH_AT26.MONTOFRAUDEINTERNO > 0)\nOR\n(ATS_TH_AT26.AFECTACIONMONETARIA IN (2) AND ATS_TH_AT26.MONTOFRAUDEINTERNO = 0)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. El valor de este campo debe ser distinto que (?vacío?).',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Numero de Fraude',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\tATS_TH_AT26.NROFRAUDE IS NOT NULL\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor del campo [Tipo de Persona] es igual que (?E ? Extranjero?, ?P ? Pasaporte o ?V ? Venezolano?); entonces el valor de este campo debe ser distinto que (?0 ? No aplica?).\n\n2. Si el valor del campo [Tipo de Persona] es distinto que (?E ? ',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Pensionado IVSS',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\t(ATS_TH_AT26.TIPOPERSONA IN ('E','P','V') AND \nATS_TH_AT26.PENSIONADOIVSS NOT IN (0)) OR\n\n(ATS_TH_AT26.TIPOPERSONA NOT IN ('E','P','V') AND \nATS_TH_AT26.PENSIONADOIVSS IN (0))\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor del campo [Tipo de Persona] es igual que (?E ? Extranjero?, ?P ? Pasaporte o ?V ? Venezolano); entonces el valor de este campo debe ser distinto que (?0 ? No aplica?).\n\n2. Si el valor del campo [Tipo de Persona] es distinto que (?E ? E',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Rango Edad',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\t(ATS_TH_AT26.TIPOPERSONA IN ('E','P','V') AND ATS_TH_AT26.GENERO NOT IN (0))\nOR\n(ATS_TH_AT26.TIPOPERSONA NOT IN ('E','P','V') AND ATS_TH_AT26.GENERO IN (0))\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor del campo [Tipo de Instrumento Fraude] es igual que (?30 ? Tarjeta de Crédito?, ?31 ? Tarjeta de Débito?, ?32 ? Tarjeta Prepagada?); entonces el valor de este campo debe ser distinto que (?0 ? No aplica?).\n\n2. Si el valor del campo [Ti',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Red',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\t(ATS_TH_AT26.TIPOINSTRUMENTO IN (30,31,32) AND ATS_TH_AT26.RED != 0)\nOR\n(ATS_TH_AT26.TIPOINSTRUMENTO NOT IN (30,31,32) AND ATS_TH_AT26.RED = 0)\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor del campo [Tipo de Instrumento Fraude] es igual que (?30 ? Tarjeta de crédito? o ?32? Tarjeta prepagada?); entonces el valor de este campo debe ser distinto que (?0 ? No aplica?).\n\n2. Si el valor del campo [Tipo de Instrumento Fraude] ',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Tipo Franquicia',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\tATS_TH_AT26.TIPOINSTRUMENTO IN ('30','32') \nAND ATS_TH_AT26.TIPOFRANQUICIA NOT IN ('0')\n\nOR\n\nATS_TH_AT26.TIPOINSTRUMENTO NOT IN ('30','32') \nAND ATS_TH_AT26.TIPOFRANQUICIA IN ('0')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?>\n(\tODI_PK,\n\tODI_SESS_NO,\n\tODI_ROW_ID,\n\tODI_ERR_TYPE,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_ORIGIN,\n\tODI_CONS_NAME,\n\tODI_CONS_TYPE,\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\n)\nselect\tSYS_GUID(),\n\t<?=snpRef.getSession(\"SESS_NO\") ?>, \n\trowid,\n\t'S', \n\t'1. Si el valor del campo [Afectación Monetaria del Fraude] es igual que (?1 ? Interno?); entonces el valor de este campo debe ser igual que (?J ? Jurídico? o ?G ? Gobierno?).\n\n2. Si el valor del campo [Afectación Monetaria del Fraude] es igual que (?',\n\tsysdate,\n\t'ATS_TH_AT26',\n\t'Tipo Persona',\n\t'CK',\t\n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tTIPOINSTRUMENTO,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tIDCLIENTE,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tNOMBRECLIENTE,\n\tTIPOOPERACION,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tRED,\n\tCODIGOCUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  ATS_TH_AT26\nwhere\tnot \t(\n\t\t(ATS_TH_AT26.AFECTACIONMONETARIA IN ('1') AND ATS_TH_AT26.TIPOPERSONA IN ('J','G'))\n\nOR\n\n(ATS_TH_AT26.AFECTACIONMONETARIA IN ('3') AND ATS_TH_AT26.TIPOPERSONA IN('0'))\n\nOR \n\nATS_TH_AT26.AFECTACIONMONETARIA NOT IN ('0')\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "null"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "delete from\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"D\") ?>  T\nwhere\texists \t(\n\t\tselect\t1\n\t\tfrom\t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?> E\n\t\twhere ODI_SESS_NO = <?=snpRef.getSession(\"SESS_NO\") ?>\n\t\tand T.rowid = E.ODI_ROW_ID\n\t\t)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Control",
+          "ColTxt": "null",
+          "DefTxt": "insert into <?=snpRef.getObjectNameDefaultPSchema(\"L\", \"SNP_CHECK_TAB\", \"W\") ?>\n(\n\tSCHEMA_NAME,\n\tRESOURCE_NAME,\n\tFULL_RES_NAME,\n\tERR_TYPE,\n\tERR_MESS,\n\tCHECK_DATE,\n\tORIGIN,\n\tCONS_NAME,\n\tCONS_TYPE,\n\tERR_COUNT\n)\nselect\t\n\t'<?=snpRef.getSchemaName(\"LS_ATSUDEBAN\", \"D\") ?>',\n\t'ATS_TH_AT26',\n\t'<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>',\n\tE.ODI_ERR_TYPE,\n\tE.ODI_ERR_MESS,\n\tE.ODI_CHECK_DATE,\n\tE.ODI_ORIGIN,\n\tE.ODI_CONS_NAME,\n\tE.ODI_CONS_TYPE,\n\tcount(1) \nfrom\t<?=snpRef.getObjectName(\"L\", \"%ERR_PRFATS_TH_AT26\", \"W\") ?> E\nwhere\tE.ODI_ERR_TYPE\t= 'S'\nand\tE.ODI_ORIGIN \t= 'ATS_TH_AT26'\ngroup by\tE.ODI_ERR_TYPE,\n\tE.ODI_ERR_MESS,\n\tE.ODI_CHECK_DATE,\n\tE.ODI_ORIGIN,\n\tE.ODI_CONS_NAME,\n\tE.ODI_CONS_TYPE"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT26_TH_BC",
+      "StepType": "F",
+      "Nno": "4",
+      "TableName (Target Table)": "AT26_TH_BC",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT26_TH_BC\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tNROFRAUDE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCAUSAFRAUDE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDCLIENTE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANALFRAUDE\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOFRAUDE\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECLIENTE\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOFRANQUICIA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDE\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOINSTRUMENTO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAFECTACIONMONETARIA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCONTABLE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOPERSONA\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tGENERO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRANGOEDAD\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tPENSIONADOIVSS\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRORECLAMO\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHAFRAUDE\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOPARROQUIA\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDEINTERNO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDEEXTERNO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOOPERACION\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT26_TH_BC\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT26_TH_BC\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT26_TH_BC\", \"LS_ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tIDCLIENTE,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tNOMBRECLIENTE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tTIPOINSTRUMENTO,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tTIPOOPERACION,\n\tRED \n\t \n) \n\nselect\n    NROFRAUDE,\n\tCAUSAFRAUDE,\n\tIDCLIENTE,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tNOMBRECLIENTE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tTIPOINSTRUMENTO,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tTIPOOPERACION,\n\tRED   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tATS_TH_AT26.NROFRAUDE NROFRAUDE,\n\tATS_TH_AT26.CAUSAFRAUDE CAUSAFRAUDE,\n\tATS_TH_AT26.IDCLIENTE IDCLIENTE,\n\tATS_TH_AT26.CANALFRAUDE CANALFRAUDE,\n\tATS_TH_AT26.TIPOFRAUDE TIPOFRAUDE,\n\tATS_TH_AT26.NOMBRECLIENTE NOMBRECLIENTE,\n\tATS_TH_AT26.TIPOFRANQUICIA TIPOFRANQUICIA,\n\tATS_TH_AT26.MONTOFRAUDE MONTOFRAUDE,\n\tATS_TH_AT26.TIPOINSTRUMENTO TIPOINSTRUMENTO,\n\tATS_TH_AT26.AFECTACIONMONETARIA AFECTACIONMONETARIA,\n\tATS_TH_AT26.CODIGOCONTABLE CODIGOCONTABLE,\n\tATS_TH_AT26.TIPOPERSONA TIPOPERSONA,\n\tATS_TH_AT26.GENERO GENERO,\n\tATS_TH_AT26.RANGOEDAD RANGOEDAD,\n\tATS_TH_AT26.PENSIONADOIVSS PENSIONADOIVSS,\n\tATS_TH_AT26.NRORECLAMO NRORECLAMO,\n\tATS_TH_AT26.FECHAFRAUDE FECHAFRAUDE,\n\tATS_TH_AT26.CODIGOPARROQUIA CODIGOPARROQUIA,\n\tATS_TH_AT26.MONTOFRAUDEINTERNO MONTOFRAUDEINTERNO,\n\tATS_TH_AT26.MONTOFRAUDEEXTERNO MONTOFRAUDEEXTERNO,\n\tATS_TH_AT26.TIPOOPERACION TIPOOPERACION,\n\tATS_TH_AT26.RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   ATS_TH_AT26\nwhere\t\t(1=1)\t\n\n\n\n\n\n\nORDER BY NROFRAUDE, TIPOFRAUDE, CANALFRAUDE  asc\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT26_TH_BG",
+      "StepType": "F",
+      "Nno": "5",
+      "TableName (Target Table)": "AT26_TH_BG",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT26_TH_BG\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tNROFRAUDE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCAUSAFRAUDE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDCLIENTE\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANALFRAUDE\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOFRAUDE\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECLIENTE\tVARCHAR2(255) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOFRANQUICIA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDE\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOINSTRUMENTO\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAFECTACIONMONETARIA\tVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOCONTABLE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOPERSONA\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tGENERO\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRANGOEDAD\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tPENSIONADOIVSS\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRORECLAMO\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHAFRAUDE\tVARCHAR2(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOPARROQUIA\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDEINTERNO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOFRAUDEEXTERNO\tNUMBER(15,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOOPERACION\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT26_TH_BG\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT26_TH_BG\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT26_TH_BG\", \"LS_ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tNROFRAUDE,\n\tCAUSAFRAUDE,\n\tIDCLIENTE,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tNOMBRECLIENTE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tTIPOINSTRUMENTO,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tTIPOOPERACION,\n\tRED \n\t \n) \n\nselect\n    NROFRAUDE,\n\tCAUSAFRAUDE,\n\tIDCLIENTE,\n\tCANALFRAUDE,\n\tTIPOFRAUDE,\n\tNOMBRECLIENTE,\n\tTIPOFRANQUICIA,\n\tMONTOFRAUDE,\n\tTIPOINSTRUMENTO,\n\tAFECTACIONMONETARIA,\n\tCODIGOCONTABLE,\n\tTIPOPERSONA,\n\tGENERO,\n\tRANGOEDAD,\n\tPENSIONADOIVSS,\n\tNRORECLAMO,\n\tFECHAFRAUDE,\n\tCODIGOPARROQUIA,\n\tMONTOFRAUDEINTERNO,\n\tMONTOFRAUDEEXTERNO,\n\tTIPOOPERACION,\n\tRED   \n   \nFROM (\t\n\n\nselect \t\n\tATS_TH_AT26.NROFRAUDE NROFRAUDE,\n\tATS_TH_AT26.CAUSAFRAUDE CAUSAFRAUDE,\n\tATS_TH_AT26.IDCLIENTE IDCLIENTE,\n\tATS_TH_AT26.CANALFRAUDE CANALFRAUDE,\n\tATS_TH_AT26.TIPOFRAUDE TIPOFRAUDE,\n\tATS_TH_AT26.NOMBRECLIENTE NOMBRECLIENTE,\n\tATS_TH_AT26.TIPOFRANQUICIA TIPOFRANQUICIA,\n\tATS_TH_AT26.MONTOFRAUDE MONTOFRAUDE,\n\tATS_TH_AT26.TIPOINSTRUMENTO TIPOINSTRUMENTO,\n\tATS_TH_AT26.AFECTACIONMONETARIA AFECTACIONMONETARIA,\n\tATS_TH_AT26.CODIGOCONTABLE CODIGOCONTABLE,\n\tATS_TH_AT26.TIPOPERSONA TIPOPERSONA,\n\tATS_TH_AT26.GENERO GENERO,\n\tATS_TH_AT26.RANGOEDAD RANGOEDAD,\n\tATS_TH_AT26.PENSIONADOIVSS PENSIONADOIVSS,\n\tATS_TH_AT26.NRORECLAMO NRORECLAMO,\n\tATS_TH_AT26.FECHAFRAUDE FECHAFRAUDE,\n\tATS_TH_AT26.CODIGOPARROQUIA CODIGOPARROQUIA,\n\tATS_TH_AT26.MONTOFRAUDEINTERNO MONTOFRAUDEINTERNO,\n\tATS_TH_AT26.MONTOFRAUDEEXTERNO MONTOFRAUDEEXTERNO,\n\tATS_TH_AT26.TIPOOPERACION TIPOOPERACION,\n\tATS_TH_AT26.RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT26\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   ATS_TH_AT26\nwhere\t\t(1=1)\t\n\nAnd (SUBSTR(ATS_TH_AT26.CODIGOCUENTA,1,4) = '0146')\n\n\n\n\nORDER BY NROFRAUDE, TIPOFRAUDE, CANALFRAUDE  asc\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiSendMail 2",
+      "StepType": "SE",
+      "Nno": "6",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=smtpint.tpr.bancaribe\" \"-FROM=archivostransmisionsiif@bancaribe.com.ve\" \"-SUBJECT=AT26 - PROCESO NO INICIADO - ARCHIVOS DE TRANSMISION (SIIF) - DWH EN LA NUBE - GALIPAN TECNOLOGICO\" \"-TO=VPAntifraude@bancaribe.com.ve\" \"-TO=GCST@bancaribe.com.ve\" \"-CC=SIFTecnologia@bancaribe.com.ve\"\nBuen dia,\n\nEl archivo '#ODI_AT_SUDEBAN_DEV.FileAT' no se ha podido generar debido a las razones siguientes:\n\n1. Falta el insumo \"AT26_Fraudecsv\" en la ruta: \\\\sam2fp07\\SIIF_GCP\\AUTOMATIZACION_AT\\SALIDAS_AT\\'#ODI_AT_SUDEBAN_DEV.FileAT'\n\n2. El insumo \"AT26_Fraude.csv\" presenta debilidades eN su estructura.\n\nFavor revisar el caso.\n\nSi el incidente persiste  favor formalizar el caso a traves de Service Point  en la categoria : AT.Falla de los extractores (TECNICA/ FUNCIONAL)\n\nNOTA: NO responda este correo, el mismo fue enviado desde una cuenta NO monitoreada\n\nSaludos Cordiales, \n\nSIF Tecnologia\nUnidad de Soluciones Internas / Vicepresidencia Ingeniería TI\nTelf.: +58 (212) 954.5345 / 5735 / 5107 / 5401 / 6418"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiSleep 1",
+      "StepType": "SE",
+      "Nno": "7",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSleep \"-DELAY=14400000\""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2195 @@
+from airflow import DAG
+from airflow.operators.python import PythonOperator, BranchPythonOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
+from airflow.models import Variable
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
+#from airflow.sensors.filesystem import FileSensor
+from airflow.sensors.base import BaseSensorOperator
+from datetime import datetime, timedelta
+import logging
+from decimal import Decimal
+import json
+from io import StringIO
+from airflow.providers.google.cloud.sensors.gcs import GCSObjectExistenceSensor
+from airflow.providers.google.cloud.sensors.gcs import GCSHook # <-- AGREGAR ESTA IMPORTACION
+import time
+import os
+import tempfile
+
+
+
+logger = logging.getLogger(__name__)
+
+def serialize_value(value):
+    """
+    Helper para serializar valores de PostgreSQL a JSON.
+    Convierte Decimal, date, datetime a string para preservar precisión.
+    """
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value  # Ya es string
+    if isinstance(value, datetime):
+        return value.isoformat()  # Formato ISO 8601
+    if isinstance(value, (int, float, Decimal)):
+        return str(value)  # Tipos numericos
+    return json.dumps(value)  # Otros tipos
+
+def get_variable(key, default_var=""):
+    """
+    Helper para obtener variables de Airflow y deserializarlas.
+    Retorna el valor como string (compatible con SQL queries).
+    
+    Para conversiones específicas:
+    - int: int(get_variable('key'))
+    - Decimal: Decimal(get_variable('key'))
+    - datetime: datetime.fromisoformat(get_variable('key'))
+    """
+    raw = Variable.get(key, default_var=default_var)
+    try:
+        return json.loads(raw)
+    except Exception:
+        return raw
+### FUNCIONES DE CADA TAREA ###
+
+class HolidayCheckSensor(BaseSensorOperator):
+    """
+    Sensor que espera hasta que el día actual NO sea feriado.
+    La condicion se determina ejecutando una consulta SQL en la base de datos.
+    
+    Para PRUEBAS: Puedes saltarte este check pasando parámetros en la UI:
+    En "Trigger DAG w/ config" → { "skip_holiday_check": true }
+    """
+    def __init__(self, postgres_conn_id, *args, **kwargs):
+        super(HolidayCheckSensor, self).__init__(*args, **kwargs)
+        self.postgres_conn_id = postgres_conn_id
+
+    def poke(self, context):
+        # Verificar si se debe saltear el check de feriados (para pruebas)
+        dag_run = context.get('dag_run')
+        if dag_run and dag_run.conf:
+            skip_holiday_check = dag_run.conf.get('skip_holiday_check', False)
+            if skip_holiday_check:
+                self.log.warning("⚠️  MODO PRUEBA: skip_holiday_check=True - Saltando verificación de feriados")
+                return True
+        
+        hook = PostgresHook(postgres_conn_id=self.postgres_conn_id)
+        sql_query = """
+            SELECT CASE 
+                       WHEN to_char(CURRENT_DATE, 'dd/mm/yy') IN (
+                           SELECT to_char(df_fecha, 'dd/mm/yy') 
+                           FROM ods.cl_dias_feriados 
+                           WHERE SUBSTRING(df_year FROM 3 FOR 2) = SUBSTRING(to_char(CURRENT_DATE, 'dd/mm/yy') FROM 7 FOR 2)
+                       )
+                       THEN 1 
+                       ELSE 0 
+                   END AS status;
+        """
+        records = hook.get_records(sql_query)
+        # Suponiendo que la consulta retorna 1 fila, 1 columna:
+        status = records[0][0] if records else 0
+        self.log.info("Valor de status (1=feriado, 0=no feriado): %s", status)
+        # Esperamos que status sea 0 para continuar con el flujo normal
+        return status == 0
+
+def FechaInicio_M(**kwargs):
+    hook = PostgresHook(postgres_conn_id='ods')
+    sql_query = '''SELECT TO_CHAR(DATE_TRUNC('month', CURRENT_DATE - INTERVAL '28 days'), 'MM/DD/YYYY')'''
+    result = hook.get_records(sql_query)
+    Variable.set('FechaInicio_M', serialize_value(result[0][0]))
+
+def FechaFin_M(**kwargs):
+    hook = PostgresHook(postgres_conn_id='ods')
+    sql_query = '''SELECT TO_CHAR(DATE_TRUNC('month', CURRENT_DATE - INTERVAL '28 days') + INTERVAL '1 month - 1 day', 'mm/dd/yyyy');'''
+    result = hook.get_records(sql_query)
+    Variable.set('FechaFin_M', serialize_value(result[0][0]))
+
+def FechaFin(**kwargs):
+	hook = PostgresHook(postgres_conn_id='ods')
+
+	FechaFin_M = get_variable('FechaFin_M')
+
+	sql_query = f'''SELECT '{FechaFin_M}'; '''
+	result = hook.get_records(sql_query)
+	Variable.set('FechaFin', serialize_value(result[0][0]))
+
+def FechaInicio(**kwargs):
+	hook = PostgresHook(postgres_conn_id='ods')
+
+	FechaInicio_M = get_variable('FechaInicio_M')
+
+	sql_query = f'''SELECT '{FechaInicio_M}'; '''
+	result = hook.get_records(sql_query)
+	Variable.set('FechaInicio', serialize_value(result[0][0]))
+
+def FileAT(**kwargs):
+    value = 'AT10'
+    Variable.set('FileAT', serialize_value(value))
+
+def Moneda_Vzla(**kwargs):
+    value = 'VES'
+    Variable.set('Moneda_Vzla', serialize_value(value))
+
+def FileCodSupervisado(**kwargs):
+    value = '01410'
+    Variable.set('FileCodSupervisado', serialize_value(value))
+
+def FileDate(**kwargs):
+    hook = PostgresHook(postgres_conn_id='ods')
+    sql_query = '''SELECT TO_CHAR(CURRENT_DATE, 'YYMMDD');'''
+    result = hook.get_records(sql_query)
+    Variable.set('FileDate', serialize_value(result[0][0]))
+
+def AT10_COD_HOMOLOGACION(**kwargs):
+    
+    # Define la informacion del bucket y el objeto en GCS
+    gcs_bucket = 'airflow-dags-data'
+    gcs_object = 'data/AT10/INSUMOS/AT10_COD_HOMOLOGACION.csv'
+        
+	#Inicializa los hooks
+    hook = PostgresHook(postgres_conn_id='repodataprd')
+    gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
+
+	#Crea tabla si no existe
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS AT_STG.AT10_COD_HOMOLOGACION (
+            INSTRUMENTO VARCHAR(200),
+            SIGLAS VARCHAR(50)
+        );
+    ''')
+
+	# Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE AT_STG.AT10_COD_HOMOLOGACION;")
+
+  	# CARGA INSUMO
+    temp_dir = tempfile.mkdtemp()
+    local_file_path = os.path.join(temp_dir, 'AT10_COD_HOMOLOGACION.csv')
+    gcs_hook.download(
+        bucket_name=gcs_bucket,
+        object_name=gcs_object,
+        filename=local_file_path
+    )
+    
+    sql = """
+    COPY AT_STG.AT10_COD_HOMOLOGACION (
+        INSTRUMENTO,
+        SIGLAS
+    )
+    FROM STDIN
+    WITH (
+        FORMAT csv,
+        HEADER false,
+        DELIMITER ';'
+    );
+    """
+    hook.copy_expert(sql=sql,filename=local_file_path)
+    #CLEAN UP
+    os.remove(local_file_path)
+    os.rmdir(temp_dir)
+
+
+def AT10_PRECIO_TMP(**kwargs):
+    # Define la informacion del bucket y el objeto en GCS
+    gcs_bucket = 'airflow-dags-data'
+    gcs_object = 'data/AT10/INSUMOS/AT10_PRECIO_NACIONAL.csv'
+        
+	#Inicializa los hooks
+    hook = PostgresHook(postgres_conn_id='repodataprd')
+    gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
+
+    # Se hace drop de la tabla si existe
+    hook.run("DROP TABLE IF EXISTS AT_STG.AT10_PRECIO_NACIONAL;")
+
+    # Crea tabla para insumo de PRECIO NACIONAL si no existe
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS AT_STG.AT10_PRECIO_NACIONAL (
+            DECRETO VARCHAR(50),
+            PROXCUPON VARCHAR(20),
+            FECHAVCTO VARCHAR(20),
+            CUPON NUMERIC(20,3),
+            CUPONPROY NUMERIC(20,3),
+            REFTAM NUMERIC(20,2),
+            YTMCURVA VARCHAR(50),
+            PRECIOCURVA NUMERIC(20,4),
+            CURVAMERCADO VARCHAR(10),
+            YTMMKT NUMERIC(20,2),
+            PRECIOMKT NUMERIC(30,4)
+        );
+    ''')
+
+    # Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE AT_STG.AT10_PRECIO_NACIONAL;")
+
+    # CARGA INSUMO PRECIO DE MONEDA NACIONAL
+    temp_dir = tempfile.mkdtemp()
+    local_file_path = os.path.join(temp_dir, 'AT10_PRECIO_NACIONAL.csv')
+    gcs_hook.download(
+        bucket_name=gcs_bucket,
+        object_name=gcs_object,
+        filename=local_file_path
+    )
+    
+    temp_sql = """
+        CREATE TEMP TABLE temp_precio_nacional (
+            DECRETO VARCHAR(50),
+            PROXCUPON VARCHAR(20),
+            FECHAVCTO VARCHAR(20),
+            CUPON VARCHAR(100),
+            CUPONPROY VARCHAR(100),
+            REFTAM VARCHAR(100),
+            YTMCURVA VARCHAR(50),
+            PRECIOCURVA VARCHAR(100),
+            CURVAMERCADO VARCHAR(10),
+            YTMMKT VARCHAR(100),
+            PRECIOMKT VARCHAR(100),
+            EXTRA1 VARCHAR(30),
+            EXTRA2 VARCHAR(30),
+            EXTRA3 VARCHAR(30)
+        );
+        COPY temp_precio_nacional FROM STDIN WITH (FORMAT csv, HEADER false, DELIMITER ';');
+        INSERT INTO AT_STG.AT10_PRECIO_NACIONAL (
+            DECRETO,
+            PROXCUPON,
+            FECHAVCTO,
+            CUPON,
+            CUPONPROY,
+            REFTAM,
+            YTMCURVA,
+            PRECIOCURVA,
+            CURVAMERCADO,
+            YTMMKT,
+            PRECIOMKT
+        )
+        SELECT 
+            REGEXP_REPLACE(DECRETO, '[0-9]', '') AS DECRETO,
+            PROXCUPON,
+            FECHAVCTO,
+            CAST(REPLACE(CUPON, ',', '.') AS DECIMAL) AS CUPON,
+            CAST(REPLACE(CUPONPROY, ',', '.') AS DECIMAL) AS CUPONPROY,
+            CAST(REPLACE(REFTAM, ',', '.') AS DECIMAL) AS REFTAM,
+            YTMCURVA,
+            CAST(REPLACE(PRECIOCURVA, ',', '.') AS DECIMAL) AS PRECIOCURVA,
+            CURVAMERCADO,
+            CAST(REPLACE(YTMMKT, ',', '.') AS DECIMAL) AS YTMMKT,
+            CAST(REPLACE(REGEXP_REPLACE(PRECIOMKT, '^\s*|\s*$', '', 'g'), ',', '.') AS DECIMAL) AS PRECIOMKT
+        FROM temp_precio_nacional;
+    """
+    hook.copy_expert(sql=temp_sql, filename=local_file_path)
+    os.remove(local_file_path)
+    os.rmdir(temp_dir)
+    
+	#INSUMO DE MONEDA EXTRANJERA
+    #Define la informacion del bucket y el objeto en GCS
+    gcs_bucket = 'airflow-dags-data'
+    gcs_object = 'data/AT10/INSUMOS/AT10_PRECIO_MO_EXTRANJERA.csv'
+        
+	#Inicializa los hooks
+    hook = PostgresHook(postgres_conn_id='repodataprd')
+    gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
+
+	# Se hace drop de la tabla si existe
+    hook.run("DROP TABLE IF EXISTS AT_STG.AT10_PRECIO_MO_EXTRANJERA;")
+
+	#Crea tabla para insumo de PRECIO DE MONEDA EXTRANJERA si no existe
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS AT_STG.AT10_PRECIO_MO_EXTRANJERA (
+		DECRETO VARCHAR(50),
+		PROXCUPON VARCHAR(20),
+		FECHAVCTO VARCHAR(20),
+		CUPON NUMERIC(20,3),
+		CUPONPROY NUMERIC(20,3),
+		REFTAM NUMERIC(20,2),
+		YTMCURVA VARCHAR(50),
+		PRECIOCURVA NUMERIC(20,4),
+		CURVAMERCADO VARCHAR(10),
+		YTMMKT NUMERIC(20,2),
+		PRECIOMKT NUMERIC(30,4)
+	);
+    ''')
+
+	# Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE AT_STG.AT10_PRECIO_MO_EXTRANJERA;")
+
+    # CARGA INSUMO PRECIO DE MONEDA EXTRANJERA
+    temp_dir = tempfile.mkdtemp()
+    local_file_path = os.path.join(temp_dir, 'AT10_PRECIO_MO_EXTRANJERA.csv')
+    gcs_hook.download(
+        bucket_name=gcs_bucket,
+        object_name=gcs_object,
+        filename=local_file_path
+    )
+
+    
+    temp_sql = """
+        CREATE TEMP TABLE temp_precio_mo_extranjera (
+            TITULO VARCHAR(100) NULL,
+            PAIS VARCHAR(100) NULL,
+            FECHAVCTO VARCHAR(100) NULL,
+            CUPON VARCHAR(100) NULL,
+            DESCUENTO VARCHAR(100) NULL,
+            BIDPRICE VARCHAR(100) NULL,
+            DESCUENTOREUTERS VARCHAR(100) NULL,
+            MIDPRICEREUTERS VARCHAR(100) NULL,
+            MIDPRICEBLOOM VARCHAR(100) NULL
+        );
+        COPY temp_precio_mo_extranjera FROM STDIN WITH (FORMAT csv, HEADER false, DELIMITER ';', NULL '');
+        INSERT INTO AT_STG.AT10_PRECIO_MO_EXTRANJERA (
+            DECRETO,
+            PROXCUPON,
+            FECHAVCTO,
+            CUPON,
+            CUPONPROY,
+            REFTAM,
+            YTMCURVA,
+            PRECIOCURVA,
+            CURVAMERCADO,
+            YTMMKT,
+            PRECIOMKT
+        )
+        SELECT 
+			CASE 
+				WHEN TITULO ILIKE '%#%' THEN ''
+				ELSE REGEXP_REPLACE(TITULO, '\d', '')
+			END AS DECRETO,
+			CASE 
+				WHEN PAIS ILIKE '%#%' THEN ''
+				ELSE SUBSTRING(REPLACE(TRIM(PAIS), '-', ''), 1, 20)
+			END AS PROXCUPON,
+            CASE 
+                WHEN FECHAVCTO ILIKE '%#%' OR FECHAVCTO IS NULL THEN ''
+                WHEN FECHAVCTO ~ '^\d{2}/\d{2}/\d{4}$' THEN 
+                    TO_CHAR(TO_DATE(FECHAVCTO, 'DD/MM/YYYY'), 'DD/MM/YYYY')
+                ELSE FECHAVCTO
+            END AS FECHAVCTO,
+			CASE 
+				WHEN CUPON ILIKE '%#%' THEN 0
+				ELSE CAST(REPLACE(COALESCE(CUPON, '0'), ',', '.') AS DECIMAL)
+			END AS CUPON,
+			CASE 
+				WHEN DESCUENTO ILIKE '%#%' THEN 0
+				ELSE CAST(REPLACE(COALESCE(DESCUENTO, '0'), ',', '.') AS DECIMAL)
+			END AS CUPONPROY,
+			CASE 
+				WHEN BIDPRICE ILIKE '%#%' THEN 0
+				ELSE CAST(REPLACE(COALESCE(BIDPRICE, '0'), ',', '.') AS DECIMAL)
+			END AS REFTAM,
+			CASE 
+				WHEN DESCUENTOREUTERS ILIKE '%#%' THEN ''
+				ELSE DESCUENTOREUTERS
+			END AS YTMCURVA,
+			CASE 
+				WHEN MIDPRICEREUTERS ILIKE '%#%' THEN 0
+				ELSE CAST(REPLACE(COALESCE(MIDPRICEREUTERS, '0'), ',', '.') AS DECIMAL)
+			END AS PRECIOCURVA,
+			CASE 
+				WHEN MIDPRICEBLOOM ILIKE '%#%' THEN ''
+				ELSE SUBSTRING(MIDPRICEBLOOM, 1, 10)
+			END AS CURVAMERCADO,
+			0 AS YTMMKT,
+            0 AS PRECIOMKT
+        FROM temp_precio_mo_extranjera;
+    """
+    hook.copy_expert(sql=temp_sql, filename=local_file_path)
+    os.remove(local_file_path)
+    os.rmdir(temp_dir)
+    
+    # Se hace drop de la tabla si existe
+    hook.run("DROP TABLE IF EXISTS AT_STG.AT10_PRECIO_TMP;")
+
+    # Crea tabla para insumo de PRECIO TMP si no existe
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS AT_STG.AT10_PRECIO_TMP (
+            DECRETO VARCHAR(50),
+            PROXCUPON VARCHAR(20),
+            FECHAVCTO VARCHAR(20),
+            CUPON NUMERIC(20,3),
+            CUPONPROY NUMERIC(20,3),
+            REFTAM NUMERIC(20,2),
+            YTMCURVA VARCHAR(50),
+            PRECIOCURVA NUMERIC(20,4),
+            CURVAMERCADO VARCHAR(10),
+            YTMMKT NUMERIC(20,2),
+            PRECIOMKT NUMERIC(30,4)
+        );
+    ''')
+
+    # Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE AT_STG.AT10_PRECIO_TMP;")
+    
+    hook.run('''
+		INSERT INTO AT_STG.AT10_PRECIO_TMP
+		SELECT * FROM AT_STG.AT10_PRECIO_NACIONAL
+		UNION
+		SELECT * FROM AT_STG.AT10_PRECIO_MO_EXTRANJERA;
+    ''')
+
+def AT10_PRECIO_ALL(**kwargs):
+    hook = PostgresHook(postgres_conn_id='repodataprd')
+
+    # Se hace drop de la tabla si existe
+    hook.run("DROP TABLE IF EXISTS AT_STG.AT10_PRECIO_ALL;")
+    
+	# Crea tabla para insumo de PRECIO ALL si no existe
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS AT_STG.AT10_PRECIO_ALL (
+		DECRETO VARCHAR(50),
+		PROXCUPON VARCHAR(20),
+		FECHAVCTO VARCHAR(20),
+		CUPON NUMERIC(20,3),
+		CUPONPROY NUMERIC(20,3),
+		REFTAM NUMERIC(20,2),
+		YTMCURVA VARCHAR(50),
+		PRECIOCURVA NUMERIC(20,4),
+		CURVAMERCADO VARCHAR(10),
+		YTMMKT NUMERIC(20,2),
+		PRECIOMKT NUMERIC(30,2),
+		INSTRUMENTO VARCHAR(200)
+        );
+    ''')
+    
+    # Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE AT_STG.AT10_PRECIO_ALL;")
+
+    sql_query_deftxt = '''INSERT INTO AT_STG.AT10_PRECIO_ALL (
+DECRETO,
+PROXCUPON,
+FECHAVCTO,
+CUPON,
+CUPONPROY,
+REFTAM,
+YTMCURVA,
+PRECIOCURVA,
+CURVAMERCADO,
+YTMMKT,
+PRECIOMKT,
+INSTRUMENTO
+)
+SELECT
+    DECRETO,
+    PROXCUPON,
+    FECHAVCTO,
+    CUPON,
+    CUPONPROY,
+    REFTAM,
+    YTMCURVA,
+    PRECIOCURVA,
+    CURVAMERCADO,
+    YTMMKT,
+    PRECIOMKT,
+    INSTRUMENTO
+FROM (
+    SELECT
+        AT10_PRECIO_TMP.DECRETO AS DECRETO,
+        AT10_PRECIO_TMP.PROXCUPON AS PROXCUPON,
+        AT10_PRECIO_TMP.FECHAVCTO AS FECHAVCTO,
+        AT10_PRECIO_TMP.CUPON AS CUPON,
+        AT10_PRECIO_TMP.CUPONPROY AS CUPONPROY,
+        AT10_PRECIO_TMP.REFTAM AS REFTAM,
+        AT10_PRECIO_TMP.YTMCURVA AS YTMCURVA,
+        AT10_PRECIO_TMP.PRECIOCURVA AS PRECIOCURVA,
+        AT10_PRECIO_TMP.CURVAMERCADO AS CURVAMERCADO,
+        AT10_PRECIO_TMP.YTMMKT AS YTMMKT,
+        AT10_PRECIO_TMP.PRECIOMKT AS PRECIOMKT,
+        AT10_COD_HOMOLOGACION.INSTRUMENTO AS INSTRUMENTO
+    FROM AT_STG.AT10_PRECIO_TMP
+    LEFT OUTER JOIN AT_STG.AT10_COD_HOMOLOGACION ON (AT10_PRECIO_TMP.DECRETO = AT10_COD_HOMOLOGACION.SIGLAS)
+) AS ODI_GET_FROM;'''
+    hook.run(sql_query_deftxt)
+
+def AT10_HOM_ACCIONES(**kwargs):
+    # Define la informacion del bucket y el objeto en GCS
+    gcs_bucket = 'airflow-dags-data'
+    gcs_object = 'data/AT10/INSUMOS/HOM_ACCIONES.csv'
+        
+	#Inicializa los hooks
+    hook = PostgresHook(postgres_conn_id='repodataprd')
+    gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
+    
+    # Se hace drop de la tabla si existe
+    hook.run("DROP TABLE IF EXISTS AT_STG.AT10_HOM_ACCIONES_TMP;")
+    
+	# Crea tabla para insumo de PRECIO ALL si no existe
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS AT_STG.AT10_HOM_ACCIONES_TMP (
+		CODINSTRUMENTO VARCHAR(20),
+		NROACCIONES VARCHAR(30),
+		PRECIOMERCADOACCIONES DECIMAL(20,2),
+		PARTCPATRIMONIAL DECIMAL(20,4),
+		CAPITAL_SOCIAL BIGINT
+        );
+    ''')
+    
+    # Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE AT_STG.AT10_HOM_ACCIONES_TMP;")
+    
+    # CARGA INSUMO PRECIO DE MONEDA NACIONAL
+    temp_dir = tempfile.mkdtemp()
+    local_file_path = os.path.join(temp_dir, 'HOM_ACCIONES.csv')
+    gcs_hook.download(
+        bucket_name=gcs_bucket,
+        object_name=gcs_object,
+        filename=local_file_path
+    )
+
+    temp_sql = """
+        CREATE TEMP TABLE temp_hom_acciones (
+			CODINSTRUMENTO VARCHAR(20),
+			NROACCIONES VARCHAR(30),
+			PRECIOMERCADOACCIONES VARCHAR(100),
+			PARTCPATRIMONIAL VARCHAR(100),
+			CAPITAL_SOCIAL BIGINT
+        );
+        COPY temp_hom_acciones FROM STDIN WITH (FORMAT csv, HEADER true, DELIMITER ';');
+        INSERT INTO AT_STG.AT10_HOM_ACCIONES_TMP (
+            CODINSTRUMENTO,
+            NROACCIONES,
+            PRECIOMERCADOACCIONES,
+            PARTCPATRIMONIAL,
+            CAPITAL_SOCIAL
+        )
+        SELECT 
+            CODINSTRUMENTO,
+            NROACCIONES,
+            CAST(REPLACE(PRECIOMERCADOACCIONES, ',', '.') AS DECIMAL) AS PRECIOMERCADOACCIONES,
+            CAST(REPLACE(PARTCPATRIMONIAL, ',', '.') AS DECIMAL) AS PARTCPATRIMONIAL,  
+            CAPITAL_SOCIAL
+        FROM temp_hom_acciones;
+    """
+    hook.copy_expert(sql=temp_sql, filename=local_file_path)
+    #CLEAN UP
+    os.remove(local_file_path)
+    os.rmdir(temp_dir)
+
+def AT10_CARTERA_MANUAL(**kwargs):
+    # Define la informacion del bucket y el objeto en GCS
+    gcs_bucket = 'airflow-dags-data'
+    gcs_object = 'data/AT10/INSUMOS/AT10_CARTERA_FIDEICOMISO.csv'
+        
+	#Inicializa los hooks
+    hook = PostgresHook(postgres_conn_id='repodataprd')
+    gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
+
+    # Se hace drop de la tabla si existe
+    hook.run("DROP TABLE IF EXISTS AT_STG.AT10_CARTERA_MANUAL;")
+    
+	# Crea tabla para insumo de CARTERA FIDEICOMISO si no existe
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS AT_STG.AT10_CARTERA_MANUAL (
+		PORTAFOLIO	VARCHAR(20),
+		NROINVSISTEMAS	VARCHAR(20),
+		TS	VARCHAR(20),
+		CODCTACONTABLE	VARCHAR(20),
+		TIPOINVERSION	VARCHAR(20),
+		CODINSTRUMENTOFN	VARCHAR(20),
+		CATEGORIAINST	VARCHAR(20),
+		TIPOINSTRUMENTO	VARCHAR(20),
+		TIPOSISTEMA	VARCHAR(20),
+		CONTRAPARTE	VARCHAR(300),
+		CODINSTRUMENTO2	VARCHAR(20),
+		CODINSTRUMENTO	VARCHAR(20),
+		RIFEMISOR	VARCHAR(30),
+		NOMBREEMPRESA	VARCHAR(300),
+		CODEMISOR	VARCHAR(50),
+		PAISEMISOR	VARCHAR(20),
+		RIFCUSTODIO	VARCHAR(30),
+		NOMBRECUSTODIO	VARCHAR(300),
+		CODCUSTODIO	VARCHAR(20),
+		PAISCUSTODIO	VARCHAR(20),
+		IDENINSTRUMENTO	VARCHAR(100),
+		IDINSTRUMENTO	VARCHAR(20),
+		MONEDA	VARCHAR(20),
+		FECHAEMISIONO	VARCHAR(10),
+		FECHAEMISION	VARCHAR(10),
+		FECHAADQUISICION	VARCHAR(10),
+		FECHAVCTO	VARCHAR(8),
+		VALORNOMINAL	VARCHAR(50),
+		PORCENTAJECOMPRA	VARCHAR(50),
+		COSTOADQUISICION	VARCHAR(50),
+		TASACUPCOMPRA	VARCHAR(50),
+		MONTOINTERESESC	VARCHAR(50),
+		TOTALEFECTIVOCOMPRA	VARCHAR(50),
+		NUMACCIONES	VARCHAR(50),
+		TIPOCAMBIOCOMPRA	VARCHAR(50),
+		TIPOCAMBIOCIERRE	VARCHAR(50),
+		NROINGRESOCUS	VARCHAR(30),
+		PERIODCUPON	VARCHAR(50),
+		TIPODETASA	VARCHAR(50),
+		BASETITULO	VARCHAR(50),
+		PERIOPAGOINT	VARCHAR(30),
+		BASECALCULO	VARCHAR(30),
+		PLAZOCOMPRA	VARCHAR(30),
+		PLAZOPENDIENTE	VARCHAR(30),
+		PLAZOTRANSCURRIDO	VARCHAR(30),
+		PLAZODIASCAIDOS	VARCHAR(30),
+		PLAZOPRIMASDCTOS	VARCHAR(30),
+		DIASACUMUDEV	VARCHAR(30),
+		DIASDELMESCP	VARCHAR(30),
+		NRODECRETO	VARCHAR(100),
+		NROEMISION	VARCHAR(100),
+		SERIEINSTR	VARCHAR(100),
+		TASAINTCUPON	VARCHAR(20),
+		FECHAINICIOCP	VARCHAR(10),
+		FECHAVTOCP	VARCHAR(10),
+		MONTOINTDIARIOS	VARCHAR(50),
+		RENDPORCOBRAR	VARCHAR(30),
+		INTDEVENGADOS	VARCHAR(50),
+		MONTOINTCAIDOS	VARCHAR(50),
+		PRIMAODESCUENTO	VARCHAR(30),
+		MONTOPRIMASODCTO	VARCHAR(30),
+		COSTOAMORTIZADO	VARCHAR(30),
+		PRIMODCTO	VARCHAR(50),
+		PRIMAODESCUENTOPEND	VARCHAR(30),
+		VALORENLIBROS	VARCHAR(30),
+		CTAINTDEVYCAIDOS	VARCHAR(30),
+		MONTOPROVISION	VARCHAR(50),
+		COSTOTOTALCIERRE	VARCHAR(50),
+		PORCMERCADOCOTIZACION	VARCHAR(50),
+		VALORPRECIOCVCIERRE	VARCHAR(50),
+		PORCENTAJEVALORMERCADOC	VARCHAR(20),
+		PRECIOCURVAMERCADO	VARCHAR(30),
+		TASADCTO	VARCHAR(30),
+		PRECIOLIBROCIERRE	VARCHAR(50),
+		VALORMERCADO	VARCHAR(30),
+		VALORPRESENTE	VARCHAR(30),
+		VALORMERCADOREFERENCIAL	VARCHAR(50),
+		VALORACIONCIERRE	VARCHAR(50)
+        );
+    ''')
+
+    # Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE AT_STG.AT10_CARTERA_MANUAL;")
+
+    # Se hace drop de la tabla si existe
+    hook.run("DROP TABLE IF EXISTS AT_STG.AT10_CARTERA_FIDEICOMISO_TMP;")
+    
+	# Crea tabla para insumo de CARTERA FIDEICOMISO si no existe
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS AT_STG.AT10_CARTERA_FIDEICOMISO_TMP (
+		PORTAFOLIO	VARCHAR(20),
+		NROINVSISTEMAS	VARCHAR(20),
+		TS	VARCHAR(20),
+		CODCTACONTABLE	VARCHAR(20),
+		TIPOINVERSION	VARCHAR(20),
+		CODINSTRUMENTOFN	VARCHAR(20),
+		CATEGORIAINST	VARCHAR(20),
+		TIPOINSTRUMENTO	VARCHAR(20),
+		TIPOSISTEMA	VARCHAR(20),
+		CONTRAPARTE	VARCHAR(300),
+		CODINSTRUMENTO2	VARCHAR(20),
+		CODINSTRUMENTO	VARCHAR(20),
+		RIFEMISOR	VARCHAR(30),
+		NOMBREEMPRESA	VARCHAR(300),
+		CODEMISOR	VARCHAR(50),
+		PAISEMISOR	VARCHAR(20),
+		RIFCUSTODIO	VARCHAR(30),
+		NOMBRECUSTODIO	VARCHAR(300),
+		CODCUSTODIO	VARCHAR(20),
+		PAISCUSTODIO	VARCHAR(20),
+		IDENINSTRUMENTO	VARCHAR(100),
+		IDINSTRUMENTO	VARCHAR(20),
+		MONEDA	VARCHAR(20),
+		FECHAEMISIONO	VARCHAR(10),
+		FECHAEMISION	VARCHAR(10),
+		FECHAADQUISICION	VARCHAR(10),
+		FECHAVCTO	VARCHAR(8),
+		VALORNOMINAL	VARCHAR(50),
+		PORCENTAJECOMPRA	VARCHAR(50),
+		COSTOADQUISICION	VARCHAR(50),
+		TASACUPCOMPRA	VARCHAR(50),
+		MONTOINTERESESC	VARCHAR(50),
+		TOTALEFECTIVOCOMPRA	VARCHAR(50),
+		NUMACCIONES	VARCHAR(50),
+		TIPOCAMBIOCOMPRA	VARCHAR(50),
+		TIPOCAMBIOCIERRE	VARCHAR(50),
+		NROINGRESOCUS	VARCHAR(30),
+		PERIODCUPON	VARCHAR(50),
+		TIPODETASA	VARCHAR(50),
+		BASETITULO	VARCHAR(50),
+		PERIOPAGOINT	VARCHAR(30),
+		BASECALCULO	VARCHAR(30),
+		PLAZOCOMPRA	VARCHAR(30),
+		PLAZOPENDIENTE	VARCHAR(30),
+		PLAZOTRANSCURRIDO	VARCHAR(30),
+		PLAZODIASCAIDOS	VARCHAR(30),
+		PLAZOPRIMASDCTOS	VARCHAR(30),
+		DIASACUMUDEV	VARCHAR(30),
+		DIASDELMESCP	VARCHAR(30),
+		NRODECRETO	VARCHAR(100),
+		NROEMISION	VARCHAR(100),
+		SERIEINSTR	VARCHAR(100),
+		TASAINTCUPON	VARCHAR(20),
+		FECHAINICIOCP	VARCHAR(10),
+		FECHAVTOCP	VARCHAR(10),
+		MONTOINTDIARIOS	VARCHAR(50),
+		RENDPORCOBRAR	VARCHAR(30),
+		INTDEVENGADOS	VARCHAR(50),
+		MONTOINTCAIDOS	VARCHAR(50),
+		PRIMAODESCUENTO	VARCHAR(30),
+		MONTOPRIMASODCTO	VARCHAR(30),
+		COSTOAMORTIZADO	VARCHAR(30),
+		PRIMODCTO	VARCHAR(50),
+		PRIMAODESCUENTOPEND	VARCHAR(30),
+		VALORENLIBROS	VARCHAR(30),
+		CTAINTDEVYCAIDOS	VARCHAR(30),
+		MONTOPROVISION	VARCHAR(50),
+		COSTOTOTALCIERRE	VARCHAR(50),
+		PORCMERCADOCOTIZACION	VARCHAR(50),
+		VALORPRECIOCVCIERRE	VARCHAR(50),
+		PORCENTAJEVALORMERCADOC	VARCHAR(20),
+		PRECIOCURVAMERCADO	VARCHAR(30),
+		TASADCTO	VARCHAR(30),
+		PRECIOLIBROCIERRE	VARCHAR(50),
+		VALORMERCADO	VARCHAR(30),
+		VALORPRESENTE	VARCHAR(30),
+		VALORMERCADOREFERENCIAL	VARCHAR(50),
+		VALORACIONCIERRE	VARCHAR(50)
+        );
+    ''')
+
+    # Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE AT_STG.AT10_CARTERA_FIDEICOMISO_TMP;")
+    
+    # CARGA INSUMO CARTERA FIDEICOMISO MANUAL (PRUEBA)
+    temp_dir = tempfile.mkdtemp()
+    local_file_path = os.path.join(temp_dir, 'AT10_CARTERA_FIDEICOMISO.csv')
+    gcs_hook.download(
+        bucket_name=gcs_bucket,
+        object_name=gcs_object,
+        filename=local_file_path
+    )
+    
+    temp_sql = """
+        CREATE TEMP TABLE temp_cartera_fideicomiso (
+		PORTAFOLIO	VARCHAR(20),
+		NROINVSISTEMAS	VARCHAR(20),
+		TS	VARCHAR(20),
+		CODCTACONTABLE	VARCHAR(20),
+		TIPOINVERSION	VARCHAR(20),
+		CODINSTRUMENTOFN	VARCHAR(20),
+		CATEGORIAINST	VARCHAR(20),
+		TIPOINSTRUMENTO	VARCHAR(20),
+		TIPOSISTEMA	VARCHAR(20),
+		CONTRAPARTE	VARCHAR(300),
+		CODINSTRUMENTO2	VARCHAR(20),
+		CODINSTRUMENTO	VARCHAR(20),
+		RIFEMISOR	VARCHAR(30),
+		NOMBREEMPRESA	VARCHAR(300),
+		CODEMISOR	VARCHAR(50),
+		PAISEMISOR	VARCHAR(20),
+		RIFCUSTODIO	VARCHAR(30),
+		NOMBRECUSTODIO	VARCHAR(300),
+		CODCUSTODIO	VARCHAR(20),
+		PAISCUSTODIO	VARCHAR(20),
+		IDENINSTRUMENTO	VARCHAR(100),
+		IDINSTRUMENTO	VARCHAR(20),
+		MONEDA	VARCHAR(20),
+		FECHAEMISIONO	VARCHAR(10),
+		FECHAEMISION	VARCHAR(10),
+		FECHAADQUISICION	VARCHAR(10),
+		FECHAVCTO	VARCHAR(10),
+		VALORNOMINAL	VARCHAR(50),
+		PORCENTAJECOMPRA	VARCHAR(50),
+		COSTOADQUISICION	VARCHAR(50),
+		TASACUPCOMPRA	VARCHAR(50),
+		MONTOINTERESESC	VARCHAR(50),
+		TOTALEFECTIVOCOMPRA	VARCHAR(50),
+		NUMACCIONES	VARCHAR(50),
+		TIPOCAMBIOCOMPRA	VARCHAR(50),
+		TIPOCAMBIOCIERRE	VARCHAR(50),
+		NROINGRESOCUS	VARCHAR(30),
+		PERIODCUPON	VARCHAR(50),
+		TIPODETASA	VARCHAR(50),
+		BASETITULO	VARCHAR(50),
+		PERIOPAGOINT	VARCHAR(30),
+		BASECALCULO	VARCHAR(30),
+		PLAZOCOMPRA	VARCHAR(30),
+		PLAZOPENDIENTE	VARCHAR(30),
+		PLAZOTRANSCURRIDO	VARCHAR(30),
+		PLAZODIASCAIDOS	VARCHAR(30),
+		PLAZOPRIMASDCTOS	VARCHAR(30),
+		DIASACUMUDEV	VARCHAR(30),
+		DIASDELMESCP	VARCHAR(30),
+		NRODECRETO	VARCHAR(100),
+		NROEMISION	VARCHAR(100),
+		SERIEINSTR	VARCHAR(100),
+		TASAINTCUPON	VARCHAR(20),
+		FECHAINICIOCP	VARCHAR(10),
+		FECHAVTOCP	VARCHAR(10),
+		MONTOINTDIARIOS	VARCHAR(50),
+		RENDPORCOBRAR	VARCHAR(30),
+		INTDEVENGADOS	VARCHAR(50),
+		MONTOINTCAIDOS	VARCHAR(50),
+		PRIMAODESCUENTO	VARCHAR(30),
+		MONTOPRIMASODCTO	VARCHAR(30),
+		COSTOAMORTIZADO	VARCHAR(30),
+		PRIMODCTO	VARCHAR(50),
+		PRIMAODESCUENTOPEND	VARCHAR(30),
+		VALORENLIBROS	VARCHAR(30),
+		CTAINTDEVYCAIDOS	VARCHAR(30),
+		MONTOPROVISION	VARCHAR(50),
+		COSTOTOTALCIERRE	VARCHAR(50),
+		PORCMERCADOCOTIZACION	VARCHAR(50),
+		VALORPRECIOCVCIERRE	VARCHAR(50),
+		PORCENTAJEVALORMERCADOC	VARCHAR(20),
+		PRECIOCURVAMERCADO	VARCHAR(30),
+		TASADCTO	VARCHAR(30),
+		PRECIOLIBROCIERRE	VARCHAR(50),
+		VALORMERCADO	VARCHAR(30),
+		VALORPRESENTE	VARCHAR(30),
+		VALORMERCADOREFERENCIAL	VARCHAR(50),
+		VALORACIONCIERRE	VARCHAR(50)
+        );
+        COPY temp_cartera_fideicomiso FROM STDIN WITH (FORMAT csv, HEADER false, DELIMITER ';');
+        INSERT INTO AT_STG.AT10_CARTERA_MANUAL
+		SELECT
+			PORTAFOLIO,
+			NROINVSISTEMAS,
+			TS,
+			CODCTACONTABLE,
+			TIPOINVERSION,
+			CODINSTRUMENTOFN,
+			CATEGORIAINST,
+			TIPOINSTRUMENTO,
+			TIPOSISTEMA,
+			CONTRAPARTE,
+			CODINSTRUMENTO2,
+			CODINSTRUMENTO,
+			RIFEMISOR,
+			REPLACE(NOMBREEMPRESA,';','.') AS NOMBREEMPRESA,
+			CODEMISOR,
+			PAISEMISOR,
+			RIFCUSTODIO,
+			NOMBRECUSTODIO,
+			CODCUSTODIO,
+			PAISCUSTODIO,
+			IDENINSTRUMENTO,
+			IDINSTRUMENTO,
+			MONEDA,
+            REPLACE(FECHAEMISIONO,'-','') AS FECHAEMISIONO,
+            REPLACE(FECHAEMISION,'-','') AS FECHAEMISION,
+            REPLACE(FECHAADQUISICION,'-','') AS FECHAADQUISICION,
+            SUBSTR(REPLACE(FECHAVCTO,'-',''),1,8) AS FECHAVCTO,
+			VALORNOMINAL,
+			PORCENTAJECOMPRA,
+			COSTOADQUISICION,
+			TASACUPCOMPRA,
+			MONTOINTERESESC,
+			TOTALEFECTIVOCOMPRA,
+			NUMACCIONES,
+			TIPOCAMBIOCOMPRA,
+			TIPOCAMBIOCIERRE,
+			NROINGRESOCUS,
+			PERIODCUPON,
+			TIPODETASA,
+			BASETITULO,
+			PERIOPAGOINT,
+			BASECALCULO,
+			PLAZOCOMPRA,
+			PLAZOPENDIENTE,
+			PLAZOTRANSCURRIDO,
+			PLAZODIASCAIDOS,
+			PLAZOPRIMASDCTOS,
+			DIASACUMUDEV,
+			DIASDELMESCP,
+			NRODECRETO,
+			NROEMISION,
+			SERIEINSTR,
+			TASAINTCUPON,
+            REPLACE(FECHAINICIOCP,'-','') AS FECHAINICIOCP,
+            SUBSTR(REPLACE(FECHAVTOCP,'-',''),1,8) AS FECHAVTOCP,
+			MONTOINTDIARIOS,
+			RENDPORCOBRAR,
+			INTDEVENGADOS,
+			MONTOINTCAIDOS,
+			PRIMAODESCUENTO,
+			MONTOPRIMASODCTO,
+			COSTOAMORTIZADO,
+			PRIMODCTO,
+			PRIMAODESCUENTOPEND,
+			VALORENLIBROS,
+			CTAINTDEVYCAIDOS,
+			REGEXP_REPLACE(MONTOPROVISION,'(^[[:space:]]*|[[:space:]]*$)','') AS MONTOPROVISION,
+			COSTOTOTALCIERRE,
+			CAST(REPLACE(PORCMERCADOCOTIZACION, ',', '.') AS DECIMAL) AS PORCMERCADOCOTIZACION,
+            CAST(REPLACE(VALORPRECIOCVCIERRE, ',', '.') AS DECIMAL) AS VALORPRECIOCVCIERRE,
+			PORCENTAJEVALORMERCADOC,
+			PRECIOCURVAMERCADO,
+			TASADCTO,
+			PRECIOLIBROCIERRE,
+			(CAST(REPLACE(PORCMERCADOCOTIZACION,',','.') AS DECIMAL) * CAST(REPLACE(VALORNOMINAL,',','.') AS DECIMAL)) AS VALORMERCADO,
+			CASE 
+				WHEN CAST(REPLACE(VALORPRESENTE,',','.') AS DECIMAL) != CAST(REPLACE(VALORMERCADO,',','.') AS DECIMAL)
+				THEN (CAST(REPLACE(VALORPRECIOCVCIERRE,',','.') AS DECIMAL) * CAST(REPLACE(VALORNOMINAL,',','.') AS DECIMAL))
+				ELSE CAST(REPLACE(VALORPRESENTE,',','.') AS DECIMAL)
+			END AS VALORPRESENTE,
+			VALORMERCADOREFERENCIAL,
+			VALORACIONCIERRE
+		FROM temp_cartera_fideicomiso;
+    """
+    hook.copy_expert(sql=temp_sql, filename=local_file_path)
+
+    # CARGA INSUMO CARTERA FIDEICOMISO
+    temp_sql = """
+        CREATE TEMP TABLE temp_cartera_fideicomiso (
+		PORTAFOLIO	VARCHAR(20),
+		NROINVSISTEMAS	VARCHAR(20),
+		TS	VARCHAR(20),
+		CODCTACONTABLE	VARCHAR(20),
+		TIPOINVERSION	VARCHAR(20),
+		CODINSTRUMENTOFN	VARCHAR(20),
+		CATEGORIAINST	VARCHAR(20),
+		TIPOINSTRUMENTO	VARCHAR(20),
+		TIPOSISTEMA	VARCHAR(20),
+		CONTRAPARTE	VARCHAR(300),
+		CODINSTRUMENTO2	VARCHAR(20),
+		CODINSTRUMENTO	VARCHAR(20),
+		RIFEMISOR	VARCHAR(30),
+		NOMBREEMPRESA	VARCHAR(300),
+		CODEMISOR	VARCHAR(50),
+		PAISEMISOR	VARCHAR(20),
+		RIFCUSTODIO	VARCHAR(30),
+		NOMBRECUSTODIO	VARCHAR(300),
+		CODCUSTODIO	VARCHAR(20),
+		PAISCUSTODIO	VARCHAR(20),
+		IDENINSTRUMENTO	VARCHAR(100),
+		IDINSTRUMENTO	VARCHAR(20),
+		MONEDA	VARCHAR(20),
+		FECHAEMISIONO	VARCHAR(10),
+		FECHAEMISION	VARCHAR(10),
+		FECHAADQUISICION	VARCHAR(10),
+		FECHAVCTO	VARCHAR(10),
+		VALORNOMINAL	VARCHAR(50),
+		PORCENTAJECOMPRA	VARCHAR(50),
+		COSTOADQUISICION	VARCHAR(50),
+		TASACUPCOMPRA	VARCHAR(50),
+		MONTOINTERESESC	VARCHAR(50),
+		TOTALEFECTIVOCOMPRA	VARCHAR(50),
+		NUMACCIONES	VARCHAR(50),
+		TIPOCAMBIOCOMPRA	VARCHAR(50),
+		TIPOCAMBIOCIERRE	VARCHAR(50),
+		NROINGRESOCUS	VARCHAR(30),
+		PERIODCUPON	VARCHAR(50),
+		TIPODETASA	VARCHAR(50),
+		BASETITULO	VARCHAR(50),
+		PERIOPAGOINT	VARCHAR(30),
+		BASECALCULO	VARCHAR(30),
+		PLAZOCOMPRA	VARCHAR(30),
+		PLAZOPENDIENTE	VARCHAR(30),
+		PLAZOTRANSCURRIDO	VARCHAR(30),
+		PLAZODIASCAIDOS	VARCHAR(30),
+		PLAZOPRIMASDCTOS	VARCHAR(30),
+		DIASACUMUDEV	VARCHAR(30),
+		DIASDELMESCP	VARCHAR(30),
+		NRODECRETO	VARCHAR(100),
+		NROEMISION	VARCHAR(100),
+		SERIEINSTR	VARCHAR(100),
+		TASAINTCUPON	VARCHAR(20),
+		FECHAINICIOCP	VARCHAR(10),
+		FECHAVTOCP	VARCHAR(10),
+		MONTOINTDIARIOS	VARCHAR(50),
+		RENDPORCOBRAR	VARCHAR(30),
+		INTDEVENGADOS	VARCHAR(50),
+		MONTOINTCAIDOS	VARCHAR(50),
+		PRIMAODESCUENTO	VARCHAR(30),
+		MONTOPRIMASODCTO	VARCHAR(30),
+		COSTOAMORTIZADO	VARCHAR(30),
+		PRIMODCTO	VARCHAR(50),
+		PRIMAODESCUENTOPEND	VARCHAR(30),
+		VALORENLIBROS	VARCHAR(30),
+		CTAINTDEVYCAIDOS	VARCHAR(30),
+		MONTOPROVISION	VARCHAR(50),
+		COSTOTOTALCIERRE	VARCHAR(50),
+		PORCMERCADOCOTIZACION	VARCHAR(50),
+		VALORPRECIOCVCIERRE	VARCHAR(50),
+		PORCENTAJEVALORMERCADOC	VARCHAR(20),
+		PRECIOCURVAMERCADO	VARCHAR(30),
+		TASADCTO	VARCHAR(30),
+		PRECIOLIBROCIERRE	VARCHAR(50),
+		VALORMERCADO	VARCHAR(30),
+		VALORPRESENTE	VARCHAR(30),
+		VALORMERCADOREFERENCIAL	VARCHAR(50),
+		VALORACIONCIERRE	VARCHAR(50)
+        );
+        COPY temp_cartera_fideicomiso FROM STDIN WITH (FORMAT csv, HEADER false, DELIMITER ';');
+        INSERT INTO AT_STG.AT10_CARTERA_FIDEICOMISO_TMP
+		SELECT
+			PORTAFOLIO,
+			NROINVSISTEMAS,
+			TS,
+			CODCTACONTABLE,
+			TIPOINVERSION,
+			CODINSTRUMENTOFN,
+			CATEGORIAINST,
+			TIPOINSTRUMENTO,
+			TIPOSISTEMA,
+			CONTRAPARTE,
+			CODINSTRUMENTO2,
+			CODINSTRUMENTO,
+			RIFEMISOR,
+			REPLACE(NOMBREEMPRESA,';','.') AS NOMBREEMPRESA,
+			CODEMISOR,
+			PAISEMISOR,
+			RIFCUSTODIO,
+			NOMBRECUSTODIO,
+			CODCUSTODIO,
+			PAISCUSTODIO,
+			IDENINSTRUMENTO,
+			IDINSTRUMENTO,
+			MONEDA,
+            REPLACE(FECHAEMISIONO,'-','') AS FECHAEMISIONO,
+            REPLACE(FECHAEMISION,'-','') AS FECHAEMISION,
+            REPLACE(FECHAADQUISICION,'-','') AS FECHAADQUISICION,
+            SUBSTR(REPLACE(temp_cartera_fideicomiso.FECHAVCTO,'-',''),1,8) AS FECHAVCTO,
+			VALORNOMINAL,
+			PORCENTAJECOMPRA,
+			COSTOADQUISICION,
+			TASACUPCOMPRA,
+			MONTOINTERESESC,
+			TOTALEFECTIVOCOMPRA,
+			NUMACCIONES,
+			TIPOCAMBIOCOMPRA,
+			TIPOCAMBIOCIERRE,
+			NROINGRESOCUS,
+			PERIODCUPON,
+			TIPODETASA,
+			BASETITULO,
+			PERIOPAGOINT,
+			BASECALCULO,
+			PLAZOCOMPRA,
+			PLAZOPENDIENTE,
+			PLAZOTRANSCURRIDO,
+			PLAZODIASCAIDOS,
+			PLAZOPRIMASDCTOS,
+			DIASACUMUDEV,
+			DIASDELMESCP,
+			NRODECRETO,
+			NROEMISION,
+			SERIEINSTR,
+			TASAINTCUPON,
+            REPLACE(FECHAINICIOCP,'-','') AS FECHAINICIOCP,
+            SUBSTR(REPLACE(FECHAVTOCP,'-',''),1,8) AS FECHAVTOCP,
+			MONTOINTDIARIOS,
+			RENDPORCOBRAR,
+			INTDEVENGADOS,
+			MONTOINTCAIDOS,
+			PRIMAODESCUENTO,
+			MONTOPRIMASODCTO,
+			COSTOAMORTIZADO,
+			PRIMODCTO,
+			PRIMAODESCUENTOPEND,
+			VALORENLIBROS,
+			CTAINTDEVYCAIDOS,
+			REGEXP_REPLACE(MONTOPROVISION,'(^[[:space:]]*|[[:space:]]*$)','') AS MONTOPROVISION,
+			COSTOTOTALCIERRE,
+			COALESCE(AT_STG.AT10_PRECIO_ALL.PRECIOMKT, CAST(REPLACE(PORCMERCADOCOTIZACION, ',', '.') AS DECIMAL)) AS PORCMERCADOCOTIZACION,
+            COALESCE(AT_STG.AT10_PRECIO_ALL.PRECIOCURVA, CAST(REPLACE(VALORPRECIOCVCIERRE, ',', '.') AS DECIMAL)) AS VALORPRECIOCVCIERRE,
+			PORCENTAJEVALORMERCADOC,
+			PRECIOCURVAMERCADO,
+			TASADCTO,
+			PRECIOLIBROCIERRE,
+			(CAST(REPLACE(PORCMERCADOCOTIZACION,',','.') AS DECIMAL) * CAST(REPLACE(VALORNOMINAL,',','.') AS DECIMAL)) AS VALORMERCADO,
+			CASE 
+				WHEN CAST(REPLACE(VALORPRESENTE,',','.') AS DECIMAL) != CAST(REPLACE(VALORMERCADO,',','.') AS DECIMAL)
+				THEN (CAST(REPLACE(VALORPRECIOCVCIERRE,',','.') AS DECIMAL) * CAST(REPLACE(VALORNOMINAL,',','.') AS DECIMAL))
+				ELSE CAST(REPLACE(VALORPRESENTE,',','.') AS DECIMAL)
+			END AS VALORPRESENTE,
+			VALORMERCADOREFERENCIAL,
+			VALORACIONCIERRE
+		FROM AT_STG.AT10_PRECIO_ALL
+		RIGHT OUTER JOIN temp_cartera_fideicomiso ON TRIM(IDENINSTRUMENTO) = TRIM(AT_STG.AT10_PRECIO_ALL.INSTRUMENTO)
+		AND CAST(temp_cartera_fideicomiso.FECHAVCTO AS TEXT) = TO_CHAR(TO_DATE(AT_STG.AT10_PRECIO_ALL.FECHAVCTO, 'DD/MM/YYYY'), 'YYYYMMDD');
+    """
+    hook.copy_expert(sql=temp_sql, filename=local_file_path)
+    # Clean up
+    os.remove(local_file_path)
+    os.rmdir(temp_dir)
+
+
+def AT10_FIDEICOMISO_TMP(**kwargs):
+    
+	#Se inicializan los hooks
+    hook = PostgresHook(postgres_conn_id='repodataprd')
+    gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
+    
+	# Se hace drop de la tabla si existe
+    hook.run("DROP TABLE IF EXISTS AT_STG.AT10_FIDEICOMISO_TMP;")
+    
+	# Crea tabla para insumo de CARTERA FIDEICOMISO si no existe
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS AT_STG.AT10_FIDEICOMISO_TMP (
+		OFICINA VARCHAR(10),
+		CODINSTRUMENTO VARCHAR(20),
+		TIPOSISTEMA VARCHAR(10),
+		CODCTACONTABLE VARCHAR(20),
+		IDINSTRUMENTO VARCHAR(10),
+		CODEMISOR VARCHAR(10),
+		PAISEMISOR VARCHAR(10),
+		CODCUSTODIO VARCHAR(10),
+		PAISCUSTODIO VARCHAR(10),
+		EMPRESARIESGOCUSTODIO VARCHAR(200),
+		CALIFRIESGOCUSTODIO VARCHAR(20),
+		MONEDA VARCHAR(10),
+		FECHAEMISION VARCHAR(8),
+		FECHAADQUISICION VARCHAR(8),
+		FECHAVCTO VARCHAR(8),
+		ULTFECHATRANS VARCHAR(8),
+		NROTRANSFERENCIAS VARCHAR(100),
+		VALORNOMINAL NUMERIC(30, 2),
+		COSTOADQUISICION NUMERIC(30, 4),
+		VALORMERCADOTRANS NUMERIC(30, 2),
+		PORCENTAJECOMPRA NUMERIC(30, 8),
+		PORCENTAJEVALORMERCADO NUMERIC(30, 8),
+		VALORMERCADO NUMERIC(30, 8),
+		VALORPRESENTE NUMERIC(30, 8),
+		TIPOCAMBIOCOMPRA NUMERIC(30, 8),
+		TIPOCAMBIOCIERRE NUMERIC(30, 8),
+		GANOPERDIFCAMBIARIO NUMERIC(20, 2),
+		GANOPERDNOREALIZADA NUMERIC(20, 8),
+		PRIMAODESCUENTO NUMERIC(30, 8),
+		COSTOAMORTIZADO NUMERIC(30, 8),
+		VALORENLIBROS NUMERIC(30, 8),
+		TASADESCTO NUMERIC(20, 4),
+		NROACCIONES VARCHAR(30),
+		PRECIOMERCADOACCIONES NUMERIC(30, 2),
+		PARTCPATRIMONIAL NUMERIC(30, 4),
+		MONTOPROVISION NUMERIC(30, 2),
+		NRODECRETO VARCHAR(100),
+		NROEMISION VARCHAR(100),
+		SERIEINSTR VARCHAR(100),
+		TASAINTCUPON NUMERIC(20, 4),
+		TASAINTERESES NUMERIC(20, 4),
+		FECHAINICIOCP VARCHAR(8),
+		FECHAVTOCP VARCHAR(8),
+		INTERESESCOBRADOS NUMERIC(30, 2),
+		INTERESESDEVENGADOS NUMERIC(30, 2),
+		DIVIDENDOSCOBRADOS NUMERIC(30, 2),
+		RENDPORCOBRAR NUMERIC(30, 2),
+		PERIOPAGOINT VARCHAR(30),
+		FECHACOBRO VARCHAR(8),
+		DIVDECRNOCOBRADOS NUMERIC(30, 2),
+		CTACBLEORITRANS VARCHAR(30),
+		MONTOCANJE NUMERIC(30, 2),
+		FECHACANJE VARCHAR(8),
+		CONTRAPARTECANJE VARCHAR(100),
+		CODINSTRENTREGADO VARCHAR(15),
+		PATRIEMPRESA NUMERIC(30, 2),
+		FECHAEDOFINANCIERO VARCHAR(8),
+		MONTOCAPSOCIAL NUMERIC(30, 2),
+		NROACCIONESCIRC NUMERIC(30, 2),
+		CANTIDADACCIONES NUMERIC(30),
+		ACTIVOSUBYACENTE NUMERIC(30),
+		VALORNOMACTIVO NUMERIC(30, 2),
+		MONEDAACTIVO VARCHAR(10),
+		TIPOCAMCIERRESUB NUMERIC(20, 4),
+		CODEMISORSUB VARCHAR(10),
+		CODCUSTODIOSUB VARCHAR(10),
+		TASACUPONSUB NUMERIC(20, 4),
+		FECHAVCTOSUB VARCHAR(8),
+		RESULTADONETO NUMERIC(30, 2),
+		GANOPERPARTPATRIM NUMERIC(30, 2),
+		BASECALCULO VARCHAR(30)
+		);
+    ''')
+    
+    # Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE AT_STG.AT10_FIDEICOMISO_TMP;")
+    
+    # Insertamos join en la tabla
+    hook.run('''
+    INSERT INTO AT_STG.AT10_FIDEICOMISO_TMP (
+        CODINSTRUMENTO,
+        TIPOSISTEMA,
+        CODCTACONTABLE,
+        IDINSTRUMENTO,
+        CODEMISOR,
+        PAISEMISOR,
+        CODCUSTODIO,
+        PAISCUSTODIO,
+        EMPRESARIESGOCUSTODIO,
+        CALIFRIESGOCUSTODIO,
+        MONEDA,
+        FECHAEMISION,
+        FECHAADQUISICION,
+        FECHAVCTO,
+        VALORNOMINAL,
+        COSTOADQUISICION,
+        PORCENTAJECOMPRA,
+        PORCENTAJEVALORMERCADO,
+        VALORMERCADO,
+        VALORPRESENTE,
+        TIPOCAMBIOCOMPRA,
+        TIPOCAMBIOCIERRE,
+        PRIMAODESCUENTO,
+        COSTOAMORTIZADO,
+        VALORENLIBROS,
+        NROACCIONES,
+        PRECIOMERCADOACCIONES,
+        PARTCPATRIMONIAL,
+        MONTOPROVISION,
+        NRODECRETO,
+        NROEMISION,
+        SERIEINSTR,
+        TASAINTCUPON,
+        TASAINTERESES,
+        FECHAINICIOCP,
+        FECHAVTOCP,
+        RENDPORCOBRAR,
+        PERIOPAGOINT,
+        MONTOCAPSOCIAL,
+        NROACCIONESCIRC,
+        BASECALCULO,
+        OFICINA,
+        ULTFECHATRANS,
+        NROTRANSFERENCIAS,
+        VALORMERCADOTRANS,
+        GANOPERDIFCAMBIARIO,
+        GANOPERDNOREALIZADA,
+        TASADESCTO,
+        INTERESESCOBRADOS,
+        INTERESESDEVENGADOS,
+        DIVIDENDOSCOBRADOS,
+        FECHACOBRO,
+        DIVDECRNOCOBRADOS,
+        CTACBLEORITRANS,
+        MONTOCANJE,
+        FECHACANJE,
+        CONTRAPARTECANJE,
+        CODINSTRENTREGADO,
+        PATRIEMPRESA,
+        FECHAEDOFINANCIERO,
+        CANTIDADACCIONES,
+        ACTIVOSUBYACENTE,
+        VALORNOMACTIVO,
+        MONEDAACTIVO,
+        TIPOCAMCIERRESUB,
+        CODEMISORSUB,
+        CODCUSTODIOSUB,
+        TASACUPONSUB,
+        FECHAVCTOSUB,
+        RESULTADONETO,
+        GANOPERPARTPATRIM
+    )
+    SELECT
+	CODINSTRUMENTO,
+	TIPOSISTEMA,
+	CODCTACONTABLE,
+	IDINSTRUMENTO,
+	CODEMISOR,
+	PAISEMISOR,
+	CODCUSTODIO,
+	PAISCUSTODIO,
+	EMPRESARIESGOCUSTODIO,
+	CALIFRIESGOCUSTODIO,
+	MONEDA,
+	FECHAEMISION,
+	FECHAADQUISICION,
+	FECHAVCTO,
+	VALORNOMINAL,
+	COSTOADQUISICION,
+	PORCENTAJECOMPRA,
+	PORCENTAJEVALORMERCADO,
+	VALORMERCADO,
+	VALORPRESENTE,
+	TIPOCAMBIOCOMPRA,
+	TIPOCAMBIOCIERRE,
+	PRIMAODESCUENTO,
+	COSTOAMORTIZADO,
+	VALORENLIBROS,
+	NROACCIONES,
+	PRECIOMERCADOACCIONES,
+	PARTCPATRIMONIAL,
+	MONTOPROVISION,
+	NRODECRETO,
+	NROEMISION,
+	SERIEINSTR,
+	TASAINTCUPON,
+	TASAINTERESES,
+	FECHAINICIOCP,
+	FECHAVTOCP,
+	RENDPORCOBRAR,
+	PERIOPAGOINT,
+	MONTOCAPSOCIAL,
+	NROACCIONESCIRC,
+	BASECALCULO,
+	'0147'::VARCHAR,                   -- OFICINA
+	'19000101'::VARCHAR,                  -- ULTFECHATRANS
+	0::INTEGER,                        -- NROTRANSFERENCIAS
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- VALORMERCADOTRANS
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- GANOPERDIFCAMBIARIO
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- GANOPERDNOREALIZADA
+	CAST(REPLACE('0,0000',',','.') AS DECIMAL), -- TASADESCTO
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- INTERESESCOBRADOS
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- INTERESESDEVENGADOS
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- DIVIDENDOSCOBRADOS
+	'19000101'::VARCHAR,                  -- FECHACOBRO
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- DIVDECRNOCOBRADOS
+	0::INTEGER,                        -- CTACBLEORITRANS
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- MONTOCANJE
+	'19000101'::VARCHAR,                  -- FECHACANJE
+	''::VARCHAR,                       -- CONTRAPARTECANJE
+	0::INTEGER,                        -- CODINSTRENTREGADO
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- PATRIEMPRESA
+	'19000101'::VARCHAR,                  -- FECHAEDOFINANCIERO
+	CAST(REPLACE('0',',','.') AS DECIMAL),    -- CANTIDADACCIONES
+	CAST(REPLACE('0',',','.') AS DECIMAL),    -- ACTIVOSUBYACENTE
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- VALORNOMACTIVO
+	''::VARCHAR,                       -- MONEDAACTIVO (Corrected this to VARCHAR)
+	CAST(REPLACE('0,0000',',','.') AS DECIMAL), -- TIPOCAMCIERRESUB
+	''::VARCHAR,                       -- CODEMISORSUB (Corrected this to VARCHAR)
+	''::VARCHAR,                       -- CODCUSTODIOSUB (Corrected this to VARCHAR)
+	CAST(REPLACE('0,0000',',','.') AS DECIMAL), -- TASACUPONSUB
+	'19000101'::VARCHAR,                  -- FECHAVCTOSUB
+	CAST(REPLACE('0,00',',','.') AS DECIMAL), -- RESULTADONETO
+	CAST(REPLACE('0,00',',','.') AS DECIMAL)  -- GANOPERPARTPATRIM
+FROM (
+	SELECT
+		CASE
+			WHEN LENGTH(AT10_CARTERA_FIDEICOMISO_TMP.CODINSTRUMENTO) < 12 THEN LPAD(AT10_CARTERA_FIDEICOMISO_TMP.CODINSTRUMENTO, 12, '0')
+			ELSE AT10_CARTERA_FIDEICOMISO_TMP.CODINSTRUMENTO
+		END AS CODINSTRUMENTO,
+		TRIM(AT10_CARTERA_FIDEICOMISO_TMP.TIPOSISTEMA) AS TIPOSISTEMA,
+		AT10_CARTERA_FIDEICOMISO_TMP.CODCTACONTABLE AS CODCTACONTABLE,
+		TRIM(SUBSTRING(AT10_CARTERA_FIDEICOMISO_TMP.IDINSTRUMENTO, 1, 10)) AS IDINSTRUMENTO,
+		TRIM(SUBSTRING(AT10_CARTERA_FIDEICOMISO_TMP.CODEMISOR, 1, 10)) AS CODEMISOR,
+		TRIM(AT10_CARTERA_FIDEICOMISO_TMP.PAISEMISOR) AS PAISEMISOR,
+		TRIM(AT10_CARTERA_FIDEICOMISO_TMP.CODCUSTODIO) AS CODCUSTODIO,
+		TRIM(AT10_CARTERA_FIDEICOMISO_TMP.PAISCUSTODIO) AS PAISCUSTODIO,
+		CASE
+			WHEN TRIM(AT10_CARTERA_FIDEICOMISO_TMP.PAISCUSTODIO) = 'DE' THEN 'FITCH RATINGS'
+			ELSE ''
+		END AS EMPRESARIESGOCUSTODIO,
+		CASE
+			WHEN TRIM(AT10_CARTERA_FIDEICOMISO_TMP.PAISCUSTODIO) = 'DE' THEN 'F1+'
+			ELSE ''
+		END AS CALIFRIESGOCUSTODIO,
+		TRIM(AT10_CARTERA_FIDEICOMISO_TMP.MONEDA) AS MONEDA,
+		SUBSTRING(TRIM(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.FECHAEMISION, '-', '')), 1, 8) AS FECHAEMISION,
+        SUBSTRING(TRIM(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.FECHAADQUISICION, '-', '')), 1, 8) AS FECHAADQUISICION,
+		SUBSTRING(TRIM(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.FECHAVCTO, '-', '')), 1, 8) AS FECHAVCTO,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORNOMINAL, ',', '.') AS DECIMAL) AS VALORNOMINAL,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.COSTOADQUISICION, ',', '.') AS DECIMAL) AS COSTOADQUISICION,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.PORCENTAJECOMPRA, ',', '.') AS DECIMAL) * 100 AS PORCENTAJECOMPRA,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.PORCENTAJEVALORMERCADOC, ',', '.') AS DECIMAL) * 100 AS PORCENTAJEVALORMERCADO,
+		CASE
+			WHEN (CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.PORCENTAJEVALORMERCADOC, ',', '.') AS DECIMAL) / 100) * CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORNOMINAL, ',', '.') AS DECIMAL) != CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORMERCADO, ',', '.') AS DECIMAL) THEN
+				(CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.PORCENTAJEVALORMERCADOC, ',', '.') AS DECIMAL) / 100) * CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORNOMINAL, ',', '.') AS DECIMAL)
+			ELSE
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORMERCADO, ',', '.') AS DECIMAL)
+		END AS VALORMERCADO,
+		CASE
+			WHEN (CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORPRESENTE, ',', '.') AS DECIMAL) = 0 AND CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORMERCADO, ',', '.') AS DECIMAL) > 0) THEN
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORMERCADO, ',', '.') AS DECIMAL)
+			WHEN (SUBSTRING(AT10_CARTERA_FIDEICOMISO_TMP.CODCTACONTABLE, 1, 5) NOT IN ('15202') AND CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORPRESENTE, ',', '.') AS DECIMAL) > 0) THEN
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORPRESENTE, ',', '.') AS DECIMAL)
+			ELSE
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORMERCADO, ',', '.') AS DECIMAL)
+		END AS VALORPRESENTE,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.TIPOCAMBIOCOMPRA, ',', '.') AS DECIMAL) AS TIPOCAMBIOCOMPRA,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.TIPOCAMBIOCIERRE, ',', '.') AS DECIMAL) AS TIPOCAMBIOCIERRE,
+		CASE
+			WHEN CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.PRIMAODESCUENTO, ',', '.') AS DECIMAL) !=
+				(CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.COSTOADQUISICION, ',', '.') AS DECIMAL) -
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORNOMINAL, ',', '.') AS DECIMAL)) *
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.TIPOCAMBIOCIERRE, ',', '.') AS DECIMAL) THEN
+				(CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.COSTOADQUISICION, ',', '.') AS DECIMAL) -
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORNOMINAL, ',', '.') AS DECIMAL)) *
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.TIPOCAMBIOCIERRE, ',', '.') AS DECIMAL)
+			ELSE
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.PRIMAODESCUENTO, ',', '.') AS DECIMAL)
+		END AS PRIMAODESCUENTO,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.COSTOAMORTIZADO, ',', '.') AS DECIMAL) AS COSTOAMORTIZADO,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.VALORENLIBROS, ',', '.') AS DECIMAL) AS VALORENLIBROS,
+		CASE
+			WHEN AT10_HOM_ACCIONES_TMP.NROACCIONES IS NOT NULL THEN
+				CAST(REPLACE(AT10_HOM_ACCIONES_TMP.NROACCIONES, ',', '.') AS DECIMAL)
+			ELSE
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.NUMACCIONES, ',', '.') AS DECIMAL)
+		END AS NROACCIONES,
+		CASE
+			WHEN (AT10_HOM_ACCIONES_TMP.PRECIOMERCADOACCIONES IS NOT NULL OR AT10_HOM_ACCIONES_TMP.PRECIOMERCADOACCIONES > 0) THEN
+				AT10_HOM_ACCIONES_TMP.PRECIOMERCADOACCIONES
+			ELSE
+				CAST('0.00' AS DECIMAL)
+		END AS PRECIOMERCADOACCIONES,
+		CASE
+			WHEN (AT10_HOM_ACCIONES_TMP.PARTCPATRIMONIAL IS NOT NULL OR AT10_HOM_ACCIONES_TMP.PARTCPATRIMONIAL > 0) THEN
+				AT10_HOM_ACCIONES_TMP.PARTCPATRIMONIAL
+			ELSE
+				CAST('0.0000' AS DECIMAL)
+		END AS PARTCPATRIMONIAL,
+		COALESCE(AT10_CARTERA_FIDEICOMISO_TMP.MONTOPROVISION::NUMERIC, 0) AS MONTOPROVISION,
+		CASE
+			WHEN AT10_CARTERA_FIDEICOMISO_TMP.NRODECRETO IN ('0') THEN '0000'
+			ELSE AT10_CARTERA_FIDEICOMISO_TMP.NRODECRETO
+		END AS NRODECRETO,
+		CASE
+			WHEN AT10_CARTERA_FIDEICOMISO_TMP.NROEMISION IN ('0') THEN '0000'
+			ELSE LPAD(AT10_CARTERA_FIDEICOMISO_TMP.NROEMISION, 4, '0')
+		END AS NROEMISION,
+		CASE
+			WHEN AT10_CARTERA_FIDEICOMISO_TMP.SERIEINSTR IN ('0') THEN '000000'
+			ELSE LPAD(AT10_CARTERA_FIDEICOMISO_TMP.SERIEINSTR, 6, '0')
+		END AS SERIEINSTR,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.TASAINTCUPON, ',', '.') AS DECIMAL) * 100 AS TASAINTCUPON,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.TASAINTCUPON, ',', '.') AS DECIMAL) * 100 AS TASAINTERESES,
+		CASE
+			WHEN (SUBSTRING(AT10_CARTERA_FIDEICOMISO_TMP.FECHAINICIOCP, 1, 4) = '1899' OR
+				CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.TASAINTCUPON, ',', '.') AS DECIMAL) = 0) THEN '19000101'
+			ELSE SUBSTRING(AT10_CARTERA_FIDEICOMISO_TMP.FECHAINICIOCP, 1, 8)
+		END AS FECHAINICIOCP,
+		CASE
+			WHEN (SUBSTRING(AT10_CARTERA_FIDEICOMISO_TMP.FECHAVTOCP, 1, 4) = '1899' OR
+				(CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.TASAINTCUPON, ',', '.') AS DECIMAL) * 100) = 0) THEN '19000101'
+			ELSE SUBSTRING(AT10_CARTERA_FIDEICOMISO_TMP.FECHAVTOCP, 1, 8)
+		END AS FECHAVTOCP,
+		CAST(REPLACE(AT10_CARTERA_FIDEICOMISO_TMP.RENDPORCOBRAR, ',', '.') AS DECIMAL) AS RENDPORCOBRAR,
+		AT10_CARTERA_FIDEICOMISO_TMP.PERIOPAGOINT AS PERIOPAGOINT,
+		CASE
+			WHEN AT10_HOM_ACCIONES_TMP.CAPITAL_SOCIAL IS NOT NULL THEN AT10_HOM_ACCIONES_TMP.CAPITAL_SOCIAL
+			ELSE CAST('0.00' AS DECIMAL)
+		END AS MONTOCAPSOCIAL,
+		CASE
+			WHEN AT10_HOM_ACCIONES_TMP.NROACCIONES IS NOT NULL THEN
+				CAST(REPLACE(REPLACE(AT10_HOM_ACCIONES_TMP.NROACCIONES, '.', ''), ',', '.') AS DECIMAL)
+			ELSE
+				CAST('0' AS DECIMAL)
+		END AS NROACCIONESCIRC,
+		AT10_CARTERA_FIDEICOMISO_TMP.BASECALCULO AS BASECALCULO
+	FROM AT_STG.AT10_CARTERA_FIDEICOMISO_TMP AS AT10_CARTERA_FIDEICOMISO_TMP
+	LEFT OUTER JOIN AT_STG.AT10_HOM_ACCIONES_TMP AS AT10_HOM_ACCIONES_TMP ON AT10_CARTERA_FIDEICOMISO_TMP.CODINSTRUMENTO = AT10_HOM_ACCIONES_TMP.CODINSTRUMENTO
+) AS T1;
+    ''')
+
+def AT10_FIDEICOMISO_FINAL(**kwargs):
+    
+    #Se inicializan los hooks
+    hook = PostgresHook(postgres_conn_id='repodataprd')
+    gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
+    fecha_inicio_variable = get_variable("FechaInicio")
+    
+	# Se hace drop de la tabla si existe
+    hook.run("DROP TABLE IF EXISTS AT_STG.AT10_FIDEICOMISO_FINAL;")
+    
+	# Crea tabla para insumo de CARTERA FIDEICOMISO si no existe
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS AT_STG.AT10_FIDEICOMISO_FINAL (
+		OFICINA	VARCHAR(10),
+		CODINSTRUMENTO	VARCHAR(20),
+		TIPOSISTEMA	VARCHAR(10),
+		CODCTACONTABLE	VARCHAR(20),
+		IDINSTRUMENTO	VARCHAR(10),
+		CODEMISOR	VARCHAR(10),
+		PAISEMISOR	VARCHAR(10),
+		CODCUSTODIO	VARCHAR(10),
+		PAISCUSTODIO	VARCHAR(10),
+		EMPRESARIESGOCUSTODIO	VARCHAR(200),
+		CALIFRIESGOCUSTODIO	VARCHAR(20),
+		MONEDA	VARCHAR(10),
+		FECHAEMISION	VARCHAR(8),
+		FECHAADQUISICION	VARCHAR(8),
+		FECHAVCTO	VARCHAR(8),
+		ULTFECHATRANS	VARCHAR(8),
+		NROTRANSFERENCIAS	VARCHAR(100),
+		VALORNOMINAL	NUMERIC(30,8),
+		COSTOADQUISICION	NUMERIC(30,8),
+		VALORMERCADOTRANS	NUMERIC(20,2),
+		PORCENTAJECOMPRA	NUMERIC(30,8),
+		PORCENTAJEVALORMERCADO	NUMERIC(30,8),
+		VALORMERCADO	NUMERIC(30,8),
+		VALORPRESENTE	NUMERIC(30,8),
+		TIPOCAMBIOCOMPRA	NUMERIC(30,8),
+		TIPOCAMBIOCIERRE	NUMERIC(30,8),
+		GANOPERDIFCAMBIARIO	NUMERIC(20,2),
+		GANOPERDNOREALIZADA	NUMERIC(30,8),
+		PRIMAODESCUENTO	NUMERIC(30,8),
+		COSTOAMORTIZADO	NUMERIC(30,8),
+		VALORENLIBROS	NUMERIC(30,8),
+		TASADESCTO	NUMERIC(10,4),
+		NROACCIONES	VARCHAR(30),
+		PRECIOMERCADOACCIONES	NUMERIC(20,2),
+		PARTCPATRIMONIAL	NUMERIC(20,4),
+		MONTOPROVISION	NUMERIC(20,2),
+		NRODECRETO	VARCHAR(100),
+		NROEMISION	VARCHAR(100),
+		SERIEINSTR	VARCHAR(100),
+		TASAINTCUPON	NUMERIC(10,4),
+		TASAINTERESES	NUMERIC(10,4),
+		FECHAINICIOCP	VARCHAR(8),
+		FECHAVTOCP	VARCHAR(8),
+		INTERESESCOBRADOS	NUMERIC(20,2),
+		INTERESESDEVENGADOS	NUMERIC(20,2),
+		DIVIDENDOSCOBRADOS	NUMERIC(20,2),
+		RENDPORCOBRAR	NUMERIC(20,2),
+		PERIOPAGOINT	VARCHAR(30),
+		FECHACOBRO	VARCHAR(8),
+		DIVDECRNOCOBRADOS	NUMERIC(20,2),
+		CTACBLEORITRANS	VARCHAR(30),
+		MONTOCANJE	NUMERIC(20,2),
+		FECHACANJE	VARCHAR(8),
+		CONTRAPARTECANJE	VARCHAR(100),
+		CODINSTRENTREGADO	VARCHAR(15),
+		PATRIEMPRESA	NUMERIC(20,2),
+		FECHAEDOFINANCIERO	VARCHAR(8),
+		MONTOCAPSOCIAL	NUMERIC(20,2),
+		NROACCIONESCIRC	NUMERIC(20,2),
+		CANTIDADACCIONES	NUMERIC(30),
+		ACTIVOSUBYACENTE	NUMERIC(30),
+		VALORNOMACTIVO	NUMERIC(20,2),
+		MONEDAACTIVO	VARCHAR(10),
+		TIPOCAMCIERRESUB	NUMERIC(10,4),
+		CODEMISORSUB	VARCHAR(10),
+		CODCUSTODIOSUB	VARCHAR(10),
+		TASACUPONSUB	NUMERIC(10,4),
+		FECHAVCTOSUB	VARCHAR(8),
+		RESULTADONETO	NUMERIC(20,2),
+		GANOPERPARTPATRIM	NUMERIC(20,2),
+		BASECALCULO	VARCHAR(30)
+	);
+    ''')
+    
+    # Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE AT_STG.AT10_FIDEICOMISO_FINAL;")
+    
+    # Insertamos join en la tabla
+    hook.run(f'''
+    INSERT INTO AT_STG.AT10_FIDEICOMISO_FINAL (
+	OFICINA,
+	CODINSTRUMENTO,
+	TIPOSISTEMA,
+	CODCTACONTABLE,
+	IDINSTRUMENTO,
+	CODEMISOR,
+	PAISEMISOR,
+	CODCUSTODIO,
+	PAISCUSTODIO,
+	EMPRESARIESGOCUSTODIO,
+	CALIFRIESGOCUSTODIO,
+	MONEDA,
+	FECHAEMISION,
+	FECHAADQUISICION,
+	FECHAVCTO,
+	ULTFECHATRANS,
+	NROTRANSFERENCIAS,
+	VALORNOMINAL,
+	COSTOADQUISICION,
+	VALORMERCADOTRANS,
+	PORCENTAJECOMPRA,
+	PORCENTAJEVALORMERCADO,
+	VALORMERCADO,
+	VALORPRESENTE,
+	TIPOCAMBIOCOMPRA,
+	TIPOCAMBIOCIERRE,
+	GANOPERDIFCAMBIARIO,
+	GANOPERDNOREALIZADA,
+	PRIMAODESCUENTO,
+	COSTOAMORTIZADO,
+	VALORENLIBROS,
+	TASADESCTO,
+	NROACCIONES,
+	PRECIOMERCADOACCIONES,
+	PARTCPATRIMONIAL,
+	MONTOPROVISION,
+	NRODECRETO,
+	NROEMISION,
+	SERIEINSTR,
+	TASAINTCUPON,
+	TASAINTERESES,
+	FECHAINICIOCP,
+	FECHAVTOCP,
+	INTERESESCOBRADOS,
+	INTERESESDEVENGADOS,
+	DIVIDENDOSCOBRADOS,
+	RENDPORCOBRAR,
+	PERIOPAGOINT,
+	FECHACOBRO,
+	DIVDECRNOCOBRADOS,
+	CTACBLEORITRANS,
+	MONTOCANJE,
+	FECHACANJE,
+	CONTRAPARTECANJE,
+	CODINSTRENTREGADO,
+	PATRIEMPRESA,
+	FECHAEDOFINANCIERO,
+	MONTOCAPSOCIAL,
+	NROACCIONESCIRC,
+	CANTIDADACCIONES,
+	ACTIVOSUBYACENTE,
+	VALORNOMACTIVO,
+	MONEDAACTIVO,
+	TIPOCAMCIERRESUB,
+	CODEMISORSUB,
+	CODCUSTODIOSUB,
+	TASACUPONSUB,
+	FECHAVCTOSUB,
+	RESULTADONETO,
+	GANOPERPARTPATRIM,
+	BASECALCULO
+	)
+	SELECT
+		LPAD(AT10_FIDEICOMISO_TMP.OFICINA, 4, '0') AS OFICINA,
+		AT10_FIDEICOMISO_TMP.CODINSTRUMENTO,
+		AT10_FIDEICOMISO_TMP.TIPOSISTEMA,
+		AT10_FIDEICOMISO_TMP.CODCTACONTABLE,
+		AT10_FIDEICOMISO_TMP.IDINSTRUMENTO,
+		AT10_FIDEICOMISO_TMP.CODEMISOR,
+		COALESCE(NULLIF(AT10_FIDEICOMISO_TMP.PAISEMISOR, ''), 'VE') AS PAISEMISOR,
+		CASE WHEN AT10_FIDEICOMISO_TMP.CODCUSTODIO = '0' THEN '147' ELSE AT10_FIDEICOMISO_TMP.CODCUSTODIO END AS CODCUSTODIO,
+		COALESCE(NULLIF(AT10_FIDEICOMISO_TMP.PAISCUSTODIO, ''), 'VE') AS PAISCUSTODIO,
+		AT10_FIDEICOMISO_TMP.EMPRESARIESGOCUSTODIO,
+		AT10_FIDEICOMISO_TMP.CALIFRIESGOCUSTODIO,
+		CASE WHEN AT10_FIDEICOMISO_TMP.MONEDA = 'VEB' THEN '#ODI_AT_SUDEBAN_DEV.Moneda_Vzla' ELSE AT10_FIDEICOMISO_TMP.MONEDA END AS MONEDA,
+		AT10_FIDEICOMISO_TMP.FECHAEMISION,
+		AT10_FIDEICOMISO_TMP.FECHAADQUISICION,
+		CASE WHEN AT10_FIDEICOMISO_TMP.IDINSTRUMENTO IN ('1', '2', '59', '4', '80', '81') THEN '1900-01-01' ELSE AT10_FIDEICOMISO_TMP.FECHAVCTO END AS FECHAVCTO,
+		AT10_FIDEICOMISO_TMP.ULTFECHATRANS,
+		AT10_FIDEICOMISO_TMP.NROTRANSFERENCIAS,
+		AT10_FIDEICOMISO_TMP.VALORNOMINAL,
+		AT10_FIDEICOMISO_TMP.COSTOADQUISICION,
+		AT10_FIDEICOMISO_TMP.VALORMERCADOTRANS,
+		(ROUND(AT10_FIDEICOMISO_TMP.COSTOADQUISICION, 2) / ROUND(AT10_FIDEICOMISO_TMP.VALORNOMINAL, 2)) * 100 AS PORCENTAJECOMPRA,
+		AT10_FIDEICOMISO_TMP.PORCENTAJEVALORMERCADO,
+		CASE WHEN CAST(AT10_FIDEICOMISO_TMP.VALORMERCADO AS TEXT) != CAST(((ROUND(AT10_FIDEICOMISO_TMP.PORCENTAJEVALORMERCADO, 4) / 100) * ROUND(AT10_FIDEICOMISO_TMP.VALORNOMINAL, 2)) AS TEXT) THEN ((ROUND(AT10_FIDEICOMISO_TMP.PORCENTAJEVALORMERCADO, 4) / 100) * ROUND(AT10_FIDEICOMISO_TMP.VALORNOMINAL, 2)) ELSE AT10_FIDEICOMISO_TMP.VALORMERCADO END AS VALORMERCADO,
+		CASE WHEN ROUND(AT10_FIDEICOMISO_TMP.VALORPRESENTE, 2) = 0 THEN 0.01 ELSE AT10_FIDEICOMISO_TMP.VALORPRESENTE END AS VALORPRESENTE,
+		AT10_FIDEICOMISO_TMP.TIPOCAMBIOCOMPRA,
+		AT10_FIDEICOMISO_TMP.TIPOCAMBIOCIERRE,
+		AT10_FIDEICOMISO_TMP.GANOPERDIFCAMBIARIO,
+		AT10_FIDEICOMISO_TMP.GANOPERDNOREALIZADA,
+		AT10_FIDEICOMISO_TMP.PRIMAODESCUENTO,
+		AT10_FIDEICOMISO_TMP.COSTOAMORTIZADO,
+		AT10_FIDEICOMISO_TMP.VALORENLIBROS,
+		AT10_FIDEICOMISO_TMP.TASADESCTO,
+		AT10_FIDEICOMISO_TMP.NROACCIONES,
+		AT10_FIDEICOMISO_TMP.PRECIOMERCADOACCIONES,
+		AT10_FIDEICOMISO_TMP.PARTCPATRIMONIAL,
+		AT10_FIDEICOMISO_TMP.MONTOPROVISION,
+		AT10_FIDEICOMISO_TMP.NRODECRETO,
+		AT10_FIDEICOMISO_TMP.NROEMISION,
+		AT10_FIDEICOMISO_TMP.SERIEINSTR,
+		CASE WHEN SUBSTRING(AT10_FIDEICOMISO_TMP.CODCTACONTABLE, 1, 5) NOT IN ('12101', '12116', '12117', '12118', '12119', '12120', '12201', '12216', '12217', '12218', '12219', '12220', '12301', '12222') 
+     	AND CAST(AT10_FIDEICOMISO_TMP.PERIOPAGOINT AS INTEGER) = 0 THEN 0 
+     	ELSE AT10_FIDEICOMISO_TMP.TASAINTCUPON END AS TASAINTCUPON,
+		CASE WHEN SUBSTRING(AT10_FIDEICOMISO_TMP.CODCTACONTABLE, 1, 5) NOT IN ('12101', '12116', '12117', '12118', '12119', '12120', '12201', '12216', '12217', '12218', '12219', '12220', '12301', '12222') 
+     	AND CAST(AT10_FIDEICOMISO_TMP.PERIOPAGOINT AS INTEGER) = 0 THEN 0 
+     	ELSE AT10_FIDEICOMISO_TMP.TASAINTERESES END AS TASAINTERESES,
+		CASE WHEN (AT10_FIDEICOMISO_TMP.TASAINTERESES = 0 OR CAST(AT10_FIDEICOMISO_TMP.PERIOPAGOINT AS INTEGER) = 0) THEN '1900-01-01' ELSE AT10_FIDEICOMISO_TMP.FECHAINICIOCP END AS FECHAINICIOCP,
+		CASE WHEN AT10_FIDEICOMISO_TMP.TASAINTCUPON = 0 THEN '1900-01-01' ELSE AT10_FIDEICOMISO_TMP.FECHAVTOCP END AS FECHAVTOCP,
+		AT10_FIDEICOMISO_TMP.INTERESESCOBRADOS,
+		AT10_FIDEICOMISO_TMP.INTERESESDEVENGADOS,
+		AT10_FIDEICOMISO_TMP.DIVIDENDOSCOBRADOS,
+		AT10_FIDEICOMISO_TMP.RENDPORCOBRAR,
+		AT10_FIDEICOMISO_TMP.PERIOPAGOINT,
+		AT10_FIDEICOMISO_TMP.FECHACOBRO,
+		AT10_FIDEICOMISO_TMP.DIVDECRNOCOBRADOS,
+        CASE WHEN (SUBSTRING(AT10_FIDEICOMISO_TMP.CODCTACONTABLE, 1, 3) IN ('121', '122', '123', '124', '125', '126') AND CAST(AT10_FIDEICOMISO_TMP.NROTRANSFERENCIAS AS INTEGER) = 0 AND CAST(AT10_FIDEICOMISO_TMP.FECHAADQUISICION AS DATE) < CAST('{fecha_inicio_variable}' AS DATE) AND AT10_FIDEICOMISO_TMP.CTACBLEORITRANS NOT IN ('121', '122', '123', '124', '125', '126')) THEN AT10_FIDEICOMISO_TMP.CODCTACONTABLE ELSE AT10_FIDEICOMISO_TMP.CTACBLEORITRANS END AS CTACBLEORITRANS,
+		AT10_FIDEICOMISO_TMP.MONTOCANJE,
+		AT10_FIDEICOMISO_TMP.FECHACANJE,
+		AT10_FIDEICOMISO_TMP.CONTRAPARTECANJE,
+		AT10_FIDEICOMISO_TMP.CODINSTRENTREGADO,
+		AT10_FIDEICOMISO_TMP.PATRIEMPRESA,
+		AT10_FIDEICOMISO_TMP.FECHAEDOFINANCIERO,
+		AT10_FIDEICOMISO_TMP.MONTOCAPSOCIAL,
+		AT10_FIDEICOMISO_TMP.NROACCIONESCIRC,
+		AT10_FIDEICOMISO_TMP.CANTIDADACCIONES,
+		AT10_FIDEICOMISO_TMP.ACTIVOSUBYACENTE,
+		AT10_FIDEICOMISO_TMP.VALORNOMACTIVO,
+		CASE WHEN AT10_FIDEICOMISO_TMP.MONEDAACTIVO = 'VEB' THEN '#ODI_AT_SUDEBAN_DEV.Moneda_Vzla' ELSE AT10_FIDEICOMISO_TMP.MONEDAACTIVO END AS MONEDAACTIVO,
+		AT10_FIDEICOMISO_TMP.TIPOCAMCIERRESUB,
+		AT10_FIDEICOMISO_TMP.CODEMISORSUB,
+		SUBSTRING(AT10_FIDEICOMISO_TMP.CODCUSTODIOSUB, 1, 5) AS CODCUSTODIOSUB,
+		CASE WHEN (AT10_FIDEICOMISO_TMP.MONEDAACTIVO = '0') THEN 0 ELSE AT10_FIDEICOMISO_TMP.TIPOCAMCIERRESUB END AS TASACUPONSUB,
+		AT10_FIDEICOMISO_TMP.FECHAVCTOSUB,
+		AT10_FIDEICOMISO_TMP.RESULTADONETO,
+		AT10_FIDEICOMISO_TMP.GANOPERPARTPATRIM,
+		REGEXP_REPLACE(AT10_FIDEICOMISO_TMP.BASECALCULO, '(^\s*|\s*$)', '', 'g') AS BASECALCULO
+	FROM AT_STG.AT10_FIDEICOMISO_TMP;
+    ''')
+
+def AT10_UPDATE_FIDEICOMISO(**kwargs):
+    #Se inicializan los hooks
+    hook = PostgresHook(postgres_conn_id='repodataprd')
+    gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
+
+    sql_query_deftxt = '''UPDATE AT_STG.AT10_FIDEICOMISO_FINAL SET FECHAVTOCP = '19000101' WHERE TASAINTCUPON = 0;'''
+    hook.run(sql_query_deftxt)
+
+    sql_query_deftxt = '''UPDATE AT_STG.AT10_FIDEICOMISO_FINAL SET TASAINTCUPON = 5.375, TASAINTERESES = 5.375 WHERE CODINSTRUMENTO IN ('XS0294364954') AND TASAINTCUPON = 5.38;'''
+    hook.run(sql_query_deftxt)
+
+    sql_query_deftxt = '''UPDATE AT_STG.AT10_FIDEICOMISO_FINAL
+SET PRIMAODESCUENTO = ((CAST(REPLACE(CAST(COSTOADQUISICION AS TEXT), ',', '.') AS DECIMAL) - VALORNOMINAL) * TIPOCAMBIOCIERRE)
+WHERE CODINSTRUMENTO = 'USP97475AG56' AND FECHAADQUISICION = '20191128';'''
+    hook.run(sql_query_deftxt)
+
+    sql_query_deftxt = '''UPDATE AT_STG.AT10_FIDEICOMISO_FINAL
+SET VALORENLIBROS = ((CAST(REPLACE(CAST(COSTOADQUISICION AS TEXT), ',', '.') AS DECIMAL) * TIPOCAMBIOCIERRE) - COSTOAMORTIZADO)
+WHERE CODINSTRUMENTO = 'USP97475AG56' AND FECHAADQUISICION = '20191128';'''
+    hook.run(sql_query_deftxt)
+
+    sql_query_deftxt = '''UPDATE AT_STG.AT10_FIDEICOMISO_FINAL
+SET PORCENTAJECOMPRA = ((COSTOADQUISICION / VALORNOMINAL) * 100)
+WHERE CODINSTRUMENTO = 'USP97475AG56' AND FECHAADQUISICION = '20191128';'''
+    hook.run(sql_query_deftxt)
+
+    sql_query_deftxt = '''DELETE FROM AT_STG.AT10_FIDEICOMISO_FINAL WHERE CODINSTRUMENTO IS NULL;'''
+    hook.run(sql_query_deftxt)
+
+    sql_query_deftxt = '''UPDATE AT_STG.AT10_FIDEICOMISO_FINAL
+SET PORCENTAJECOMPRA = ROUND(((ROUND(COSTOADQUISICION, 4) / VALORNOMINAL) * 100), 8)
+WHERE CODINSTRUMENTO IN ('USP97475AG56') AND VALORNOMINAL = 62000;'''
+    hook.run(sql_query_deftxt)
+
+    sql_query_deftxt = '''UPDATE AT_STG.AT10_FIDEICOMISO_FINAL
+SET VALORENLIBROS = ((CAST(REPLACE(CAST(COSTOADQUISICION AS TEXT), ',', '.') AS DECIMAL) * TIPOCAMBIOCIERRE) - COSTOAMORTIZADO)
+WHERE CODINSTRUMENTO IN ('USP97475AG56') AND VALORNOMINAL = 62000;'''
+    hook.run(sql_query_deftxt)
+
+    sql_query_deftxt = '''UPDATE AT_STG.AT10_FIDEICOMISO_FINAL SET PORCENTAJECOMPRA = ((COSTOADQUISICION / VALORNOMINAL) * 100)
+WHERE PRIMAODESCUENTO - ((CAST(REPLACE(CAST(COSTOADQUISICION AS TEXT), '.', '') AS NUMERIC) - VALORNOMINAL) * TIPOCAMBIOCIERRE) > 50
+AND PRIMAODESCUENTO - ((CAST(REPLACE(CAST(COSTOADQUISICION AS TEXT), '.', '') AS NUMERIC) - VALORNOMINAL) * TIPOCAMBIOCIERRE) < 50;'''
+    hook.run(sql_query_deftxt)
+
+    sql_query_deftxt = '''UPDATE AT_STG.AT10_FIDEICOMISO_FINAL SET VALORENLIBROS =
+((CAST(REPLACE(CAST(COSTOADQUISICION AS TEXT), ',', '.') AS DECIMAL) * TIPOCAMBIOCIERRE) - COSTOAMORTIZADO)
+WHERE PRIMAODESCUENTO - ((CAST(CAST(COSTOADQUISICION AS TEXT) AS DECIMAL) - VALORNOMINAL) * TIPOCAMBIOCIERRE) > 50
+AND PRIMAODESCUENTO - ((CAST(CAST(COSTOADQUISICION AS TEXT) AS DECIMAL) - VALORNOMINAL) * TIPOCAMBIOCIERRE) < 50;'''
+    hook.run(sql_query_deftxt)
+
+    sql_query_deftxt = '''UPDATE AT_STG.AT10_FIDEICOMISO_FINAL
+SET PRIMAODESCUENTO = ((CAST(REPLACE(CAST(COSTOADQUISICION AS TEXT), ',', '.') AS DECIMAL) - VALORNOMINAL) * TIPOCAMBIOCIERRE)
+WHERE ABS(PRIMAODESCUENTO - ((CAST(REPLACE(CAST(COSTOADQUISICION AS TEXT), ',', '.') AS DECIMAL) - VALORNOMINAL) * TIPOCAMBIOCIERRE)) BETWEEN 50 AND 50;'''
+    hook.run(sql_query_deftxt)
+
+
+def ATS_TH_AT10_FIDEICOMISO(**kwargs):
+    #Se inicializan los hooks
+    hook = PostgresHook(postgres_conn_id='repodataprd')
+    gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
+    
+	# Se hace drop de la tabla si existe
+    hook.run("DROP TABLE IF EXISTS ATSUDEBAN.ATS_TH_AT10;")
+    
+	# Crea tabla ATSUDEBAN.ATS_TH_AT10
+    hook.run('''
+        CREATE TABLE IF NOT EXISTS ATSUDEBAN.ATS_TH_AT10 (
+		OFICINA	VARCHAR(10),
+		CODINSTRUMENTO	VARCHAR(20),
+		TIPOSISTEMA	VARCHAR(10),
+		CODCTACONTABLE	VARCHAR(20),
+		IDINSTRUMENTO	VARCHAR(10),
+		CODEMISOR	VARCHAR(10),
+		PAISEMISOR	VARCHAR(10),
+		CODCUSTODIO	VARCHAR(10),
+		PAISCUSTODIO	VARCHAR(10),
+		EMPRESARIESGOCUSTODIO	VARCHAR(200),
+		CALIFRIESGOCUSTODIO	VARCHAR(20),
+		MONEDA	VARCHAR(10),
+		FECHAEMISION	VARCHAR(8),
+		FECHAADQUISICION	VARCHAR(8),
+		FECHAVCTO	VARCHAR(8),
+		ULTFECHATRANS	VARCHAR(8),
+		NROTRANSFERENCIAS	VARCHAR(100),
+		VALORNOMINAL	NUMERIC(30,8),
+		COSTOADQUISICION	NUMERIC(30,8),
+		VALORMERCADOTRANS	NUMERIC(30,2),
+		PORCENTAJECOMPRA	NUMERIC(30,8),
+		PORCENTAJEVALORMERCADO	NUMERIC(30,8),
+		VALORMERCADO	NUMERIC(30,8),
+		VALORPRESENTE	NUMERIC(30,8),
+		TIPOCAMBIOCOMPRA	NUMERIC(30,8),
+		TIPOCAMBIOCIERRE	NUMERIC(30,8),
+		GANOPERDIFCAMBIARIO	NUMERIC(30,2),
+		GANOPERDNOREALIZADA	NUMERIC(30,8),
+		PRIMAODESCUENTO	NUMERIC(30,8),
+		COSTOAMORTIZADO	NUMERIC(30,8),
+		VALORENLIBROS	NUMERIC(30,8),
+		TASADESCTO	NUMERIC(10,4),
+		NROACCIONES	VARCHAR(30),
+		PRECIOMERCADOACCIONES	NUMERIC(30,2),
+		PARTCPATRIMONIAL	NUMERIC(30,4),
+		MONTOPROVISION	NUMERIC(30,2),
+		NRODECRETO	VARCHAR(100),
+		NROEMISION	VARCHAR(100),
+		SERIEINSTR	VARCHAR(100),
+		TASAINTCUPON	NUMERIC(10,4),
+		TASAINTERESES	NUMERIC(10,4),
+		FECHAINICIOCP	VARCHAR(8),
+		FECHAVTOCP	VARCHAR(8),
+		INTERESESCOBRADOS	NUMERIC(30,2),
+		INTERESESDEVENGADOS	NUMERIC(30,2),
+		DIVIDENDOSCOBRADOS	NUMERIC(30,2),
+		RENDPORCOBRAR	NUMERIC(30,2),
+		PERIOPAGOINT	VARCHAR(30),
+		FECHACOBRO	VARCHAR(8),
+		DIVDECRNOCOBRADOS	NUMERIC(30,2),
+		CTACBLEORITRANS	VARCHAR(30),
+		MONTOCANJE	NUMERIC(30,2),
+		FECHACANJE	VARCHAR(8),
+		CONTRAPARTECANJE	VARCHAR(100),
+		CODINSTRENTREGADO	VARCHAR(15),
+		PATRIEMPRESA	NUMERIC(30,2),
+		FECHAEDOFINANCIERO	VARCHAR(8),
+		MONTOCAPSOCIAL	NUMERIC(30,2),
+		NROACCIONESCIRC	NUMERIC(30,2),
+		CANTIDADACCIONES	NUMERIC(30),
+		ACTIVOSUBYACENTE	NUMERIC(30),
+		VALORNOMACTIVO	NUMERIC(30,2),
+		MONEDAACTIVO	VARCHAR(10),
+		TIPOCAMCIERRESUB	NUMERIC(10,4),
+		CODEMISORSUB	VARCHAR(10),
+		CODCUSTODIOSUB	VARCHAR(10),
+		TASACUPONSUB	NUMERIC(10,4),
+		FECHAVCTOSUB	VARCHAR(8),
+		RESULTADONETO	NUMERIC(30,2),
+		GANOPERPARTPATRIM	NUMERIC(30,2),
+		BASECALCULO	VARCHAR(30),
+		PORCION	VARCHAR(30)
+	);
+    ''')
+
+    # Vaciamos la tabla para no duplicar datos.
+    hook.run("TRUNCATE TABLE ATSUDEBAN.ATS_TH_AT10;")
+
+	# Crea tabla temporal y guarda data
+    hook.run('''
+        INSERT INTO ATSUDEBAN.ATS_TH_AT10 (
+		OFICINA,
+		CODINSTRUMENTO,
+		TIPOSISTEMA,
+		CODCTACONTABLE,
+		IDINSTRUMENTO,
+		CODEMISOR,
+		PAISEMISOR,
+		CODCUSTODIO,
+		PAISCUSTODIO,
+		EMPRESARIESGOCUSTODIO,
+		CALIFRIESGOCUSTODIO,
+		MONEDA,
+		FECHAEMISION,
+		FECHAADQUISICION,
+		FECHAVCTO,
+		ULTFECHATRANS,
+		NROTRANSFERENCIAS,
+		VALORNOMINAL,
+		COSTOADQUISICION,
+		VALORMERCADOTRANS,
+		PORCENTAJECOMPRA,
+		PORCENTAJEVALORMERCADO,
+		VALORMERCADO,
+		VALORPRESENTE,
+		TIPOCAMBIOCOMPRA,
+		TIPOCAMBIOCIERRE,
+		GANOPERDIFCAMBIARIO,
+		GANOPERDNOREALIZADA,
+		PRIMAODESCUENTO,
+		COSTOAMORTIZADO,
+		VALORENLIBROS,
+		TASADESCTO,
+		NROACCIONES,
+		PRECIOMERCADOACCIONES,
+		PARTCPATRIMONIAL,
+		MONTOPROVISION,
+		NRODECRETO,
+		NROEMISION,
+		SERIEINSTR,
+		TASAINTCUPON,
+		TASAINTERESES,
+		FECHAINICIOCP,
+		FECHAVTOCP,
+		INTERESESCOBRADOS,
+		INTERESESDEVENGADOS,
+		DIVIDENDOSCOBRADOS,
+		RENDPORCOBRAR,
+		PERIOPAGOINT,
+		FECHACOBRO,
+		DIVDECRNOCOBRADOS,
+		CTACBLEORITRANS,
+		MONTOCANJE,
+		FECHACANJE,
+		CONTRAPARTECANJE,
+		CODINSTRENTREGADO,
+		PATRIEMPRESA,
+		FECHAEDOFINANCIERO,
+		MONTOCAPSOCIAL,
+		NROACCIONESCIRC,
+		CANTIDADACCIONES,
+		ACTIVOSUBYACENTE,
+		VALORNOMACTIVO,
+		MONEDAACTIVO,
+		TIPOCAMCIERRESUB,
+		CODEMISORSUB,
+		CODCUSTODIOSUB,
+		TASACUPONSUB,
+		FECHAVCTOSUB,
+		RESULTADONETO,
+		GANOPERPARTPATRIM,
+		BASECALCULO,
+		PORCION
+	)
+	SELECT
+	AT10_FIDEICOMISO_FINAL.OFICINA AS OFICINA,
+	AT10_FIDEICOMISO_FINAL.CODINSTRUMENTO AS CODINSTRUMENTO,
+	AT10_FIDEICOMISO_FINAL.TIPOSISTEMA AS TIPOSISTEMA,
+	AT10_FIDEICOMISO_FINAL.CODCTACONTABLE AS CODCTACONTABLE,
+	AT10_FIDEICOMISO_FINAL.IDINSTRUMENTO AS IDINSTRUMENTO,
+	AT10_FIDEICOMISO_FINAL.CODEMISOR AS CODEMISOR,
+	AT10_FIDEICOMISO_FINAL.PAISEMISOR AS PAISEMISOR,
+	AT10_FIDEICOMISO_FINAL.CODCUSTODIO AS CODCUSTODIO,
+	AT10_FIDEICOMISO_FINAL.PAISCUSTODIO AS PAISCUSTODIO,
+	AT10_FIDEICOMISO_FINAL.EMPRESARIESGOCUSTODIO AS EMPRESARIESGOCUSTODIO,
+	AT10_FIDEICOMISO_FINAL.CALIFRIESGOCUSTODIO AS CALIFRIESGOCUSTODIO,
+	AT10_FIDEICOMISO_FINAL.MONEDA AS MONEDA,
+	AT10_FIDEICOMISO_FINAL.FECHAEMISION AS FECHAEMISION,
+	AT10_FIDEICOMISO_FINAL.FECHAADQUISICION AS FECHAADQUISICION,
+	AT10_FIDEICOMISO_FINAL.FECHAVCTO AS FECHAVCTO,
+	AT10_FIDEICOMISO_FINAL.ULTFECHATRANS AS ULTFECHATRANS,
+	AT10_FIDEICOMISO_FINAL.NROTRANSFERENCIAS AS NROTRANSFERENCIAS,
+	AT10_FIDEICOMISO_FINAL.VALORNOMINAL AS VALORNOMINAL,
+	AT10_FIDEICOMISO_FINAL.COSTOADQUISICION AS COSTOADQUISICION,
+	AT10_FIDEICOMISO_FINAL.VALORMERCADOTRANS AS VALORMERCADOTRANS,
+	AT10_FIDEICOMISO_FINAL.PORCENTAJECOMPRA AS PORCENTAJECOMPRA,
+	AT10_FIDEICOMISO_FINAL.PORCENTAJEVALORMERCADO AS PORCENTAJEVALORMERCADO,
+	AT10_FIDEICOMISO_FINAL.VALORMERCADO AS VALORMERCADO,
+	AT10_FIDEICOMISO_FINAL.VALORPRESENTE AS VALORPRESENTE,
+	AT10_FIDEICOMISO_FINAL.TIPOCAMBIOCOMPRA AS TIPOCAMBIOCOMPRA,
+	AT10_FIDEICOMISO_FINAL.TIPOCAMBIOCIERRE AS TIPOCAMBIOCIERRE,
+	AT10_FIDEICOMISO_FINAL.GANOPERDIFCAMBIARIO AS GANOPERDIFCAMBIARIO,
+	AT10_FIDEICOMISO_FINAL.GANOPERDNOREALIZADA AS GANOPERDNOREALIZADA,
+	AT10_FIDEICOMISO_FINAL.PRIMAODESCUENTO AS PRIMAODESCUENTO,
+	AT10_FIDEICOMISO_FINAL.COSTOAMORTIZADO AS COSTOAMORTIZADO,
+	AT10_FIDEICOMISO_FINAL.VALORENLIBROS AS VALORENLIBROS,
+	AT10_FIDEICOMISO_FINAL.TASADESCTO AS TASADESCTO,
+	AT10_FIDEICOMISO_FINAL.NROACCIONES AS NROACCIONES,
+	AT10_FIDEICOMISO_FINAL.PRECIOMERCADOACCIONES AS PRECIOMERCADOACCIONES,
+	AT10_FIDEICOMISO_FINAL.PARTCPATRIMONIAL AS PARTCPATRIMONIAL,
+	AT10_FIDEICOMISO_FINAL.MONTOPROVISION AS MONTOPROVISION,
+	AT10_FIDEICOMISO_FINAL.NRODECRETO AS NRODECRETO,
+	AT10_FIDEICOMISO_FINAL.NROEMISION AS NROEMISION,
+	AT10_FIDEICOMISO_FINAL.SERIEINSTR AS SERIEINSTR,
+	AT10_FIDEICOMISO_FINAL.TASAINTCUPON AS TASAINTCUPON,
+	AT10_FIDEICOMISO_FINAL.TASAINTERESES AS TASAINTERESES,
+	AT10_FIDEICOMISO_FINAL.FECHAINICIOCP AS FECHAINICIOCP,
+	AT10_FIDEICOMISO_FINAL.FECHAVTOCP AS FECHAVTOCP,
+	AT10_FIDEICOMISO_FINAL.INTERESESCOBRADOS AS INTERESESCOBRADOS,
+	AT10_FIDEICOMISO_FINAL.INTERESESDEVENGADOS AS INTERESESDEVENGADOS,
+	AT10_FIDEICOMISO_FINAL.DIVIDENDOSCOBRADOS AS DIVIDENDOSCOBRADOS,
+	AT10_FIDEICOMISO_FINAL.RENDPORCOBRAR AS RENDPORCOBRAR,
+	AT10_FIDEICOMISO_FINAL.PERIOPAGOINT AS PERIOPAGOINT,
+	AT10_FIDEICOMISO_FINAL.FECHACOBRO AS FECHACOBRO,
+	AT10_FIDEICOMISO_FINAL.DIVDECRNOCOBRADOS AS DIVDECRNOCOBRADOS,
+	AT10_FIDEICOMISO_FINAL.CTACBLEORITRANS AS CTACBLEORITRANS,
+	AT10_FIDEICOMISO_FINAL.MONTOCANJE AS MONTOCANJE,
+	AT10_FIDEICOMISO_FINAL.FECHACANJE AS FECHACANJE,
+	AT10_FIDEICOMISO_FINAL.CONTRAPARTECANJE AS CONTRAPARTECANJE,
+	AT10_FIDEICOMISO_FINAL.CODINSTRENTREGADO AS CODINSTRENTREGADO,
+	AT10_FIDEICOMISO_FINAL.PATRIEMPRESA AS PATRIEMPRESA,
+	AT10_FIDEICOMISO_FINAL.FECHAEDOFINANCIERO AS FECHAEDOFINANCIERO,
+	AT10_FIDEICOMISO_FINAL.MONTOCAPSOCIAL AS MONTOCAPSOCIAL,
+	AT10_FIDEICOMISO_FINAL.NROACCIONESCIRC AS NROACCIONESCIRC,
+	AT10_FIDEICOMISO_FINAL.CANTIDADACCIONES AS CANTIDADACCIONES,
+	AT10_FIDEICOMISO_FINAL.ACTIVOSUBYACENTE AS ACTIVOSUBYACENTE,
+	AT10_FIDEICOMISO_FINAL.VALORNOMACTIVO AS VALORNOMACTIVO,
+	AT10_FIDEICOMISO_FINAL.MONEDAACTIVO AS MONEDAACTIVO,
+	AT10_FIDEICOMISO_FINAL.TIPOCAMCIERRESUB AS TIPOCAMCIERRESUB,
+	AT10_FIDEICOMISO_FINAL.CODEMISORSUB AS CODEMISORSUB,
+	AT10_FIDEICOMISO_FINAL.CODCUSTODIOSUB AS CODCUSTODIOSUB,
+	AT10_FIDEICOMISO_FINAL.TASACUPONSUB AS TASACUPONSUB,
+	AT10_FIDEICOMISO_FINAL.FECHAVCTOSUB AS FECHAVCTOSUB,
+	AT10_FIDEICOMISO_FINAL.RESULTADONETO AS RESULTADONETO,
+	AT10_FIDEICOMISO_FINAL.GANOPERPARTPATRIM AS GANOPERPARTPATRIM,
+	AT10_FIDEICOMISO_FINAL.BASECALCULO AS BASECALCULO,
+    'FIDEICOMISO' AS PORCION
+	FROM AT_STG.AT10_FIDEICOMISO_FINAL;
+    ''')
+
+
+def AT10_FileName_Fideicomiso(**kwargs):
+    value = 'AT10_FIDEICOMISO'
+    Variable.set('AT10_FileName_Fideicomiso', serialize_value(value))
+
+
+
+
+
+
+
+
+
+
+
+###### DEFINICION DEL DAG ###### 
+
+default_args = {
+    'owner': 'airflow',
+    'start_date': datetime(2024, 1, 1),
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5)
+}
+
+dag = DAG(dag_id='AT10_FIDEICOMISO',
+          default_args=default_args,
+          schedule=None, # Aqui se programa cada cuanto ejecutar el DAG
+          catchup=False,
+          tags=['ATs', 'AT10','Fideicomiso','Principal'])
+
+wait_for_file_1 = GCSObjectExistenceSensor(        # En la secuencia de ejecucion, colocar este operador en el orden que convenga (Agregar un operador FileSensor por cada insumo que use el AT)
+    task_id='wait_for_file_1',
+    bucket='airflow-dags-data',  # Conexion predefinida en Airflow para el file system (en Admin > Connections)
+    object='data/AT10/INSUMOS/AT10_COD_HOMOLOGACION.csv', # Colocar nombre del insumo
+    poke_interval=10,              # Intervalo en segundos para verificar
+    timeout=60 * 10,               # Timeout en segundos (10 minutos en este ejemplo)
+    dag=dag
+)
+
+wait_for_file_2 = GCSObjectExistenceSensor(        # En la secuencia de ejecucion, colocar este operador en el orden que convenga (Agregar un operador FileSensor por cada insumo que use el AT)
+    task_id='wait_for_file_2',
+    bucket='airflow-dags-data',  # Conexion predefinida en Airflow para el file system (en Admin > Connections)
+    object='data/AT10/INSUMOS/AT10_PRECIO_NACIONAL.csv', # Colocar nombre del insumo
+    poke_interval=10,              # Intervalo en segundos para verificar
+    timeout=60 * 10,               # Timeout en segundos (10 minutos en este ejemplo)
+    dag=dag
+)
+
+wait_for_file_3 = GCSObjectExistenceSensor(        # En la secuencia de ejecucion, colocar este operador en el orden que convenga (Agregar un operador FileSensor por cada insumo que use el AT)
+    task_id='wait_for_file_3',
+    bucket='airflow-dags-data',  # Conexion predefinida en Airflow para el file system (en Admin > Connections)
+    object='data/AT10/INSUMOS/AT10_PRECIO_MO_EXTRANJERA.csv', # Colocar nombre del insumo
+    poke_interval=10,              # Intervalo en segundos para verificar
+    timeout=60 * 10,               # Timeout en segundos (10 minutos en este ejemplo)
+    dag=dag
+)
+
+wait_for_file_4 = GCSObjectExistenceSensor(        # En la secuencia de ejecucion, colocar este operador en el orden que convenga (Agregar un operador FileSensor por cada insumo que use el AT)
+    task_id='wait_for_file_4',
+    bucket='airflow-dags-data',  # Conexion predefinida en Airflow para el file system (en Admin > Connections)
+    object='data/AT10/INSUMOS/HOM_ACCIONES.csv', # Colocar nombre del insumo
+    poke_interval=10,              # Intervalo en segundos para verificar
+    timeout=60 * 10,               # Timeout en segundos (10 minutos en este ejemplo)
+    dag=dag
+)
+
+wait_for_file_5 = GCSObjectExistenceSensor(        # En la secuencia de ejecucion, colocar este operador en el orden que convenga (Agregar un operador FileSensor por cada insumo que use el AT)
+    task_id='wait_for_file_5',
+    bucket='airflow-dags-data',  # Conexion predefinida en Airflow para el file system (en Admin > Connections)
+    object='data/AT10/INSUMOS/AT10_CARTERA_FIDEICOMISO.csv', # Colocar nombre del insumo
+    poke_interval=10,              # Intervalo en segundos para verificar
+    timeout=60 * 10,               # Timeout en segundos (10 minutos en este ejemplo)
+    dag=dag
+)
+
+FechaInicio_M_task = PythonOperator(
+    task_id='FechaInicio_M_task',
+    python_callable=FechaInicio_M,
+    dag=dag
+)
+
+FechaFin_M_task = PythonOperator(
+    task_id='FechaFin_M_task',
+    python_callable=FechaFin_M,
+    dag=dag
+)
+
+FechaInicio_task = PythonOperator(
+    task_id='FechaInicio_task',
+    python_callable=FechaInicio,
+    dag=dag
+)
+
+FechaFin_task = PythonOperator(
+    task_id='FechaFin_task',
+    python_callable=FechaFin,
+    dag=dag
+)
+
+FileAT_task = PythonOperator(
+    task_id='FileAT_task',
+    python_callable=FileAT,
+    dag=dag
+)
+
+Moneda_Vzla_task = PythonOperator(
+    task_id='Moneda_Vzla_task',
+    python_callable=Moneda_Vzla,
+    dag=dag
+)
+
+FileCodSupervisado_task = PythonOperator(
+    task_id='FileCodSupervisado_task',
+    python_callable=FileCodSupervisado,
+    dag=dag
+)
+
+FileDate_task = PythonOperator(
+    task_id='FileDate_task',
+    python_callable=FileDate,
+    dag=dag
+)
+
+AT10_COD_HOMOLOGACION_task = PythonOperator(
+    task_id='AT10_COD_HOMOLOGACION_task',
+    python_callable=AT10_COD_HOMOLOGACION,
+    dag=dag
+)
+
+AT10_PRECIO_TMP_task = PythonOperator(
+    task_id='AT10_PRECIO_TMP_task',
+    python_callable=AT10_PRECIO_TMP,
+    dag=dag
+)
+
+AT10_PRECIO_ALL_task = PythonOperator(
+    task_id='AT10_PRECIO_ALL_task',
+    python_callable=AT10_PRECIO_ALL,
+    dag=dag
+)
+
+AT10_HOM_ACCIONES_task = PythonOperator(
+    task_id='AT10_HOM_ACCIONES_task',
+    python_callable=AT10_HOM_ACCIONES,
+    dag=dag
+)
+
+AT10_CARTERA_MANUAL_task = PythonOperator(
+    task_id='AT10_CARTERA_MANUAL_task',
+    python_callable=AT10_CARTERA_MANUAL,
+    dag=dag
+)
+
+AT10_FIDEICOMISO_TMP_task = PythonOperator(
+    task_id='AT10_FIDEICOMISO_TMP_task',
+    python_callable=AT10_FIDEICOMISO_TMP,
+    dag=dag
+)
+
+AT10_FIDEICOMISO_FINAL_task = PythonOperator(
+    task_id='AT10_FIDEICOMISO_FINAL_task',
+    python_callable=AT10_FIDEICOMISO_FINAL,
+    dag=dag
+)
+
+AT10_UPDATE_FIDEICOMISO_task = PythonOperator(
+    task_id='AT10_UPDATE_FIDEICOMISO_task',
+    python_callable=AT10_UPDATE_FIDEICOMISO,
+    dag=dag
+)
+
+ATS_TH_AT10_FIDEICOMISO_task = PythonOperator(
+    task_id='ATS_TH_AT10_FIDEICOMISO_task',
+    python_callable=ATS_TH_AT10_FIDEICOMISO,
+    dag=dag
+)
+
+AT10_FileName_Fideicomiso_task = PythonOperator(
+    task_id='AT10_FileName_Fideicomiso_task',
+    python_callable=AT10_FileName_Fideicomiso,
+    dag=dag
+)
+
+Execution_of_the_Scenario_AT10_FIDEICOMISO_TOFILE_version_001_task = TriggerDagRunOperator(
+    task_id='Execution_of_the_Scenario_AT10_FIDEICOMISO_TOFILE_version_001_task',
+    trigger_dag_id='AT10_FIDEICOMISO_TOFILE',  # Acomodar ID del DAG a disparar (Se usa el PackName)
+    wait_for_completion=True,
+    dag=dag
+)
+
+###### SECUENCIA DE EJECUCION ######
+wait_for_file_1 >> wait_for_file_2 >> wait_for_file_3 >> wait_for_file_4 >> wait_for_file_5 >> FechaInicio_M_task >> FechaFin_M_task >> FechaInicio_task >> FechaFin_task >> FileAT_task >> Moneda_Vzla_task >> FileCodSupervisado_task >> FileDate_task >> AT10_COD_HOMOLOGACION_task >> AT10_PRECIO_TMP_task >> AT10_PRECIO_ALL_task >> AT10_HOM_ACCIONES_task >> AT10_CARTERA_MANUAL_task >> AT10_FIDEICOMISO_TMP_task >> AT10_FIDEICOMISO_FINAL_task >> AT10_UPDATE_FIDEICOMISO_task >> ATS_TH_AT10_FIDEICOMISO_task >> AT10_FileName_Fideicomiso_task >> Execution_of_the_Scenario_AT10_FIDEICOMISO_TOFILE_version_001_task

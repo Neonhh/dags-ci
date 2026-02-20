@@ -1,0 +1,138 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "AT03_TO_FILE_ERROR"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ATSUDEBAN_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "67040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "FILE_AT",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "43011",
+        "Txt": "jdbc:snps:dbfile"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ATSUDEBAN"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "ARCHIVOSUDEBAN"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT03_ERROR",
+      "ITable": "953012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "E$_ATS_TH_AT03",
+      "ITable": "73012"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "ErrorValid",
+      "LschemaName": "LS_ATSUDEBAN",
+      "VarName": "FileName_Error",
+      "ITxtVar": "null",
+      "ITxtVarIn": "46041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "46041",
+          "Txt": "SELECT 'ErrorValid' FROM DUAL"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT03_ATSUDEBAN_ERROR",
+      "TableName (Target Table)": "AT03_ERROR"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "FileName_Error",
+      "StepType": "VD",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "FileName_Error",
+              "DefV": "ErrorValid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT03_ATSUDEBAN_ERROR",
+      "StepType": "F",
+      "Nno": "1",
+      "TableName (Target Table)": "AT03_ERROR",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table \"<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName_Error\", \"ARCHIVOSUDEBAN\", \"\", \"D\") ?>\"\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT03_ERRORSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName_Error\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x007eSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_ORIGINSNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_ERR_MESSSNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=255SNP$CRPRECISION=255SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_CHECK_DATESNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=15SNP$CRPRECISION=15SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_CONS_NAMESNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=130SNP$CRPRECISION=130SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLINE_OFFSET=1SNP$CRLENGTH=5SNP$CRSCALE=0SNP$CRPRECISION=5SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGO_CONTABLESNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLINE_OFFSET=6SNP$CRLENGTH=10SNP$CRSCALE=0SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=SALDOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLINE_OFFSET=16SNP$CRLENGTH=20SNP$CRSCALE=0SNP$CRPRECISION=20SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CONSECUTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=8SNP$CRLINE_OFFSET=36SNP$CRLENGTH=1SNP$CRSCALE=0SNP$CRPRECISION=1SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create header\t(ODI_ORIGIN,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_CONS_NAME,\n\tOFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO)\n\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT03_ERRORSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName_Error\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x007eSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_ORIGINSNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_ERR_MESSSNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=255SNP$CRPRECISION=255SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_CHECK_DATESNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=15SNP$CRPRECISION=15SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_CONS_NAMESNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=130SNP$CRPRECISION=130SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLINE_OFFSET=1SNP$CRLENGTH=5SNP$CRSCALE=0SNP$CRPRECISION=5SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGO_CONTABLESNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLINE_OFFSET=6SNP$CRLENGTH=10SNP$CRSCALE=0SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=SALDOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLINE_OFFSET=16SNP$CRLENGTH=20SNP$CRSCALE=0SNP$CRPRECISION=20SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CONSECUTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=8SNP$CRLINE_OFFSET=36SNP$CRLENGTH=1SNP$CRSCALE=0SNP$CRPRECISION=1SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "select \t\n\tE__ATS_TH_AT03.ODI_ORIGIN\t   ODI_ORIGIN,\n\tE__ATS_TH_AT03.ODI_ERR_MESS\t   ODI_ERR_MESS,\n\tE__ATS_TH_AT03.ODI_CHECK_DATE\t   ODI_CHECK_DATE,\n\tE__ATS_TH_AT03.ODI_CONS_NAME\t   ODI_CONS_NAME,\n\tE__ATS_TH_AT03.OFICINA\t   OFICINA,\n\tE__ATS_TH_AT03.CODIGO_CONTABLE\t   CODIGO_CONTABLE,\n\tE__ATS_TH_AT03.SALDO\t   SALDO,\n\tE__ATS_TH_AT03.CONSECUTIVO\t   CONSECUTIVO\nfrom\t<?=snpRef.getObjectName(\"L\", \"E$_ATS_TH_AT03\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   E__ATS_TH_AT03\nwhere\t\n\t(1=1)",
+          "DefTxt": "insert into \"<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName_Error\", \"ARCHIVOSUDEBAN\", \"\", \"D\") ?>\"\n(\n\tODI_ORIGIN,\n\tODI_ERR_MESS,\n\tODI_CHECK_DATE,\n\tODI_CONS_NAME,\n\tOFICINA,\n\tCODIGO_CONTABLE,\n\tSALDO,\n\tCONSECUTIVO\n                     \n)\nvalues \n(\n\t<?= (char) 58 + \"ODI_ORIGIN\" ?>,\n\t<?= (char) 58 + \"ODI_ERR_MESS\" ?>,\n\t<?= (char) 58 + \"ODI_CHECK_DATE\" ?>,\n\t<?= (char) 58 + \"ODI_CONS_NAME\" ?>,\n\t<?= (char) 58 + \"OFICINA\" ?>,\n\t<?= (char) 58 + \"CODIGO_CONTABLE\" ?>,\n\t<?= (char) 58 + \"SALDO\" ?>,\n\t<?= (char) 58 + \"CONSECUTIVO\" ?>\n                     \n)\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT03_ERRORSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"DEV/MENSUALES/#ODI_AT_SUDEBAN_DEV.FileName_Error\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x007eSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_ORIGINSNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_ERR_MESSSNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=255SNP$CRPRECISION=255SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_CHECK_DATESNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=15SNP$CRPRECISION=15SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=ODI_CONS_NAMESNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=130SNP$CRPRECISION=130SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLINE_OFFSET=1SNP$CRLENGTH=5SNP$CRSCALE=0SNP$CRPRECISION=5SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CODIGO_CONTABLESNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLINE_OFFSET=6SNP$CRLENGTH=10SNP$CRSCALE=0SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=SALDOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLINE_OFFSET=16SNP$CRLENGTH=20SNP$CRSCALE=0SNP$CRPRECISION=20SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CONSECUTIVOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=8SNP$CRLINE_OFFSET=36SNP$CRLENGTH=1SNP$CRSCALE=0SNP$CRPRECISION=1SNP$CR$$SNPS_END_KEY*/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "PKG_ATM37_DUPLICADAS"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "AT_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "76040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ATSUDEBAN_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "67040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_AT_STG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ATSUDEBAN"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT37_ATM_ATS",
+      "ITable": "865011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT37_ATM_TOT",
+      "ITable": "572011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT37_ATMS",
+      "ITable": "866011"
+    }
+  ],
+  "SnpVar": [],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT37_ATM_DUPLICADAS",
+      "TableName (Target Table)": "AT37_ATM_TOT"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT37_ATM_ATSUDEBAN",
+      "TableName (Target Table)": "AT37_ATMS"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT37_ATM_DUPLICADAS",
+      "StepType": "F",
+      "Nno": "0",
+      "TableName (Target Table)": "AT37_ATM_TOT",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT37_ATM_TOT\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tTIPOTRANSFERENCIA\tNUMBER(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASIFICACION\tNUMBER(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCLIENTE\tVARCHAR2(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDENTIFICACIONCLIENTE\tVARCHAR2(30) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECLIENTE\tVARCHAR2(250) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOINSTRUMENTO\tVARCHAR2(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTACLIENTE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONEDA\tCHAR(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTO\tNUMBER(15) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA\tCHAR(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tREFERENCIA\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESAFORMACION\tCHAR(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMOTIVO\tVARCHAR2(100) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tDIRECCIONIP\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCONTRAPARTE\tVARCHAR2(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDENTIFICACIONCONTRAPARTE\tVARCHAR2(30) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECONTRAPARTE\tVARCHAR2(250) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOINSTRUMENTOCONTRAPARTE\tVARCHAR2(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTACONTRAPARTE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT37_ATM_TOT\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT37_ATM_TOT\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT37_ATM_TOT\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tTIPOTRANSFERENCIA,\n\tCLASIFICACION,\n\tTIPOCLIENTE,\n\tIDENTIFICACIONCLIENTE,\n\tNOMBRECLIENTE,\n\tTIPOINSTRUMENTO,\n\tCUENTACLIENTE,\n\tMONEDA,\n\tMONTO,\n\tFECHA,\n\tREFERENCIA,\n\tEMPRESAFORMACION,\n\tMOTIVO,\n\tDIRECCIONIP,\n\tTIPOCONTRAPARTE,\n\tIDENTIFICACIONCONTRAPARTE,\n\tNOMBRECONTRAPARTE,\n\tTIPOINSTRUMENTOCONTRAPARTE,\n\tCUENTACONTRAPARTE,\n\tOFICINA \n\t \n) \n\nselect\n    TIPOTRANSFERENCIA,\n\tCLASIFICACION,\n\tTIPOCLIENTE,\n\tIDENTIFICACIONCLIENTE,\n\tNOMBRECLIENTE,\n\tTIPOINSTRUMENTO,\n\tCUENTACLIENTE,\n\tMONEDA,\n\tMONTO,\n\tFECHA,\n\tREFERENCIA,\n\tEMPRESAFORMACION,\n\tMOTIVO,\n\tDIRECCIONIP,\n\tTIPOCONTRAPARTE,\n\tIDENTIFICACIONCONTRAPARTE,\n\tNOMBRECONTRAPARTE,\n\tTIPOINSTRUMENTOCONTRAPARTE,\n\tCUENTACONTRAPARTE,\n\tOFICINA   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tAT37_ATM_ATS.TIPOTRANSFERENCIA TIPOTRANSFERENCIA,\n\tAT37_ATM_ATS.CLASIFICACION CLASIFICACION,\n\tAT37_ATM_ATS.TIPOCLIENTE TIPOCLIENTE,\n\tAT37_ATM_ATS.IDENTIFICACIONCLIENTE IDENTIFICACIONCLIENTE,\n\tREGEXP_REPLACE(AT37_ATM_ATS.NOMBRECLIENTE,'(^[[:space:]]*|[[:space:]]*$)') NOMBRECLIENTE,\n\tTO_CHAR(AT37_ATM_ATS.TIPOINSTRUMENTO) TIPOINSTRUMENTO,\n\tAT37_ATM_ATS.CUENTACLIENTE CUENTACLIENTE,\n\tAT37_ATM_ATS.MONEDA MONEDA,\n\tAT37_ATM_ATS.MONTO MONTO,\n\tAT37_ATM_ATS.FECHA FECHA,\n\tAT37_ATM_ATS.REFERENCIA REFERENCIA,\n\tAT37_ATM_ATS.EMPRESAFORMACION EMPRESAFORMACION,\n\tAT37_ATM_ATS.MOTIVO MOTIVO,\n\tAT37_ATM_ATS.DIRECCIONIP DIRECCIONIP,\n\tAT37_ATM_ATS.TIPOCONTRAPARTE TIPOCONTRAPARTE,\n\tAT37_ATM_ATS.IDENTIFICACIONCONTRAPARTE IDENTIFICACIONCONTRAPARTE,\n\tREGEXP_REPLACE(AT37_ATM_ATS.NOMBRECONTRAPARTE,'(^[[:space:]]*|[[:space:]]*$)') NOMBRECONTRAPARTE,\n\tTO_CHAR(AT37_ATM_ATS.TIPOINSTRUMENTOCONTRAPARTE) TIPOINSTRUMENTOCONTRAPARTE,\n\tAT37_ATM_ATS.CUENTACONTRAPARTE CUENTACONTRAPARTE,\n\tAT37_ATM_ATS.OFICINA OFICINA \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT37_ATM_ATS\", \"LS_AT_STG\", \"\", \"D\")?>   AT37_ATM_ATS\nwhere\t\t(1=1)\t\n\n\n\n\n\n\nUNION\nselect \tDISTINCT\n\t2 TIPOTRANSFERENCIA,\n\tAT37_ATM_ATS.CLASIFICACION CLASIFICACION,\n\tAT37_ATM_ATS.TIPOCONTRAPARTE TIPOCLIENTE,\n\tAT37_ATM_ATS.IDENTIFICACIONCONTRAPARTE IDENTIFICACIONCLIENTE,\n\tAT37_ATM_ATS.NOMBRECONTRAPARTE NOMBRECLIENTE,\n\tTO_CHAR(AT37_ATM_ATS.TIPOINSTRUMENTOCONTRAPARTE) TIPOINSTRUMENTO,\n\tAT37_ATM_ATS.CUENTACONTRAPARTE CUENTACLIENTE,\n\tAT37_ATM_ATS.MONEDA MONEDA,\n\tAT37_ATM_ATS.MONTO MONTO,\n\tAT37_ATM_ATS.FECHA FECHA,\n\tAT37_ATM_ATS.REFERENCIA REFERENCIA,\n\tAT37_ATM_ATS.EMPRESAFORMACION EMPRESAFORMACION,\n\tAT37_ATM_ATS.MOTIVO MOTIVO,\n\t'0' DIRECCIONIP,\n\tAT37_ATM_ATS.TIPOCLIENTE TIPOCONTRAPARTE,\n\tAT37_ATM_ATS.IDENTIFICACIONCLIENTE IDENTIFICACIONCONTRAPARTE,\n\tAT37_ATM_ATS.NOMBRECLIENTE NOMBRECONTRAPARTE,\n\tTO_CHAR(AT37_ATM_ATS.TIPOINSTRUMENTO) TIPOINSTRUMENTOCONTRAPARTE,\n\tAT37_ATM_ATS.CUENTACLIENTE CUENTACONTRAPARTE,\n\tAT37_ATM_ATS.OFICINA OFICINA \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT37_ATM_ATS\", \"LS_AT_STG\", \"\", \"D\")?>   AT37_ATM_ATS\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT37_ATM_ATSUDEBAN",
+      "StepType": "F",
+      "Nno": "1",
+      "TableName (Target Table)": "AT37_ATMS",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT37_ATMS\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT37_ATMS\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tFECHA_EJECUCION\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTRANSFERENCIA\tNUMBER <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASIFICACION\tNUMBER <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCLIENTE\tVARCHAR2(1) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDENTIFICACIONCLIENTE\tVARCHAR2(15) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECLIENTE\tVARCHAR2(250) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOINSTRUMENTO\tVARCHAR2(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTACLIENTE\tCHAR(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONEDA\tCHAR(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTO\tNUMBER <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA\tCHAR(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tREFERENCIA\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEMPRESAFORMACION\tCHAR(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMOTIVO\tVARCHAR2(100) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tDIRECCIONIP\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOCONTRAPARTE\tCHAR(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tIDENTIFICACIONCONTRAPARTE\tVARCHAR2(30) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNOMBRECONTRAPARTE\tVARCHAR2(100) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOINSTRUMENTOCONTRAPARTE\tVARCHAR2(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTACONTRAPARTE\tVARCHAR2(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT37_ATMS\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT37_ATMS\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT37_ATMS\", \"LS_ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tTIPOTRANSFERENCIA,\n\tCLASIFICACION,\n\tTIPOCLIENTE,\n\tIDENTIFICACIONCLIENTE,\n\tNOMBRECLIENTE,\n\tTIPOINSTRUMENTO,\n\tCUENTACLIENTE,\n\tMONEDA,\n\tMONTO,\n\tFECHA,\n\tREFERENCIA,\n\tEMPRESAFORMACION,\n\tMOTIVO,\n\tDIRECCIONIP,\n\tTIPOCONTRAPARTE,\n\tIDENTIFICACIONCONTRAPARTE,\n\tNOMBRECONTRAPARTE,\n\tTIPOINSTRUMENTOCONTRAPARTE,\n\tCUENTACONTRAPARTE,\n\tOFICINA \n\t \n) \n\nselect\n    TIPOTRANSFERENCIA,\n\tCLASIFICACION,\n\tTIPOCLIENTE,\n\tIDENTIFICACIONCLIENTE,\n\tNOMBRECLIENTE,\n\tTIPOINSTRUMENTO,\n\tCUENTACLIENTE,\n\tMONEDA,\n\tMONTO,\n\tFECHA,\n\tREFERENCIA,\n\tEMPRESAFORMACION,\n\tMOTIVO,\n\tDIRECCIONIP,\n\tTIPOCONTRAPARTE,\n\tIDENTIFICACIONCONTRAPARTE,\n\tNOMBRECONTRAPARTE,\n\tTIPOINSTRUMENTOCONTRAPARTE,\n\tCUENTACONTRAPARTE,\n\tOFICINA   \n   \nFROM (\t\n\n\nselect \t\n\tC1_TIPOTRANSFERENCIA TIPOTRANSFERENCIA,\n\tC2_CLASIFICACION CLASIFICACION,\n\tC3_TIPOCLIENTE TIPOCLIENTE,\n\tC4_IDENTIFICACIONCLIENTE IDENTIFICACIONCLIENTE,\n\tC5_NOMBRECLIENTE NOMBRECLIENTE,\n\tC6_TIPOINSTRUMENTO TIPOINSTRUMENTO,\n\tC7_CUENTACLIENTE CUENTACLIENTE,\n\tC8_MONEDA MONEDA,\n\tC9_MONTO MONTO,\n\tC10_FECHA FECHA,\n\tC11_REFERENCIA REFERENCIA,\n\tC12_EMPRESAFORMACION EMPRESAFORMACION,\n\tC13_MOTIVO MOTIVO,\n\tC14_DIRECCIONIP DIRECCIONIP,\n\tC15_TIPOCONTRAPARTE TIPOCONTRAPARTE,\n\tC16_IDENTIFICACIONCONTRAPARTE IDENTIFICACIONCONTRAPARTE,\n\tC17_NOMBRECONTRAPARTE NOMBRECONTRAPARTE,\n\tC18_TIPOINSTRUMENTOCONTRAPARTE TIPOINSTRUMENTOCONTRAPARTE,\n\tC19_CUENTACONTRAPARTE CUENTACONTRAPARTE,\n\tC20_OFICINA OFICINA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT37_ATMS\", \"LS_ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT37_ATMS\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT37_ATMS\", \"W\") ?>\n(\n\tC1_TIPOTRANSFERENCIA\tNUMBER NULL,\n\tC2_CLASIFICACION\tNUMBER NULL,\n\tC3_TIPOCLIENTE\tVARCHAR2(1) NULL,\n\tC4_IDENTIFICACIONCLIENTE\tVARCHAR2(15) NULL,\n\tC5_NOMBRECLIENTE\tVARCHAR2(250) NULL,\n\tC6_TIPOINSTRUMENTO\tVARCHAR2(5) NULL,\n\tC7_CUENTACLIENTE\tCHAR(20) NULL,\n\tC8_MONEDA\tCHAR(3) NULL,\n\tC9_MONTO\tNUMBER NULL,\n\tC10_FECHA\tCHAR(8) NULL,\n\tC11_REFERENCIA\tVARCHAR2(20) NULL,\n\tC12_EMPRESAFORMACION\tCHAR(3) NULL,\n\tC13_MOTIVO\tVARCHAR2(100) NULL,\n\tC14_DIRECCIONIP\tVARCHAR2(50) NULL,\n\tC15_TIPOCONTRAPARTE\tCHAR(3) NULL,\n\tC16_IDENTIFICACIONCONTRAPARTE\tVARCHAR2(30) NULL,\n\tC17_NOMBRECONTRAPARTE\tVARCHAR2(100) NULL,\n\tC18_TIPOINSTRUMENTOCONTRAPARTE\tVARCHAR2(5) NULL,\n\tC19_CUENTACONTRAPARTE\tVARCHAR2(20) NULL,\n\tC20_OFICINA\tNUMBER NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tAT37_ATM_TOT.TIPOTRANSFERENCIA\t   C1_TIPOTRANSFERENCIA,\n\tAT37_ATM_TOT.CLASIFICACION\t   C2_CLASIFICACION,\n\tTRIM(AT37_ATM_TOT.TIPOCLIENTE)\t   C3_TIPOCLIENTE,\n\tAT37_ATM_TOT.IDENTIFICACIONCLIENTE\t   C4_IDENTIFICACIONCLIENTE,\n\tAT37_ATM_TOT.NOMBRECLIENTE\t   C5_NOMBRECLIENTE,\n\tTRIM(AT37_ATM_TOT.TIPOINSTRUMENTO)\t   C6_TIPOINSTRUMENTO,\n\tAT37_ATM_TOT.CUENTACLIENTE\t   C7_CUENTACLIENTE,\n\tAT37_ATM_TOT.MONEDA\t   C8_MONEDA,\n\tAT37_ATM_TOT.MONTO\t   C9_MONTO,\n\tAT37_ATM_TOT.FECHA\t   C10_FECHA,\n\tAT37_ATM_TOT.REFERENCIA\t   C11_REFERENCIA,\n\tAT37_ATM_TOT.EMPRESAFORMACION\t   C12_EMPRESAFORMACION,\n\tAT37_ATM_TOT.MOTIVO\t   C13_MOTIVO,\n\tAT37_ATM_TOT.DIRECCIONIP\t   C14_DIRECCIONIP,\n\tAT37_ATM_TOT.TIPOCONTRAPARTE\t   C15_TIPOCONTRAPARTE,\n\tAT37_ATM_TOT.IDENTIFICACIONCONTRAPARTE\t   C16_IDENTIFICACIONCONTRAPARTE,\n\tAT37_ATM_TOT.NOMBRECONTRAPARTE\t   C17_NOMBRECONTRAPARTE,\n\tAT37_ATM_TOT.TIPOINSTRUMENTOCONTRAPARTE\t   C18_TIPOINSTRUMENTOCONTRAPARTE,\n\tAT37_ATM_TOT.CUENTACONTRAPARTE\t   C19_CUENTACONTRAPARTE,\n\tAT37_ATM_TOT.OFICINA\t   C20_OFICINA\nfrom\t<?=snpRef.getObjectName(\"L\", \"AT37_ATM_TOT\", \"LS_AT_STG\", \"\", \"D\")?>   AT37_ATM_TOT\nwhere\t(1=1)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT37_ATMS\", \"W\") ?>\n(\n\tC1_TIPOTRANSFERENCIA,\n\tC2_CLASIFICACION,\n\tC3_TIPOCLIENTE,\n\tC4_IDENTIFICACIONCLIENTE,\n\tC5_NOMBRECLIENTE,\n\tC6_TIPOINSTRUMENTO,\n\tC7_CUENTACLIENTE,\n\tC8_MONEDA,\n\tC9_MONTO,\n\tC10_FECHA,\n\tC11_REFERENCIA,\n\tC12_EMPRESAFORMACION,\n\tC13_MOTIVO,\n\tC14_DIRECCIONIP,\n\tC15_TIPOCONTRAPARTE,\n\tC16_IDENTIFICACIONCONTRAPARTE,\n\tC17_NOMBRECONTRAPARTE,\n\tC18_TIPOINSTRUMENTOCONTRAPARTE,\n\tC19_CUENTACONTRAPARTE,\n\tC20_OFICINA\n)\nvalues\n(\n\t:C1_TIPOTRANSFERENCIA,\n\t:C2_CLASIFICACION,\n\t:C3_TIPOCLIENTE,\n\t:C4_IDENTIFICACIONCLIENTE,\n\t:C5_NOMBRECLIENTE,\n\t:C6_TIPOINSTRUMENTO,\n\t:C7_CUENTACLIENTE,\n\t:C8_MONEDA,\n\t:C9_MONTO,\n\t:C10_FECHA,\n\t:C11_REFERENCIA,\n\t:C12_EMPRESAFORMACION,\n\t:C13_MOTIVO,\n\t:C14_DIRECCIONIP,\n\t:C15_TIPOCONTRAPARTE,\n\t:C16_IDENTIFICACIONCONTRAPARTE,\n\t:C17_NOMBRECONTRAPARTE,\n\t:C18_TIPOINSTRUMENTOCONTRAPARTE,\n\t:C19_CUENTACONTRAPARTE,\n\t:C20_OFICINA\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT37_ATMS\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        }
+      ]
+    }
+  ]
+}

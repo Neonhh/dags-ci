@@ -1,0 +1,733 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "PKG_FL_DIM_LOAD_STG_ACTIVITY_COMISION"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "PRD_ODI",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "489000",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "DEV_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "3000",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "DEV_OFSAA",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "463000",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:OFSAA"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODI"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_STG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_OFSAA"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "STG_ACTIVITY_B_INTF",
+      "ITable": "31060"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "BAN_DIM_COMISION_V",
+      "ITable": "38060"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "STG_ACTIVITY_TL_INTF",
+      "ITable": "33060"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "STG_ACTIVITY_HIER_INTF",
+      "ITable": "32060"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "EMPTY",
+      "LschemaName": "null",
+      "VarName": "vStgNombreTablaStg",
+      "ITxtVar": "16707001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16707001",
+          "Txt": "Define el nombre de la tabla de STG que se estï¿½ procesando."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaCarga",
+      "ITxtVar": "16702001",
+      "ITxtVarIn": "41040",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "41040",
+          "Txt": "SELECT NVL(TO_CHAR(MIN(bcsd.cds_date), '#vStgFormatoFecha'), '01/01/1801')\n\t    FROM BAN_CONFIG_STG_DATE bcsd,\n                                   BAN_CONFIG_STG d\n\t    WHERE bcsd.cds_source = '#vStgNombreTablaStg'\n\t      AND bcsd.cds_status_carga = 'POR PROCESAR' \n                           AND d.cos_source = bcsd.cds_source\n                          AND bcsd.cds_date between d.cos_start_date and d.cos_end_date\n/*select TO_CHAR(TO_DATE(SYSDATE-1,'MM/DD/YY'),'MM/DD/YYYY') from dual*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "MM/DD/RRRR",
+      "LschemaName": "LS_ODI",
+      "VarName": "vStgFormatoFecha",
+      "ITxtVar": "16699001",
+      "ITxtVarIn": "8670060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "8670060",
+          "Txt": "SELECT 'MM/DD/YYYY' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgSessionPadre",
+      "ITxtVar": "16705001",
+      "ITxtVarIn": "10361001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "10361001",
+          "Txt": "SELECT <%=odiRef.getSession(\"SESS_NO\")%>\nFROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1850",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaCargaBan",
+      "ITxtVar": "16728001",
+      "ITxtVarIn": "49040",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "49040",
+          "Txt": "SELECT NVL(TO_CHAR(MIN(bcsd.cds_date), '#vStgFormatoFecha'), '01/01/1801')\nFROM \nBAN_CONFIG_STG_DATE bcsd,\nBAN_CONFIG_STG S\n WHERE bcsd.cds_source = '#vStgNombreTablaStg'\nAND bcsd.cds_status_carga = 'POR PROCESAR'\nAND s.cos_source = bcsd.cds_source \nAND bcsd.cds_date between s.cos_start_date and s.cos_end_date"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "ERROR",
+      "LschemaName": "null",
+      "VarName": "vStgCargaStatus",
+      "ITxtVar": "16730001",
+      "ITxtVarIn": "10619001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "10619001",
+          "Txt": "SELECT 'ERROR' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "31/10/2015",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaParticionOfsaa",
+      "ITxtVar": "16725001",
+      "ITxtVarIn": "50040",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "50040",
+          "Txt": "SELECT\n    CASE\n    WHEN cos_flag_partition_date = 'y'\n    THEN to_char(cos_partition_date, '#vStgFormatoFecha')\n    ELSE '#vStgFechaCargaBan'\n    END partition_date\nFROM ban_config_stg bcs\nWHERE bcs.cos_source = '#vStgNombreTablaStg'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "null",
+      "VarName": "vStgNumLote",
+      "ITxtVar": "null",
+      "ITxtVarIn": "null"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "YYYYMMDD",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaTrunc",
+      "ITxtVar": "16708001",
+      "ITxtVarIn": "2781001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "2781001",
+          "Txt": "SELECT CONCAT( 'FD',TO_CHAR( TO_DATE('#vStgFechaParticionOfsaa','#vStgFormatoFecha'),'YYYYMMDD')) FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODI",
+      "VarName": "vStgSessionHija",
+      "ITxtVar": "16706001",
+      "ITxtVarIn": "11115001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "11115001",
+          "Txt": "SELECT NVL( MAX(SESS_NO),<%=odiRef.getSession(\"SESS_NO\")%>)\nFROM\n(SELECT SESS_NO, rownum NUM\n FROM\n    (SELECT SS.SESS_NO\n    FROM SNP_SESSION SS, SNP_SESS_STEP SSS, SNP_STEP_LOG SSL\n    WHERE SSS.SESS_NO = SS.SESS_NO \n    AND SSL.SESS_NO = SS.SESS_NO \n    AND SSL.NNO = SSS.NNO\n    AND SSL.STEP_STATUS='E'\n    AND (SS.PARENT_SESS_NO = '#vStgSessionPadre' or SS.SESS_NO = '#vStgSessionPadre')\n    ORDER BY SS.SESS_NO DESC))\nWHERE NUM = #vStgLogCountErrors"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODI",
+      "VarName": "vStgLogCountErrors",
+      "ITxtVar": "null",
+      "ITxtVarIn": "17962001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "17962001",
+          "Txt": "SELECT NVL(\n(SELECT count(1)\nFROM SNP_SESSION SS\n         ,SNP_SESS_STEP SSS\n         ,SNP_STEP_LOG SSL\nWHERE SSS.SESS_NO = SS.SESS_NO \n     AND SSL.SESS_NO = SS.SESS_NO \n     AND SSL.NNO = SSS.NNO\n     AND SSL.STEP_STATUS='E'\n     AND (SS.PARENT_SESS_NO = '#vStgSessionPadre' or SS.SESS_NO = '#vStgSessionPadre'))\n, 0) NUM_ERRORES\nFROM DUAL"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_STG",
+      "PopName": "IT_STG_ACTIVITY_B_INTF_ODS_STG",
+      "TableName (Target Table)": "STG_ACTIVITY_B_INTF"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_STG",
+      "PopName": "IT_STG_ACTIVITY_TL_INTF_ODS_STG",
+      "TableName (Target Table)": "STG_ACTIVITY_TL_INTF"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_STG",
+      "PopName": "IT_STG_ACTIVITY_HIER_INTF_ODS_STG",
+      "TableName (Target Table)": "STG_ACTIVITY_HIER_INTF"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgNombreTablaStg",
+      "StepType": "VD",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "1",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgNombreTablaStg",
+              "DefV": "EMPTY"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgFechaCarga",
+      "StepType": "VD",
+      "Nno": "1",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "2",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgFechaCarga",
+              "DefV": "01/01/1801"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgSessionPadre",
+      "StepType": "VD",
+      "Nno": "2",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "3",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgSessionPadre",
+              "DefV": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgFechaCargaBan",
+      "StepType": "VS",
+      "Nno": "3",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "4",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgFechaCargaBan",
+              "DefV": "01/01/1850"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgCargaStatus",
+      "StepType": "VS",
+      "Nno": "4",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "5",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null",
+          "SnpVar": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+              "VarName": "vStgCargaStatus",
+              "DefV": "ERROR"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_STG_ACTIVITY_B_INTF_ODS_STG",
+      "StepType": "F",
+      "Nno": "5",
+      "TableName (Target Table)": "STG_ACTIVITY_B_INTF",
+      "OkNextStep": "6",
+      "KoNextStep": "9",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"STG_ACTIVITY_B_INTF\", \"OFSAA\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "440"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert  /*+ APPEND */ into\t<?=snpRef.getObjectName(\"L\", \"STG_ACTIVITY_B_INTF\", \"OFSAA\", \"\", \"D\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>\n( \n\tN_ACTIVITY_DISPLAY_CODE,\n\tV_LEAF_ONLY_FLAG,\n\tV_ENABLED_FLAG,\n\tV_ACTIVITY_CODE \n\t,V_CREATED_BY,\n\tV_LAST_MODIFIED_BY \n) \n \nselect \tN_ACTIVITY_DISPLAY_CODE,\n\tV_LEAF_ONLY_FLAG,\n\tV_ENABLED_FLAG,\n\tV_ACTIVITY_CODE\n\t,'FILE',\n\t'FILE' \nfrom <?=flowTableName?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>@<?=snpRef.getInfo(\"SRC_DSERV_NAME\") ?>",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "480"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/*commit*/",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "490"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "begin\n      bc_atomic.pkg_base.pr_comprimir_partition('BC_ATOMIC', 'STG_ACTIVITY_B_INTF', '{vStgFechaTrunc}');\nend;",
+          "TaskName3": "Comprimir partition",
+          "OrdTrt": "500"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_B_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>",
+          "DefTxt": "null",
+          "TaskName3": "Drop table I$ view",
+          "OrdTrt": "550"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>",
+          "TaskName3": "Declarar variable sesion paralelismo",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "drop  table <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_B_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>",
+          "DefTxt": "null",
+          "TaskName3": "Drop flow table I$ on staging",
+          "OrdTrt": "370"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "drop  view <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_B_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>",
+          "DefTxt": "null",
+          "TaskName3": "Drop flow view  I$ on staging",
+          "OrdTrt": "380"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "<? flowTableName = odiRef.getObjectName( \"L\", \"%INT_PRFSTG_ACTIVITY_B_INTF\", \"W\"); ?>\ncreate  table <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_B_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>\nINITRANS 12\nNOLOGGING  as\n\n\nselect DISTINCT \n\tVC.CodNivel_n\t   N_ACTIVITY_DISPLAY_CODE,\n\tDECODE(VC.LEAF, 0, 'N', 'Y')\t   V_LEAF_ONLY_FLAG,\n\tDECODE(VC.STATUS, 'A', 'Y', 'V', 'Y',  'N')\t   V_ENABLED_FLAG,\n\tVC.CodNivel\t   V_ACTIVITY_CODE\nfrom \t<?=snpRef.getObjectName(\"L\", \"BAN_DIM_COMISION_V\", \"STG\", \"\", \"D\")?>   VC\nwhere\t\n\t(1=1)",
+          "DefTxt": "null",
+          "TaskName3": "Create flow table I$ on staging",
+          "OrdTrt": "390"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_STG_ACTIVITY_TL_INTF_ODS_STG",
+      "StepType": "F",
+      "Nno": "6",
+      "TableName (Target Table)": "STG_ACTIVITY_TL_INTF",
+      "OkNextStep": "7",
+      "KoNextStep": "9",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>",
+          "TaskName3": "Declarar variable sesion paralelismo",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "drop  table <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_TL_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>",
+          "DefTxt": "null",
+          "TaskName3": "Drop flow table I$ on staging",
+          "OrdTrt": "370"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "drop  view <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_TL_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>",
+          "DefTxt": "null",
+          "TaskName3": "Drop flow view  I$ on staging",
+          "OrdTrt": "380"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "<? flowTableName = odiRef.getObjectName( \"L\", \"%INT_PRFSTG_ACTIVITY_TL_INTF\", \"W\"); ?>\ncreate  table <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_TL_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>\nINITRANS 12\nNOLOGGING  as\n\n\nselect DISTINCT \n\tVC.CodNivel_n\t   N_ACTIVITY_DISPLAY_CODE,\n\tVC.Descripcion\t   V_ACTIVITY_CODE_NAME,\n\tVC.Descripcion\t   V_DESCRIPTION\nfrom \t<?=snpRef.getObjectName(\"L\", \"BAN_DIM_COMISION_V\", \"STG\", \"\", \"D\")?>   VC\nwhere\t\n\t(1=1)",
+          "DefTxt": "null",
+          "TaskName3": "Create flow table I$ on staging",
+          "OrdTrt": "390"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"STG_ACTIVITY_TL_INTF\", \"OFSAA\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "440"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert  /*+ APPEND */ into\t<?=snpRef.getObjectName(\"L\", \"STG_ACTIVITY_TL_INTF\", \"OFSAA\", \"\", \"D\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>\n( \n\tN_ACTIVITY_DISPLAY_CODE,\n\tV_ACTIVITY_CODE_NAME,\n\tV_DESCRIPTION \n\t,V_LANGUAGE,\n\tV_CREATED_BY,\n\tV_LAST_MODIFIED_BY \n) \n \nselect \tN_ACTIVITY_DISPLAY_CODE,\n\tV_ACTIVITY_CODE_NAME,\n\tV_DESCRIPTION\n\t,'US',\n\t'FILE',\n\t'FILE' \nfrom <?=flowTableName?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>@<?=snpRef.getInfo(\"SRC_DSERV_NAME\") ?>",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "480"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/*commit*/",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "490"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "begin\n      bc_atomic.pkg_base.pr_comprimir_partition('BC_ATOMIC', 'STG_ACTIVITY_TL_INTF', '{vStgFechaTrunc}');\nend;",
+          "TaskName3": "Comprimir partition",
+          "OrdTrt": "500"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_TL_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>",
+          "DefTxt": "null",
+          "TaskName3": "Drop table I$ view",
+          "OrdTrt": "550"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_STG_ACTIVITY_HIER_INTF_ODS_STG",
+      "StepType": "F",
+      "Nno": "7",
+      "TableName (Target Table)": "STG_ACTIVITY_HIER_INTF",
+      "OkNextStep": "8",
+      "KoNextStep": "9",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>",
+          "TaskName3": "Declarar variable sesion paralelismo",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "drop  table <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_HIER_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>",
+          "DefTxt": "null",
+          "TaskName3": "Drop flow table I$ on staging",
+          "OrdTrt": "370"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "drop  view <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_HIER_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>",
+          "DefTxt": "null",
+          "TaskName3": "Drop flow view  I$ on staging",
+          "OrdTrt": "380"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "<? flowTableName = odiRef.getObjectName( \"L\", \"%INT_PRFSTG_ACTIVITY_HIER_INTF\", \"W\"); ?>\ncreate  table <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_HIER_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>\nINITRANS 12\nNOLOGGING  as\n\n\nselect  \n\tNVL(VC.CodPadre, VC.CodNivel_n)\t   N_PARENT_DISPLAY_CODE,\n\t/*DECODE(VC.CodPadre,NULL,NULL,VC.CodNivel_n)*/\nVC.CodNivel_n\t   N_CHILD_DISPLAY_CODE,\n\tVC.Nivel\t   N_DISPLAY_ORDER_NUM\nfrom \t<?=snpRef.getObjectName(\"L\", \"BAN_DIM_COMISION_V\", \"STG\", \"\", \"D\")?>   VC\nwhere\t\n\t(1=1)",
+          "DefTxt": "null",
+          "TaskName3": "Create flow table I$ on staging",
+          "OrdTrt": "390"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"STG_ACTIVITY_HIER_INTF\", \"OFSAA\", \"\", \"D\") ?>",
+          "TaskName3": "Truncate target table",
+          "OrdTrt": "440"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert  /*+ APPEND */ into\t<?=snpRef.getObjectName(\"L\", \"STG_ACTIVITY_HIER_INTF\", \"OFSAA\", \"\", \"D\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>\n( \n\tN_PARENT_DISPLAY_CODE,\n\tN_CHILD_DISPLAY_CODE,\n\tN_DISPLAY_ORDER_NUM \n\t,V_HIERARCHY_OBJECT_NAME,\n\tV_CREATED_BY,\n\tV_LAST_MODIFIED_BY \n) \n \nselect \tN_PARENT_DISPLAY_CODE,\n\tN_CHILD_DISPLAY_CODE,\n\tN_DISPLAY_ORDER_NUM\n\t,'ACTIVIDAD',\n\t'FILE',\n\t'FILE' \nfrom <?=flowTableName?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>@<?=snpRef.getInfo(\"SRC_DSERV_NAME\") ?>",
+          "TaskName3": "Insert new rows",
+          "OrdTrt": "480"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/*commit*/",
+          "TaskName3": "Commit transaction",
+          "OrdTrt": "490"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "begin\n      bc_atomic.pkg_base.pr_comprimir_partition('BC_ATOMIC', 'STG_ACTIVITY_HIER_INTF', '{vStgFechaTrunc}');\nend;",
+          "TaskName3": "Comprimir partition",
+          "OrdTrt": "500"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%INT_PRFSTG_ACTIVITY_HIER_INTF\", \"W\") ?><@if ({vStgNumLote}>0) { @>_{vStgNumLote}<@}@>",
+          "DefTxt": "null",
+          "TaskName3": "Drop table I$ view",
+          "OrdTrt": "550"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Actualizar status carga",
+      "StepType": "T",
+      "Nno": "8",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "null",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\n  IF ('{vStgCargaStatus}' = 'PROCESADO') THEN\n    UPDATE stg.ban_config_stg\n    SET cos_last_date_sucess = TO_DATE('{vStgFechaCargaBan}', '{vStgFormatoFecha}')\n    WHERE cos_source = '{vStgNombreTablaStg}'\n      --AND cos_status_carga = 'POR PROCESAR'\n      AND cos_last_date_sucess < TO_DATE('{vStgFechaCarga}', '{vStgFormatoFecha}');\n  END IF;\nEND;",
+          "TaskName3": "UPD BAN_CONF_STG Last Date Sucess",
+          "OrdTrt": "0"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "UPDATE stg.ban_config_stg_date\nSET cds_status_carga = '{vStgCargaStatus}', CDS_SESSION_PROCCES = {vStgSessionPadre}, CDS_SESSION_LOAD = {vStgSessionHija},  cds_fecha_mod = sysdate\nWHERE  \ncds_source = '{vStgNombreTablaStg}' \nAND cds_date = TO_DATE( '{vStgFechaCargaBan}', '{vStgFormatoFecha}')\nAND cds_fecha_mod = (SELECT MAX(A.cds_fecha_mod) FROM ban_config_stg_date A WHERE  A.cds_source = '{vStgNombreTablaStg}'\nand A.cds_date = TO_DATE( '{vStgFechaCargaBan}', '{vStgFormatoFecha}') )",
+          "TaskName3": "LOAD UPD BAN_CONF_STG_DATE Status Carga",
+          "OrdTrt": "10"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "Commit",
+          "TaskName3": "Commit",
+          "OrdTrt": "40"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "vStgCargaStatus_Error",
+      "StepType": "VS",
+      "Nno": "9",
+      "TableName (Target Table)": "null",
+      "OkNextStep": "8",
+      "KoNextStep": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Variable",
+          "ColTxt": "null",
+          "DefTxt": "null",
+          "TaskName3": "null",
+          "OrdTrt": "null"
+        }
+      ]
+    }
+  ]
+}

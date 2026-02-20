@@ -1,0 +1,442 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "PKG_CON_SM_EXTRACTODS_STG_GL_DATA"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "PRD_ODI",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "489000",
+        "Txt": "jdbc:oracle:thin:@172.16.24.10:1521:OBI"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "PRD_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "3000",
+        "Txt": "jdbc:oracle:thin:@172.16.24.10:1521:ODS"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODI"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_STG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_STG_ODS"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "RE_OFICINA_BANGENTE",
+      "ITable": "88060"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_CUENTA",
+      "ITable": "65001"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_CORTE",
+      "ITable": "63001"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CB_HIST_SALDO",
+      "ITable": "66001"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "STG_GL_DATA",
+      "ITable": "41001"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "EMPTY",
+      "LschemaName": "null",
+      "VarName": "vStgNombreTablaStg",
+      "ITxtVar": "16707001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16707001",
+          "Txt": "Define el nombre de la tabla de STG que se está procesando."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgSmFechaProcesar",
+      "ITxtVar": "16741001",
+      "ITxtVarIn": "14785001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "14785001",
+          "Txt": "SELECT\nCASE\nWHEN #vStgFlagError > 0 THEN '01/01/1801' --se verifica si hubo error en la sesion o en alguna de sus hijas para detener la ejecucion\n\nWHEN '#vStgSmTipoFechaProcesar' = 'EXTRACCION_SALDOS' THEN\n    NVL((SELECT TO_CHAR(MIN(BCSM.BCSM_FECHA), '#vStgFormatoFecha')\n             FROM STG.BAN_CONFIG_SALDO_MEDIO BCSM\n             WHERE BCSM.BCSM_STATUS_SM = '#vStgSmTipoStatus'\n                  AND BCSM.BCSM_SOURCE = '#vStgNombreTablaStg'\n                  AND BCSM.BCSM_FLAG_PROCESANDO IS NULL\n                  AND '#vStgSmTipoStatus' <> 'CONTINGENCIA'), '01/01/1801')\n\nWHEN '#vStgSmTipoFechaProcesar' = 'SALDOS_ACUMULADOS' THEN\n    NVL((SELECT TO_CHAR(MIN(BCSM.BCSM_FECHA), '#vStgFormatoFecha')\n             FROM STG.BAN_CONFIG_SALDO_MEDIO BCSM\n             WHERE BCSM.BCSM_SOURCE = '#vStgNombreTablaStg'\n                  AND BCSM.BCSM_FLAG_PROCESANDO = 'y'), '01/01/1801')\n                  \nEND\nFROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "NOVALUE",
+      "LschemaName": "null",
+      "VarName": "vStgSmTipoFechaProcesar",
+      "ITxtVar": "16750001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16750001",
+          "Txt": "Variable usada en el cálculo en paralelo de los saldos puntuales acumulados, en ella se indica el tipo de fecha a procesar, afecta como se refresca la variable vStgSmFechaProcesar, para extrar saldos puntuales o calcular saldos puntuales acumulados."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "0",
+      "LschemaName": "LS_ODI",
+      "VarName": "vStgFlagError",
+      "ITxtVar": "21076001",
+      "ITxtVarIn": "21077001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "21077001",
+          "Txt": "select count(1)\nfrom SNP_SESSION SESS\nwhere exists (SELECT 1\n              FROM SNP_SESSION SS, SNP_SESS_STEP SSS, SNP_STEP_LOG SSL\n              WHERE SSS.SESS_NO = SS.SESS_NO \n                   AND SSL.SESS_NO = SS.SESS_NO \n                   AND SSL.NNO = SSS.NNO\n                   AND SSL.STEP_STATUS='E'\n                   AND (SS.PARENT_SESS_NO = SESS.SESS_NO or SS.SESS_NO = SESS.SESS_NO))\nstart with SESS_NO = '<%=odiRef.getSession(\"SESS_NO\")%>'\nconnect by prior SESS_NO = PARENT_SESS_NO"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "MM/DD/RRRR",
+      "LschemaName": "LS_ODI",
+      "VarName": "vStgFormatoFecha",
+      "ITxtVar": "16699001",
+      "ITxtVarIn": "8670060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "8670060",
+          "Txt": "SELECT 'MM/DD/YYYY' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "NOVALUE",
+      "LschemaName": "null",
+      "VarName": "vStgSmTipoStatus",
+      "ITxtVar": "16751001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16751001",
+          "Txt": "Variable usada en el cálculo de los saldos puntuales acumulados, en ella se indica de la fecha que se va a procesar 'NO PROCEADO' 'CONTINGENCIA' POR PROCESAR'."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgSmFlagDiaFeriado",
+      "ITxtVar": "16743001",
+      "ITxtVarIn": "14434001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "14434001",
+          "Txt": "SELECT NVL(MAX('y'),'n')\nFROM ODS.CL_DIAS_FERIADOS\nWHERE DF_CIUDAD = 0 \n AND DF_FECHA = TO_DATE('#vStgSmFechaProcesar', '#vStgFormatoFecha')"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "null",
+      "VarName": "vStgTipoFechaCarga",
+      "ITxtVar": "16700001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16700001",
+          "Txt": "Variable usada para definir que tipo de fecha de carga (vStgFechaCarga) se va a utilizar."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgSMFechaCarga",
+      "ITxtVar": "15157060",
+      "ITxtVarIn": "15158060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15158060",
+          "Txt": "SELECT TO_CHAR(TO_DATE('#vStgFechaCarga', '#vStgFormatoFecha') - 1, '#vStgFormatoFecha')\nFROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaCarga",
+      "ITxtVar": "16702001",
+      "ITxtVarIn": "41040",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "41040",
+          "Txt": "SELECT NVL(TO_CHAR(MIN(bcsd.cds_date), '#vStgFormatoFecha'), '01/01/1801')\n\t    FROM BAN_CONFIG_STG_DATE bcsd,\n                                   BAN_CONFIG_STG d\n\t    WHERE bcsd.cds_source = '#vStgNombreTablaStg'\n\t      AND bcsd.cds_status_carga = 'POR PROCESAR' \n                           AND d.cos_source = bcsd.cds_source\n                          AND bcsd.cds_date between d.cos_start_date and d.cos_end_date\n/*select TO_CHAR(TO_DATE(SYSDATE-1,'MM/DD/YY'),'MM/DD/YYYY') from dual*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgSmValidarPredecesores",
+      "ITxtVar": "16752001",
+      "ITxtVarIn": "15730001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15730001",
+          "Txt": "SELECT \n    NVL(\n    (SELECT -1 flag_predecesores --primero se valida si hay algun predecesor menor o igual a la fecha de carga, si no se va por error\n     FROM DUAL\n     WHERE NOT EXISTS (SELECT 1\n                      FROM\n                          (SELECT bp. PR_STG_SOURCE tabla, BCO.CDS_DATE fecha, count(pr_ods_source) count\n                              FROM ods.BAN_CONFIG_ODS_DATE bco, stg.ban_predecessor_sig bp\n                            WHERE bp.pr_ods_source = bco.CDS_SOURCE\n                                AND bp.pr_stg_source = '#vStgNombreTablaStg'\n                                AND bco.CDS_STATUS_CARGA = 'PROCESADO'\n                           GROUP BY bp. PR_STG_SOURCE, BCO.CDS_DATE) count_pred_date,\n                          (SELECT bp.pr_stg_source tabla, count(1) count \n                              FROM stg.ban_predecessor_sig bp\n                            WHERE bp.pr_stg_source = '#vStgNombreTablaStg'\n                            GROUP BY bp.pr_stg_source) count_pred\n                      WHERE count_pred_date.tabla = count_pred.tabla\n                        AND count_pred_date.count = count_pred.count\n                        AND count_pred_date.fecha <= TO_DATE('#vStgFechaCarga','#vStgFormatoFecha')))\n    ,\n    (SELECT COUNT(1) --valida si para la fecha de carga estan todos los predecesores (si no se ira por contingencia)\n    FROM\n        (SELECT count_pred.tabla tabla, count_pred.count count\n          FROM\n              (SELECT bp. PR_STG_SOURCE tabla, BCO.CDS_DATE fecha, count(pr_ods_source) count\n                  FROM ods.BAN_CONFIG_ODS_DATE bco, stg.ban_predecessor_sig bp\n                WHERE bp.pr_ods_source = bco.CDS_SOURCE\n                    AND bp.pr_stg_source = '#vStgNombreTablaStg'\n                    AND bco.CDS_STATUS_CARGA = 'PROCESADO'\n               GROUP BY bp. PR_STG_SOURCE, BCO.CDS_DATE) count_pred_date,\n              (SELECT bp.pr_stg_source tabla, count(1) count \n                  FROM stg.ban_predecessor_sig bp\n                WHERE bp.pr_stg_source = '#vStgNombreTablaStg'\n                GROUP BY bp.pr_stg_source) count_pred\n          WHERE count_pred_date.tabla = count_pred.tabla\n            AND count_pred_date.count = count_pred.count\n            AND count_pred_date.fecha = TO_DATE('#vStgFechaCarga','#vStgFormatoFecha')))) flag_predecesores \nFROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "FD0000",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgPartition",
+      "ITxtVar": "null",
+      "ITxtVarIn": "1065060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "1065060",
+          "Txt": "select 'FD' || TO_CHAR(TO_DATE('#vStgFechaCarga', '#vStgFormatoFecha'), 'ddmm')\nfrom dual"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1801",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgUltimoDiaHabilMesAnt",
+      "ITxtVar": "null",
+      "ITxtVarIn": "8870060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "8870060",
+          "Txt": "SELECT TO_CHAR(MAX(DIA), '#vStgFormatoFecha')\n  FROM \n  (\n      SELECT trunc(ADD_MONTHS(TO_DATE('#vStgFechaCarga','#vStgFormatoFecha'), -1), 'MM') + ROWNUM - 1 DIA\n      FROM dual\n      CONNECT BY LEVEL <= LAST_DAY(ADD_MONTHS(TO_DATE('#vStgFechaCarga','#vStgFormatoFecha'), -1)) - trunc(ADD_MONTHS(TO_DATE('#vStgFechaCarga','#vStgFormatoFecha'), -1), 'MM') + 1\n  ) DIAS\n  WHERE DIAS.DIA NOT IN (SELECT DF_FECHA\n                          FROM ODS.CL_DIAS_FERIADOS\n                          WHERE DF_CIUDAD = 0 \n                            AND TRUNC(DF_FECHA, 'MM') = TRUNC(ADD_MONTHS(TO_DATE('#vStgFechaCarga','#vStgFormatoFecha'), -1), 'MM'))"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "null",
+      "VarName": "vStgNumLote",
+      "ITxtVar": "null",
+      "ITxtVarIn": "null"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "null",
+      "VarName": "vStgSmLotSize",
+      "ITxtVar": "16745001",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16745001",
+          "Txt": "Variable usada en el cálculo de saldos puntuales acumulados para saldos medios, indica el tamaño aproximado que se quiere que tenga el lote que se procesará en paralelo, se toma el valor por defecto."
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "YYYYMMDD",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaTrunc",
+      "ITxtVar": "16708001",
+      "ITxtVarIn": "2781001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "2781001",
+          "Txt": "SELECT CONCAT( 'FD',TO_CHAR( TO_DATE('#vStgFechaParticionOfsaa','#vStgFormatoFecha'),'YYYYMMDD')) FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "31/10/2015",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaParticionOfsaa",
+      "ITxtVar": "16725001",
+      "ITxtVarIn": "50040",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "50040",
+          "Txt": "SELECT\n    CASE\n    WHEN cos_flag_partition_date = 'y'\n    THEN to_char(cos_partition_date, '#vStgFormatoFecha')\n    ELSE '#vStgFechaCargaBan'\n    END partition_date\nFROM ban_config_stg bcs\nWHERE bcs.cos_source = '#vStgNombreTablaStg'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "01/01/1850",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgFechaCargaBan",
+      "ITxtVar": "16728001",
+      "ITxtVarIn": "49040",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "49040",
+          "Txt": "SELECT NVL(TO_CHAR(MIN(bcsd.cds_date), '#vStgFormatoFecha'), '01/01/1801')\nFROM \nBAN_CONFIG_STG_DATE bcsd,\nBAN_CONFIG_STG S\n WHERE bcsd.cds_source = '#vStgNombreTablaStg'\nAND bcsd.cds_status_carga = 'POR PROCESAR'\nAND s.cos_source = bcsd.cds_source \nAND bcsd.cds_date between s.cos_start_date and s.cos_end_date"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgSmFlagContingencia",
+      "ITxtVar": "null",
+      "ITxtVarIn": "5281060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "5281060",
+          "Txt": "SELECT \n    CASE WHEN #vStgSmFlagContingencia = -1 AND TO_DATE('#vStgSmFechaProcesar', '#vStgFormatoFecha') > TO_DATE('#vStgFechaCarga', '#vStgFormatoFecha') \n            THEN 1 --hay contingencia\n         WHEN #vStgSmFlagContingencia = -1 AND TO_DATE('#vStgSmFechaProcesar', '#vStgFormatoFecha') = TO_DATE('#vStgFechaCarga', '#vStgFormatoFecha') \n            THEN 0 --no hay contingencia\n    ELSE #vStgSmFlagContingencia\n    END\nFROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgSmCountTablaAux",
+      "ITxtVar": "null",
+      "ITxtVarIn": "5233060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "5233060",
+          "Txt": "<@String vNombreTablaAuxSM = \"#vStgNombreTablaStg\".length() > 25 ? \"SM\" + \"#vStgSmFechaProcesar\".substring(3,5) + \"$\" + \"#vStgNombreTablaStg\".substring(0,25)  : \"SM\" + \"#vStgSmFechaProcesar\".substring(3,5) + \"$\" + \"#vStgNombreTablaStg\";@>\nSELECT COUNT(1)\nFROM <@=vNombreTablaAuxSM@>"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "NOVALUE",
+      "LschemaName": "LS_STG",
+      "VarName": "vStgSmStatusContingencia",
+      "ITxtVar": "17266001",
+      "ITxtVarIn": "16380001",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "16380001",
+          "Txt": "SELECT NVL(MAX(BCSM_STATUS_CONTINGENCIA),  'NOVALUE')\n            FROM BAN_CONFIG_SALDO_MEDIO\n            WHERE BCSM_FECHA = TO_DATE('#vStgSmFechaProcesar', '#vStgFormatoFecha')\n              AND BCSM_SOURCE = '#vStgNombreTablaStg'"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_ODI",
+      "VarName": "vGeneraError",
+      "ITxtVar": "null",
+      "ITxtVarIn": "1298060",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "1298060",
+          "Txt": "SELECT 1/0 FROM DUAL"
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_STG",
+      "PopName": "IT_SM_STG_GL_DATA",
+      "TableName (Target Table)": "STG_GL_DATA"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_STG",
+      "PopName": "IT_TMP_CB_HIST_SALDO",
+      "TableName (Target Table)": "TMP_CB_HIST_SALDO"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_STG",
+      "PopName": "IT_TMP_CB_HIST_SALDO_MES_ANT45",
+      "TableName (Target Table)": "TMP_CB_HIST_SALDO_MES_ANT45"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_SM_STG_GL_DATA",
+      "StepType": "F",
+      "Nno": "13",
+      "TableName (Target Table)": "STG_GL_DATA",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "<$\nimport Java.lang.*;\nimport java.util.ArrayList;\nimport java.util.List;\n\n//Clase Campo representa un campo y los atributos del mismo\npublic class Campo {\n    private String vNombreCampo = \"\";\n    private String vTipoCampo = \"\";\n    private Integer vNumero = 0;\n    private String vDescCampo = \"\";\n    private String vNombreCampoUltHab = \"\";\n    private String vNombreCampoAcum = \"\";\n    private String vNombreCampoCurr = \"\";\n    private String vNombreCampoPrior = \"\";\n    private String vNombreCamposSm = \"\";\n    private String vNombreCamposSmCurr = \"\";\n    private String vNombreCamposSmPrior = \"\";\n    private String vFlagCambioInteres = \"\";\n    \n    public void SetNombreCampo (String vNombreCampo) {this.vNombreCampo = vNombreCampo;}\n    public void SetNombreCampo (String vNombreCampo, int vNumero) {\n        this.vNombreCampo = vNombreCampo;\n        this.vNombreCampoUltHab = vNombreCampo.length() > 26  ? vNombreCampo.substring(0,26) + \"_UH\" + vNumero : vNombreCampo + \"_UH\" + vNumero;\n        this.vNombreCampoAcum = vNombreCampo.length() > 26  ? vNombreCampo.substring(0,26) + \"_AC\" + vNumero : vNombreCampo + \"_AC\" + vNumero;\n        this.vNombreCampoCurr = vNombreCampo.length() > 25  ? vNombreCampo.substring(0,25) + \"_C_AC\" + vNumero : vNombreCampo + \"_C_AC\" + vNumero;\n        this.vNombreCampoPrior = vNombreCampo.length() > 25  ? vNombreCampo.substring(0,25) + \"_P_AC\" + vNumero : vNombreCampo + \"_P_AC\" + vNumero;\n    }\n    public String GetNombreCampo () {return this.vNombreCampo;}\n    public void SetTipoCampo (String vTipoCampo) {this.vTipoCampo = vTipoCampo;}\n    public String GetTipoCampo () {return this.vTipoCampo;}\n    public void SetNumero (Integer vNumero) {this.vNumero = vNumero;}\n    public Integer GetNumero () {return this.vNumero;}\n    public void SetDescCampo (String vDescCampo) {this.vDescCampo = vDescCampo;}\n    public String GetDescCampo () {return this.vDescCampo;}\n    public void SetNombreCampoUltHab (String vNombreCampoUltHab) {this.vNombreCampoUltHab = vNombreCampoUltHab;}\n    public String GetNombreCampoUltHab () {return this.vNombreCampoUltHab;}\n    public void SetNombreCampoAcum (String vNombreCampoAcum) {this.vNombreCampoAcum = vNombreCampoAcum;}\n    public String GetNombreCampoAcum () {return this.vNombreCampoAcum;}\n    public void SetNombreCampoCurr (String vNombreCampoCurr) {this.vNombreCampoCurr = vNombreCampoCurr;}\n    public String GetNombreCampoCurr () {return this.vNombreCampoCurr;}\n    public void SetNombreCampoPrior (String vNombreCampoPrior) {this.vNombreCampoPrior = vNombreCampoPrior;}\n    public String GetNombreCampoPrior () {return this.vNombreCampoPrior;}\n    public void SetNombreCamposSm (String vNombreCamposSm) {\n        this.vNombreCamposSm = vNombreCamposSm;\n        this.vNombreCamposSm = this.vNombreCamposSmPrior.length() > 0 ? this.vNombreCamposSm + \"@PRIOR@\" + this.vNombreCamposSmPrior : this.vNombreCamposSm;\n        this.vNombreCamposSm = this.vNombreCamposSmCurr.length() > 0 ? this.vNombreCamposSm + \"@CURR@\" + this.vNombreCamposSmCurr : this.vNombreCamposSm;\n    }\n    public String GetNombreCamposSm () {return this.vNombreCamposSm;}\n    public void SetNombreCamposSmCurr (String vNombreCamposSmCurr) {this.vNombreCamposSmCurr = vNombreCamposSmCurr;}\n    public String GetNombreCamposSmCurr () {return this.vNombreCamposSmCurr;}\n    public void SetNombreCamposSmPrior (String vNombreCamposSmPrior) {this.vNombreCamposSmPrior = vNombreCamposSmPrior;}\n    public String GetNombreCamposSmPrior () {return this.vNombreCamposSmPrior;}\n    public void SetFlagCambioInteres (String vFlagCambioInteres) {this.vFlagCambioInteres = vFlagCambioInteres;}\n    public String GetFlagCambioInteres () {return this.vFlagCambioInteres;}\n}\n\npublic static void getCampos(String vStr, String vTipoCampo, String vSeparador, String vInicio, String vFin, String vIdentacion){\n    String vStrAux = vStr;\n    Campo vCampoAux;\n    String vNumero = \"\";\n    String vFlagInicio = \"false\"; //Flag que indica cuando empieza el tipo de campo que se quiere imprimir\n    boolean vFlagImprimir = false; //Indica cuando se debe imprimir o no un campo\n    //Indica si el string vStr ingresado contiene saldos de reprecio (CURR o PRIOR) lo cual requiere de procesamiento adicional\n    boolean vFlagSaldoReprecio = vStr.contains(\"[SALDO_CURR]\") || vStr.contains(\"[SALDO_PRIOR]\") || vStr.contains(\"[SALDO_PUNT_REPRE]\") || vStr.contains(\"[SALDO_ULT_REPRE]\") ? true: false; \n    int vNumSaldosReprecio = 0;\n    \n    //Si vStr contiene saldos de reprecio se cuentan cuantos saldos de reprecio tiene\n    Iterator vIterator = vListaCampos.iterator();\n    if (vFlagSaldoReprecio) {\n      while (vIterator.hasNext()) {\n        vCampoAux = vIterator.next();\n        vNumSaldosReprecio = vCampoAux.GetFlagCambioInteres().length() > 0 ? vNumSaldosReprecio + 1: vNumSaldosReprecio;\n      }\n    }\t\n    \n    vIterator = vListaCampos.iterator();\n    Iterator vIterator2 = vListaCampos.iterator();\n    if (vIterator2.hasNext()) {vIterator2.next();}\n    while (vIterator.hasNext()) {\n        vCampoAux = vIterator.next();\n        vStrAux = vStr;\n        vNumero = vCampoAux.GetNumero() > 1  ? \"\" + vCampoAux.GetNumero() : \"\";\n        \n        if (vTipoCampo.equals(\"SALDO_PUNTUAL\") && vCampoAux.GetTipoCampo().equals(\"SALDO_PUNTUAL\")) {\n            vStrAux = vStrAux.replace(\"[SALDO_PUNT]\", vCampoAux.GetNombreCampo());\n            vStrAux = vStrAux.replace(\"[SALDO_ACUM]\", vCampoAux.GetNombreCampoAcum());\n            vStrAux = vStrAux.replace(\"[SALDO_ULT]\", vCampoAux.GetNombreCampoUltHab());\n            vStrAux = vStrAux.replace(\"[SALDO_DESC]\", vCampoAux.GetDescCampo());\n            vStrAux = vStrAux.replace(\"[SALDO_CURR]\", vCampoAux.GetNombreCampoCurr());\n            vStrAux = vStrAux.replace(\"[SALDO_PRIOR]\", vCampoAux.GetNombreCampoPrior());\n            vStrAux = vStrAux.replace(\"[SALDO_NUM]\", \"\" + vCampoAux.GetNumero());\n            vStrAux = vStrAux.replace(\"[FLAG_REPRECIO]\", vCampoAux.GetFlagCambioInteres());\n            vStrAux = vStrAux.replace(\"[SALDO_PUNT_REPRE]\", vCampoAux.GetNombreCampo());\n            vStrAux = vStrAux.replace(\"[SALDO_ULT_REPRE]\", vCampoAux.GetNombreCampoUltHab());\n            vFlagImprimir = true;\n            if (vFlagSaldoReprecio && vCampoAux.GetFlagCambioInteres().length() == 0) {vFlagImprimir = false;}\n            if (vFlagSaldoReprecio && vCampoAux.GetFlagCambioInteres().length() > 0) {vNumSaldosReprecio = vNumSaldosReprecio -1;}\n            if (vFlagInicio.equals(\"false\") && vFlagImprimir) {vFlagInicio = \"true\";}\n        } \n        else if(vTipoCampo.equals(\"CLAVE_PRODUCTO\") && vCampoAux.GetTipoCampo().equals(\"CLAVE_PRODUCTO\")) {\n            vStrAux = vStrAux.replace(\"[CLAVE_PROD]\", vCampoAux.GetNombreCampo());\n            vStrAux = vStrAux.replace(\"[CLAVE_PROD_SM]\", \"CLAVE_PROD\" + vNumero);\n            vStrAux = vStrAux.replace(\"[CLAVE_DESC]\", vCampoAux.GetDescCampo());\n            vStrAux = vStrAux.replace(\"[CLAVE_PROD_NUM]\", \"\" + vCampoAux.GetNumero());\n  \t          vFlagImprimir = true;\n            vFlagInicio = vFlagInicio.equals(\"false\") ? \"true\": \"NA\";\n        }\n        else if(vTipoCampo.equals(\"FECHA_REPRECIO\") && vCampoAux.GetTipoCampo().equals(\"FECHA_REPRECIO\")) {\n            vStrAux = vStrAux.replace(\"[FECHA_REPRECIO]\", vCampoAux.GetNombreCampo());\n            vStrAux = vStrAux.replace(\"[FECHA_REPRECIO_DESC]\", vCampoAux.GetDescCampo());\n            vStrAux = vStrAux.replace(\"[FECHA_REPRECIO_NUM]\", \"\" + vCampoAux.GetNumero());\n            vFlagImprimir = true;\n            vFlagInicio = vFlagInicio.equals(\"false\") ? \"true\": \"NA\";\n        }\n        else if(vTipoCampo.equals(\"TIPO_INTERES\") && vCampoAux.GetTipoCampo().equals(\"TIPO_INTERES\")) {\n            vStrAux = vStrAux.replace(\"[TIPO_INTERES]\", vCampoAux.GetNombreCampo());\n            vStrAux = vStrAux.replace(\"[TIPO_INTERES_DESC]\", vCampoAux.GetDescCampo());\n            vStrAux = vStrAux.replace(\"[TIPO_INTERES_NUM]\", \"\" + vCampoAux.GetNumero());\n            vFlagImprimir = true;\n            vFlagInicio = vFlagInicio.equals(\"false\") ? \"true\": \"NA\";\n        }\n        else if(vTipoCampo.equals(\"FECHA_PROX_REPRE\") && vCampoAux.GetTipoCampo().equals(\"FECHA_PROX_REPRE\")) {\n            vStrAux = vStrAux.replace(\"[FECHA_PROX_REPRE]\", vCampoAux.GetNombreCampo());\n            vStrAux = vStrAux.replace(\"[FECHA_PROX_REPRE_DESC]\", vCampoAux.GetDescCampo());\n            vStrAux = vStrAux.replace(\"[FECHA_PROX_REPRE_NUM]\", \"\" + vCampoAux.GetNumero());\n            vFlagImprimir = true;\n            vFlagInicio = vFlagInicio.equals(\"false\") ? \"true\": \"NA\";\n        }\n\t\t\n        if (vFlagImprimir) {\t\t\n            if (vFlagInicio.equals(\"true\") && vIterator.hasNext()) {\n                vFlagInicio = \"NA\";\n                if ((vIterator2.next().GetTipoCampo().equals(vCampoAux.GetTipoCampo()) && !vFlagSaldoReprecio) || (vFlagSaldoReprecio && vNumSaldosReprecio > 0)) {\n                  if (vCampoAux.GetNombreCampo().length() > 0) {out.println(vInicio + vStrAux + vSeparador);}\n                } \n                else {\n                  if (vCampoAux.GetNombreCampo().length() > 0) {out.print(vInicio + vStrAux + vFin); break;}\n                }\n            }\n            else if (vFlagInicio.equals(\"true\") && !vIterator.hasNext()) {\n                vFlagInicio = \"NA\";\n                if (vCampoAux.GetNombreCampo().length() > 0) {out.print(vInicio + vStrAux + vFin); break;}\n            }\n            else if (!vFlagInicio.equals(\"true\") && !vIterator.hasNext()) {\n                if (vCampoAux.GetNombreCampo().length() > 0) {out.print(vIdentacion + vStrAux + vFin); break;}\n            }\n            else if (!vFlagInicio.equals(\"true\") && vIterator.hasNext()) {\n                if ((vIterator2.next().GetTipoCampo().equals(vCampoAux.GetTipoCampo()) && !vFlagSaldoReprecio) || (vFlagSaldoReprecio && vNumSaldosReprecio > 0)) {\n                  if (vCampoAux.GetNombreCampo().length() > 0) {out.println(vIdentacion + vStrAux + vSeparador);}\n                } \n                else {\n                  if (vCampoAux.GetNombreCampo().length() > 0) {out.print(vIdentacion + vStrAux + vFin); break;}\n                }\n            }\t\t\n        }\n        else { if (vIterator2.hasNext()) {vIterator2.next();}}\n        vFlagImprimir = false;\n    }\n}\n\npublic void consultarCampos(ArrayList vListaCampos) {\n    Campo vCampoAux;\n   vCampoAux = new Campo(); \nvCampoAux.SetNumero(1); \nvCampoAux.SetTipoCampo(\"CLAVE_PRODUCTO\"); \nvCampoAux.SetNombreCampo(\"V_GL_CODE\", 1);\nvCampoAux.SetDescCampo(\"VARCHAR2(20)\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(2); \nvCampoAux.SetTipoCampo(\"CLAVE_PRODUCTO\"); \nvCampoAux.SetNombreCampo(\"V_ORG_UNIT_CODE\", 2);\nvCampoAux.SetDescCampo(\"VARCHAR2(40)\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(3); \nvCampoAux.SetTipoCampo(\"CLAVE_PRODUCTO\"); \nvCampoAux.SetNombreCampo(\"\", 3);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(4); \nvCampoAux.SetTipoCampo(\"CLAVE_PRODUCTO\"); \nvCampoAux.SetNombreCampo(\"\", 4);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(5); \nvCampoAux.SetTipoCampo(\"CLAVE_PRODUCTO\"); \nvCampoAux.SetNombreCampo(\"\", 5);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\n\n    vCampoAux = new Campo(); \nvCampoAux.SetNumero(1); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"N_AMOUNT_LCY\", 1);\nvCampoAux.SetDescCampo(\"NUMBER(22,3)\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(2); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"N_AMOUNT_ACY\", 2);\nvCampoAux.SetDescCampo(\"NUMBER(22,3)\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(3); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 3);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(4); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 4);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(5); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 5);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(6); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 6);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(7); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 7);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(8); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 8);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(9); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 9);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(10); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 10);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(11); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 11);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(12); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 12);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(13); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 13);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(14); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 14);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(15); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 15);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(16); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 16);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(17); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 17);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(18); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 18);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(19); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 19);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(20); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 20);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\nvCampoAux = new Campo(); \nvCampoAux.SetNumero(21); \nvCampoAux.SetTipoCampo(\"SALDO_PUNTUAL\"); \nvCampoAux.SetFlagCambioInteres(\"\"); \nvCampoAux.SetNombreCampo(\"\", 21);\nvCampoAux.SetDescCampo(\"\");\nif (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\n        \n    //Otros Campos\n    //Fecha Utimo Reprecio\n    String vFechaUltRe = \"\";\n    vCampoAux = new Campo();\n    vCampoAux.SetNumero(1);\n    vCampoAux.SetTipoCampo(\"FECHA_REPRECIO\");\n    vCampoAux.SetNombreCampo(vFechaUltRe);\n    vCampoAux.SetDescCampo(\"DATE\");\n    if (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\n\t\n    //Fecha Proximo Reprecio\n    String vFechaUltRe = \"\";\n    vCampoAux = new Campo();\n    vCampoAux.SetNumero(1);\n    vCampoAux.SetTipoCampo(\"FECHA_PROX_REPRE\");\n    vCampoAux.SetNombreCampo(vFechaUltRe);\n    vCampoAux.SetDescCampo(\"DATE\");\n    if (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\n\t\n    //Tipo de interes\n    String vFechaUltRe = \"\";\n    vCampoAux = new Campo();\n    vCampoAux.SetNumero(1);\n    vCampoAux.SetTipoCampo(\"TIPO_INTERES\");\n    vCampoAux.SetNombreCampo(vFechaUltRe);\n    vCampoAux.SetDescCampo(\"\");\n    if (vCampoAux.GetNombreCampo().length() > 0) {vListaCampos.add(vCampoAux);}\n}\n\n//Nombre de la tabla STG, se limpia en caso de que tenga el nombre del esquema o del dblink\nString vNombreTablaSTG = \"<?=snpRef.getObjectName(\"L\", \"STG_GL_DATA\", \"STG\", \"\", \"D\") ?>\";\nvNombreTablaSTG = vNombreTablaSTG.indexOf(\".\") > -1 ? vNombreTablaSTG.substring(vNombreTablaSTG.indexOf(\".\") + 1) : vNombreTablaSTG;\nvNombreTablaSTG = vNombreTablaSTG.indexOf(\"@\") > -1 ? vNombreTablaSTG.substring(0, vNombreTablaSTG.indexOf(\"@\") - 1) : vNombreTablaSTG;\n\n//Nombre de la tabla de saldos puntuales acumulados, se crea una por cada producto\nString vNombreTablaSM = vNombreTablaSTG.length() > 27  ? \"SM_\" + vNombreTablaSTG.substring(0,27)  : \"SM_\" + vNombreTablaSTG;\n\n//Fecha para el cual se va crear la tabla temporal de saldos puntuales del día, se toma los dias para diferenciar la distintas tablas de saldos puntuales diarios\nString vFechaEjecutar = \"{vStgSmFechaProcesar}\";\n\n//Nombre de la tabla temporal de saldos puntuales del dia extraidos de ods\nString vNombreTablaAuxSMExt = vNombreTablaSTG.length() > 24 ? \"SM\" + vFechaEjecutar.substring(3,5) + \"E$\" + vNombreTablaSTG.substring(0,24)  : \"SM\" + vFechaEjecutar.substring(3,5) + \"E$\" + vNombreTablaSTG;\n\n//Nombre de la tabla temporal de saldos puntuales del dia divido en lotes\nString vNombreTablaAuxSM = vNombreTablaSTG.length() > 23 ? \"SM\" + vFechaEjecutar.substring(3,5) + \"$\" + vNombreTablaSTG.substring(0,23)  : \"SM\" + vFechaEjecutar.substring(3,5) + \"$\" + vNombreTablaSTG;\n\n//Nombre de la tabla temporal que almacena el número de lotes generado\nString vNombreTablaLotesSM = vNombreTablaSTG.length() > 24  ? \"SM\" + vFechaEjecutar.substring(3,5) + \"L$\" + vNombreTablaSTG.substring(0,24)  : \"SM\" + vFechaEjecutar.substring(3,5) + \"L$\" + vNombreTablaSTG;\n\n//Nombre del indice de tabla saldos puntuales acumulados\nString vNombreIndiceSM = vNombreTablaSM.length() > 24 ? \"IDX01_\" + vNombreTablaSM.substring(0,24)  : \"IDX01_\" + vNombreTablaSM;\n\n//Nombre del indice de tabla temporal saldos puntuales dia\nString vNombreIndiceAuxSM = vNombreTablaAuxSM.length() > 24 ? \"IDX01_\" + vNombreTablaAuxSM.substring(0,24)  : \"IDX01_\" + vNombreTablaAuxSM;\n\nArrayList vListaCampos = new ArrayList(); //Lista que contiene los campos de saldos puntuales, clave producto y otros campos que no sean saldos medios\nconsultarCampos(vListaCampos); \n\n$>",
+          "TaskName3": "Declaracion de variables saldos medios (BeanShell)",
+          "OrdTrt": "100"
+        }
+      ]
+    }
+  ]
+}

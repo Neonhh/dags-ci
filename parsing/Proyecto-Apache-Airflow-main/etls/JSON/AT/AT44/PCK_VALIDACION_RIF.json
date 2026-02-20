@@ -1,0 +1,463 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "PCK_VALIDACION_RIF"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ODS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "46040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "AT_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "76040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "FILE_AT44",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "59040",
+        "Txt": "jdbc:snps:dbfile"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "FILE_REPORTES",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "75040",
+        "Txt": "jdbc:snps:dbfile"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_AT_STG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "FILE_AT44"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "FILE_REPORTES"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CL_ENTE",
+      "ITable": "299011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CC_CTACTE",
+      "ITable": "237041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT44_CC_CTACTE_TMP",
+      "ITable": "288041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CLIENTESME_SIN_RIF",
+      "ITable": "289041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "TMP_CLIENTES_SINRIF",
+      "ITable": "286041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "CLIENTES_SIN_RIF",
+      "ITable": "287041"
+    }
+  ],
+  "SnpVar": [],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "IT_CLIENTES_SIN_RIF2",
+      "TableName (Target Table)": "TMP_CLIENTES_SINRIF"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "IT_CLIENTES_TO_FILE_4",
+      "TableName (Target Table)": "CLIENTESME_SIN_RIF"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "IT_CLIENTES_TO_FILE",
+      "TableName (Target Table)": "CLIENTES_SIN_RIF"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "IT_CLIENTES_TO_FILE_2",
+      "TableName (Target Table)": "CLIENTES_SIN_RIF"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "IT_CLIENTES_TO_FILE_3",
+      "TableName (Target Table)": "CLIENTES_SIN_RIF"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CLIENTES_SIN_RIF2",
+      "StepType": "F",
+      "Nno": "0",
+      "TableName (Target Table)": "TMP_CLIENTES_SINRIF",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TMP_CLIENTES_SINRIF\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TMP_CLIENTES_SINRIF\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TMP_CLIENTES_SINRIF\", \"W\") ?>\n(\n\tC1_EN_ENTE\tNUMBER(10) NULL,\n\tC2_EN_OFICINA\tVARCHAR2(100) NULL,\n\tC3_EN_CED_RUC\tVARCHAR2(40) NULL,\n\tC4_EN_FECHA_CREA\tDATE NULL,\n\tC5_EN_FECHA_MOD\tDATE NULL,\n\tC6_EDAD\tVARCHAR2(50) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tCL_ENTE.EN_ENTE\t   C1_EN_ENTE,\n\tCL_ENTE.EN_OFICINA\t   C2_EN_OFICINA,\n\tCL_ENTE.EN_CED_RUC\t   C3_EN_CED_RUC,\n\tCL_ENTE.EN_FECHA_CREA\t   C4_EN_FECHA_CREA,\n\tCL_ENTE.EN_FECHA_MOD\t   C5_EN_FECHA_MOD,\n\trtrim(trunc(months_between(sysdate,CL_ENTE.P_FECHA_NAC)/12))\t   C6_EDAD\nfrom\t<?=snpRef.getObjectName(\"L\", \"CL_ENTE\", \"LS_ODS\", \"\", \"D\")?>   CL_ENTE, <?=snpRef.getObjectName(\"L\", \"CC_CTACTE\", \"LS_ODS\", \"\", \"D\")?>   CC_CTACTE\nwhere\t(1=1)\nAnd ((CL_ENTE.EN_NIT IS NULL OR CL_ENTE.EN_NIT = ' ')\nAND\nCL_ENTE.EN_SUBTIPO='P')\n And (CL_ENTE.EN_OFICINA NOT IN ('169','179'))\n And (CL_ENTE.EN_OFICINA < 700)\n And (CC_CTACTE.CC_ESTADO='A')\n\n And (trim(CL_ENTE.EN_CED_RUC)=trim(CC_CTACTE.CC_CED_RUC))",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TMP_CLIENTES_SINRIF\", \"W\") ?>\n(\n\tC1_EN_ENTE,\n\tC2_EN_OFICINA,\n\tC3_EN_CED_RUC,\n\tC4_EN_FECHA_CREA,\n\tC5_EN_FECHA_MOD,\n\tC6_EDAD\n)\nvalues\n(\n\t:C1_EN_ENTE,\n\t:C2_EN_OFICINA,\n\t:C3_EN_CED_RUC,\n\t:C4_EN_FECHA_CREA,\n\t:C5_EN_FECHA_MOD,\n\t:C6_EDAD\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0TMP_CLIENTES_SINRIF\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"TMP_CLIENTES_SINRIF\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tEN_ENTE\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEN_OFICINA\tVARCHAR2(100) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEN_CED_RUC\tVARCHAR2(40) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEN_FECHA_CREA\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEN_FECHA_MOD\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEDAD\tVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"TMP_CLIENTES_SINRIF\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"TMP_CLIENTES_SINRIF\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tEN_ENTE,\n\tEN_OFICINA,\n\tEN_CED_RUC,\n\tEN_FECHA_CREA,\n\tEN_FECHA_MOD,\n\tEDAD \n\t \n) \n\nselect\n    EN_ENTE,\n\tEN_OFICINA,\n\tEN_CED_RUC,\n\tEN_FECHA_CREA,\n\tEN_FECHA_MOD,\n\tEDAD   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_EN_ENTE EN_ENTE,\n\tC2_EN_OFICINA EN_OFICINA,\n\tC3_EN_CED_RUC EN_CED_RUC,\n\tC4_EN_FECHA_CREA EN_FECHA_CREA,\n\tC5_EN_FECHA_MOD EN_FECHA_MOD,\n\tC6_EDAD EDAD \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0TMP_CLIENTES_SINRIF\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\nORDER BY EN_OFICINA\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CLIENTES_TO_FILE_4",
+      "StepType": "F",
+      "Nno": "1",
+      "TableName (Target Table)": "CLIENTESME_SIN_RIF",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table \"<?=snpRef.getObjectName(\"L\", \"CLIENTESME_SIN_RIF.txt\", \"FILE_REPORTES\", \"\", \"D\") ?>\"\n\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=CLIENTESME_SIN_RIFSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"CLIENTESME_SIN_RIF.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CEDULASNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CUENTASNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OBSERVACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table \"<?=snpRef.getObjectName(\"L\", \"CLIENTESME_SIN_RIF.txt\", \"FILE_REPORTES\", \"\", \"D\") ?>\"\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=CLIENTESME_SIN_RIFSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"CLIENTESME_SIN_RIF.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CEDULASNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CUENTASNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OBSERVACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "select \t\n\tAT44_CC_CTACTE_TMP.CLIENTE\t   CLIENTE,\n\tSUBSTR(LTRIM(RTRIM(AT44_CC_CTACTE_TMP.CC_CTA_BANCO)),6,3)\t   OFICINA,\n\tCONCAT(AT44_CC_CTACTE_TMP.TIPOCLIENTE,AT44_CC_CTACTE_TMP.IDENTIFICACION)\t   CEDULA,\n\tLTRIM(RTRIM(AT44_CC_CTACTE_TMP.CC_CTA_BANCO))\t   CUENTA\nfrom\t<?=snpRef.getObjectName(\"L\", \"AT44_CC_CTACTE_TMP\", \"LS_AT_STG\", \"\", \"D\")?>   AT44_CC_CTACTE_TMP\nwhere\t\n\t(1=1)\t\n\t\n\nAnd (AT44_CC_CTACTE_TMP.IDENTIFACIONRIF IS NULL OR AT44_CC_CTACTE_TMP.IDENTIFACIONRIF = ' ' OR AT44_CC_CTACTE_TMP.IDENTIFACIONRIF ='')\n\n\n\n\nORDER BY OFICINA",
+          "DefTxt": "insert into \"<?=snpRef.getObjectName(\"L\", \"CLIENTESME_SIN_RIF.txt\", \"FILE_REPORTES\", \"\", \"D\") ?>\"\n(\n\tCLIENTE,\n\tOFICINA,\n\tCEDULA,\n\tCUENTA\n                     ,OBSERVACION\n)\nvalues \n(\n\t<?= (char) 58 + \"CLIENTE\" ?>,\n\t<?= (char) 58 + \"OFICINA\" ?>,\n\t<?= (char) 58 + \"CEDULA\" ?>,\n\t<?= (char) 58 + \"CUENTA\" ?>\n                     ,\n\t'REGISTRO AT44 SIN RIF'\n)\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=CLIENTESME_SIN_RIFSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"CLIENTESME_SIN_RIF.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CEDULASNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CUENTASNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OBSERVACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CR$$SNPS_END_KEY*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CLIENTES_TO_FILE",
+      "StepType": "F",
+      "Nno": "2",
+      "TableName (Target Table)": "CLIENTES_SIN_RIF",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table \"<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"FILE_REPORTES\", \"\", \"D\") ?>\"\n\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=CLIENTES_SIN_RIFSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CEDULASNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHACREACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHAMODIFSNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=EDADSNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OBSERVACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table \"<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"FILE_REPORTES\", \"\", \"D\") ?>\"\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=CLIENTES_SIN_RIFSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CEDULASNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHACREACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHAMODIFSNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=EDADSNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OBSERVACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "select \t\n\tTMP_CLIENTES_SINRIF.EN_ENTE\t   CLIENTE,\n\tTMP_CLIENTES_SINRIF.EN_OFICINA\t   OFICINA,\n\tTMP_CLIENTES_SINRIF.EN_CED_RUC\t   CEDULA,\n\tTMP_CLIENTES_SINRIF.EN_FECHA_CREA\t   FECHACREACION,\n\tTMP_CLIENTES_SINRIF.EN_FECHA_MOD\t   FECHAMODIF,\n\tTMP_CLIENTES_SINRIF.EDAD\t   EDAD\nfrom\t<?=snpRef.getObjectName(\"L\", \"TMP_CLIENTES_SINRIF\", \"LS_AT_STG\", \"\", \"D\")?>   TMP_CLIENTES_SINRIF\nwhere\t\n\t(1=1)\t\n\t\n\nAnd (TMP_CLIENTES_SINRIF.EDAD >= 18)\n\n\n\n\nORDER BY OFICINA",
+          "DefTxt": "insert into \"<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"FILE_REPORTES\", \"\", \"D\") ?>\"\n(\n\tCLIENTE,\n\tOFICINA,\n\tCEDULA,\n\tFECHACREACION,\n\tFECHAMODIF,\n\tEDAD\n                     ,OBSERVACION\n)\nvalues \n(\n\t<?= (char) 58 + \"CLIENTE\" ?>,\n\t<?= (char) 58 + \"OFICINA\" ?>,\n\t<?= (char) 58 + \"CEDULA\" ?>,\n\t<?= (char) 58 + \"FECHACREACION\" ?>,\n\t<?= (char) 58 + \"FECHAMODIF\" ?>,\n\t<?= (char) 58 + \"EDAD\" ?>\n                     ,\n\t'MAYOR DE EDAD SIN RIF - CON CTACTE ACTIVA'\n)\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=CLIENTES_SIN_RIFSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CEDULASNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHACREACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHAMODIFSNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=EDADSNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OBSERVACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CR$$SNPS_END_KEY*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CLIENTES_TO_FILE_2",
+      "StepType": "F",
+      "Nno": "3",
+      "TableName (Target Table)": "CLIENTES_SIN_RIF",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table \"<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"FILE_REPORTES\", \"\", \"D\") ?>\"\n\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=CLIENTES_SIN_RIFSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CEDULASNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHACREACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHAMODIFSNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=EDADSNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OBSERVACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Integration",
+          "ColTxt": "select \t\n\tTMP_CLIENTES_SINRIF.EN_ENTE\t   CLIENTE,\n\tTMP_CLIENTES_SINRIF.EN_OFICINA\t   OFICINA,\n\tTMP_CLIENTES_SINRIF.EN_CED_RUC\t   CEDULA,\n\tTMP_CLIENTES_SINRIF.EN_FECHA_CREA\t   FECHACREACION,\n\tTMP_CLIENTES_SINRIF.EN_FECHA_MOD\t   FECHAMODIF,\n\tTMP_CLIENTES_SINRIF.EDAD\t   EDAD\nfrom\t<?=snpRef.getObjectName(\"L\", \"TMP_CLIENTES_SINRIF\", \"LS_AT_STG\", \"\", \"D\")?>   TMP_CLIENTES_SINRIF\nwhere\t\n\t(1=1)\t\n\t\n\nAnd (TMP_CLIENTES_SINRIF.EDAD >= 18)\n And (TMP_CLIENTES_SINRIF.EN_CED_RUC NOT LIKE ('V%'))\n And (TMP_CLIENTES_SINRIF.EN_CED_RUC NOT LIKE ('E%'))",
+          "DefTxt": "insert into \"<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"FILE_REPORTES\", \"\", \"D\") ?>\"\n(\n\tCLIENTE,\n\tOFICINA,\n\tCEDULA,\n\tFECHACREACION,\n\tFECHAMODIF,\n\tEDAD\n                     ,OBSERVACION\n)\nvalues \n(\n\t<?= (char) 58 + \"CLIENTE\" ?>,\n\t<?= (char) 58 + \"OFICINA\" ?>,\n\t<?= (char) 58 + \"CEDULA\" ?>,\n\t<?= (char) 58 + \"FECHACREACION\" ?>,\n\t<?= (char) 58 + \"FECHAMODIF\" ?>,\n\t<?= (char) 58 + \"EDAD\" ?>\n                     ,\n\t'MAYOR DE EDAD NO INICIA CON V O E'\n)\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=CLIENTES_SIN_RIFSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CEDULASNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHACREACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHAMODIFSNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=EDADSNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OBSERVACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CR$$SNPS_END_KEY*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_CLIENTES_TO_FILE_3",
+      "StepType": "F",
+      "Nno": "4",
+      "TableName (Target Table)": "CLIENTES_SIN_RIF",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table \"<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"FILE_REPORTES\", \"\", \"D\") ?>\"\n\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=CLIENTES_SIN_RIFSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CEDULASNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHACREACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHAMODIFSNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=EDADSNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OBSERVACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CR$$SNPS_END_KEY*/"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "select \t\n\tTMP_CLIENTES_SINRIF.EN_ENTE\t   CLIENTE,\n\tTMP_CLIENTES_SINRIF.EN_OFICINA\t   OFICINA,\n\tTMP_CLIENTES_SINRIF.EN_CED_RUC\t   CEDULA,\n\tTMP_CLIENTES_SINRIF.EN_FECHA_CREA\t   FECHACREACION,\n\tTMP_CLIENTES_SINRIF.EN_FECHA_MOD\t   FECHAMODIF,\n\tTMP_CLIENTES_SINRIF.EDAD\t   EDAD\nfrom\t<?=snpRef.getObjectName(\"L\", \"TMP_CLIENTES_SINRIF\", \"LS_AT_STG\", \"\", \"D\")?>   TMP_CLIENTES_SINRIF\nwhere\t\n\t(1=1)\t\n\t\n\nAnd (TMP_CLIENTES_SINRIF.EDAD < 18)\n And (TMP_CLIENTES_SINRIF.EN_CED_RUC NOT LIKE ('M%'))\n\n\n\n\nORDER BY OFICINA",
+          "DefTxt": "insert into \"<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"FILE_REPORTES\", \"\", \"D\") ?>\"\n(\n\tCLIENTE,\n\tOFICINA,\n\tCEDULA,\n\tFECHACREACION,\n\tFECHAMODIF,\n\tEDAD\n                     ,OBSERVACION\n)\nvalues \n(\n\t<?= (char) 58 + \"CLIENTE\" ?>,\n\t<?= (char) 58 + \"OFICINA\" ?>,\n\t<?= (char) 58 + \"CEDULA\" ?>,\n\t<?= (char) 58 + \"FECHACREACION\" ?>,\n\t<?= (char) 58 + \"FECHAMODIF\" ?>,\n\t<?= (char) 58 + \"EDAD\" ?>\n                     ,\n\t'MENOR DE EDAD NO INICIA CON M - CON CTACTE ACTIVA'\n)\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=CLIENTES_SIN_RIFSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"CLIENTES_SIN_RIF.txt\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLIENTESNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OFICINASNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CEDULASNP$CRTYPE_NAME=STRINGSNP$CRORDER=3SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHACREACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=4SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FECHAMODIFSNP$CRTYPE_NAME=STRINGSNP$CRORDER=5SNP$CRLENGTH=50SNP$CRPRECISION=50SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=EDADSNP$CRTYPE_NAME=STRINGSNP$CRORDER=6SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=OBSERVACIONSNP$CRTYPE_NAME=STRINGSNP$CRORDER=7SNP$CRLENGTH=100SNP$CRPRECISION=100SNP$CR$$SNPS_END_KEY*/"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "CLIENTES MENORES SIN M",
+      "StepType": "SE",
+      "Nno": "5",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=smtpint.tpr.bancaribe\" \"-FROM=SIFTecnologia@bancaribe.com.ve\" \"-SUBJECT=ARCHIVOS DE TRANSMISION (SIIF) DWH EN LA NUBE - GALIPAN TECNOLOGICO - LISTADO DE CLIENTES  MAYORES DE EDAD - CON DEBILIDAD EN CEDULA\" \"-TO=GOB@bancaribe.com.ve\" \"-CC=KBastidas@bancaribe.com.ve\" \"-CC=gerenciaestadisticas-upclcftfpadm@bancaribe.com.ve\" \"-CC=soportedeaplicaciones@bancaribe.com.ve\" \"-CC=SIFTecnologia@bancaribe.com.ve\" \"-ATTACH=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/AT44/TXT_CLIENTES/CLIENTES_SIN_RIF.txt\"\nBuen dia, \n\nSe ha generado de forma automatica los reportes:\n\nCLIENTES SIN RIF el cual consta la data siguiente:\n\t1. ctacte activa sin rif mayores de edad\n        2. ctacte activa sin mayor de edad que no inician con V o E\n\t3. ctacte activa sin menores de edad que no inician con M \n\nCLIENTESME SIN RIF el cual consta la data siguiente:\n\t1. clientes sin RIF en el AT44\n\nDisponible en la ruta: \\\\sam2fp07\\SIIF_GCP\\Reportes\\Operaciones_Bancarias\\ depsues de las 09am \n\nSaludos Cordiales, \n\nSIF Tecnologia\nUnidad de Soluciones Internas / Vicepresidencia Ingeniería TI\nTelf.: +58 (212) 954.5345 / 5735 / 5107 / 5401 / 6418 \nEmail: SIFTecnologia@bancaribe.com.ve"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "CORREO INTERNO",
+      "StepType": "SE",
+      "Nno": "6",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=smtpint.tpr.bancaribe\" \"-FROM=SIFTecnologia@bancaribe.com.ve\" \"-SUBJECT=ARCHIVOS DE TRANSMISION (SIIF) DWH EN LA NUBE - GALIPAN TECNOLOGICO - ERROR EN PROCESO DE NOTIFCACION DE CLIENTES SIN RIF\" \"-TO=UnidaddeSolucionesInternas@bancaribe.com.ve\"\nBuen dia, \n\nOcurrió un error en el proceso de notificacion de clientes sin RIF\n\nSaludos Cordiales, \n\nSIF Tecnologia\nUnidad de Soluciones Internas / Vicepresidencia Ingeniería TI\nTelf.: +58 (212) 954.5345 / 5735 / 5107 / 5401 / 6418 \nEmail: SIFTecnologia@bancaribe.com.ve"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "CLIENTES ME SIN RIF",
+      "StepType": "SE",
+      "Nno": "10",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "10",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=smtpint.tpr.bancaribe\" \"-FROM=SIFTecnologia@bancaribe.com.ve\" \"-SUBJECT=ARCHIVOS DE TRANSMISION (SIIF) DWH EN LA NUBE - GALIPAN TECNOLOGICO - LISTADO DE CLIENTES  - CON CUENTAS ME SIN RIF\" \"-TO=GOB@bancaribe.com.ve\" \"-CC=KBastidas@bancaribe.com.ve\" \"-CC=gerenciaestadisticas-upclcftfpadm@bancaribe.com.ve\" \"-CC=soportedeaplicaciones@bancaribe.com.ve\" \"-CC=SIFTecnologia@bancaribe.com.ve\" \"-ATTACH=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/AT44/TXT_CLIENTES/CLIENTESME_SIN_RIF.txt\"\nBuen dia, \n\nSe ha generado de forma automatica el listado de clientes con cuentas en ME  que poseen el campo RIF vacío.\n\nSaludos Cordiales, \n\nSIF Tecnologia\nUnidad de Soluciones Internas / Vicepresidencia Ingeniería TI\nTelf.: +58 (212) 954.5345 / 5735 / 5107 / 5401 / 6418 \nEmail: SIFTecnologia@bancaribe.com.ve"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiFileDelete 6",
+      "StepType": "SE",
+      "Nno": "13",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "13",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileDelete \"-DIR=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/AT44/TXT_CLIENTES\" \"-FILE=CLIENTESME_SIN_RIF.TXT\" \"-RECURSE=YES\" \"-CASESENS=NO\" \"-NOFILE_ERROR=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "CLIENTES SIN RIF",
+      "StepType": "SE",
+      "Nno": "11",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=smtpint.tpr.bancaribe\" \"-FROM=SIFTecnologia@bancaribe.com.ve\" \"-SUBJECT=ARCHIVOS DE TRANSMISION (SIIF) DWH EN LA NUBE - GALIPAN TECNOLOGICO - LISTADO DE CLIENTES SIN RIF\" \"-TO=GOB@bancaribe.com.ve\" \"-CC=KBastidas@bancaribe.com.ve\" \"-CC=gerenciaestadisticas-upclcftfpadm@bancaribe.com.ve\" \"-CC=soportedeaplicaciones@bancaribe.com.ve\" \"-CC=SIFTecnologia@bancaribe.com.ve\" \"-ATTACH=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/AT44/TXT_CLIENTES/CLIENTES_SIN_RIF.zip\"\nBuen dia, \n\nSe ha generado de forma automatica el listado de clientes con cuenta corriente activa que poseen el campo RIF vacío,\n\nSaludos Cordiales, \n\nSIF Tecnologia\nUnidad de Soluciones Internas / Vicepresidencia Ingeniería TI\nTelf.: +58 (212) 954.5345 / 5735 / 5107 / 5401 / 6418 \nEmail: SIFTecnologia@bancaribe.com.ve"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Copy of Copy of OdiFileDelete 6",
+      "StepType": "SE",
+      "Nno": "8",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "8",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileDelete \"-DIR=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/AT44/TXT_CLIENTES\" \"-FILE=CLIENTES_SIN_RIF.zip\" \"-RECURSE=YES\" \"-CASESENS=NO\" \"-NOFILE_ERROR=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "Copy of OdiFileDelete 6",
+      "StepType": "SE",
+      "Nno": "12",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiFileDelete \"-DIR=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/AT44/TXT_CLIENTES\" \"-FILE=CLIENTESME_SIN_RIF.TXT\" \"-RECURSE=YES\" \"-CASESENS=NO\" \"-NOFILE_ERROR=NO\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "CLIENTES MAYORES SIN V O E",
+      "StepType": "SE",
+      "Nno": "7",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=smtpint.tpr.bancaribe\" \"-FROM=SIFTecnologia@bancaribe.com.ve\" \"-SUBJECT=ARCHIVOS DE TRANSMISION (SIIF) DWH EN LA NUBE - GALIPAN TECNOLOGICO - LISTADO DE CLIENTES  MAYORES DE EDAD - CON DEBILIDAD EN CEDULA\" \"-TO=GOB@bancaribe.com.ve\" \"-CC=KBastidas@bancaribe.com.ve\" \"-CC=gerenciaestadisticas-upclcftfpadm@bancaribe.com.ve\" \"-CC=soportedeaplicaciones@bancaribe.com.ve\" \"-CC=SIFTecnologia@bancaribe.com.ve\" \"-ATTACH=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/AT44/TXT_CLIENTES/CLIENTES_SIN_RIF.txt\"\nBuen dia, \n\nSe ha generado de forma automatica el listado de clientes con cuenta corriente activa, mayores de edad  segun su fecha de nacimiento donde se cedula no inicia con V o E  adicional no poseen RIF\n\nSaludos Cordiales, \n\nSIF Tecnologia\nUnidad de Soluciones Internas / Vicepresidencia Ingeniería TI\nTelf.: +58 (212) 954.5345 / 5735 / 5107 / 5401 / 6418 \nEmail: SIFTecnologia@bancaribe.com.ve"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiZip 7",
+      "StepType": "SE",
+      "Nno": "9",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiZip \"-DIR=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/AT44/TXT_CLIENTES/\" \"-TOFILE=/PLANOS_ODI/fscompartido/odi/files/procesar/AT/AUTOMATIZACION_AT/SALIDAS_AT/AT44/TXT_CLIENTES/CLIENTES_SIN_RIF.zip\" \"-OVERWRITE=NO\" \"-RECURSE=YES\" \"-CASESENS=NO\""
+        }
+      ]
+    }
+  ]
+}

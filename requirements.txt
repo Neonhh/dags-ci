@@ -1,0 +1,51 @@
+# Astro Runtime includes the following pre-installed providers packages: https://www.astronomer.io/docs/astro/runtime-image-architecture#provider-packages
+# ============================================================
+# DEPENDENCIAS EXTRA para tu proyecto de Airflow
+# ============================================================
+# La imagen base apache/airflow:3.0.2-python3.12 YA incluye:
+#   - Airflow 3.0.2 completo
+#   - FAB provider (flask, connexion, etc.)
+#   - Dependencias core de Airflow
+#
+# Solo agrega aquí:
+#   1. Providers específicos que uses en tus DAGs
+#   2. Librerías Python que tus DAGs necesiten
+#
+# IMPORTANTE: Usamos constraints EXCEPTO para google provider
+#   - Google provider requiere >= 16.0.0 para fix de GCS logging
+#   - Constraints de 3.0.2 tiene versión anterior
+#   - Ver Dockerfile para ver cómo se manejan los constraints
+# ============================================================
+
+# --- AIRFLOW PROVIDERS ---
+
+# Celery (para CeleryExecutor y Flower)
+apache-airflow-providers-celery
+
+# PostgreSQL (tu metadata database)
+apache-airflow-providers-postgres
+
+# Google Cloud Platform (GCS logging, BigQuery, etc.)
+# IMPORTANTE: Requiere >= 16.0.0 para fix de GCS logging con Workload Identity
+apache-airflow-providers-google>=16.0.0
+
+# Kubernetes (para KubernetesPodOperator si lo usas)
+apache-airflow-providers-cncf-kubernetes
+
+# HTTP (para HttpOperator si lo usas)
+apache-airflow-providers-http
+
+# JDBC (para conectar a Sybase)
+apache-airflow-providers-jdbc
+
+# SMTP/Email (para EmailOperator)
+apache-airflow-providers-smtp
+
+# --- LIBRERÍAS PARA TUS DAGs ---
+# Dependencias que tus DAGs necesitan
+
+# Procesamiento de datos
+pandas
+
+# HTTP requests
+requests

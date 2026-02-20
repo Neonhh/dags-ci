@@ -1,0 +1,2165 @@
+{
+  "tipo": "package",
+  "SnpPackage": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPackage",
+      "PackName": "AT12"
+    }
+  ],
+  "SnpConnect": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "AT_STG",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "76040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      },
+      "SnpMorigTxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMorigTxt",
+        "OrigineName": "MOrigTxt.Connect.JavaURL",
+        "ITxtOrig": "6"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ATSUDEBAN_DEV",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "67040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ATSUDEBANDEV"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "ODS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "46040",
+        "Txt": "jdbc:oracle:thin:@172.16.25.11:1521:ODSDEV"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "SOURCE_COB_ATM_HIS",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "56040",
+        "Txt": "jdbc:weblogic:sybase://10.0.24.13:2025;DatabaseName=cob_atm_his"
+      }
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpConnect",
+      "ConName": "FILE_AT12",
+      "ConnectType": "D",
+      "SnpMtxt": {
+        "Object": "com.sunopsis.dwg.dbobj.SnpMtxt",
+        "ITxt": "49011",
+        "Txt": "jdbc:snps:dbfile"
+      }
+    }
+  ],
+  "SnpLschema": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_AT_STG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ATSUDEBAN"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_ODS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "LS_SOURCE_COB_ATM_HIS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpLschema",
+      "LschemaName": "FILE_AT12"
+    }
+  ],
+  "SnpTable": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_PARROQUIAS",
+      "ITable": "47012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_BANCARIBE_PRE_",
+      "ITable": "101041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_BANGENTE_PRE",
+      "ITable": "88012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_GENERACION_POS_BANGENTE",
+      "ITable": "95012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_BANCARIBE_PRE",
+      "ITable": "45012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_GENERACION_POS",
+      "ITable": "1376011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT12_BG_PRE",
+      "ITable": "65012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT12_PRE",
+      "ITable": "67012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT12_BG",
+      "ITable": "1422011",
+      "SnpCond": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "CANTIDADDECONSUMOS",
+          "ITxtCondSql": "5378012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5378012",
+              "Txt": "ATS_TH_AT12_BG.CANTIDADCONSUMOS >= 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "COMISIONESPROPIAS",
+          "ITxtCondSql": "5381012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5381012",
+              "Txt": "ATS_TH_AT12_BG.COMISIONESPROPIAS >=  0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "COMISIONESTERCEROS",
+          "ITxtCondSql": "5383012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5383012",
+              "Txt": "ATS_TH_AT12_BG.COMISIONESTERCEROS >=  0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "CONCEPTO1",
+          "ITxtCondSql": "5385012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5385012",
+              "Txt": "ATS_TH_AT12_BG.CLASETARJETA <> 1 OR ATS_TH_AT12_BG.CONCEPTO <> 18"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "CONCEPTO2",
+          "ITxtCondSql": "5387012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5387012",
+              "Txt": "ATS_TH_AT12_BG.CLASETARJETA <> 2 OR ATS_TH_AT12_BG.CONCEPTO <> 9"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "EXTRANJERA",
+          "ITxtCondSql": "5389012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5389012",
+              "Txt": "ATS_TH_AT12_BG.EXTRANJERA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "FRANQUICIA1",
+          "ITxtCondSql": "5391012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5391012",
+              "Txt": "ATS_TH_AT12_BG.CLASETARJETA <> 1 OR ATS_TH_AT12_BG.FRANQUICIA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "FRANQUICIA2",
+          "ITxtCondSql": "5393012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5393012",
+              "Txt": "ATS_TH_AT12_BG.CLASETARJETA = 1 OR ATS_TH_AT12_BG.FRANQUICIA = 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "MONTOCONSUMO",
+          "ITxtCondSql": "5395012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5395012",
+              "Txt": "ATS_TH_AT12_BG.MONTOCONSUMO >=0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "MUNICIPIO1",
+          "ITxtCondSql": "5397012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5397012",
+              "Txt": "ATS_TH_AT12_BG.PAISCONSUMO <> 'VE' OR ATS_TH_AT12_BG.MUNICIPIO <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "MUNICIPIO2",
+          "ITxtCondSql": "5399012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5399012",
+              "Txt": "ATS_TH_AT12_BG.PAISCONSUMO <> 'VE' OR ATS_TH_AT12_BG.MUNICIPIO <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "PAISCONSUMO1",
+          "ITxtCondSql": "5401012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5401012",
+              "Txt": "((ATS_TH_AT12_BG.EXTRANJERA<> 2) OR (ATS_TH_AT12_BG.PAISCONSUMO = 'VE'))"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "PAISCONSUMO2",
+          "ITxtCondSql": "5403012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5403012",
+              "Txt": "(ATS_TH_AT12_BG.EXTRANJERA = 2 OR ATS_TH_AT12_BG.PAISCONSUMO <> '0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "TIPOTARJETA1",
+          "ITxtCondSql": "5405012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5405012",
+              "Txt": "ATS_TH_AT12_BG.EXTRANJERA <> 2 OR ATS_TH_AT12_BG.CLASETARJETA <> 1 OR ATS_TH_AT12_BG.TIPOTARJETA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "TIPOTARJETA2",
+          "ITxtCondSql": "5407012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5407012",
+              "Txt": "ATS_TH_AT12_BG.EXTRANJERA = 2 OR ATS_TH_AT12_BG.CLASETARJETA <> 1 OR  ATS_TH_AT12_BG.TIPOTARJETA NOT IN (0,5)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1422011",
+          "CondName": "TIPOTARJETA3",
+          "ITxtCondSql": "5409012",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "5409012",
+              "Txt": "ATS_TH_AT12_BG.CLASETARJETA = 2 OR ATS_TH_AT12_BG.TIPOTARJETA  <> 0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "ATS_TH_AT12",
+      "ITable": "1421011",
+      "SnpCond": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "PAISCONSUMO1",
+          "ITxtCondSql": "77427011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77427011",
+              "Txt": "((ATS_TH_AT12.EXTRANJERA<> 2) OR (PAISCONSUMO = 'VE'))"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "PAISCONSUMO2",
+          "ITxtCondSql": "77429011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77429011",
+              "Txt": "(ATS_TH_AT12.EXTRANJERA = 2 OR ATS_TH_AT12.PAISCONSUMO <> '0')"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "MUNICIPIO2",
+          "ITxtCondSql": "77431011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77431011",
+              "Txt": "ATS_TH_AT12.PAISCONSUMO <> 'VE' OR ATS_TH_AT12.MUNICIPIO <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "MUNICIPIO1",
+          "ITxtCondSql": "77433011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77433011",
+              "Txt": "ATS_TH_AT12.PAISCONSUMO <> 'VE' OR ATS_TH_AT12.MUNICIPIO <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "EXTRANJERA",
+          "ITxtCondSql": "77435011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77435011",
+              "Txt": "ATS_TH_AT12.EXTRANJERA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "TIPOTARJETA1",
+          "ITxtCondSql": "77437011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77437011",
+              "Txt": "ATS_TH_AT12.EXTRANJERA <> 2 OR ATS_TH_AT12.CLASETARJETA <> 1 OR ATS_TH_AT12.TIPOTARJETA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "TIPOTARJETA2",
+          "ITxtCondSql": "77439011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77439011",
+              "Txt": "ATS_TH_AT12.EXTRANJERA = 2 OR ATS_TH_AT12.CLASETARJETA <> 1 OR  ATS_TH_AT12.TIPOTARJETA NOT IN (0,5)"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "TIPOTARJETA3",
+          "ITxtCondSql": "77441011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77441011",
+              "Txt": "ATS_TH_AT12.CLASETARJETA = 2 OR ATS_TH_AT12.TIPOTARJETA  <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "CONCEPTO1",
+          "ITxtCondSql": "77443011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77443011",
+              "Txt": "ATS_TH_AT12.CLASETARJETA <> 1 OR ATS_TH_AT12.CONCEPTO <> 18"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "CONCEPTO2",
+          "ITxtCondSql": "77445011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77445011",
+              "Txt": "ATS_TH_AT12.CLASETARJETA <> 2 OR ATS_TH_AT12.CONCEPTO <> 9"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "FRANQUICIA1",
+          "ITxtCondSql": "77447011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77447011",
+              "Txt": "ATS_TH_AT12.CLASETARJETA <> 1 OR ATS_TH_AT12.FRANQUICIA <> 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "FRANQUICIA2",
+          "ITxtCondSql": "77449011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77449011",
+              "Txt": "ATS_TH_AT12.CLASETARJETA = 1 OR ATS_TH_AT12.FRANQUICIA = 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "CANTIDADDECONSUMOS",
+          "ITxtCondSql": "77451011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77451011",
+              "Txt": "ATS_TH_AT12.CANTIDADCONSUMOS >= 0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "COMISIONESPROPIAS",
+          "ITxtCondSql": "77453011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77453011",
+              "Txt": "ATS_TH_AT12.COMISIONESPROPIAS >=  0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "MONTOCONSUMO",
+          "ITxtCondSql": "77455011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77455011",
+              "Txt": "ATS_TH_AT12.MONTOCONSUMO >=0"
+            }
+          ]
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpCond",
+          "ITable": "1421011",
+          "CondName": "COMISIONESTERCEROS",
+          "ITxtCondSql": "77457011",
+          "SnpTxtHeader": [
+            {
+              "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+              "ITxt": "77457011",
+              "Txt": "ATS_TH_AT12.COMISIONESTERCEROS >=  0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "tm_atm_consorcio",
+      "ITable": "117041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "TM_ATM_CONSORCIO",
+      "ITable": "1366011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_PMPFP301TT",
+      "ITable": "1345011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_PMPFP301TT",
+      "ITable": "1351011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "SIIF_PARROQUIAS",
+      "ITable": "73041"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "HOMOLOGACIONES_SUDEBAN",
+      "ITable": "517011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "RE_TRAN_MONET_HIS",
+      "ITable": "402011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_ATM_CONSORCIO",
+      "ITable": "1370011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_RE_TRAN_MONET",
+      "ITable": "1371011"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_HOMOLOGACION_SUDEBAN",
+      "ITable": "173012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_PMPFP301TT_",
+      "ITable": "48012"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpTable",
+      "TableName": "AT12_ATOMO12",
+      "ITable": "1344011"
+    }
+  ],
+  "SnpVar": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "09/01/2018",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaFin",
+      "ITxtVar": "13041",
+      "ITxtVarIn": "14041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "14041",
+          "Txt": "SELECT '#FechaFin_M' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaFin_M",
+      "ITxtVar": "null",
+      "ITxtVarIn": "15041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "15041",
+          "Txt": "SELECT TO_CHAR(LAST_DAY(SYSDATE-28),'mm/dd/yyyy') FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "08/26/2018",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaInicio",
+      "ITxtVar": "1041",
+      "ITxtVarIn": "2041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "2041",
+          "Txt": "SELECT '#FechaInicio_M' FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "null",
+      "LschemaName": "LS_AT_STG",
+      "VarName": "FechaInicio_M",
+      "ITxtVar": "null",
+      "ITxtVarIn": "3041",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "3041",
+          "Txt": "SELECT TO_CHAR(TRUNC(SYSDATE-28,'MM'),'mm/dd/yyyy') FROM DUAL"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpVar",
+      "DefV": "AT12",
+      "LschemaName": "null",
+      "VarName": "FileAT",
+      "ITxtVar": "40041",
+      "ITxtVarIn": "null",
+      "SnpTxtHeader": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpTxtHeader",
+          "ITxt": "40041",
+          "Txt": "Nombre del archivo de transmisión, AT número que identifica el archivo de transmisión. Ejemplo: ?AT03?."
+        }
+      ]
+    }
+  ],
+  "SnpPop": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_BANCARIBE_PREP",
+      "TableName (Target Table)": "AT12_BANCARIBE_PRE"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_ATOMO_BANGENTE",
+      "TableName (Target Table)": "AT12_ATOMO_BANGENTE"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_ATOMO_BANCARIBE",
+      "TableName (Target Table)": "AT12_ATOMO_BANCARIBE"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT12_SUDEBAN_BANGENTE",
+      "TableName (Target Table)": "ATS_TH_AT12_BG_PRE"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "AT12_SUDEBAN_BANCARIBE",
+      "TableName (Target Table)": "ATS_TH_AT12_PRE"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TH_AT12_BANGENTE",
+      "TableName (Target Table)": "ATS_TH_AT12_BG"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ATSUDEBAN",
+      "PopName": "ATS_TH_AT12_BANCARIBE",
+      "TableName (Target Table)": "ATS_TH_AT12"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_ODS",
+      "PopName": "IT_TM_ATM_CONSORCIO_COBIS_ODS_MENSUAL_AT12",
+      "TableName (Target Table)": "TM_ATM_CONSORCIO"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_IMPORTAR_PMPFP301TT",
+      "TableName (Target Table)": "AT12_PMPFP301TT"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_GENERAR_PMPFP301TT",
+      "TableName (Target Table)": "AT12_PMPFP301TT_"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_IMPORTAR_PARROQUIAS",
+      "TableName (Target Table)": "AT12_PARROQUIAS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_IMPORTAR_HOMOLOGACION",
+      "TableName (Target Table)": "AT12_HOMOLOGACION_SUDEBAN"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_RE_TRAN_MONET",
+      "TableName (Target Table)": "AT12_RE_TRAN_MONET"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_ATM_CONSORCIO",
+      "TableName (Target Table)": "AT12_ATM_CONSORCIO"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_GENERACION_POS_BANGENTE",
+      "TableName (Target Table)": "AT12_GENERACION_POS_BANGENTE"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_GENERACION_POS",
+      "TableName (Target Table)": "AT12_GENERACION_POS"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_BANGENTE_PRE",
+      "TableName (Target Table)": "AT12_BANGENTE_PRE"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_BANCARIBE_PRE",
+      "TableName (Target Table)": "AT12_BANCARIBE_PRE_"
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpPop",
+      "LschemaName": "LS_AT_STG",
+      "PopName": "AT12_IMPORTAR_ATOMO12",
+      "TableName (Target Table)": "AT12_ATOMO12"
+    }
+  ],
+  "SnpScenStep": [
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_LIMP_TRANS_ATM",
+      "StepType": "T",
+      "Nno": "0",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "0",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "DELETE FROM ODS.TM_ATM_CONSORCIO\nWHERE AC_FECHA_TRAN between TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaInicio', 'MM/DD/YY')\nAND  TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin','MM/DD/YY')"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "IT_TM_ATM_CONSORCIO_COBIS_ODS_MENSUAL_AT12",
+      "StepType": "F",
+      "Nno": "1",
+      "TableName (Target Table)": "TM_ATM_CONSORCIO",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCEROS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOAFILIADO\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tPAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED,\n\tCODIGOAFILIADO,\n\tOFICINA \n\t \n) \n\nselect\n    PAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED,\n\tCODIGOAFILIADO,\n\tOFICINA   \n   \nFROM (\t\n\n\nselect \t\n\tAT12_BANCARIBE_PRE_.PAISCONSUMO PAISCONSUMO,\n\tCASE WHEN AT12_PARROQUIAS.PARROQUIA IS NOT NULL THEN SUBSTR(TO_CHAR(AT12_PARROQUIAS.PARROQUIA),1,4) ELSE NULL END MUNICIPIO,\n\tAT12_BANCARIBE_PRE_.EXTRANJERA EXTRANJERA,\n\tAT12_BANCARIBE_PRE_.CLASETARJETA CLASETARJETA,\n\tAT12_BANCARIBE_PRE_.TIPOTARJETA TIPOTARJETA,\n\tAT12_BANCARIBE_PRE_.CONCEPTO CONCEPTO,\n\tAT12_BANCARIBE_PRE_.FRANQUICIA FRANQUICIA,\n\tAT12_BANCARIBE_PRE_.CANTIDADCONSUMOS CANTIDADCONSUMOS,\n\tAT12_BANCARIBE_PRE_.MONTOCONSUMO MONTOCONSUMO,\n\tAT12_BANCARIBE_PRE_.COMISIONESPROPIAS COMISIONESPROPIAS,\n\tAT12_BANCARIBE_PRE_.COMISIONESTERCEROS COMISIONESTERCEROS,\n\tAT12_BANCARIBE_PRE_.RED RED,\n\tAT12_BANCARIBE_PRE_.CODIGOAFILIADO CODIGOAFILIADO,\n\tAT12_BANCARIBE_PRE_.OFICINA OFICINA \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_PARROQUIAS\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_PARROQUIAS, <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE_\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_BANCARIBE_PRE_\nwhere\t\t(1=1)\t\n And (AT12_BANCARIBE_PRE_.OFICINA=AT12_PARROQUIAS.OFICINA (+))\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANGENTE\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCEROS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANGENTE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANGENTE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANGENTE\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tPAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED \n\t \n) \n\nselect\n    PAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED   \n   \nFROM (\t\n\n\nselect \t\n\tAT12_BANGENTE_PRE.PAISCONSUMO PAISCONSUMO,\n\tTO_CHAR(NVL(AT12_BANGENTE_PRE.MUNICIPIO,'0101')) MUNICIPIO,\n\tAT12_BANGENTE_PRE.EXTRANJERA EXTRANJERA,\n\tAT12_BANGENTE_PRE.CLASETARJETA CLASETARJETA,\n\tAT12_BANGENTE_PRE.TIPOTARJETA TIPOTARJETA,\n\tCASE WHEN AT12_BANGENTE_PRE.CONCEPTO > 18 THEN 17 ELSE AT12_BANGENTE_PRE.CONCEPTO END CONCEPTO,\n\tAT12_BANGENTE_PRE.FRANQUICIA FRANQUICIA,\n\tCASE WHEN AT12_BANGENTE_PRE.CLASETARJETA = 1 THEN SUM(AT12_BANGENTE_PRE.CANTIDADCONSUMOS) WHEN AT12_BANGENTE_PRE.CLASETARJETA = 2  THEN COUNT(1) END CANTIDADCONSUMOS,\n\tSUM(AT12_BANGENTE_PRE.MONTOCONSUMO) MONTOCONSUMO,\n\tSUM(AT12_BANGENTE_PRE.COMISIONESPROPIAS) COMISIONESPROPIAS,\n\tSUM(AT12_BANGENTE_PRE.COMISIONESTERCEROS) COMISIONESTERCEROS,\n\tAT12_BANGENTE_PRE.RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_BANGENTE_PRE\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_BANGENTE_PRE\nwhere\t\t(1=1)\t\n\n\n\nGroup By AT12_BANGENTE_PRE.PAISCONSUMO,\n TO_CHAR(NVL(AT12_BANGENTE_PRE.MUNICIPIO,'0101')),\n AT12_BANGENTE_PRE.EXTRANJERA,\n AT12_BANGENTE_PRE.CLASETARJETA,\n AT12_BANGENTE_PRE.TIPOTARJETA,\n CASE WHEN AT12_BANGENTE_PRE.CONCEPTO > 18 THEN 17 ELSE AT12_BANGENTE_PRE.CONCEPTO END,\n AT12_BANGENTE_PRE.FRANQUICIA,\n AT12_BANGENTE_PRE.RED\n\n\nUNION\nselect \t\n\tAT12_GENERACION_POS_BANGENTE.PAISCONSUMO PAISCONSUMO,\n\tTO_CHAR(AT12_GENERACION_POS_BANGENTE.MUNICIPIO) MUNICIPIO,\n\tAT12_GENERACION_POS_BANGENTE.EXTRANJERA EXTRANJERA,\n\tAT12_GENERACION_POS_BANGENTE.CLASETARJETA CLASETARJETA,\n\tAT12_GENERACION_POS_BANGENTE.TIPOTARJETA TIPOTARJETA,\n\tCASE WHEN AT12_GENERACION_POS_BANGENTE.CONCEPTO > 18 THEN 17 ELSE AT12_GENERACION_POS_BANGENTE.CONCEPTO END CONCEPTO,\n\tAT12_GENERACION_POS_BANGENTE.FRANQUICIA FRANQUICIA,\n\tCASE WHEN AT12_GENERACION_POS_BANGENTE.CLASETARJETA = 1 THEN SUM(AT12_GENERACION_POS_BANGENTE.CANTIDADCONSUMOS) WHEN AT12_GENERACION_POS_BANGENTE.CLASETARJETA = 2  THEN COUNT(1) END CANTIDADCONSUMOS,\n\tSUM(AT12_GENERACION_POS_BANGENTE.MONTOCONSUMO) MONTOCONSUMO,\n\tSUM(AT12_GENERACION_POS_BANGENTE.COMISIONESPROPIAS) COMISIONESPROPIAS,\n\tSUM(AT12_GENERACION_POS_BANGENTE.COMISIONESTERCERO) COMISIONESTERCEROS,\n\tAT12_GENERACION_POS_BANGENTE.RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS_BANGENTE\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_GENERACION_POS_BANGENTE\nwhere\t\t(1=1)\t\n\n\n\nGroup By AT12_GENERACION_POS_BANGENTE.PAISCONSUMO,\n TO_CHAR(AT12_GENERACION_POS_BANGENTE.MUNICIPIO),\n AT12_GENERACION_POS_BANGENTE.EXTRANJERA,\n AT12_GENERACION_POS_BANGENTE.CLASETARJETA,\n AT12_GENERACION_POS_BANGENTE.TIPOTARJETA,\n CASE WHEN AT12_GENERACION_POS_BANGENTE.CONCEPTO > 18 THEN 17 ELSE AT12_GENERACION_POS_BANGENTE.CONCEPTO END,\n AT12_GENERACION_POS_BANGENTE.FRANQUICIA,\n AT12_GENERACION_POS_BANGENTE.RED\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANCARIBE\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCEROS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANCARIBE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANCARIBE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANCARIBE\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tPAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED \n\t \n) \n\nselect\n    PAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED   \n   \nFROM (\t\n\n\nselect \t\n\tAT12_BANCARIBE_PRE.PAISCONSUMO PAISCONSUMO,\n\tCASE WHEN AT12_BANCARIBE_PRE.MUNICIPIO IS NULL THEN '0101' ELSE TO_CHAR(AT12_BANCARIBE_PRE.MUNICIPIO) END MUNICIPIO,\n\tAT12_BANCARIBE_PRE.EXTRANJERA EXTRANJERA,\n\tAT12_BANCARIBE_PRE.CLASETARJETA CLASETARJETA,\n\tAT12_BANCARIBE_PRE.TIPOTARJETA TIPOTARJETA,\n\tAT12_BANCARIBE_PRE.CONCEPTO CONCEPTO,\n\tAT12_BANCARIBE_PRE.FRANQUICIA FRANQUICIA,\n\tAT12_BANCARIBE_PRE.CANTIDADCONSUMOS CANTIDADCONSUMOS,\n\tAT12_BANCARIBE_PRE.MONTOCONSUMO MONTOCONSUMO,\n\tAT12_BANCARIBE_PRE.COMISIONESPROPIAS COMISIONESPROPIAS,\n\tAT12_BANCARIBE_PRE.COMISIONESTERCEROS COMISIONESTERCEROS,\n\tAT12_BANCARIBE_PRE.RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_BANCARIBE_PRE\nwhere\t\t(1=1)\t\n\n\n\n\n\n\nUNION ALL\nselect \t\n\tAT12_GENERACION_POS.PAISCONSUMO PAISCONSUMO,\n\tTO_CHAR(AT12_GENERACION_POS.MUNICIPIO) MUNICIPIO,\n\tAT12_GENERACION_POS.EXTRANJERA EXTRANJERA,\n\tAT12_GENERACION_POS.CLASETARJETA CLASETARJETA,\n\tAT12_GENERACION_POS.TIPOTARJETA TIPOTARJETA,\n\tAT12_GENERACION_POS.CONCEPTO CONCEPTO,\n\tAT12_GENERACION_POS.FRANQUICIA FRANQUICIA,\n\tAT12_GENERACION_POS.CANTIDADCONSUMOS CANTIDADCONSUMOS,\n\tAT12_GENERACION_POS.MONTOCONSUMO MONTOCONSUMO,\n\tAT12_GENERACION_POS.COMISIONESPROPIAS COMISIONESPROPIAS,\n\tAT12_GENERACION_POS.COMISIONESTERCERO COMISIONESTERCEROS,\n\tAT12_GENERACION_POS.RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_GENERACION_POS\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "DELETE FROM TM_ATM_CONSORCIO\nWHERE AC_FECHA_TRAN >= '01/10/22' \nAND AC_FECHA_TRAN <= '31/10/22'"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "DELETE FROM TM_ATM_CONSORCIO\nWHERE AC_FECHA_TRAN >= '#ODI_AT_SUDEBAN_DEV.FechaInicio'  \nAND AC_FECHA_TRAN <= '#ODI_AT_SUDEBAN_DEV.FechaFin'"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Procedure",
+          "ColTxt": "null",
+          "DefTxt": "DELETE FROM TM_ATM_CONSORCIO\nWHERE TO_CHAR(AC_FECHA_TRAN, 'MM/DD/YY')  >= '#ODI_AT_SUDEBAN_DEV.FechaInicio'  \nAND TO_CHAR(AC_FECHA_TRAN, 'MM/DD/YY') <= '#ODI_AT_SUDEBAN_DEV.FechaFin'"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"W\") ?>\n(\n\tC1_AC_REGISTRO\tCHAR(2) NULL,\n\tC2_AC_TARJETA\tCHAR(32) NULL,\n\tC3_AC_AUTORIZA\tNUMBER(10) NULL,\n\tC4_AC_MONTO\tNUMBER(15,4) NULL,\n\tC5_AC_MONTO_ME\tNUMBER(15,4) NULL,\n\tC6_AC_MONEDA\tNUMBER(5) NULL,\n\tC7_AC_TRANSACCION\tCHAR(1) NULL,\n\tC8_AC_FECHA_TRAN\tTIMESTAMP(6) NULL,\n\tC9_AC_FECHA_POS\tTIMESTAMP(6) NULL,\n\tC10_AC_REFERENCIA\tCHAR(13) NULL,\n\tC11_AC_COMERCIO\tCHAR(27) NULL,\n\tC12_AC_COD_COMERCIO\tNUMBER(10) NULL,\n\tC13_AC_CAT_COMERCIO\tNUMBER(5) NULL,\n\tC14_AC_TTRANSACCION\tCHAR(2) NULL,\n\tC15_AC_BANCO\tNUMBER(5) NULL,\n\tC16_AC_SOBRECARGO\tNUMBER(15,4) NULL,\n\tC17_AC_HORA\tCHAR(8) NULL,\n\tC18_AC_TRACE\tNUMBER(10) NULL,\n\tC19_AC_MENSAJE\tCHAR(30) NULL,\n\tC20_AC_EDO_REGISTRO\tCHAR(4) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tTM_ATM_CONSORCIO.ac_registro\t   C1_AC_REGISTRO,\n\tTM_ATM_CONSORCIO.ac_tarjeta\t   C2_AC_TARJETA,\n\tTM_ATM_CONSORCIO.ac_autoriza\t   C3_AC_AUTORIZA,\n\tTM_ATM_CONSORCIO.ac_monto\t   C4_AC_MONTO,\n\tTM_ATM_CONSORCIO.ac_monto_me\t   C5_AC_MONTO_ME,\n\tTM_ATM_CONSORCIO.ac_moneda\t   C6_AC_MONEDA,\n\tTM_ATM_CONSORCIO.ac_transaccion\t   C7_AC_TRANSACCION,\n\tTM_ATM_CONSORCIO.ac_fecha_tran\t   C8_AC_FECHA_TRAN,\n\tTM_ATM_CONSORCIO.ac_fecha_pos\t   C9_AC_FECHA_POS,\n\tTM_ATM_CONSORCIO.ac_referencia\t   C10_AC_REFERENCIA,\n\tTM_ATM_CONSORCIO.ac_comercio\t   C11_AC_COMERCIO,\n\tTM_ATM_CONSORCIO.ac_cod_comercio\t   C12_AC_COD_COMERCIO,\n\tTM_ATM_CONSORCIO.ac_cat_comercio\t   C13_AC_CAT_COMERCIO,\n\tTM_ATM_CONSORCIO.ac_ttransaccion\t   C14_AC_TTRANSACCION,\n\tTM_ATM_CONSORCIO.ac_banco\t   C15_AC_BANCO,\n\tTM_ATM_CONSORCIO.ac_sobrecargo\t   C16_AC_SOBRECARGO,\n\tTM_ATM_CONSORCIO.ac_hora\t   C17_AC_HORA,\n\tTM_ATM_CONSORCIO.ac_trace\t   C18_AC_TRACE,\n\tTM_ATM_CONSORCIO.ac_mensaje\t   C19_AC_MENSAJE,\n\tTM_ATM_CONSORCIO.ac_edo_registro\t   C20_AC_EDO_REGISTRO\nfrom\t<?=snpRef.getObjectName(\"L\", \"tm_atm_consorcio\", \"LS_SOURCE_COB_ATM_HIS\", \"\", \"D\")?>   TM_ATM_CONSORCIO\nwhere\t(1=1)\nAnd (TM_ATM_CONSORCIO.ac_fecha_tran >= ('#ODI_AT_SUDEBAN_DEV.FechaInicio') AND TM_ATM_CONSORCIO.ac_fecha_tran <= ('#ODI_AT_SUDEBAN_DEV.FechaFin') AND TM_ATM_CONSORCIO.ac_ttransaccion IN  ('CC','CI')\nAND TM_ATM_CONSORCIO.ac_tarjeta IS NOT NULL\n)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"W\") ?>\n(\n\tC1_AC_REGISTRO,\n\tC2_AC_TARJETA,\n\tC3_AC_AUTORIZA,\n\tC4_AC_MONTO,\n\tC5_AC_MONTO_ME,\n\tC6_AC_MONEDA,\n\tC7_AC_TRANSACCION,\n\tC8_AC_FECHA_TRAN,\n\tC9_AC_FECHA_POS,\n\tC10_AC_REFERENCIA,\n\tC11_AC_COMERCIO,\n\tC12_AC_COD_COMERCIO,\n\tC13_AC_CAT_COMERCIO,\n\tC14_AC_TTRANSACCION,\n\tC15_AC_BANCO,\n\tC16_AC_SOBRECARGO,\n\tC17_AC_HORA,\n\tC18_AC_TRACE,\n\tC19_AC_MENSAJE,\n\tC20_AC_EDO_REGISTRO\n)\nvalues\n(\n\t:C1_AC_REGISTRO,\n\t:C2_AC_TARJETA,\n\t:C3_AC_AUTORIZA,\n\t:C4_AC_MONTO,\n\t:C5_AC_MONTO_ME,\n\t:C6_AC_MONEDA,\n\t:C7_AC_TRANSACCION,\n\t:C8_AC_FECHA_TRAN,\n\t:C9_AC_FECHA_POS,\n\t:C10_AC_REFERENCIA,\n\t:C11_AC_COMERCIO,\n\t:C12_AC_COD_COMERCIO,\n\t:C13_AC_CAT_COMERCIO,\n\t:C14_AC_TTRANSACCION,\n\t:C15_AC_BANCO,\n\t:C16_AC_SOBRECARGO,\n\t:C17_AC_HORA,\n\t:C18_AC_TRACE,\n\t:C19_AC_MENSAJE,\n\t:C20_AC_EDO_REGISTRO\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"TM_ATM_CONSORCIO\", \"LS_ODS\", \"\", \"D\") ?> \n( \n\tAC_REGISTRO,\n\tAC_TARJETA,\n\tAC_AUTORIZA,\n\tAC_MONTO,\n\tAC_MONTO_ME,\n\tAC_MONEDA,\n\tAC_TRANSACCION,\n\tAC_FECHA_TRAN,\n\tAC_FECHA_POS,\n\tAC_REFERENCIA,\n\tAC_COMERCIO,\n\tAC_COD_COMERCIO,\n\tAC_CAT_COMERCIO,\n\tAC_TTRANSACCION,\n\tAC_BANCO,\n\tAC_SOBRECARGO,\n\tAC_HORA,\n\tAC_TRACE,\n\tAC_MENSAJE,\n\tAC_EDO_REGISTRO \n\t \n) \n\nselect\n    AC_REGISTRO,\n\tAC_TARJETA,\n\tAC_AUTORIZA,\n\tAC_MONTO,\n\tAC_MONTO_ME,\n\tAC_MONEDA,\n\tAC_TRANSACCION,\n\tAC_FECHA_TRAN,\n\tAC_FECHA_POS,\n\tAC_REFERENCIA,\n\tAC_COMERCIO,\n\tAC_COD_COMERCIO,\n\tAC_CAT_COMERCIO,\n\tAC_TTRANSACCION,\n\tAC_BANCO,\n\tAC_SOBRECARGO,\n\tAC_HORA,\n\tAC_TRACE,\n\tAC_MENSAJE,\n\tAC_EDO_REGISTRO   \n   \nFROM (\t\n\n\nselect \t\n\tC1_AC_REGISTRO AC_REGISTRO,\n\tC2_AC_TARJETA AC_TARJETA,\n\tC3_AC_AUTORIZA AC_AUTORIZA,\n\tC4_AC_MONTO AC_MONTO,\n\tC5_AC_MONTO_ME AC_MONTO_ME,\n\tC6_AC_MONEDA AC_MONEDA,\n\tC7_AC_TRANSACCION AC_TRANSACCION,\n\tC8_AC_FECHA_TRAN AC_FECHA_TRAN,\n\tC9_AC_FECHA_POS AC_FECHA_POS,\n\tC10_AC_REFERENCIA AC_REFERENCIA,\n\tC11_AC_COMERCIO AC_COMERCIO,\n\tC12_AC_COD_COMERCIO AC_COD_COMERCIO,\n\tC13_AC_CAT_COMERCIO AC_CAT_COMERCIO,\n\tC14_AC_TTRANSACCION AC_TTRANSACCION,\n\tC15_AC_BANCO AC_BANCO,\n\tC16_AC_SOBRECARGO AC_SOBRECARGO,\n\tC17_AC_HORA AC_HORA,\n\tC18_AC_TRACE AC_TRACE,\n\tC19_AC_MENSAJE AC_MENSAJE,\n\tC20_AC_EDO_REGISTRO AC_EDO_REGISTRO \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"LS_ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "DECLARE\n\n\nBEGIN\n\n  PR_ACTUALIZA_ESTADISTICAS('<?=snpRef.getInfo(\"DEST_SCHEMA\") ?>',  '<?=snpRef.getObjectName(\"L\", \"TM_ATM_CONSORCIO\", \"LS_ODS\", \"\", \"D\") ?>', null, TO_DATE('#vSrcFechaCarga', '#vSrcFormatoFecha'));\n\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"W\") ?>\n(\n\tC1_CTA_BANCO\tCHAR(24) NULL,\n\tC2_VALOR\tNUMBER(19,4) NULL,\n\tC3_TARJETA_ATM\tVARCHAR2(32) NULL,\n\tC4_SSN_LOCAL\tNUMBER(10) NULL,\n\tC5_HORA\tTIMESTAMP(6) NULL,\n\tC6_OFICINA\tNUMBER(5) NULL,\n\tC7_SRV_LOCAL\tVARCHAR2(16) NULL,\n\tC8_SRV_HOST\tVARCHAR2(16) NULL,\n\tC9_MONTO4\tNUMBER(19,4) NULL,\n\tC10_NRO_TARJETA\tNVARCHAR2(50) NULL,\n\tC11_AUTORIZA\tNUMBER(10) NULL,\n\tC12_FECHA_TRAN\tDATE NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tRE_TRAN_MONET_HIS.TH_CTA_BANCO\t   C1_CTA_BANCO,\n\tRE_TRAN_MONET_HIS.TH_VALOR\t   C2_VALOR,\n\tTRIM(RE_TRAN_MONET_HIS.TH_TARJETA_ATM)\t   C3_TARJETA_ATM,\n\tRE_TRAN_MONET_HIS.TH_SSN_LOCAL\t   C4_SSN_LOCAL,\n\tRE_TRAN_MONET_HIS.TH_HORA\t   C5_HORA,\n\tRE_TRAN_MONET_HIS.TH_OFICINA\t   C6_OFICINA,\n\tRE_TRAN_MONET_HIS.TH_SRV_LOCAL\t   C7_SRV_LOCAL,\n\tRE_TRAN_MONET_HIS.TH_SRV_HOST\t   C8_SRV_HOST,\n\tRE_TRAN_MONET_HIS.TH_MONTO4\t   C9_MONTO4,\n\tRE_TRAN_MONET_HIS.TH_TARJETA_ATM\t   C10_NRO_TARJETA,\n\tRE_TRAN_MONET_HIS.TH_SSN_LOCAL\t   C11_AUTORIZA,\n\tRE_TRAN_MONET_HIS.TH_FECHA\t   C12_FECHA_TRAN\nfrom\t<?=snpRef.getObjectName(\"L\", \"RE_TRAN_MONET_HIS\", \"LS_ODS\", \"\", \"D\")?>   RE_TRAN_MONET_HIS\nwhere\t(1=1)\nAnd (RE_TRAN_MONET_HIS.TH_FECHA BETWEEN TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaInicio','MM/DD/YY') \nAND TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin','MM/DD/YY')\nAND RE_TRAN_MONET_HIS.TH_ESTADO_EJECUCION = 'EJ' AND \nRE_TRAN_MONET_HIS.TH_TIPO_TRAN IN (500, 503, 504, 510, 513, 520, 523, 130, 140, 150, 230, 231, 240, 241, 250, 251)\n\n)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"W\") ?>\n(\n\tC1_CTA_BANCO,\n\tC2_VALOR,\n\tC3_TARJETA_ATM,\n\tC4_SSN_LOCAL,\n\tC5_HORA,\n\tC6_OFICINA,\n\tC7_SRV_LOCAL,\n\tC8_SRV_HOST,\n\tC9_MONTO4,\n\tC10_NRO_TARJETA,\n\tC11_AUTORIZA,\n\tC12_FECHA_TRAN\n)\nvalues\n(\n\t:C1_CTA_BANCO,\n\t:C2_VALOR,\n\t:C3_TARJETA_ATM,\n\t:C4_SSN_LOCAL,\n\t:C5_HORA,\n\t:C6_OFICINA,\n\t:C7_SRV_LOCAL,\n\t:C8_SRV_HOST,\n\t:C9_MONTO4,\n\t:C10_NRO_TARJETA,\n\t:C11_AUTORIZA,\n\t:C12_FECHA_TRAN\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tCTA_BANCO\tCHAR(24) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tVALOR\tNUMBER(19,4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTARJETA_ATM\tVARCHAR2(32) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSSN_LOCAL\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHORA\tTIMESTAMP(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSRV_LOCAL\tVARCHAR2(16) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSRV_HOST\tVARCHAR2(16) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTO4\tNUMBER(19,4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRO_TARJETA\tNVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tCTA_BANCO,\n\tVALOR,\n\tTARJETA_ATM,\n\tSSN_LOCAL,\n\tHORA,\n\tOFICINA,\n\tSRV_LOCAL,\n\tSRV_HOST,\n\tMONTO4,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN \n\t \n) \n\nselect\n    CTA_BANCO,\n\tVALOR,\n\tTARJETA_ATM,\n\tSSN_LOCAL,\n\tHORA,\n\tOFICINA,\n\tSRV_LOCAL,\n\tSRV_HOST,\n\tMONTO4,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN   \n   \nFROM (\t\n\n\nselect \t\n\tC1_CTA_BANCO CTA_BANCO,\n\tC2_VALOR VALOR,\n\tC3_TARJETA_ATM TARJETA_ATM,\n\tC4_SSN_LOCAL SSN_LOCAL,\n\tC5_HORA HORA,\n\tC6_OFICINA OFICINA,\n\tC7_SRV_LOCAL SRV_LOCAL,\n\tC8_SRV_HOST SRV_HOST,\n\tC9_MONTO4 MONTO4,\n\tC10_NRO_TARJETA NRO_TARJETA,\n\tC11_AUTORIZA AUTORIZA,\n\tC12_FECHA_TRAN FECHA_TRAN \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATM_CONSORCIO\", \"W\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATM_CONSORCIO\", \"W\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATM_CONSORCIO\", \"W\") ?>\n(\n\tC1_MONTO\tNUMBER(18,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC2_TARJETA\tNVARCHAR2(32) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC3_FECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC4_COD_COMERCIO\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC5_CAT_COMERCIO\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC6_TTRANSACCION\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC7_BANCO\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC8_AUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tTM_ATM_CONSORCIO.AC_MONTO\t   C1_MONTO,\n\tTRIM(TM_ATM_CONSORCIO.AC_TARJETA)\t   C2_TARJETA,\n\tTM_ATM_CONSORCIO.AC_FECHA_TRAN\t   C3_FECHA_TRAN,\n\tTM_ATM_CONSORCIO.AC_COD_COMERCIO\t   C4_COD_COMERCIO,\n\tTM_ATM_CONSORCIO.AC_CAT_COMERCIO\t   C5_CAT_COMERCIO,\n\tTM_ATM_CONSORCIO.AC_TTRANSACCION\t   C6_TTRANSACCION,\n\tTM_ATM_CONSORCIO.AC_BANCO\t   C7_BANCO,\n\tTM_ATM_CONSORCIO.AC_AUTORIZA\t   C8_AUTORIZA\nfrom\t<?=snpRef.getObjectName(\"L\", \"TM_ATM_CONSORCIO\", \"LS_ODS\", \"\", \"D\")?>   TM_ATM_CONSORCIO\nwhere\t(1=1)\nAnd (TM_ATM_CONSORCIO.AC_FECHA_TRAN  BETWEEN TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaInicio','MM/DD/YY') \nAND TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin','MM/DD/YY')\nAND TM_ATM_CONSORCIO.AC_TTRANSACCION IN  ('CC','CI')\nAND TM_ATM_CONSORCIO.AC_TARJETA IS NOT NULL\n\n)",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATM_CONSORCIO\", \"W\") ?>\n(\n\tC1_MONTO,\n\tC2_TARJETA,\n\tC3_FECHA_TRAN,\n\tC4_COD_COMERCIO,\n\tC5_CAT_COMERCIO,\n\tC6_TTRANSACCION,\n\tC7_BANCO,\n\tC8_AUTORIZA\n)\nvalues\n(\n\t:C1_MONTO,\n\t:C2_TARJETA,\n\t:C3_FECHA_TRAN,\n\t:C4_COD_COMERCIO,\n\t:C5_CAT_COMERCIO,\n\t:C6_TTRANSACCION,\n\t:C7_BANCO,\n\t:C8_AUTORIZA\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tMONTO\tNUMBER(18,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTARJETA\tNVARCHAR2(32) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOD_COMERCIO\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCAT_COMERCIO\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTTRANSACCION\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tBANCO\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tMONTO,\n\tTARJETA,\n\tFECHA_TRAN,\n\tCOD_COMERCIO,\n\tCAT_COMERCIO,\n\tTTRANSACCION,\n\tBANCO,\n\tAUTORIZA \n\t \n) \n\nselect\n    MONTO,\n\tTARJETA,\n\tFECHA_TRAN,\n\tCOD_COMERCIO,\n\tCAT_COMERCIO,\n\tTTRANSACCION,\n\tBANCO,\n\tAUTORIZA   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_MONTO MONTO,\n\tC2_TARJETA TARJETA,\n\tC3_FECHA_TRAN FECHA_TRAN,\n\tC4_COD_COMERCIO COD_COMERCIO,\n\tC5_CAT_COMERCIO CAT_COMERCIO,\n\tC6_TTRANSACCION TTRANSACCION,\n\tC7_BANCO BANCO,\n\tC8_AUTORIZA AUTORIZA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS_BANGENTE\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCERO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOAFILIADO\tNUMBER(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER(3) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS_BANGENTE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS_BANGENTE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS_BANGENTE\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tMUNICIPIO,\n\tCONCEPTO,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCODIGOAFILIADO,\n\tOFICINA \n\t,PAISCONSUMO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tCOMISIONESTERCERO,\n\tRED \n) \n\nselect\n    MUNICIPIO,\n\tCONCEPTO,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCODIGOAFILIADO,\n\tOFICINA   \n  ,'VE',\n\t1,\n\t2,\n\t0,\n\t0,\n\t1,\n\t0\n,\n\t2 \nFROM (\t\n\n\nselect \t\n\tCASE WHEN AT12_ATM_CONSORCIO.TTRANSACCION = 'CI' THEN '0101' ELSE SUBSTR(TO_CHAR(NVL(AT12_PARROQUIAS.PARROQUIA,'0101')),1,4) END MUNICIPIO,\n\tCASE WHEN AT12_HOMOLOGACION_SUDEBAN.VALORSUDEBAN IS NOT NULL THEN AT12_HOMOLOGACION_SUDEBAN.VALORSUDEBAN ELSE AT12_ATM_CONSORCIO.CAT_COMERCIO END CONCEPTO,\n\tAT12_RE_TRAN_MONET.VALOR MONTOCONSUMO,\n\tCASE WHEN AT12_PMPFP301TT_.COMISION > 0  THEN AT12_RE_TRAN_MONET.VALOR * AT12_PMPFP301TT_.COMISION/100 ELSE 0 END COMISIONESPROPIAS,\n\tAT12_ATM_CONSORCIO.COD_COMERCIO CODIGOAFILIADO,\n\tAT12_RE_TRAN_MONET.OFICINA OFICINA \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_ATM_CONSORCIO, <?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_RE_TRAN_MONET, <?=snpRef.getObjectName(\"L\", \"AT12_PARROQUIAS\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_PARROQUIAS, <?=snpRef.getObjectName(\"L\", \"AT12_HOMOLOGACION_SUDEBAN\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_HOMOLOGACION_SUDEBAN, <?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT_\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_PMPFP301TT_\nwhere\t\t(1=1)\t\n And (AT12_ATM_CONSORCIO.TARJETA=AT12_RE_TRAN_MONET.TARJETA_ATM AND AT12_ATM_CONSORCIO.MONTO=AT12_RE_TRAN_MONET.VALOR)\nAND (AT12_ATM_CONSORCIO.CAT_COMERCIO=AT12_HOMOLOGACION_SUDEBAN.VALORCOBIS (+))\nAND (AT12_ATM_CONSORCIO.COD_COMERCIO=AT12_PMPFP301TT_.CODIGOAFILIADO (+))\nAND (TO_NUMBER(SUBSTR(AT12_PMPFP301TT_.CUENTABANCO,3,3))=AT12_PARROQUIAS.OFICINA (+))\nAnd (SUBSTR(AT12_RE_TRAN_MONET.CTA_BANCO,1,4) = '0146' AND SUBSTR(AT12_RE_TRAN_MONET.SSN_LOCAL,-LENGTH(AT12_ATM_CONSORCIO.AUTORIZA)) = AT12_ATM_CONSORCIO.AUTORIZA\nAND TO_CHAR(AT12_ATM_CONSORCIO.FECHA_TRAN,'YYYYMMDD') = TO_CHAR(AT12_RE_TRAN_MONET.HORA,'YYYYMMDD') AND AT12_RE_TRAN_MONET.SRV_LOCAL = 'MAESTRO')\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCERO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOAFILIADO\tNUMBER(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRO_TARJETA\tNVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tMUNICIPIO,\n\tCONCEPTO,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCODIGOAFILIADO,\n\tOFICINA,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN \n\t,PAISCONSUMO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tCOMISIONESTERCERO,\n\tRED \n) \n\nselect\n    MUNICIPIO,\n\tCONCEPTO,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCODIGOAFILIADO,\n\tOFICINA,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN   \n  ,'VE',\n\t1,\n\t2,\n\t0,\n\t0,\n\t1,\n\t0,\n\t2 \nFROM (\t\n\n\nselect \t\n\tCASE WHEN AT12_ATM_CONSORCIO.TTRANSACCION = 'CI' THEN '0101' ELSE SUBSTR(TO_CHAR(NVL(AT12_PARROQUIAS.PARROQUIA,'0101')),1,4) END MUNICIPIO,\n\tCASE WHEN AT12_HOMOLOGACION_SUDEBAN.VALORSUDEBAN IS NOT NULL THEN AT12_HOMOLOGACION_SUDEBAN.VALORSUDEBAN ELSE AT12_ATM_CONSORCIO.CAT_COMERCIO END CONCEPTO,\n\t/*AT12_RE_TRAN_MONET.VALOR*/AT12_ATM_CONSORCIO.MONTO MONTOCONSUMO,\n\tCASE WHEN AT12_PMPFP301TT_.COMISION > 0  THEN AT12_RE_TRAN_MONET.VALOR * AT12_PMPFP301TT_.COMISION/100 ELSE 0 END COMISIONESPROPIAS,\n\tAT12_ATM_CONSORCIO.COD_COMERCIO CODIGOAFILIADO,\n\tAT12_RE_TRAN_MONET.OFICINA OFICINA,\n\tAT12_ATM_CONSORCIO.TARJETA NRO_TARJETA,\n\tAT12_ATM_CONSORCIO.AUTORIZA AUTORIZA,\n\tAT12_ATM_CONSORCIO.FECHA_TRAN FECHA_TRAN \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_ATM_CONSORCIO, <?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_RE_TRAN_MONET, <?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT_\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_PMPFP301TT_, <?=snpRef.getObjectName(\"L\", \"AT12_PARROQUIAS\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_PARROQUIAS, <?=snpRef.getObjectName(\"L\", \"AT12_HOMOLOGACION_SUDEBAN\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_HOMOLOGACION_SUDEBAN\nwhere\t\t(1=1)\t\n And (AT12_ATM_CONSORCIO.COD_COMERCIO=AT12_PMPFP301TT_.CODIGOAFILIADO (+))\nAND (TO_NUMBER(SUBSTR(TO_CHAR(AT12_PMPFP301TT_.CUENTABANCO),3,3))=AT12_PARROQUIAS.OFICINA (+))\nAND (AT12_ATM_CONSORCIO.CAT_COMERCIO=AT12_HOMOLOGACION_SUDEBAN.VALORCOBIS)\nAND (/*AT12_ATM_CONSORCIO.TARJETA=AT12_RE_TRAN_MONET.TARJETA_ATM AND AT12_ATM_CONSORCIO.MONTO=AT12_RE_TRAN_MONET.VALOR*/\n\nAT12_ATM_CONSORCIO.TARJETA=AT12_RE_TRAN_MONET.TARJETA_ATM)\nAnd (SUBSTR(AT12_RE_TRAN_MONET.CTA_BANCO,1,4) = '0114' AND SUBSTR(AT12_RE_TRAN_MONET.SSN_LOCAL,-LENGTH(AT12_ATM_CONSORCIO.AUTORIZA)) = AT12_ATM_CONSORCIO.AUTORIZA\nAND TO_CHAR(AT12_ATM_CONSORCIO.FECHA_TRAN,'YYYYMMDD') = TO_CHAR(AT12_RE_TRAN_MONET.HORA,'YYYYMMDD') AND AT12_RE_TRAN_MONET.SRV_LOCAL = 'MAESTRO')\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE_\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCEROS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOAFILIADO\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRO_TARJETA\tNVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE_\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE_\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE_\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tMUNICIPIO,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tOFICINA,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN \n\t,PAISCONSUMO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tCOMISIONESTERCEROS,\n\tRED,\n\tCODIGOAFILIADO \n) \n\nselect\n    MUNICIPIO,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tOFICINA,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN   \n  ,'VE',\n\t1,\n\t2,\n\t0\n,\n\t18,\n\t0,\n\t1,\n\t0,\n\t2,\n\t0 \nFROM (\t\n\n\nselect \t\n\t'' MUNICIPIO,\n\tAT12_RE_TRAN_MONET.VALOR MONTOCONSUMO,\n\tAT12_RE_TRAN_MONET.MONTO4 COMISIONESPROPIAS,\n\tAT12_RE_TRAN_MONET.OFICINA OFICINA,\n\tAT12_RE_TRAN_MONET.NRO_TARJETA NRO_TARJETA,\n\tAT12_RE_TRAN_MONET.AUTORIZA AUTORIZA,\n\tAT12_RE_TRAN_MONET.FECHA_TRAN FECHA_TRAN \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_RE_TRAN_MONET\nwhere\t\t(1=1)\t\n\nAnd (SUBSTR(AT12_RE_TRAN_MONET.CTA_BANCO,1,4) = '0114'\n/*AND AT12_RE_TRAN_MONET.SRV_LOCAL IN ('ATMNTSRV', 'MAESTRO', 'MAESTROB', 'SUICHE7B')*/\nAND AT12_RE_TRAN_MONET.SRV_HOST = 'CARIBESRV')\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "<? String vSess = odiRef.getSession(\"SESS_NO\"); ?>\n<$import Java.lang.*;$>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"W\") ?>\n(\n\tC1_AC_REGISTRO\tCHAR(2) NULL,\n\tC2_AC_TARJETA\tCHAR(32) NULL,\n\tC3_AC_AUTORIZA\tNUMBER(10) NULL,\n\tC4_AC_MONTO\tNUMBER(15,4) NULL,\n\tC5_AC_MONTO_ME\tNUMBER(15,4) NULL,\n\tC6_AC_MONEDA\tNUMBER(5) NULL,\n\tC7_AC_TRANSACCION\tCHAR(1) NULL,\n\tC8_AC_FECHA_TRAN\tTIMESTAMP(6) NULL,\n\tC9_AC_FECHA_POS\tTIMESTAMP(6) NULL,\n\tC10_AC_REFERENCIA\tCHAR(13) NULL,\n\tC11_AC_COMERCIO\tCHAR(27) NULL,\n\tC12_AC_COD_COMERCIO\tNUMBER(10) NULL,\n\tC13_AC_CAT_COMERCIO\tNUMBER(5) NULL,\n\tC14_AC_TTRANSACCION\tCHAR(2) NULL,\n\tC15_AC_BANCO\tNUMBER(5) NULL,\n\tC16_AC_SOBRECARGO\tNUMBER(15,4) NULL,\n\tC17_AC_HORA\tCHAR(8) NULL,\n\tC18_AC_TRACE\tNUMBER(10) NULL,\n\tC19_AC_MENSAJE\tCHAR(30) NULL,\n\tC20_AC_EDO_REGISTRO\tCHAR(4) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tTM_ATM_CONSORCIO.ac_registro\t   C1_AC_REGISTRO,\n\tTM_ATM_CONSORCIO.ac_tarjeta\t   C2_AC_TARJETA,\n\tTM_ATM_CONSORCIO.ac_autoriza\t   C3_AC_AUTORIZA,\n\tTM_ATM_CONSORCIO.ac_monto\t   C4_AC_MONTO,\n\tTM_ATM_CONSORCIO.ac_monto_me\t   C5_AC_MONTO_ME,\n\tTM_ATM_CONSORCIO.ac_moneda\t   C6_AC_MONEDA,\n\tTM_ATM_CONSORCIO.ac_transaccion\t   C7_AC_TRANSACCION,\n\tTM_ATM_CONSORCIO.ac_fecha_tran\t   C8_AC_FECHA_TRAN,\n\tTM_ATM_CONSORCIO.ac_fecha_pos\t   C9_AC_FECHA_POS,\n\tTM_ATM_CONSORCIO.ac_referencia\t   C10_AC_REFERENCIA,\n\tTM_ATM_CONSORCIO.ac_comercio\t   C11_AC_COMERCIO,\n\tTM_ATM_CONSORCIO.ac_cod_comercio\t   C12_AC_COD_COMERCIO,\n\tTM_ATM_CONSORCIO.ac_cat_comercio\t   C13_AC_CAT_COMERCIO,\n\tTM_ATM_CONSORCIO.ac_ttransaccion\t   C14_AC_TTRANSACCION,\n\tTM_ATM_CONSORCIO.ac_banco\t   C15_AC_BANCO,\n\tTM_ATM_CONSORCIO.ac_sobrecargo\t   C16_AC_SOBRECARGO,\n\tTM_ATM_CONSORCIO.ac_hora\t   C17_AC_HORA,\n\tTM_ATM_CONSORCIO.ac_trace\t   C18_AC_TRACE,\n\tTM_ATM_CONSORCIO.ac_mensaje\t   C19_AC_MENSAJE,\n\tTM_ATM_CONSORCIO.ac_edo_registro\t   C20_AC_EDO_REGISTRO\nfrom\t<?=snpRef.getObjectName(\"L\", \"tm_atm_consorcio\", \"LS_SOURCE_COB_ATM_HIS\", \"\", \"D\")?>   TM_ATM_CONSORCIO\nwhere\t(1=1)\nAnd (TM_ATM_CONSORCIO.ac_fecha_tran >= ('#ODI_AT_SUDEBAN_DEV.FechaInicio') AND TM_ATM_CONSORCIO.ac_fecha_tran <= ('#ODI_AT_SUDEBAN_DEV.FechaFin') AND TM_ATM_CONSORCIO.ac_ttransaccion IN  ('CC','CI')\nAND TM_ATM_CONSORCIO.ac_tarjeta IS NOT NULL\n)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"W\") ?>\n(\n\tC1_AC_REGISTRO,\n\tC2_AC_TARJETA,\n\tC3_AC_AUTORIZA,\n\tC4_AC_MONTO,\n\tC5_AC_MONTO_ME,\n\tC6_AC_MONEDA,\n\tC7_AC_TRANSACCION,\n\tC8_AC_FECHA_TRAN,\n\tC9_AC_FECHA_POS,\n\tC10_AC_REFERENCIA,\n\tC11_AC_COMERCIO,\n\tC12_AC_COD_COMERCIO,\n\tC13_AC_CAT_COMERCIO,\n\tC14_AC_TTRANSACCION,\n\tC15_AC_BANCO,\n\tC16_AC_SOBRECARGO,\n\tC17_AC_HORA,\n\tC18_AC_TRACE,\n\tC19_AC_MENSAJE,\n\tC20_AC_EDO_REGISTRO\n)\nvalues\n(\n\t:C1_AC_REGISTRO,\n\t:C2_AC_TARJETA,\n\t:C3_AC_AUTORIZA,\n\t:C4_AC_MONTO,\n\t:C5_AC_MONTO_ME,\n\t:C6_AC_MONEDA,\n\t:C7_AC_TRANSACCION,\n\t:C8_AC_FECHA_TRAN,\n\t:C9_AC_FECHA_POS,\n\t:C10_AC_REFERENCIA,\n\t:C11_AC_COMERCIO,\n\t:C12_AC_COD_COMERCIO,\n\t:C13_AC_CAT_COMERCIO,\n\t:C14_AC_TTRANSACCION,\n\t:C15_AC_BANCO,\n\t:C16_AC_SOBRECARGO,\n\t:C17_AC_HORA,\n\t:C18_AC_TRACE,\n\t:C19_AC_MENSAJE,\n\t:C20_AC_EDO_REGISTRO\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"TM_ATM_CONSORCIO\", \"LS_ODS\", \"\", \"D\") ?> \n( \n\tAC_REGISTRO,\n\tAC_TARJETA,\n\tAC_AUTORIZA,\n\tAC_MONTO,\n\tAC_MONTO_ME,\n\tAC_MONEDA,\n\tAC_TRANSACCION,\n\tAC_FECHA_TRAN,\n\tAC_FECHA_POS,\n\tAC_REFERENCIA,\n\tAC_COMERCIO,\n\tAC_COD_COMERCIO,\n\tAC_CAT_COMERCIO,\n\tAC_TTRANSACCION,\n\tAC_BANCO,\n\tAC_SOBRECARGO,\n\tAC_HORA,\n\tAC_TRACE,\n\tAC_MENSAJE,\n\tAC_EDO_REGISTRO \n\t \n) \n\nselect\n    AC_REGISTRO,\n\tAC_TARJETA,\n\tAC_AUTORIZA,\n\tAC_MONTO,\n\tAC_MONTO_ME,\n\tAC_MONEDA,\n\tAC_TRANSACCION,\n\tAC_FECHA_TRAN,\n\tAC_FECHA_POS,\n\tAC_REFERENCIA,\n\tAC_COMERCIO,\n\tAC_COD_COMERCIO,\n\tAC_CAT_COMERCIO,\n\tAC_TTRANSACCION,\n\tAC_BANCO,\n\tAC_SOBRECARGO,\n\tAC_HORA,\n\tAC_TRACE,\n\tAC_MENSAJE,\n\tAC_EDO_REGISTRO   \n   \nFROM (\t\n\n\nselect \t\n\tC1_AC_REGISTRO AC_REGISTRO,\n\tC2_AC_TARJETA AC_TARJETA,\n\tC3_AC_AUTORIZA AC_AUTORIZA,\n\tC4_AC_MONTO AC_MONTO,\n\tC5_AC_MONTO_ME AC_MONTO_ME,\n\tC6_AC_MONEDA AC_MONEDA,\n\tC7_AC_TRANSACCION AC_TRANSACCION,\n\tC8_AC_FECHA_TRAN AC_FECHA_TRAN,\n\tC9_AC_FECHA_POS AC_FECHA_POS,\n\tC10_AC_REFERENCIA AC_REFERENCIA,\n\tC11_AC_COMERCIO AC_COMERCIO,\n\tC12_AC_COD_COMERCIO AC_COD_COMERCIO,\n\tC13_AC_CAT_COMERCIO AC_CAT_COMERCIO,\n\tC14_AC_TTRANSACCION AC_TTRANSACCION,\n\tC15_AC_BANCO AC_BANCO,\n\tC16_AC_SOBRECARGO AC_SOBRECARGO,\n\tC17_AC_HORA AC_HORA,\n\tC18_AC_TRACE AC_TRACE,\n\tC19_AC_MENSAJE AC_MENSAJE,\n\tC20_AC_EDO_REGISTRO AC_EDO_REGISTRO \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0TM_ATM_CONSORCIO\", \"LS_ODS\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "1",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "DECLARE\n\n\nBEGIN\n\n  PR_ACTUALIZA_ESTADISTICAS('<?=snpRef.getInfo(\"DEST_SCHEMA\") ?>',  '<?=snpRef.getObjectName(\"L\", \"TM_ATM_CONSORCIO\", \"LS_ODS\", \"\", \"D\") ?>', null, TO_DATE('#vSrcFechaCarga', '#vSrcFormatoFecha'));\n\nEND;"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_IMPORTAR_PMPFP301TT",
+      "StepType": "F",
+      "Nno": "2",
+      "TableName (Target Table)": "AT12_PMPFP301TT",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PMPFP301TT\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PMPFP301TT\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PMPFP301TT\", \"W\") ?>\n(\n\tC1_LINEA\tVARCHAR2(500) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tAT12_PMPFP301TT.LINEA\t   C1_LINEA\nfrom\t<?=snpRef.getObjectName(\"L\", \"PMPFP301TT.PMPFP301TT\", \"FILE_AT12\", \"\", \"D\")?>   AT12_PMPFP301TT\nwhere\t(1=1)\n\n\n\n\n\n\n\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT12_PMPFP301TTSNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"PMPFP301TT.PMPFP301TT\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x0009SNP$CRFILE_SEP_LINE=0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=LINEASNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLINE_OFFSET=1SNP$CRLENGTH=500SNP$CRPRECISION=500SNP$CR$$SNPS_END_KEY*/",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PMPFP301TT\", \"W\") ?>\n(\n\tC1_LINEA\n)\nvalues\n(\n\t:C1_LINEA\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PMPFP301TT\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tLINEA\tNVARCHAR2(500) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tLINEA \n\t \n) \n\nselect\n    LINEA   \n   \nFROM (\t\n\n\nselect \t\n\tC1_LINEA LINEA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PMPFP301TT\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "2",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_GENERAR_PMPFP301TT",
+      "StepType": "F",
+      "Nno": "3",
+      "TableName (Target Table)": "AT12_PMPFP301TT_",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT_\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tCODIGOAFILIADO\tNUMBER(8) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCUENTABANCO\tNVARCHAR2(12) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISION\tNUMBER(10,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMES\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT_\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT_\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT_\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tCODIGOAFILIADO,\n\tCUENTABANCO,\n\tCOMISION,\n\tMES \n\t \n) \n\nselect\n    CODIGOAFILIADO,\n\tCUENTABANCO,\n\tCOMISION,\n\tMES   \n   \nFROM (\t\n\n\nselect \t\n\tSUBSTR(AT12_PMPFP301TT.LINEA,1,8) CODIGOAFILIADO,\n\tSUBSTR(AT12_PMPFP301TT.LINEA,9,12) CUENTABANCO,\n\tTO_NUMBER(CONCAT(CONCAT(SUBSTR(AT12_PMPFP301TT.LINEA,147,3),'.'),SUBSTR(AT12_PMPFP301TT.LINEA,150,2))) COMISION,\n\tTO_NUMBER(SUBSTR(TO_CHAR(CURRENT_DATE,'DD/MM/YYYY'),4,2)) - 1 MES \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_PMPFP301TT\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "3",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_IMPORTAR_PARROQUIAS",
+      "StepType": "F",
+      "Nno": "4",
+      "TableName (Target Table)": "AT12_PARROQUIAS",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PARROQUIAS\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PARROQUIAS\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PARROQUIAS\", \"W\") ?>\n(\n\tC1_OFICINA\tVARCHAR2(4) NULL,\n\tC2_CODIGOPARROQUIA\tVARCHAR2(15) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tSIIF_PARROQUIAS.OFICINA\t   C1_OFICINA,\n\tSIIF_PARROQUIAS.CODIGOPARROQUIA\t   C2_CODIGOPARROQUIA\nfrom\t<?=snpRef.getObjectName(\"L\", \"SIIF_PARROQUIAS\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   SIIF_PARROQUIAS\nwhere\t(1=1)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PARROQUIAS\", \"W\") ?>\n(\n\tC1_OFICINA,\n\tC2_CODIGOPARROQUIA\n)\nvalues\n(\n\t:C1_OFICINA,\n\t:C2_CODIGOPARROQUIA\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PARROQUIAS\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_PARROQUIAS\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tOFICINA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tPARROQUIA\tNVARCHAR2(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_PARROQUIAS\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_PARROQUIAS\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_PARROQUIAS\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tOFICINA,\n\tPARROQUIA \n\t \n) \n\nselect\n    OFICINA,\n\tPARROQUIA   \n   \nFROM (\t\n\n\nselect \t\n\tTO_NUMBER(C1_OFICINA) OFICINA,\n\tC2_CODIGOPARROQUIA PARROQUIA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_PARROQUIAS\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "4",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_IMPORTAR_HOMOLOGACION",
+      "StepType": "F",
+      "Nno": "5",
+      "TableName (Target Table)": "AT12_HOMOLOGACION_SUDEBAN",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_HOMOLOGACION_SUDEBAN\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_HOMOLOGACION_SUDEBAN\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_HOMOLOGACION_SUDEBAN\", \"W\") ?>\n(\n\tC1_VALORSUDEBAN\tVARCHAR2(255) NULL,\n\tC2_DESCRIPCIONSUDEBAN\tVARCHAR2(255) NULL,\n\tC3_VALORCOBIS\tVARCHAR2(255) NULL,\n\tC4_DESCRIPCIONCOBIS\tVARCHAR2(255) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tHOMOLOGACIONES_SUDEBAN.VALORSUDEBAN\t   C1_VALORSUDEBAN,\n\tHOMOLOGACIONES_SUDEBAN.DESCRIPCIONSUDEBAN\t   C2_DESCRIPCIONSUDEBAN,\n\tHOMOLOGACIONES_SUDEBAN.VALORCOBIS\t   C3_VALORCOBIS,\n\tHOMOLOGACIONES_SUDEBAN.DESCRIPCIONCOBIS\t   C4_DESCRIPCIONCOBIS\nfrom\t<?=snpRef.getObjectName(\"L\", \"HOMOLOGACIONES_SUDEBAN\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   HOMOLOGACIONES_SUDEBAN\nwhere\t(1=1)\nAnd (HOMOLOGACIONES_SUDEBAN.NOMBRETABLA='AT12')",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_HOMOLOGACION_SUDEBAN\", \"W\") ?>\n(\n\tC1_VALORSUDEBAN,\n\tC2_DESCRIPCIONSUDEBAN,\n\tC3_VALORCOBIS,\n\tC4_DESCRIPCIONCOBIS\n)\nvalues\n(\n\t:C1_VALORSUDEBAN,\n\t:C2_DESCRIPCIONSUDEBAN,\n\t:C3_VALORCOBIS,\n\t:C4_DESCRIPCIONCOBIS\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_HOMOLOGACION_SUDEBAN\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_HOMOLOGACION_SUDEBAN\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tVALORSUDEBAN\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tDESCRIPCIONSUDEBAN\tNVARCHAR2(80) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tVALORCOBIS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tDESCRIPCIONCOBIS\tNVARCHAR2(80) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_HOMOLOGACION_SUDEBAN\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_HOMOLOGACION_SUDEBAN\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_HOMOLOGACION_SUDEBAN\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tVALORSUDEBAN,\n\tDESCRIPCIONSUDEBAN,\n\tVALORCOBIS,\n\tDESCRIPCIONCOBIS \n\t \n) \n\nselect\n    VALORSUDEBAN,\n\tDESCRIPCIONSUDEBAN,\n\tVALORCOBIS,\n\tDESCRIPCIONCOBIS   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tTO_NUMBER(C1_VALORSUDEBAN) VALORSUDEBAN,\n\tC2_DESCRIPCIONSUDEBAN DESCRIPCIONSUDEBAN,\n\tTO_NUMBER(C3_VALORCOBIS) VALORCOBIS,\n\tC4_DESCRIPCIONCOBIS DESCRIPCIONCOBIS \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_HOMOLOGACION_SUDEBAN\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "5",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_RE_TRAN_MONET",
+      "StepType": "F",
+      "Nno": "6",
+      "TableName (Target Table)": "AT12_RE_TRAN_MONET",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"W\") ?>\n(\n\tC1_CTA_BANCO\tCHAR(24) NULL,\n\tC2_VALOR\tNUMBER(19,4) NULL,\n\tC3_TARJETA_ATM\tVARCHAR2(32) NULL,\n\tC4_SSN_LOCAL\tNUMBER(10) NULL,\n\tC5_HORA\tTIMESTAMP(6) NULL,\n\tC6_OFICINA\tNUMBER(5) NULL,\n\tC7_SRV_LOCAL\tVARCHAR2(16) NULL,\n\tC8_SRV_HOST\tVARCHAR2(16) NULL,\n\tC9_MONTO4\tNUMBER(19,4) NULL,\n\tC10_NRO_TARJETA\tNVARCHAR2(50) NULL,\n\tC11_AUTORIZA\tNUMBER(10) NULL,\n\tC12_FECHA_TRAN\tDATE NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tRE_TRAN_MONET_HIS.TH_CTA_BANCO\t   C1_CTA_BANCO,\n\tRE_TRAN_MONET_HIS.TH_VALOR\t   C2_VALOR,\n\tTRIM(RE_TRAN_MONET_HIS.TH_TARJETA_ATM)\t   C3_TARJETA_ATM,\n\tRE_TRAN_MONET_HIS.TH_SSN_LOCAL\t   C4_SSN_LOCAL,\n\tRE_TRAN_MONET_HIS.TH_HORA\t   C5_HORA,\n\tRE_TRAN_MONET_HIS.TH_OFICINA\t   C6_OFICINA,\n\tRE_TRAN_MONET_HIS.TH_SRV_LOCAL\t   C7_SRV_LOCAL,\n\tRE_TRAN_MONET_HIS.TH_SRV_HOST\t   C8_SRV_HOST,\n\tRE_TRAN_MONET_HIS.TH_MONTO4\t   C9_MONTO4,\n\tRE_TRAN_MONET_HIS.TH_TARJETA_ATM\t   C10_NRO_TARJETA,\n\tRE_TRAN_MONET_HIS.TH_SSN_LOCAL\t   C11_AUTORIZA,\n\tRE_TRAN_MONET_HIS.TH_FECHA\t   C12_FECHA_TRAN\nfrom\t<?=snpRef.getObjectName(\"L\", \"RE_TRAN_MONET_HIS\", \"LS_ODS\", \"\", \"D\")?>   RE_TRAN_MONET_HIS\nwhere\t(1=1)\nAnd (RE_TRAN_MONET_HIS.TH_FECHA BETWEEN TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaInicio','MM/DD/YY') \nAND TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin','MM/DD/YY')\nAND RE_TRAN_MONET_HIS.TH_ESTADO_EJECUCION = 'EJ' AND \nRE_TRAN_MONET_HIS.TH_TIPO_TRAN IN (500, 503, 504, 510, 513, 520, 523, 130, 140, 150, 230, 231, 240, 241, 250, 251)\n\n)",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"W\") ?>\n(\n\tC1_CTA_BANCO,\n\tC2_VALOR,\n\tC3_TARJETA_ATM,\n\tC4_SSN_LOCAL,\n\tC5_HORA,\n\tC6_OFICINA,\n\tC7_SRV_LOCAL,\n\tC8_SRV_HOST,\n\tC9_MONTO4,\n\tC10_NRO_TARJETA,\n\tC11_AUTORIZA,\n\tC12_FECHA_TRAN\n)\nvalues\n(\n\t:C1_CTA_BANCO,\n\t:C2_VALOR,\n\t:C3_TARJETA_ATM,\n\t:C4_SSN_LOCAL,\n\t:C5_HORA,\n\t:C6_OFICINA,\n\t:C7_SRV_LOCAL,\n\t:C8_SRV_HOST,\n\t:C9_MONTO4,\n\t:C10_NRO_TARJETA,\n\t:C11_AUTORIZA,\n\t:C12_FECHA_TRAN\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tCTA_BANCO\tCHAR(24) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tVALOR\tNUMBER(19,4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTARJETA_ATM\tVARCHAR2(32) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSSN_LOCAL\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tHORA\tTIMESTAMP(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSRV_LOCAL\tVARCHAR2(16) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tSRV_HOST\tVARCHAR2(16) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTO4\tNUMBER(19,4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRO_TARJETA\tNVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tCTA_BANCO,\n\tVALOR,\n\tTARJETA_ATM,\n\tSSN_LOCAL,\n\tHORA,\n\tOFICINA,\n\tSRV_LOCAL,\n\tSRV_HOST,\n\tMONTO4,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN \n\t \n) \n\nselect\n    CTA_BANCO,\n\tVALOR,\n\tTARJETA_ATM,\n\tSSN_LOCAL,\n\tHORA,\n\tOFICINA,\n\tSRV_LOCAL,\n\tSRV_HOST,\n\tMONTO4,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN   \n   \nFROM (\t\n\n\nselect \t\n\tC1_CTA_BANCO CTA_BANCO,\n\tC2_VALOR VALOR,\n\tC3_TARJETA_ATM TARJETA_ATM,\n\tC4_SSN_LOCAL SSN_LOCAL,\n\tC5_HORA HORA,\n\tC6_OFICINA OFICINA,\n\tC7_SRV_LOCAL SRV_LOCAL,\n\tC8_SRV_HOST SRV_HOST,\n\tC9_MONTO4 MONTO4,\n\tC10_NRO_TARJETA NRO_TARJETA,\n\tC11_AUTORIZA AUTORIZA,\n\tC12_FECHA_TRAN FECHA_TRAN \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "6",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_ATM_CONSORCIO",
+      "StepType": "F",
+      "Nno": "7",
+      "TableName (Target Table)": "AT12_ATM_CONSORCIO",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATM_CONSORCIO\", \"W\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATM_CONSORCIO\", \"W\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATM_CONSORCIO\", \"W\") ?>\n(\n\tC1_MONTO\tNUMBER(18,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC2_TARJETA\tNVARCHAR2(32) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC3_FECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC4_COD_COMERCIO\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC5_CAT_COMERCIO\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC6_TTRANSACCION\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC7_BANCO\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tC8_AUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Loading",
+          "ColTxt": "select\tDISTINCT\n\tTM_ATM_CONSORCIO.AC_MONTO\t   C1_MONTO,\n\tTRIM(TM_ATM_CONSORCIO.AC_TARJETA)\t   C2_TARJETA,\n\tTM_ATM_CONSORCIO.AC_FECHA_TRAN\t   C3_FECHA_TRAN,\n\tTM_ATM_CONSORCIO.AC_COD_COMERCIO\t   C4_COD_COMERCIO,\n\tTM_ATM_CONSORCIO.AC_CAT_COMERCIO\t   C5_CAT_COMERCIO,\n\tTM_ATM_CONSORCIO.AC_TTRANSACCION\t   C6_TTRANSACCION,\n\tTM_ATM_CONSORCIO.AC_BANCO\t   C7_BANCO,\n\tTM_ATM_CONSORCIO.AC_AUTORIZA\t   C8_AUTORIZA\nfrom\t<?=snpRef.getObjectName(\"L\", \"TM_ATM_CONSORCIO\", \"LS_ODS\", \"\", \"D\")?>   TM_ATM_CONSORCIO\nwhere\t(1=1)\nAnd (TM_ATM_CONSORCIO.AC_FECHA_TRAN  BETWEEN TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaInicio','MM/DD/YY') \nAND TO_DATE('#ODI_AT_SUDEBAN_DEV.FechaFin','MM/DD/YY')\nAND TM_ATM_CONSORCIO.AC_TTRANSACCION IN  ('CC','CI')\nAND TM_ATM_CONSORCIO.AC_TARJETA IS NOT NULL\n\n)",
+          "DefTxt": "insert into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATM_CONSORCIO\", \"W\") ?>\n(\n\tC1_MONTO,\n\tC2_TARJETA,\n\tC3_FECHA_TRAN,\n\tC4_COD_COMERCIO,\n\tC5_CAT_COMERCIO,\n\tC6_TTRANSACCION,\n\tC7_BANCO,\n\tC8_AUTORIZA\n)\nvalues\n(\n\t:C1_MONTO,\n\t:C2_TARJETA,\n\t:C3_FECHA_TRAN,\n\t:C4_COD_COMERCIO,\n\t:C5_CAT_COMERCIO,\n\t:C6_TTRANSACCION,\n\t:C7_BANCO,\n\t:C8_AUTORIZA\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tMONTO\tNUMBER(18,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTARJETA\tNVARCHAR2(32) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOD_COMERCIO\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCAT_COMERCIO\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTTRANSACCION\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tBANCO\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tMONTO,\n\tTARJETA,\n\tFECHA_TRAN,\n\tCOD_COMERCIO,\n\tCAT_COMERCIO,\n\tTTRANSACCION,\n\tBANCO,\n\tAUTORIZA \n\t \n) \n\nselect\n    MONTO,\n\tTARJETA,\n\tFECHA_TRAN,\n\tCOD_COMERCIO,\n\tCAT_COMERCIO,\n\tTTRANSACCION,\n\tBANCO,\n\tAUTORIZA   \n   \nFROM (\t\n\n\nselect \tDISTINCT\n\tC1_MONTO MONTO,\n\tC2_TARJETA TARJETA,\n\tC3_FECHA_TRAN FECHA_TRAN,\n\tC4_COD_COMERCIO COD_COMERCIO,\n\tC5_CAT_COMERCIO CAT_COMERCIO,\n\tC6_TTRANSACCION TTRANSACCION,\n\tC7_BANCO BANCO,\n\tC8_AUTORIZA AUTORIZA \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "7",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_GENERACION_POS",
+      "StepType": "F",
+      "Nno": "9",
+      "TableName (Target Table)": "AT12_GENERACION_POS",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCERO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOAFILIADO\tNUMBER(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRO_TARJETA\tNVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tMUNICIPIO,\n\tCONCEPTO,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCODIGOAFILIADO,\n\tOFICINA,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN \n\t,PAISCONSUMO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tCOMISIONESTERCERO,\n\tRED \n) \n\nselect\n    MUNICIPIO,\n\tCONCEPTO,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCODIGOAFILIADO,\n\tOFICINA,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN   \n  ,'VE',\n\t1,\n\t2,\n\t0,\n\t0,\n\t1,\n\t0,\n\t2 \nFROM (\t\n\n\nselect \t\n\tCASE WHEN AT12_ATM_CONSORCIO.TTRANSACCION = 'CI' THEN '0101' ELSE SUBSTR(TO_CHAR(NVL(AT12_PARROQUIAS.PARROQUIA,'0101')),1,4) END MUNICIPIO,\n\tCASE WHEN AT12_HOMOLOGACION_SUDEBAN.VALORSUDEBAN IS NOT NULL THEN AT12_HOMOLOGACION_SUDEBAN.VALORSUDEBAN ELSE AT12_ATM_CONSORCIO.CAT_COMERCIO END CONCEPTO,\n\t/*AT12_RE_TRAN_MONET.VALOR*/AT12_ATM_CONSORCIO.MONTO MONTOCONSUMO,\n\tCASE WHEN AT12_PMPFP301TT_.COMISION > 0  THEN AT12_RE_TRAN_MONET.VALOR * AT12_PMPFP301TT_.COMISION/100 ELSE 0 END COMISIONESPROPIAS,\n\tAT12_ATM_CONSORCIO.COD_COMERCIO CODIGOAFILIADO,\n\tAT12_RE_TRAN_MONET.OFICINA OFICINA,\n\tAT12_ATM_CONSORCIO.TARJETA NRO_TARJETA,\n\tAT12_ATM_CONSORCIO.AUTORIZA AUTORIZA,\n\tAT12_ATM_CONSORCIO.FECHA_TRAN FECHA_TRAN \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_ATM_CONSORCIO\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_ATM_CONSORCIO, <?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_RE_TRAN_MONET, <?=snpRef.getObjectName(\"L\", \"AT12_PMPFP301TT_\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_PMPFP301TT_, <?=snpRef.getObjectName(\"L\", \"AT12_PARROQUIAS\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_PARROQUIAS, <?=snpRef.getObjectName(\"L\", \"AT12_HOMOLOGACION_SUDEBAN\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_HOMOLOGACION_SUDEBAN\nwhere\t\t(1=1)\t\n And (AT12_ATM_CONSORCIO.COD_COMERCIO=AT12_PMPFP301TT_.CODIGOAFILIADO (+))\nAND (TO_NUMBER(SUBSTR(TO_CHAR(AT12_PMPFP301TT_.CUENTABANCO),3,3))=AT12_PARROQUIAS.OFICINA (+))\nAND (AT12_ATM_CONSORCIO.CAT_COMERCIO=AT12_HOMOLOGACION_SUDEBAN.VALORCOBIS)\nAND (/*AT12_ATM_CONSORCIO.TARJETA=AT12_RE_TRAN_MONET.TARJETA_ATM AND AT12_ATM_CONSORCIO.MONTO=AT12_RE_TRAN_MONET.VALOR*/\n\nAT12_ATM_CONSORCIO.TARJETA=AT12_RE_TRAN_MONET.TARJETA_ATM)\nAnd (SUBSTR(AT12_RE_TRAN_MONET.CTA_BANCO,1,4) = '0114' AND SUBSTR(AT12_RE_TRAN_MONET.SSN_LOCAL,-LENGTH(AT12_ATM_CONSORCIO.AUTORIZA)) = AT12_ATM_CONSORCIO.AUTORIZA\nAND TO_CHAR(AT12_ATM_CONSORCIO.FECHA_TRAN,'YYYYMMDD') = TO_CHAR(AT12_RE_TRAN_MONET.HORA,'YYYYMMDD') AND AT12_RE_TRAN_MONET.SRV_LOCAL = 'MAESTRO')\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "9",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_BANCARIBE_PRE",
+      "StepType": "F",
+      "Nno": "11",
+      "TableName (Target Table)": "AT12_BANCARIBE_PRE_",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE_\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCEROS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOAFILIADO\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRO_TARJETA\tNVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE_\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE_\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE_\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tMUNICIPIO,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tOFICINA,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN \n\t,PAISCONSUMO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tCOMISIONESTERCEROS,\n\tRED,\n\tCODIGOAFILIADO \n) \n\nselect\n    MUNICIPIO,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tOFICINA,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN   \n  ,'VE',\n\t1,\n\t2,\n\t0\n,\n\t18,\n\t0,\n\t1,\n\t0,\n\t2,\n\t0 \nFROM (\t\n\n\nselect \t\n\t'' MUNICIPIO,\n\tAT12_RE_TRAN_MONET.VALOR MONTOCONSUMO,\n\tAT12_RE_TRAN_MONET.MONTO4 COMISIONESPROPIAS,\n\tAT12_RE_TRAN_MONET.OFICINA OFICINA,\n\tAT12_RE_TRAN_MONET.NRO_TARJETA NRO_TARJETA,\n\tAT12_RE_TRAN_MONET.AUTORIZA AUTORIZA,\n\tAT12_RE_TRAN_MONET.FECHA_TRAN FECHA_TRAN \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_RE_TRAN_MONET\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_RE_TRAN_MONET\nwhere\t\t(1=1)\t\n\nAnd (SUBSTR(AT12_RE_TRAN_MONET.CTA_BANCO,1,4) = '0114'\n/*AND AT12_RE_TRAN_MONET.SRV_LOCAL IN ('ATMNTSRV', 'MAESTRO', 'MAESTROB', 'SUICHE7B')*/\nAND AT12_RE_TRAN_MONET.SRV_HOST = 'CARIBESRV')\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "11",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_BANCARIBE_PREP",
+      "StepType": "F",
+      "Nno": "12",
+      "TableName (Target Table)": "AT12_BANCARIBE_PRE",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCEROS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGOAFILIADO\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tOFICINA\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRO_TARJETA\tNVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tPAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED,\n\tCODIGOAFILIADO,\n\tOFICINA,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN \n\t \n) \n\nselect\n    PAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED,\n\tCODIGOAFILIADO,\n\tOFICINA,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN   \n   \nFROM (\t\n\n\nselect \t\n\tAT12_BANCARIBE_PRE_.PAISCONSUMO PAISCONSUMO,\n\tCASE WHEN AT12_PARROQUIAS.PARROQUIA IS NOT NULL THEN SUBSTR(TO_CHAR(AT12_PARROQUIAS.PARROQUIA),1,4) ELSE NULL END MUNICIPIO,\n\tAT12_BANCARIBE_PRE_.EXTRANJERA EXTRANJERA,\n\tAT12_BANCARIBE_PRE_.CLASETARJETA CLASETARJETA,\n\tAT12_BANCARIBE_PRE_.TIPOTARJETA TIPOTARJETA,\n\tAT12_BANCARIBE_PRE_.CONCEPTO CONCEPTO,\n\tAT12_BANCARIBE_PRE_.FRANQUICIA FRANQUICIA,\n\tAT12_BANCARIBE_PRE_.CANTIDADCONSUMOS CANTIDADCONSUMOS,\n\tAT12_BANCARIBE_PRE_.MONTOCONSUMO MONTOCONSUMO,\n\tAT12_BANCARIBE_PRE_.COMISIONESPROPIAS COMISIONESPROPIAS,\n\tAT12_BANCARIBE_PRE_.COMISIONESTERCEROS COMISIONESTERCEROS,\n\tAT12_BANCARIBE_PRE_.RED RED,\n\tAT12_BANCARIBE_PRE_.CODIGOAFILIADO CODIGOAFILIADO,\n\tAT12_BANCARIBE_PRE_.OFICINA OFICINA,\n\tAT12_BANCARIBE_PRE_.NRO_TARJETA NRO_TARJETA,\n\tAT12_BANCARIBE_PRE_.AUTORIZA AUTORIZA,\n\tAT12_BANCARIBE_PRE_.FECHA_TRAN FECHA_TRAN \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_PARROQUIAS\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_PARROQUIAS, <?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE_\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_BANCARIBE_PRE_\nwhere\t\t(1=1)\t\n And (AT12_BANCARIBE_PRE_.OFICINA=AT12_PARROQUIAS.OFICINA (+))\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "12",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_ATOMO_BANCARIBE",
+      "StepType": "F",
+      "Nno": "14",
+      "TableName (Target Table)": "AT12_ATOMO_BANCARIBE",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANCARIBE\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCEROS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tNRO_TARJETA\tNVARCHAR2(50) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tAUTORIZA\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFECHA_TRAN\tDATE <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCODIGO_AFILIADO\tNUMBER(20) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANCARIBE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANCARIBE\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANCARIBE\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tPAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN,\n\tCODIGO_AFILIADO \n\t \n) \n\nselect\n    PAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED,\n\tNRO_TARJETA,\n\tAUTORIZA,\n\tFECHA_TRAN,\n\tCODIGO_AFILIADO   \n   \nFROM (\t\n\n\nselect \t\n\tAT12_BANCARIBE_PRE.PAISCONSUMO PAISCONSUMO,\n\tCASE WHEN AT12_BANCARIBE_PRE.MUNICIPIO IS NULL THEN '0101' ELSE TO_CHAR(AT12_BANCARIBE_PRE.MUNICIPIO) END MUNICIPIO,\n\tAT12_BANCARIBE_PRE.EXTRANJERA EXTRANJERA,\n\tAT12_BANCARIBE_PRE.CLASETARJETA CLASETARJETA,\n\tAT12_BANCARIBE_PRE.TIPOTARJETA TIPOTARJETA,\n\tAT12_BANCARIBE_PRE.CONCEPTO CONCEPTO,\n\tAT12_BANCARIBE_PRE.FRANQUICIA FRANQUICIA,\n\tAT12_BANCARIBE_PRE.CANTIDADCONSUMOS CANTIDADCONSUMOS,\n\tAT12_BANCARIBE_PRE.MONTOCONSUMO MONTOCONSUMO,\n\tAT12_BANCARIBE_PRE.COMISIONESPROPIAS COMISIONESPROPIAS,\n\tAT12_BANCARIBE_PRE.COMISIONESTERCEROS COMISIONESTERCEROS,\n\tAT12_BANCARIBE_PRE.RED RED,\n\tAT12_BANCARIBE_PRE.NRO_TARJETA NRO_TARJETA,\n\tAT12_BANCARIBE_PRE.AUTORIZA AUTORIZA,\n\tAT12_BANCARIBE_PRE.FECHA_TRAN FECHA_TRAN,\n\tAT12_BANCARIBE_PRE.CODIGOAFILIADO CODIGO_AFILIADO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_BANCARIBE_PRE\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_BANCARIBE_PRE\nwhere\t\t(1=1)\t\n\n\n\n\n\n\nUNION ALL\nselect \t\n\tAT12_GENERACION_POS.PAISCONSUMO PAISCONSUMO,\n\tTO_CHAR(AT12_GENERACION_POS.MUNICIPIO) MUNICIPIO,\n\tAT12_GENERACION_POS.EXTRANJERA EXTRANJERA,\n\tAT12_GENERACION_POS.CLASETARJETA CLASETARJETA,\n\tAT12_GENERACION_POS.TIPOTARJETA TIPOTARJETA,\n\tAT12_GENERACION_POS.CONCEPTO CONCEPTO,\n\tAT12_GENERACION_POS.FRANQUICIA FRANQUICIA,\n\tAT12_GENERACION_POS.CANTIDADCONSUMOS CANTIDADCONSUMOS,\n\tAT12_GENERACION_POS.MONTOCONSUMO MONTOCONSUMO,\n\tAT12_GENERACION_POS.COMISIONESPROPIAS COMISIONESPROPIAS,\n\tAT12_GENERACION_POS.COMISIONESTERCERO COMISIONESTERCEROS,\n\tAT12_GENERACION_POS.RED RED,\n\tAT12_GENERACION_POS.NRO_TARJETA NRO_TARJETA,\n\tAT12_GENERACION_POS.AUTORIZA AUTORIZA,\n\tAT12_GENERACION_POS.FECHA_TRAN FECHA_TRAN,\n\tAT12_GENERACION_POS.CODIGOAFILIADO CODIGO_AFILIADO \nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_GENERACION_POS\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_GENERACION_POS\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "14",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_SUDEBAN_BANCARIBE",
+      "StepType": "F",
+      "Nno": "16",
+      "TableName (Target Table)": "ATS_TH_AT12_PRE",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT12_PRE\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT12_PRE\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT12_PRE\", \"W\") ?>\n(\n\tC1_PAISCONSUMO\tNVARCHAR2(2) NULL,\n\tC2_MUNICIPIO\tNVARCHAR2(6) NULL,\n\tC3_EXTRANJERA\tNUMBER(2) NULL,\n\tC4_CLASETARJETA\tNUMBER(2) NULL,\n\tC5_TIPOTARJETA\tNUMBER(2) NULL,\n\tC6_CONCEPTO\tNUMBER(4) NULL,\n\tC7_FRANQUICIA\tNUMBER(2) NULL,\n\tC8_CANTIDADCONSUMOS\tNUMBER(10) NULL,\n\tC9_MONTOCONSUMO\tNUMBER(32,2) NULL,\n\tC10_COMISIONESPROPIAS\tNUMBER(32,2) NULL,\n\tC11_COMISIONESTERCEROS\tNUMBER(32,2) NULL,\n\tC12_RED\tNUMBER(2) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tAT12_ATOMO_BANCARIBE.PAISCONSUMO\t   C1_PAISCONSUMO,\n\tAT12_ATOMO_BANCARIBE.MUNICIPIO\t   C2_MUNICIPIO,\n\tAT12_ATOMO_BANCARIBE.EXTRANJERA\t   C3_EXTRANJERA,\n\tAT12_ATOMO_BANCARIBE.CLASETARJETA\t   C4_CLASETARJETA,\n\tAT12_ATOMO_BANCARIBE.TIPOTARJETA\t   C5_TIPOTARJETA,\n\tAT12_ATOMO_BANCARIBE.CONCEPTO\t   C6_CONCEPTO,\n\tAT12_ATOMO_BANCARIBE.FRANQUICIA\t   C7_FRANQUICIA,\n\tSUM(AT12_ATOMO_BANCARIBE.CANTIDADCONSUMOS)\t   C8_CANTIDADCONSUMOS,\n\tSUM(AT12_ATOMO_BANCARIBE.MONTOCONSUMO)\t   C9_MONTOCONSUMO,\n\tSUM(AT12_ATOMO_BANCARIBE.COMISIONESPROPIAS)\t   C10_COMISIONESPROPIAS,\n\tSUM(AT12_ATOMO_BANCARIBE.COMISIONESTERCEROS)\t   C11_COMISIONESTERCEROS,\n\tAT12_ATOMO_BANCARIBE.RED\t   C12_RED\nfrom\t<?=snpRef.getObjectName(\"L\", \"AT12_ATOMO_BANCARIBE\", \"LS_AT_STG\", \"\", \"D\")?>   AT12_ATOMO_BANCARIBE\nwhere\t(1=1)\n\n\n\nGroup By AT12_ATOMO_BANCARIBE.PAISCONSUMO,\n AT12_ATOMO_BANCARIBE.MUNICIPIO,\n AT12_ATOMO_BANCARIBE.EXTRANJERA,\n AT12_ATOMO_BANCARIBE.CLASETARJETA,\n AT12_ATOMO_BANCARIBE.TIPOTARJETA,\n AT12_ATOMO_BANCARIBE.CONCEPTO,\n AT12_ATOMO_BANCARIBE.FRANQUICIA,\n AT12_ATOMO_BANCARIBE.RED",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT12_PRE\", \"W\") ?>\n(\n\tC1_PAISCONSUMO,\n\tC2_MUNICIPIO,\n\tC3_EXTRANJERA,\n\tC4_CLASETARJETA,\n\tC5_TIPOTARJETA,\n\tC6_CONCEPTO,\n\tC7_FRANQUICIA,\n\tC8_CANTIDADCONSUMOS,\n\tC9_MONTOCONSUMO,\n\tC10_COMISIONESPROPIAS,\n\tC11_COMISIONESTERCEROS,\n\tC12_RED\n)\nvalues\n(\n\t:C1_PAISCONSUMO,\n\t:C2_MUNICIPIO,\n\t:C3_EXTRANJERA,\n\t:C4_CLASETARJETA,\n\t:C5_TIPOTARJETA,\n\t:C6_CONCEPTO,\n\t:C7_FRANQUICIA,\n\t:C8_CANTIDADCONSUMOS,\n\t:C9_MONTOCONSUMO,\n\t:C10_COMISIONESPROPIAS,\n\t:C11_COMISIONESTERCEROS,\n\t:C12_RED\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT12_PRE\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT12_PRE\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(4) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(32,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(32,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCEROS\tNUMBER(32,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT12_PRE\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT12_PRE\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT12_PRE\", \"LS_ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tPAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED \n\t \n) \n\nselect\n    PAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED   \n   \nFROM (\t\n\n\nselect \t\n\tC1_PAISCONSUMO PAISCONSUMO,\n\tC2_MUNICIPIO MUNICIPIO,\n\tC3_EXTRANJERA EXTRANJERA,\n\tC4_CLASETARJETA CLASETARJETA,\n\tC5_TIPOTARJETA TIPOTARJETA,\n\tC6_CONCEPTO CONCEPTO,\n\tC7_FRANQUICIA FRANQUICIA,\n\tC8_CANTIDADCONSUMOS CANTIDADCONSUMOS,\n\tC9_MONTOCONSUMO MONTOCONSUMO,\n\tC10_COMISIONESPROPIAS COMISIONESPROPIAS,\n\tC11_COMISIONESTERCEROS COMISIONESTERCEROS,\n\tC12_RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0ATS_TH_AT12_PRE\", \"LS_ATSUDEBAN\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "16",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "ATS_TH_AT12_BANCARIBE",
+      "StepType": "F",
+      "Nno": "18",
+      "TableName (Target Table)": "ATS_TH_AT12",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT12\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(5) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMO\tNUMBER(32,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(32,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCEROS\tNUMBER(32,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"ATS_TH_AT12\", \"LS_ATSUDEBAN\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT12\", \"LS_ATSUDEBAN\", \"\", \"D\") ?> \n( \n\tPAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED \n\t \n) \n\nselect\n    PAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMO,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED   \n   \nFROM (\t\n\n\nselect \t\n\tATS_TH_AT12_PRE.PAISCONSUMO PAISCONSUMO,\n\tATS_TH_AT12_PRE.MUNICIPIO MUNICIPIO,\n\tATS_TH_AT12_PRE.EXTRANJERA EXTRANJERA,\n\tATS_TH_AT12_PRE.CLASETARJETA CLASETARJETA,\n\tATS_TH_AT12_PRE.TIPOTARJETA TIPOTARJETA,\n\tATS_TH_AT12_PRE.CONCEPTO CONCEPTO,\n\tATS_TH_AT12_PRE.FRANQUICIA FRANQUICIA,\n\tATS_TH_AT12_PRE.CANTIDADCONSUMOS CANTIDADCONSUMOS,\n\tATS_TH_AT12_PRE.MONTOCONSUMO MONTOCONSUMO,\n\tATS_TH_AT12_PRE.COMISIONESPROPIAS COMISIONESPROPIAS,\n\tATS_TH_AT12_PRE.COMISIONESTERCEROS COMISIONESTERCEROS,\n\tATS_TH_AT12_PRE.RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"ATS_TH_AT12_PRE\", \"LS_ATSUDEBAN\", \"\", \"D\")?>   ATS_TH_AT12_PRE\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "18",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiSendMail 2",
+      "StepType": "SE",
+      "Nno": "19",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "19",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSendMail \"-MAILHOST=smtpint.tpr.bancaribe\" \"-FROM=archivostransmisionsiif@bancaribe.com.ve\" \"-SUBJECT=AT12 - PROCESO NO INICIADO - ARCHIVOS DE TRANSMISION (SIIF) - DWH EN LA NUBE - GALIPAN TECNOLOGICO\" \"-TO=CoordinacionOperacionesdeTarjetas@bancaribe.com.ve\" \"-CC=SIFTecnologia@bancaribe.com.ve\"\nBuen dia,\n\nEl archivo '#ODI_AT_SUDEBAN_DEV.FileAT' no se ha podido generar debido a las razones siguientes:\n\n1. Falta el insumo \"PMPFP301TT.PMPFP301TT\" en la ruta: \\\\sam2fp07\\SIIF_GCP\\AUTOMATIZACION_AT\\SALIDAS_AT\\'#ODI_AT_SUDEBAN_DEV.FileAT'\n\n2. El insumo \"PMPFP301TT.PMPFP301TT\" presenta debilidades eN su estructura.\n\nFavor revisar el caso.\n\nSi el incidente persiste  favor formalizar el caso a traves de Service Point  en la categoria : AT.Falla de los extractores (TECNICA/ FUNCIONAL)\n\nNOTA: NO responda este correo, el mismo fue enviado desde una cuenta NO monitoreada\n\nSaludos Cordiales, \n\nSIF Tecnologia\nUnidad de Soluciones Internas / Vicepresidencia Ingeniería TI\nTelf.: +58 (212) 954.5345 / 5735 / 5107 / 5401 / 6418"
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "OdiSleep 1",
+      "StepType": "SE",
+      "Nno": "20",
+      "TableName (Target Table)": "null",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "20",
+          "TaskName1": "Oracle Data Integrator Command",
+          "ColTxt": "null",
+          "DefTxt": "OdiSleep \"-DELAY=14400000\""
+        }
+      ]
+    },
+    {
+      "Object": "com.sunopsis.dwg.dbobj.SnpScenStep",
+      "StepName": "AT12_IMPORTAR_ATOMO12",
+      "StepType": "F",
+      "Nno": "21",
+      "TableName (Target Table)": "AT12_ATOMO12",
+      "SnpScenTask": [
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATOMO12\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "drop table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATOMO12\", \"W\") ?> purge"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATOMO12\", \"W\") ?>\n(\n\tC1_PAISCONSUMO\tVARCHAR2(2) NULL,\n\tC2_MUNICIPIO\tVARCHAR2(6) NULL,\n\tC3_EXTRANJERA\tNUMBER(2) NULL,\n\tC4_CLASETARJETA\tNUMBER(2) NULL,\n\tC5_TIPOTARJETA\tNUMBER(2) NULL,\n\tC6_CONCEPTO\tNUMBER(2) NULL,\n\tC7_FRANQUICIA\tNUMBER(2) NULL,\n\tC8_CANTIDADCONSUMOS\tNUMBER(10) NULL,\n\tC9_MONTOCONSUMOS\tNUMBER(20,2) NULL,\n\tC10_COMISIONESPROPIAS\tNUMBER(20,2) NULL,\n\tC11_COMISIONESTERCEROS\tNUMBER(20,2) NULL,\n\tC12_RED\tNUMBER(2) NULL\n)\nNOLOGGING"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Loading",
+          "ColTxt": "select\t\n\tAT12_ATOMO12.PAISCONSUMO\t   C1_PAISCONSUMO,\n\tAT12_ATOMO12.MUNICIPIO\t   C2_MUNICIPIO,\n\tAT12_ATOMO12.EXTRANJERA\t   C3_EXTRANJERA,\n\tAT12_ATOMO12.CLASETARJETA\t   C4_CLASETARJETA,\n\tAT12_ATOMO12.TIPOTARJETA\t   C5_TIPOTARJETA,\n\tAT12_ATOMO12.CONCEPTO\t   C6_CONCEPTO,\n\tAT12_ATOMO12.FRANQUICIA\t   C7_FRANQUICIA,\n\tAT12_ATOMO12.CANTIDADCONSUMOS\t   C8_CANTIDADCONSUMOS,\n\tAT12_ATOMO12.MONTOCONSUMOS\t   C9_MONTOCONSUMOS,\n\tAT12_ATOMO12.COMISIONESPROPIAS\t   C10_COMISIONESPROPIAS,\n\tAT12_ATOMO12.COMISIONESTERCEROS\t   C11_COMISIONESTERCEROS,\n\tAT12_ATOMO12.RED\t   C12_RED\nfrom\t<?=snpRef.getObjectName(\"L\", \"ATOMO12.ATOMO12\", \"FILE_AT12\", \"\", \"D\")?>   AT12_ATOMO12\nwhere\t(1=1)\n\n\n\n\n\n\n\n/*$$SNPS_START_KEYSNP$CRDWG_TABLESNP$CRTABLE_NAME=AT12_ATOMO12SNP$CRLOAD_FILE=<?=snpRef.getObjectName(\"L\", \"ATOMO12.ATOMO12\", \"D\") ?>SNP$CRFILE_FORMAT=DSNP$CRFILE_SEP_FIELD=0x007eSNP$CRFILE_SEP_LINE=0x000D0x000ASNP$CRFILE_FIRST_ROW=0SNP$CRFILE_ENC_FIELD=SNP$CRFILE_DEC_SEP=SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=PAISCONSUMOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=1SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MUNICIPIOSNP$CRTYPE_NAME=STRINGSNP$CRORDER=2SNP$CRLENGTH=6SNP$CRPRECISION=6SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=EXTRANJERASNP$CRTYPE_NAME=NUMERICSNP$CRORDER=3SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CLASETARJETASNP$CRTYPE_NAME=NUMERICSNP$CRORDER=4SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=TIPOTARJETASNP$CRTYPE_NAME=NUMERICSNP$CRORDER=5SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CONCEPTOSNP$CRTYPE_NAME=NUMERICSNP$CRORDER=6SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=FRANQUICIASNP$CRTYPE_NAME=NUMERICSNP$CRORDER=7SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=CANTIDADCONSUMOSSNP$CRTYPE_NAME=NUMERICSNP$CRORDER=8SNP$CRLENGTH=10SNP$CRPRECISION=10SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=MONTOCONSUMOSSNP$CRTYPE_NAME=NUMERICSNP$CRORDER=9SNP$CRLENGTH=20SNP$CRSCALE=2SNP$CRPRECISION=20SNP$CRDEC_SEP=,SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=COMISIONESPROPIASSNP$CRTYPE_NAME=NUMERICSNP$CRORDER=10SNP$CRLENGTH=20SNP$CRSCALE=2SNP$CRPRECISION=20SNP$CRDEC_SEP=,SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=COMISIONESTERCEROSSNP$CRTYPE_NAME=NUMERICSNP$CRORDER=11SNP$CRLENGTH=20SNP$CRSCALE=2SNP$CRPRECISION=20SNP$CRDEC_SEP=,SNP$CRSNP$CRDWG_COLSNP$CRCOL_NAME=REDSNP$CRTYPE_NAME=NUMERICSNP$CRORDER=12SNP$CRLENGTH=2SNP$CRPRECISION=2SNP$CR$$SNPS_END_KEY*/",
+          "DefTxt": "insert /*+ append */ into <?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATOMO12\", \"W\") ?>\n(\n\tC1_PAISCONSUMO,\n\tC2_MUNICIPIO,\n\tC3_EXTRANJERA,\n\tC4_CLASETARJETA,\n\tC5_TIPOTARJETA,\n\tC6_CONCEPTO,\n\tC7_FRANQUICIA,\n\tC8_CANTIDADCONSUMOS,\n\tC9_MONTOCONSUMOS,\n\tC10_COMISIONESPROPIAS,\n\tC11_COMISIONESTERCEROS,\n\tC12_RED\n)\nvalues\n(\n\t:C1_PAISCONSUMO,\n\t:C2_MUNICIPIO,\n\t:C3_EXTRANJERA,\n\t:C4_CLASETARJETA,\n\t:C5_TIPOTARJETA,\n\t:C6_CONCEPTO,\n\t:C7_FRANQUICIA,\n\t:C8_CANTIDADCONSUMOS,\n\t:C9_MONTOCONSUMOS,\n\t:C10_COMISIONESPROPIAS,\n\t:C11_COMISIONESTERCEROS,\n\t:C12_RED\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Loading",
+          "ColTxt": "null",
+          "DefTxt": "BEGIN\nDBMS_STATS.GATHER_TABLE_STATS (\n    ownname =>\t'<?=snpRef.getInfo(\"DEST_WORK_SCHEMA\") ?>',\n    tabname =>\t'<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATOMO12\", \"W\").replaceAll(odiRef.getInfo( \"DEST_WORK_SCHEMA\" )+\".\",\"\")?>',\n    estimate_percent =>\tDBMS_STATS.AUTO_SAMPLE_SIZE\n);\nEND;"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "create table <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO12\", \"LS_AT_STG\", \"\", \"D\") ?>\n(\n\tPAISCONSUMO\tNVARCHAR2(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMUNICIPIO\tNVARCHAR2(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tEXTRANJERA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCLASETARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tTIPOTARJETA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCONCEPTO\tNUMBER(6) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tFRANQUICIA\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCANTIDADCONSUMOS\tNUMBER(10) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tMONTOCONSUMOS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESPROPIAS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tCOMISIONESTERCEROS\tNUMBER(20,2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>,\n\tRED\tNUMBER(2) <?=snpRef.getInfo(\"DEST_DDL_NULL\") ?>\n)"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "truncate table <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO12\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "delete from <?=snpRef.getObjectName(\"L\", \"AT12_ATOMO12\", \"LS_AT_STG\", \"\", \"D\") ?>"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "insert into\t<?=snpRef.getObjectName(\"L\", \"AT12_ATOMO12\", \"LS_AT_STG\", \"\", \"D\") ?> \n( \n\tPAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMOS,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED \n\t \n) \n\nselect\n    PAISCONSUMO,\n\tMUNICIPIO,\n\tEXTRANJERA,\n\tCLASETARJETA,\n\tTIPOTARJETA,\n\tCONCEPTO,\n\tFRANQUICIA,\n\tCANTIDADCONSUMOS,\n\tMONTOCONSUMOS,\n\tCOMISIONESPROPIAS,\n\tCOMISIONESTERCEROS,\n\tRED   \n   \nFROM (\t\n\n\nselect \t\n\tC1_PAISCONSUMO PAISCONSUMO,\n\tC2_MUNICIPIO MUNICIPIO,\n\tC3_EXTRANJERA EXTRANJERA,\n\tC4_CLASETARJETA CLASETARJETA,\n\tC5_TIPOTARJETA TIPOTARJETA,\n\tC6_CONCEPTO CONCEPTO,\n\tC7_FRANQUICIA FRANQUICIA,\n\tC8_CANTIDADCONSUMOS CANTIDADCONSUMOS,\n\tTO_NUMBER(REPLACE(C9_MONTOCONSUMOS,',','.')) MONTOCONSUMOS,\n\tTO_NUMBER(REPLACE(C10_COMISIONESPROPIAS,',','.')) COMISIONESPROPIAS,\n\tTO_NUMBER(REPLACE(C11_COMISIONESTERCEROS,',','.')) COMISIONESTERCEROS,\n\tC12_RED RED \nfrom\t<?=snpRef.getObjectName(\"L\", \"%COL_PRF0AT12_ATOMO12\", \"LS_AT_STG\", \"W\")?>\nwhere\t\t(1=1)\t\n\n\n\n\n\n\n)    ODI_GET_FROM"
+        },
+        {
+          "Object": "com.sunopsis.dwg.dbobj.SnpScenTask",
+          "Nno": "21",
+          "TaskName1": "Integration",
+          "ColTxt": "null",
+          "DefTxt": "/* commit */"
+        }
+      ]
+    }
+  ]
+}
