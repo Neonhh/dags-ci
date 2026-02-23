@@ -13,7 +13,6 @@ import json
 import os
 import tempfile
 from airflow.providers.google.cloud.hooks.gcs import GCSHook
-from airflow.operators.python import PythonOperator
 
 
 logger = logging.getLogger(__name__)
@@ -50,10 +49,10 @@ def get_variable(key, default_var=""):
         return raw
 
 def AT26_ATSUDEBAN_TOFILE(**kwargs):
-	
+
 	# Conexion a la bd at26
 	hook = PostgresHook(postgres_conn_id='repodataprd')
-	
+
 	sql_query_deftxt = '''
 	CREATE TABLE IF NOT EXISTS AT_STG.ATS_TH_AT26 (
 		NROFRAUDE              VARCHAR(20),
@@ -79,14 +78,14 @@ def AT26_ATSUDEBAN_TOFILE(**kwargs):
 		MONTOFRAUDEEXTERNO     VARCHAR(15),
 		RED                    VARCHAR(50)
 	); '''
-	
+
 	hook.run(sql_query_deftxt)
-	
+
 	# vaciar la tabla antes de cargar
 	sql_query_deftxt = '''TRUNCATE TABLE AT_STG.ATS_TH_AT26;'''
 	hook.run(sql_query_deftxt)
 
-	
+
 	# Insertar los registros en la tabla de destino
 	sql_query_deftxt = '''
 	INSERT INTO AT_STG.ATS_TH_AT26 (
@@ -168,7 +167,7 @@ def ATS_TH_AT26_TOTXT(**kwargs):
     # Definir la ruta del archivo de salida en GCS
     gcs_bucket = 'airflow-dags-data'
     gcs_object_path = f"data/AT26/SALIDAS/{FileAT}{FileCodSupervisado}{FechaFile}.txt"
-    
+
     temp_dir = tempfile.mkdtemp() # Crea un directorio temporal
     local_file_path = os.path.join(temp_dir, f"{FileAT}{FileCodSupervisado}{FechaFile}.txt") # Ruta del archivo temporal local
 
@@ -180,9 +179,9 @@ def ATS_TH_AT26_TOTXT(**kwargs):
                 # Convertimos cada fila (tupla) a una cadena separada por tildes y aseguramos que los valores None se traten como cadenas vaci­as
                 linea = "~".join(str(valor) if valor is not None else "" for valor in row)
                 f.write(linea + "\n")
-        
+
         logger.info(f"Archivo temporal local generado correctamente. Subiendo a GCS: gs://{gcs_bucket}/{gcs_object_path}")
-        
+
         # Subir el archivo temporal local a GCS
         gcs_hook.upload(
             bucket_name=gcs_bucket,
@@ -208,7 +207,7 @@ def ATS_TH_AT26_TOTXT(**kwargs):
             logger.info(f"Directorio temporal eliminado: {temp_dir}")
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
 	'owner': 'airflow',

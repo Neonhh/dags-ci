@@ -1,0 +1,42 @@
+# Pipeline de Integración Continua para GitHub Actions
+# Este workflow se activa al abrir o actualizar un Pull Request hacia la rama main.
+
+name: CI Airflow Quality Checks
+
+on:
+  pull_request:
+    branches: [ main, desarrollo ]
+  push:
+    branches: [ main ]
+
+jobs:
+  quality-assurance:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Paso 1: Descargar el código del repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Paso 2: Configurar el entorno de Python
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip' # Cache para acelerar instalaciones futuras
+
+      # Paso 3: Instalar dependencias
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      # Paso 4: Análisis estático con Ruff (Linter)
+      # Esto marcará el check como fallido en el PR si hay errores de sintaxis o lógica
+      - name: Lint with Ruff
+        run: python -m ruff check .
+
+      # Paso 5: Test de Integridad de DAGs (Pytest)
+      # Verifica que el DagBag de Airflow cargue todos los archivos sin errores
+      - name: Run Integrity Tests
+        run: python -m pytest tests/test_dag_integrity.py

@@ -10,7 +10,6 @@ import logging
 from decimal import Decimal
 import json
 import time
-from airflow.operators.python import PythonOperator
 import os
 import tempfile
 from airflow.providers.google.cloud.hooks.gcs import GCSHook
@@ -119,9 +118,9 @@ def ATS_TH_AT03_TOTXT(**kwargs):
 				# Convertimos cada fila (tupla) a una cadena separada por tildes y aseguramos que los valores None se traten como cadenas vaci­as
 				linea = "~".join(str(valor) if valor is not None else "" for valor in row)
 				f.write(linea + "\n")
-		
+
 		logger.info(f"Archivo temporal local generado correctamente. Subiendo a GCS: gs://{gcs_bucket}/{gcs_object_path}")
-		
+
 		# Subir el archivo temporal local a GCS
 		gcs_hook.upload(
 			bucket_name=gcs_bucket,
@@ -145,7 +144,7 @@ def ATS_TH_AT03_TOTXT(**kwargs):
 			os.rmdir(temp_dir)
 			logger.info(f"Directorio temporal eliminado: {temp_dir}")
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
 	'owner': 'airflow',

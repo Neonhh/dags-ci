@@ -69,7 +69,7 @@ def vSrcPeriodoFechaCarga(**kwargs):
 
     if not result:
         # La consulta no devolvió ninguna fila → definimos un comportamiento
-        logger.info(f"No se encontró co_periodo para vSrcPeriodoFechaCarga, asignando 0")
+        logger.info("No se encontró co_periodo para vSrcPeriodoFechaCarga, asignando 0")
         Variable.set('vSrcPeriodoFechaCarga', serialize_value(0))
         return
 
@@ -88,7 +88,7 @@ def vSrcCorteFechaCarga(**kwargs):
 
     if not result:
         # La consulta no devolvió ninguna fila → definimos un comportamiento
-        logger.info(f"No se encontró co_corte para vSrcCorteFechaCarga, asignando 0")
+        logger.info("No se encontró co_corte para vSrcCorteFechaCarga, asignando 0")
         Variable.set('vSrcCorteFechaCarga', serialize_value(0))
         return
 
@@ -119,7 +119,7 @@ def vSrcFirstDayMonth(**kwargs):
 
     if not result:
         # La consulta no devolvió ninguna fila → definimos un comportamiento
-        logger.info(f"No se encontró registros, asignando 0")
+        logger.info("No se encontró registros, asignando 0")
         Variable.set('vSrcFirstDayMonth', serialize_value(0))
         return
 
@@ -137,7 +137,7 @@ def vSrcLastDayMonth(**kwargs):
 
     if not result:
         # La consulta no devolvió ninguna fila → definimos un comportamiento
-        logger.info(f"No se encontró registros, asignando 0")
+        logger.info("No se encontró registros, asignando 0")
         Variable.set('vSrcLastDayMonth', serialize_value(0))
         return
 
@@ -154,13 +154,13 @@ def IT_CL_DIAS_FERIADOS_COBIS_DIARIA(**kwargs):
     vSrcLastDayMonth = get_variable('vSrcLastDayMonth')
 
     # Create work table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ODS.CL_DIAS_FERIADOS_TMP_1 (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ODS.CL_DIAS_FERIADOS_TMP_1 (
 	DF_CIUDAD NUMERIC(5) NULL,
 	DF_FECHA DATE NULL
     );'''
-    logger.info("Accion a ejecutarse: Create work table") 
+    logger.info("Accion a ejecutarse: Create work table")
     pg_hook.run(sql_query_deftxt)
-    logger.info("Accion: Create work table, ejecutada exitosamente") 
+    logger.info("Accion: Create work table, ejecutada exitosamente")
 
     # Load data
     sql_query_coltxt = f'''SELECT
@@ -169,14 +169,14 @@ def IT_CL_DIAS_FERIADOS_COBIS_DIARIA(**kwargs):
     FROM bancaribe_core.dbo.cl_dias_feriados AS CL_DIAS_FERIADOS
     WHERE CL_DIAS_FERIADOS.df_ciudad = 0
     AND (CL_DIAS_FERIADOS.df_fecha>= CONVERT(DATETIME,'{vSrcFirstDayMonth}')  AND CL_DIAS_FERIADOS.df_fecha<= CONVERT(DATETIME,'{vSrcLastDayMonth}'))'''
-    logger.info("Accion a ejecutarse: Load data") 
+    logger.info("Accion a ejecutarse: Load data")
 
     # conexion a sybase
     sybase_conn = sybase_hook.get_conn()
     sybase_cursor = sybase_conn.cursor()
     sybase_cursor.execute(sql_query_coltxt)
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
     # Load data
     sql_query_deftxt = '''INSERT INTO ODS.CL_DIAS_FERIADOS_TMP_1 (
@@ -184,7 +184,7 @@ def IT_CL_DIAS_FERIADOS_COBIS_DIARIA(**kwargs):
     DF_FECHA
     ) 
     VALUES %s'''
-    logger.info("Accion a ejecutarse: Load data") 
+    logger.info("Accion a ejecutarse: Load data")
 
     # insercion por lotes en postgres
     pg_conn = pg_hook.get_conn()
@@ -205,29 +205,29 @@ def IT_CL_DIAS_FERIADOS_COBIS_DIARIA(**kwargs):
         logger.info(f"Lote {batch_num}: insertados {len(rows)} registros (Total acumulado: {total_inserted})")
 
         batch_num += 1
-    
+
     # cerrar conexiones
     sybase_cursor.close()
     sybase_conn.close()
     pg_cursor.close()
     pg_conn.close()
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
-    
+
         # Create tmp 2  table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ODS.CL_DIAS_FERIADOS_TMP_2 (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ODS.CL_DIAS_FERIADOS_TMP_2 (
 	DF_CIUDAD NUMERIC(5) NULL,
 	DF_FECHA DATE NULL,
 	DF_YEAR VARCHAR(10) NULL
     );'''
-    logger.info("Accion a ejecutarse: create target table") 
+    logger.info("Accion a ejecutarse: create target table")
     pg_hook.run(sql_query_deftxt)
     logger.info("Accion: create target table, ejecutada exitosamente")
-    
+
     # Truncate target table
-    sql_query_deftxt = f'''TRUNCATE TABLE ODS.CL_DIAS_FERIADOS_TMP_2;'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    sql_query_deftxt = '''TRUNCATE TABLE ODS.CL_DIAS_FERIADOS_TMP_2;'''
+    logger.info("Accion a ejecutarse: Truncate target table")
     pg_hook.run(sql_query_deftxt)
     logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
@@ -242,30 +242,30 @@ def IT_CL_DIAS_FERIADOS_COBIS_DIARIA(**kwargs):
         DF_FECHA,
         TO_CHAR(TO_DATE('{vSrcFirstDayMonth}', '{vSrcFormatoFecha}'), 'YYYYMM')        
     FROM ODS.CL_DIAS_FERIADOS_TMP_1;'''
-    logger.info("Accion a ejecutarse: Insert new rows") 
+    logger.info("Accion a ejecutarse: Insert new rows")
     pg_hook.run(sql_query_deftxt)
-    logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+    logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
 
     # Create target  table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ODS.CL_DIAS_FERIADOS (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ODS.CL_DIAS_FERIADOS (
 	DF_CIUDAD NUMERIC(5) NULL,
 	DF_FECHA DATE NULL,
 	DF_YEAR VARCHAR(10) NULL
     );'''
-    logger.info("Accion a ejecutarse: create target table") 
+    logger.info("Accion a ejecutarse: create target table")
     pg_hook.run(sql_query_deftxt)
-    logger.info("Accion: create target table, ejecutada exitosamente") 
+    logger.info("Accion: create target table, ejecutada exitosamente")
 
     # Truncate target table
-    sql_query_deftxt = f'''DELETE FROM ODS.CL_DIAS_FERIADOS a
+    sql_query_deftxt = '''DELETE FROM ODS.CL_DIAS_FERIADOS a
     WHERE EXISTS (SELECT 1 FROM ODS.CL_DIAS_FERIADOS_TMP_2 b WHERE a.DF_YEAR = b.DF_YEAR);'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    logger.info("Accion a ejecutarse: Truncate target table")
     pg_hook.run(sql_query_deftxt)
-    logger.info("Accion: Truncate target table, ejecutada exitosamente") 
+    logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
     # Insert new rows
-    sql_query_deftxt = f'''INSERT INTO ODS.CL_DIAS_FERIADOS (
+    sql_query_deftxt = '''INSERT INTO ODS.CL_DIAS_FERIADOS (
 	DF_CIUDAD,
 	DF_FECHA,
 	DF_YEAR
@@ -275,24 +275,24 @@ def IT_CL_DIAS_FERIADOS_COBIS_DIARIA(**kwargs):
         DF_FECHA,
         DF_YEAR
         FROM ODS.CL_DIAS_FERIADOS_TMP_2;'''
-    logger.info("Accion a ejecutarse: Insert new rows") 
+    logger.info("Accion a ejecutarse: Insert new rows")
     pg_hook.run(sql_query_deftxt)
-    logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+    logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
     # Drop work table
-    sql_query_deftxt = f'''DROP TABLE ODS.CL_DIAS_FERIADOS_TMP_1;'''
-    logger.info("Accion a ejecutarse: Drop work table") 
+    sql_query_deftxt = '''DROP TABLE ODS.CL_DIAS_FERIADOS_TMP_1;'''
+    logger.info("Accion a ejecutarse: Drop work table")
     pg_hook.run(sql_query_deftxt)
-    logger.info("Accion: Drop work table, ejecutada exitosamente") 
+    logger.info("Accion: Drop work table, ejecutada exitosamente")
 
         # Drop work table
-    sql_query_deftxt = f'''DROP TABLE ODS.CL_DIAS_FERIADOS_TMP_2;'''
-    logger.info("Accion a ejecutarse: Drop work table") 
+    sql_query_deftxt = '''DROP TABLE ODS.CL_DIAS_FERIADOS_TMP_2;'''
+    logger.info("Accion a ejecutarse: Drop work table")
     pg_hook.run(sql_query_deftxt)
     logger.info("Accion: Drop work table, ejecutada exitosamente")
 
 
-    ###### DEFINICION DEL DAG ###### 
+    ###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

@@ -14,25 +14,25 @@ logger = logging.getLogger(__name__)
 ### FUNCIONES DE CADA TAREA ###
 def IT_IF_TABLA_CATALOGO_ODS(**kwargs):
     hook = PostgresHook(postgres_conn_id='ods')
-    sybase = JdbcHook(jdbc_conn_id='sybase_ase_conn') 
+    sybase = JdbcHook(jdbc_conn_id='sybase_ase_conn')
 
     # Create work table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ods.COL_PRF0IF_TABLA_CATALOGO (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ods.COL_PRF0IF_TABLA_CATALOGO (
 	c1_ta_codigo NUMERIC(5) NULL,
 	c2_ta_tabla VARCHAR(35) NULL,
 	c3_ta_descripcion VARCHAR(80) NULL
     );'''
-    logger.info("Accion a ejecutarse: Create work table") 
+    logger.info("Accion a ejecutarse: Create work table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Create work table, ejecutada exitosamente") 
+    logger.info("Accion: Create work table, ejecutada exitosamente")
 
     # Load data
-    sql_query_coltxt = f'''SELECT
+    sql_query_coltxt = '''SELECT
         if_tabla_catalogo.ta_codigo AS c1_ta_codigo,
         if_tabla_catalogo.ta_tabla AS c2_ta_tabla,
         if_tabla_catalogo.ta_descripcion AS c3_ta_descripcion
     FROM bancaribe_core.dbo.if_tabla_catalogo AS if_tabla_catalogo'''
-    
+
     conn = sybase.get_conn()
     cursor = conn.cursor()
     cursor.execute(sql_query_coltxt)
@@ -40,7 +40,7 @@ def IT_IF_TABLA_CATALOGO_ODS(**kwargs):
     cursor.close()
     conn.close()
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
     # Load data
     sql_query_deftxt = '''INSERT INTO ods.COL_PRF0IF_TABLA_CATALOGO (
@@ -50,30 +50,30 @@ def IT_IF_TABLA_CATALOGO_ODS(**kwargs):
     ) 
     VALUES 
     (%s, %s, %s);'''
-    logger.info("Accion a ejecutarse: Load data") 
+    logger.info("Accion a ejecutarse: Load data")
     for row in registros:
         hook.run(sql_query_deftxt, parameters=row)
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
 
     # create target table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ods.if_tabla_catalogo (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ods.if_tabla_catalogo (
 	ta_codigo NUMERIC(5),
 	ta_tabla VARCHAR(35),
 	ta_descripcion VARCHAR(80)
     );'''
-    logger.info("Accion a ejecutarse: create target table") 
+    logger.info("Accion a ejecutarse: create target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: create target table, ejecutada exitosamente") 
+    logger.info("Accion: create target table, ejecutada exitosamente")
 
     # Truncate target table
-    sql_query_deftxt = f'''TRUNCATE TABLE ods.if_tabla_catalogo;'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    sql_query_deftxt = '''TRUNCATE TABLE ods.if_tabla_catalogo;'''
+    logger.info("Accion a ejecutarse: Truncate target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Truncate target table, ejecutada exitosamente") 
+    logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
     # Insert new rows
-    sql_query_deftxt = f'''INSERT INTO ods.if_tabla_catalogo (
+    sql_query_deftxt = '''INSERT INTO ods.if_tabla_catalogo (
 	ta_codigo,
 	ta_tabla,
 	ta_descripcion
@@ -89,19 +89,19 @@ def IT_IF_TABLA_CATALOGO_ODS(**kwargs):
             c3_ta_descripcion AS ta_descripcion
         FROM ods.COL_PRF0IF_TABLA_CATALOGO
     );'''
-    logger.info("Accion a ejecutarse: Insert new rows") 
+    logger.info("Accion a ejecutarse: Insert new rows")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+    logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
     # Drop work table
-    sql_query_deftxt = f'''DROP TABLE ods.COL_PRF0IF_TABLA_CATALOGO;'''
-    logger.info("Accion a ejecutarse: Drop work table") 
+    sql_query_deftxt = '''DROP TABLE ods.COL_PRF0IF_TABLA_CATALOGO;'''
+    logger.info("Accion a ejecutarse: Drop work table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Drop work table, ejecutada exitosamente") 
+    logger.info("Accion: Drop work table, ejecutada exitosamente")
 
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

@@ -50,7 +50,7 @@ def get_variable(key, default_var=""):
     except Exception:
         return raw
 def AT13_Catalogo(**kwargs):
-	
+
 	hook = PostgresHook(postgres_conn_id='ods')
 
 	# CREAR VISTA TEMPORAL DESTINO
@@ -63,7 +63,7 @@ def AT13_Catalogo(**kwargs):
 	hook.run(sql_query_deftxt)
 
 def AT13_Catalogo_det(**kwargs):
-	
+
 	hook = PostgresHook(postgres_conn_id='ods')
 
 	# CREAR VISTA TEMPORAL DESTINO
@@ -120,15 +120,15 @@ def AT13_DetalleRecl(**kwargs):
 	# Vaciamos la tabla (para no duplicar datos)
 	sql_query_deftxt = '''TRUNCATE TABLE AT_STG.AT13_DETRECL;'''
 	repodata_hook.run(sql_query_deftxt)
-      
+
 	# Consulta en la BD ods
-	select_sql = f''' SELECT DISTINCT
+	select_sql = ''' SELECT DISTINCT
 		SR_SECUENCIAL,
 		MAX(TO_DATE(CONCAT(CONCAT(SUBSTRING(FECHACARGA, 1, 2), '/'), CONCAT(SUBSTRING(FECHACARGA, 3, 2), '/22')), 'DD/MM/YY')) AS SR_FECHACARGA
 	FROM ODS.IF_SOL_RECLAMOS_GIR5_AT
 	WHERE SR_FECHA >= TO_DATE('01/01/2018', 'MM/DD/YYYY')
 	GROUP BY SR_SECUENCIAL; '''
-	
+
 	# conexion a bd ods
 	ods_conn = ods_hook.get_conn()
 	ods_cursor = ods_conn.cursor(name='fetch_cursor')  # Cursor server-side para no cargar todo en RAM
@@ -171,7 +171,7 @@ def AT13_DetalleRecl(**kwargs):
 def AT13_IF_RECLAMOS(**kwargs):
 	repodata_hook = PostgresHook(postgres_conn_id='repodataprd')
 	ods_hook = PostgresHook(postgres_conn_id='ods')
-	
+
 	# CREAR TABLA DESTINO
 	sql_query_deftxt = ''' 
 	CREATE TABLE IF NOT EXISTS AT_STG.AT13_IF_RECLAMOS(
@@ -207,7 +207,7 @@ def AT13_IF_RECLAMOS(**kwargs):
 	repodata_hook.run(sql_query_deftxt)
 
 	# Consulta en la BD ods
-	select_sql = f''' SELECT DISTINCT
+	select_sql = ''' SELECT DISTINCT
 		SR_SECUENCIAL,
 		SR_TIPO_RCL,
 		SR_INT1,
@@ -234,7 +234,7 @@ def AT13_IF_RECLAMOS(**kwargs):
 		SR_PRODUCTO
 	FROM ODS.IF_SOL_RECLAMOS_GIR5_AT
 	WHERE SR_FECHA >= TO_DATE('01/01/2018','MM/DD/YYYY') AND SR_ESTATUS NOT IN (54, 60); '''
-	
+
 	# conexion a bd ods
 	ods_conn = ods_hook.get_conn()
 	ods_cursor = ods_conn.cursor(name='fetch_cursor')  # Cursor server-side para no cargar todo en RAM
@@ -270,7 +270,7 @@ def AT13_IF_RECLAMOS(**kwargs):
 	)
 	VALUES %s
 	'''
-	
+
 	# insercion por lotes en la BD repodata
 	repodata_conn = repodata_hook.get_conn()
 	repodata_cursor = repodata_conn.cursor()
@@ -297,7 +297,7 @@ def AT13_IF_RECLAMOS(**kwargs):
 
 	logger.info(f"Proceso finalizado: {total_insertados} registros insertados.")
 
-	
+
 def AT13_FASE_REC(**kwargs):
 
 	hook = PostgresHook(postgres_conn_id='repodataprd')
@@ -494,7 +494,7 @@ def AT13_FASE_RECC(**kwargs):
 		(CAST(AT13_IF_RECLAMOS.SR_FECHA AS DATE) < CAST('{FechaInicio}' AS DATE))
 		AND (CAST(AT13_IF_RECLAMOS.SR_FECHA_CIERRE AS DATE) >= CAST('{FechaInicio}' AS DATE));'''
 	hook.run(sql_query_deftxt)
-	
+
 def AT13_FASE_RECA(**kwargs):
 	hook = PostgresHook(postgres_conn_id='repodataprd')
 
@@ -589,7 +589,7 @@ def AT13_FASE_RECA(**kwargs):
 		AND (AT13_DETRECL.SR_SECUENCIAL = AT13_IF_RECLAMOS.SR_SECUENCIAL)
 	WHERE CAST(AT13_IF_RECLAMOS.SR_FECHA AS DATE) < CAST('{FechaInicio}' AS DATE) AND AT13_IF_RECLAMOS.SR_ESTADO = 'V';'''
 	hook.run(sql_query_deftxt)
-	
+
 def AT13_UNION(**kwargs):
 	hook = PostgresHook(postgres_conn_id='repodataprd')
 
@@ -626,11 +626,11 @@ def AT13_UNION(**kwargs):
 	SR_COMERCIO	VARCHAR(150)
 	);'''
 	hook.run(sql_query_deftxt)
-	
+
 	# TRUNCATE
 	sql_query_deftxt = '''TRUNCATE TABLE AT_STG.AT13_UNION'''
 	hook.run(sql_query_deftxt)
-	
+
 	# INSERTAR EN DESTINO
 	sql_query_deftxt = '''INSERT INTO at_stg.at13_union (
 	sr_secuencial,
@@ -780,7 +780,7 @@ def AT13_UNION_BC(**kwargs):
 	# TRUNCATE
 	sql_query_deftxt = '''TRUNCATE TABLE AT_STG.AT13_UNION_BC;'''
 	hook.run(sql_query_deftxt)
-	
+
 	# INSERTAR DATOS DESTINO
 	sql_query_deftxt = '''INSERT INTO at_stg.at13_union_bc (
 	sr_secuencial,
@@ -832,8 +832,8 @@ def AT13_UNION_BC(**kwargs):
 	FROM AT_STG.AT13_UNION 
 	WHERE (SUBSTRING(at13_union.sr_cuenta,1,4) <> '0146'); '''
 	hook.run(sql_query_deftxt)
-	
-	
+
+
 def AT13_ATS(**kwargs):
 	hook = PostgresHook(postgres_conn_id='repodataprd')
 
@@ -874,11 +874,11 @@ def AT13_ATS(**kwargs):
 	HICATEG_TIPORECL	VARCHAR(255)
 	);'''
 	hook.run(sql_query_deftxt)
-	
+
 	# TRUNCATE
 	sql_query_deftxt = '''TRUNCATE TABLE AT_STG.AT13_ATS;'''
 	hook.run(sql_query_deftxt)
-	
+
 	sql_query_deftxt = '''INSERT INTO at_stg.at13_ats (
 	RECLAMO,
 	OFICINA,
@@ -972,7 +972,7 @@ def IMPORTAR_INSUMO(**kwargs):
     try:
         gcs_bucket = 'airflow-dags-data'
         gcs_object = 'data/AT13/INSUMOS/TRANS_PROCESADAS.csv'
-        
+
         postgres_hook = PostgresHook(postgres_conn_id='repodataprd')
         gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
 
@@ -1074,7 +1074,7 @@ def IMPORTAR_INSUMO(**kwargs):
 
 def AT13_TRANSACCIONES_(**kwargs):
 	hook = PostgresHook(postgres_conn_id='repodataprd')
-	
+
 	# CREAR TABLA DESTINO
 	sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS AT_STG.AT13_TRANSACCIONES (
 	RECLAMO NUMERIC(15),
@@ -1091,7 +1091,7 @@ def AT13_TRANSACCIONES_(**kwargs):
 	# TRUNCATE
 	sql_query_deftxt = '''TRUNCATE TABLE AT_STG.AT13_TRANSACCIONES;'''
 	hook.run(sql_query_deftxt)
-	
+
 	# INSERTAR DATOS EN DESTINO
 	sql_query_deftxt = '''INSERT INTO AT_STG.AT13_TRANSACCIONES (
 	RECLAMO,
@@ -1154,11 +1154,11 @@ def AT13_ATS_(**kwargs):
 	MONTODESTINO	NUMERIC(20,2)
 	);'''
 	hook.run(sql_query_deftxt)
-	
-	# TRUNCAR 
+
+	# TRUNCAR
 	sql_query_deftxt = '''TRUNCATE TABLE AT_STG.AT13_ATS_;'''
 	hook.run(sql_query_deftxt)
-	
+
 	# INSERTAR DATOS EN DESTINO
 	sql_query_deftxt = '''INSERT INTO AT_STG.AT13_ATS_ (
 	RECLAMO,
@@ -1305,7 +1305,7 @@ def AT13_ATS_TT(**kwargs):
 	sql_query_deftxt = '''TRUNCATE TABLE AT_STG.AT13_ATS_TT;'''
 	hook.run(sql_query_deftxt)
 
-	# INSERTAR DATOS EN DESTINO	
+	# INSERTAR DATOS EN DESTINO
 	sql_query_deftxt = '''INSERT INTO AT_STG.AT13_ATS_TT (
 	RECLAMO,
 	OFICINA,
@@ -1441,7 +1441,7 @@ def AT13_ATS_TT(**kwargs):
 
 def ATS_TH_AT13(**kwargs):
 	hook = PostgresHook(postgres_conn_id='repodataprd')
-	
+
 	# CREAMOS TABLA DESTINO
 	sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ATSUDEBAN.ATS_TH_AT13 (
 	RECLAMO VARCHAR(20),
@@ -1482,7 +1482,7 @@ def ATS_TH_AT13(**kwargs):
 	# TRUNCATE
 	sql_query_deftxt = '''TRUNCATE TABLE ATSUDEBAN.ATS_TH_AT13;'''
 	hook.run(sql_query_deftxt)
-	
+
 	# INSERTAR DATOS EN DESTINO
 	sql_query_deftxt = '''INSERT INTO ATSUDEBAN.ATS_TH_AT13 (
 	RECLAMO,
@@ -1594,7 +1594,7 @@ def ATS_TH_AT13_DATACHECK(**kwargs):
 	MONTODESTINO	NUMERIC(20,2)
 	);'''
 	hook.run(sql_query_deftxt)
-	
+
 	# TRUNCATE
 	sql_query_deftxt = '''TRUNCATE TABLE ATSUDEBAN.ATS_TH_AT13_;'''
 	hook.run(sql_query_deftxt)
@@ -1872,7 +1872,7 @@ def AT13_TH_BC(**kwargs):
 	MONTODESTINO	NUMERIC(20,2)
 	);'''
 	hook.run(sql_query_deftxt)
-	
+
 	# TRUNCATE
 	sql_query_deftxt = '''TRUNCATE TABLE ATSUDEBAN.AT13_TH_BC;'''
 	hook.run(sql_query_deftxt)
@@ -1966,13 +1966,13 @@ def AT13_TH_BC(**kwargs):
 		a.montodestino
 	FROM atsudeban.ats_th_at13_ AS a INNER JOIN at_stg.at13_union_bc AS b ON CAST(a.reclamo AS INTEGER) = b.sr_secuencial;'''
 	hook.run(sql_query_deftxt)
-	
+
 	# Borramos tablas anteriores
 	#sql_query = '''DROP TABLE IF EXISTS ATSUDEBAN.ATS_TH_AT13_;'''
 	#hook.run(sql_query)
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
 	'owner': 'airflow',

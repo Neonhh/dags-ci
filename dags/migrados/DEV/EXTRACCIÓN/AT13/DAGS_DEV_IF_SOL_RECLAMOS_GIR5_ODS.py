@@ -59,19 +59,19 @@ def vSrcPartition(**kwargs):
 
         sql_query = f'''SELECT TO_CHAR(TO_DATE('{vSrcFechaCarga}', '{vSrcFormatoFecha}'), 'DDMM');'''
         result = hook.get_records(sql_query)
-        
+
         Variable.set('vSrcPartition', serialize_value(result[0][0]))
 
 def vSrcTipoCarga(**kwargs):
         hook = PostgresHook(postgres_conn_id='ods')
-        
+
         vSrcNombreTablaOds = get_variable('vSrcNombreTablaOds')
-        
+
         sql_query = f'''SELECT bcsd.COO_ATTRIBUTE1
         FROM ods.BAN_CONFIG_ODS AS bcsd
         WHERE bcsd.COO_SOURCE = '{vSrcNombreTablaOds}';'''
         result = hook.get_records(sql_query)
-        
+
         Variable.set('vSrcTipoCarga', serialize_value(result[0][0]))
 
 ### FUNCIONES DE CADA TAREA ###
@@ -84,13 +84,13 @@ def IT_IF_SOL_RECLAMOS_GIR5_AT_ODS(**kwargs):
     vSrcPartition = get_variable('vSrcPartition')
 
 # Truncate target table
-    sql_query_deftxt = f'''TRUNCATE TABLE ods.COL_PRF0IF_SOL_RECLAMOS_GIR5_AT;'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    sql_query_deftxt = '''TRUNCATE TABLE ods.COL_PRF0IF_SOL_RECLAMOS_GIR5_AT;'''
+    logger.info("Accion a ejecutarse: Truncate target table")
     hook.run(sql_query_deftxt)
     logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
     # Create work table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ods.COL_PRF0IF_SOL_RECLAMOS_GIR5_AT (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ods.COL_PRF0IF_SOL_RECLAMOS_GIR5_AT (
 	c1_sr_secuencial NUMERIC(100) NULL, 
 	c2_sr_fecha DATE NULL,
 	c3_sr_usuario_ing VARCHAR(14) NULL,
@@ -153,12 +153,12 @@ def IT_IF_SOL_RECLAMOS_GIR5_AT_ODS(**kwargs):
 	c60_sr_num_tarjeta VARCHAR(24) NULL,
 	c61_sr_hora TIMESTAMP(9) NULL
     );'''
-    logger.info("Accion a ejecutarse: Create work table") 
+    logger.info("Accion a ejecutarse: Create work table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Create work table, ejecutada exitosamente") 
+    logger.info("Accion: Create work table, ejecutada exitosamente")
 
     # Load data
-    sql_query_coltxt = f'''SELECT DISTINCT
+    sql_query_coltxt = '''SELECT DISTINCT
         if_sol_reclamos_gir5.sr_secuencial AS c1_sr_secuencial,
 		if_sol_reclamos_gir5.sr_fecha AS c2_sr_fecha,
 		if_sol_reclamos_gir5.sr_usuario_ing AS c3_sr_usuario_ing,
@@ -221,13 +221,13 @@ def IT_IF_SOL_RECLAMOS_GIR5_AT_ODS(**kwargs):
 		if_sol_reclamos_gir5.sr_num_tarjeta AS c60_sr_num_tarjeta,
 		if_sol_reclamos_gir5.sr_hora AS c61_sr_hora
 	FROM bancaribe_core.dbo.if_sol_reclamos_gir5 AS if_sol_reclamos_gir5'''
-    
+
       # conexion a sybase
     sybase_conn = sybase_hook.get_conn()
     sybase_cursor = sybase_conn.cursor()
     sybase_cursor.execute(sql_query_coltxt)
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
     # Load data
     sql_query_deftxt = '''INSERT INTO ods.COL_PRF0IF_SOL_RECLAMOS_GIR5_AT (
@@ -294,8 +294,8 @@ def IT_IF_SOL_RECLAMOS_GIR5_AT_ODS(**kwargs):
 	c61_sr_hora
     ) 
     VALUES %s'''
-    logger.info("Accion a ejecutarse: Load data") 
-    
+    logger.info("Accion a ejecutarse: Load data")
+
 # insercion por lotes en postgres
     pg_conn = hook.get_conn()
     pg_cursor = pg_conn.cursor()
@@ -322,10 +322,10 @@ def IT_IF_SOL_RECLAMOS_GIR5_AT_ODS(**kwargs):
     pg_cursor.close()
     pg_conn.close()
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
    # create target table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ods.if_sol_reclamos_gir5_at (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ods.if_sol_reclamos_gir5_at (
 	sr_secuencial NUMERIC(100),
 	sr_fecha DATE,
 	sr_usuario_ing VARCHAR(14),
@@ -389,15 +389,15 @@ def IT_IF_SOL_RECLAMOS_GIR5_AT_ODS(**kwargs):
 	sr_hora TIMESTAMP(9),
 	fechacarga VARCHAR(10)
     );'''
-    logger.info("Accion a ejecutarse: create target table") 
+    logger.info("Accion a ejecutarse: create target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: create target table, ejecutada exitosamente") 
+    logger.info("Accion: create target table, ejecutada exitosamente")
 
     # Truncate target table
-    sql_query_deftxt = f'''TRUNCATE TABLE ods.if_sol_reclamos_gir5_at;'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    sql_query_deftxt = '''TRUNCATE TABLE ods.if_sol_reclamos_gir5_at;'''
+    logger.info("Accion a ejecutarse: Truncate target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Truncate target table, ejecutada exitosamente") 
+    logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
     # Insert new rows
     sql_query_deftxt = f'''INSERT INTO ods.if_sol_reclamos_gir5_at (
@@ -529,19 +529,19 @@ def IT_IF_SOL_RECLAMOS_GIR5_AT_ODS(**kwargs):
 			TO_CHAR(TO_DATE('{vSrcFechaCarga}', '{vSrcFormatoFecha}'), 'DDMM') AS fechacarga
         FROM ods.COL_PRF0IF_SOL_RECLAMOS_GIR5_AT
     ;'''
-    logger.info("Accion a ejecutarse: Insert new rows") 
+    logger.info("Accion a ejecutarse: Insert new rows")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+    logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
     # Drop work table
-    sql_query_deftxt = f'''DROP TABLE ods.COL_PRF0IF_SOL_RECLAMOS_GIR5_AT;'''
-    logger.info("Accion a ejecutarse: Drop work table") 
+    sql_query_deftxt = '''DROP TABLE ods.COL_PRF0IF_SOL_RECLAMOS_GIR5_AT;'''
+    logger.info("Accion a ejecutarse: Drop work table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Drop work table, ejecutada exitosamente") 
+    logger.info("Accion: Drop work table, ejecutada exitosamente")
 
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

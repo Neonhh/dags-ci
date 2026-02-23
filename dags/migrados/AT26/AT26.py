@@ -1,5 +1,5 @@
 import os
-import tempfile 
+import tempfile
 from airflow import DAG
 from airflow.operators.python import PythonOperator, BranchPythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
@@ -9,7 +9,7 @@ from airflow.sensors.base import BaseSensorOperator
 from datetime import datetime, timedelta
 import logging
 from decimal import Decimal
-from airflow.providers.google.cloud.hooks.gcs import GCSHook 
+from airflow.providers.google.cloud.hooks.gcs import GCSHook
 
 
 
@@ -19,7 +19,7 @@ def IMPORTAR_INSUMO(**kwargs):
         # Define la informacion del bucket y el objeto en GCS
         gcs_bucket = 'airflow-dags-data'
         gcs_object = 'data/AT26/INSUMOS/AT26_FRAUDE.csv'
-        
+
         # Inicializa los hooks
         postgres_hook = PostgresHook(postgres_conn_id='repodataprd')
         gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
@@ -59,11 +59,11 @@ def IMPORTAR_INSUMO(**kwargs):
         FROM STDIN
         WITH (FORMAT csv, HEADER true, DELIMITER ';', ENCODING 'UTF8');
         """
-        
+
         # 5. Descargar archivo temporal y crea directorio temporal
         temp_dir = tempfile.mkdtemp()
         local_file_path = os.path.join(temp_dir, 'AT26_FRAUDE.csv')
-        
+
         try:
             logger.info(f"Descargando archivo '{gcs_object}' desde GCS...")
             gcs_hook.download(
@@ -71,14 +71,14 @@ def IMPORTAR_INSUMO(**kwargs):
                 object_name=gcs_object,
                 filename=local_file_path
             )
-            
+
             # 6. Validar archivo descargado
             file_size = os.path.getsize(local_file_path)
             if file_size == 0:
                 raise Exception("El archivo descargado esta vacio")
-                
+
             logger.info(f"Archivo descargado correctamente. Tamaño: {file_size} bytes")
-            
+
             # 7. Mostrar primeras li­neas para debug
             with open(local_file_path, 'r', encoding='utf8') as f:
                 lines = [next(f) for _ in range(5)]
@@ -87,22 +87,22 @@ def IMPORTAR_INSUMO(**kwargs):
             # 8. Ejecutar COPY
             logger.info("Iniciando carga de datos a PostgreSQL...")
             start_time = datetime.now()
-            
+
             postgres_hook.copy_expert(sql=sql_copy, filename=local_file_path)
-            
+
             duration = (datetime.now() - start_time).total_seconds()
             logger.info(f"Carga completada en {duration:.2f} segundos")
-            
+
             # 9. Verificar conteo de registros
             count = postgres_hook.get_first("SELECT COUNT(*) FROM AT_STG.AT26_FRAUDE_FILE;")[0]
             logger.info(f"Total de registros cargados desde el insumo csv (AT26_FRAUDE): {count}")
-            
+
             if count == 0:
                 raise Exception("No se cargaron registros - verificar formato del archivo CSV")
-                
+
         except Exception as e:
             logger.error(f"Error durante la carga de datos: {str(e)}")
-            
+
             # Intentar leer el archivo para debug (ya usa 'windows-1252' segun tu codigo)
             try:
                 with open(local_file_path, 'r', encoding='utf8') as f:
@@ -110,9 +110,9 @@ def IMPORTAR_INSUMO(**kwargs):
                     logger.info(f"Contenido parcial del archivo:\n{sample}")
             except Exception as read_error:
                 logger.error(f"No se pudo leer el archivo para debug: {str(read_error)}")
-            
+
             raise
-            
+
         finally:
             # Limpieza siempre se ejecuta
             if os.path.exists(local_file_path):
@@ -121,7 +121,7 @@ def IMPORTAR_INSUMO(**kwargs):
             if os.path.exists(temp_dir):
                 os.rmdir(temp_dir)
                 logger.info(f"Directorio temporal eliminado: {temp_dir}")
-                
+
     except Exception as e:
         logger.error(f"Error general en IMPORTAR_INSUMO: {str(e)}")
         # Registrar el error completo para diagnostico
@@ -132,7 +132,7 @@ def IMPORTAR_INSUMO(**kwargs):
 def AT26_FRAUDE(**kwargs):
     # Conectar a la bd at26
     hook = PostgresHook(postgres_conn_id='repodataprd')
-    
+
     # Creamos la tabla destino
     sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS AT_STG.AT26_FRAUDE (
     FRAUDE        VARCHAR(50)      NULL,
@@ -227,7 +227,7 @@ def AT26_UNION(**kwargs):
 
     # Conexion a la bd at26
     hook = PostgresHook(postgres_conn_id='repodataprd')
-    
+
     # Creamos la tabla destino
     sql_query_deftxt = '''
     CREATE TABLE IF NOT EXISTS AT_STG.AT26_UNION (
@@ -257,13 +257,13 @@ def AT26_UNION(**kwargs):
     logger.info("Creando/verificando tabla AT_STG.AT26_UNION...")
     hook.run(sql_query_deftxt)
     logger.info("Tabla AT_STG.AT26_UNION verificada/creada.")
-    
+
     # Vaciamos la tabla
     logger.info("Truncando la tabla AT_STG.AT26_UNION...")
     sql_query_deftxt = '''TRUNCATE TABLE AT_STG.AT26_UNION;'''
     hook.run(sql_query_deftxt)
     logger.info("Tabla AT_STG.AT26_UNION truncada exitosamente.")
-    
+
     # Insertamos en AT_STG.AT26_UNION
     logger.info("Insertando datos en AT_STG.AT26_UNION...")
     sql_query_deftxt = '''
@@ -318,12 +318,12 @@ def AT26_UNION(**kwargs):
 
     hook.run(sql_query_deftxt)
     logger.info("Datos insertados exitosamente en AT_STG.AT26_UNION.")
-    
+
 def ATS_TH_AT26(**kwargs):
     # Conexion a la bd at26
     hook = PostgresHook(postgres_conn_id='repodataprd')
 
-    # Creamos la tabla de destino ATSUDEBAN.ATS_TH_AT26 
+    # Creamos la tabla de destino ATSUDEBAN.ATS_TH_AT26
     sql_query_deftxt = '''
     CREATE TABLE IF NOT EXISTS ATSUDEBAN.ATS_TH_AT26 (
         NROFRAUDE         VARCHAR(20),
@@ -433,7 +433,7 @@ def ATS_TH_AT26_DATA_CHECK_TO_AT26_TH_BC(**kwargs):
     # Conexion a la bd at26
     hook = PostgresHook(postgres_conn_id='repodataprd')
 
-    # Creamos la tabla de destino ATSUDEBAN.AT26_TH_BC 
+    # Creamos la tabla de destino ATSUDEBAN.AT26_TH_BC
     sql_query_deftxt = '''
     CREATE TABLE IF NOT EXISTS ATSUDEBAN.AT26_TH_BC (
         NROFRAUDE         VARCHAR(20),
@@ -546,7 +546,7 @@ def ATS_TH_AT26_DATA_CHECK_TO_AT26_TH_BC(**kwargs):
     logger.info("Datos insertados exitosamente en ATSUDEBAN.AT26_TH_BC.")
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

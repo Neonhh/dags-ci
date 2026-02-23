@@ -1,0 +1,6 @@
+"""
+[flake8]
+ignore = E501, W503  # Ignorar líneas muy largas y saltos de línea antes de operadores
+exclude = .git, __pycache__, build, dist, venv
+max-line-length = 120
+"""

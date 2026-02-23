@@ -61,10 +61,10 @@ def COMPARACION_FECHA(**kwargs):
 
 # def EXIST_COMPARACION(**kwargs):
 #     hook = PostgresHook(postgres_conn_id='repodataprd')
-#     sql_query = '''SELECT 
-#     CASE 
-#         WHEN 'COMPARACION_FECHA' IN (SELECT MES_DIA FROM REPODATAPRD.AT_DIAS_HABILES_FIN) THEN 1 
-#         ELSE 0 
+#     sql_query = '''SELECT
+#     CASE
+#         WHEN 'COMPARACION_FECHA' IN (SELECT MES_DIA FROM REPODATAPRD.AT_DIAS_HABILES_FIN) THEN 1
+#         ELSE 0
 #     END;'''
 #     result = hook.get_records(sql_query)
 #     Variable.set('EXIST_COMPARACION', serialize_value(result[0][0]))
@@ -73,7 +73,7 @@ def COMPARACION_FECHA(**kwargs):
 #     hook = PostgresHook(postgres_conn_id='repodataprd')
 #     sql_query = '''SELECT ORDINAL FROM REPODATAPRD.AT_DIAS_HABILES_FIN WHERE ('COMPARACION_FECHA' = AT_DIAS_HABILES_FIN.MES_DIA);'''
 #     result = hook.get_records(sql_query)
-#     Variable.set('COMPARACION_FECHA_FINAL', serialize_value(result[0][0])) 
+#     Variable.set('COMPARACION_FECHA_FINAL', serialize_value(result[0][0]))
 
 class HolidayCheckSensor(BaseSensorOperator):
     """
@@ -95,7 +95,7 @@ class HolidayCheckSensor(BaseSensorOperator):
             if skip_holiday_check:
                 self.log.warning("⚠️  MODO PRUEBA: skip_holiday_check=True - Saltando verificación de feriados")
                 return True
-        
+
         hook = PostgresHook(postgres_conn_id=self.postgres_conn_id)
         sql_query = """
             SELECT CASE 
@@ -155,7 +155,7 @@ def FechaInicio(**kwargs):
 
 def FechaFile(**kwargs):
 	hook = PostgresHook(postgres_conn_id='ods')
-	
+
 	FechaFin = get_variable('FechaFin')
 
 	sql_query = f'''SELECT TO_CHAR(TO_DATE('{FechaFin}', 'MM/DD/YY'), 'YYMMDD') AS result;'''
@@ -225,7 +225,7 @@ def AT03_Max_Corte(**kwargs):
 # 	SALDO,
 # 	CONSECUTIVO
 #     )
-#     SELECT 	
+#     SELECT
 #         OFICINA,
 #         CODIGO_CONTABLE,
 #         SALDO,
@@ -234,10 +234,10 @@ def AT03_Max_Corte(**kwargs):
 #     WHERE NOT (
 #         (
 #             SUBSTRING(OFICINA FROM 1 FOR 1) IN ('V','I')
-#         ) 
+#         )
 #         AND (
-#             SUBSTRING(CODIGO_CONTABLE FROM 1 FOR 5) IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549') 
-#             OR SUBSTRING(CODIGO_CONTABLE FROM 1 FOR 3) IN ('129','139','149','159','169') 
+#             SUBSTRING(CODIGO_CONTABLE FROM 1 FOR 5) IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549')
+#             OR SUBSTRING(CODIGO_CONTABLE FROM 1 FOR 3) IN ('129','139','149','159','169')
 #             OR SUBSTRING(CODIGO_CONTABLE FROM 1 FOR 8) IN (
 #                 '18101102','18101202','18102102','18102202','18103102','18103202','18105102','18105202','18105104',
 #                 '18105204','18105106','18105206','18106102','18106202','18107102','18107202','18902102','18902202','18902101',
@@ -250,8 +250,8 @@ def AT03_Max_Corte(**kwargs):
 #                 '13450102','13150202','13250202','13350202','13450202','13152102','13252102','13352102','13452102','13152202',
 #                 '13252202','13352202','13452202','13154102','13254102','13354102','13454102','13154202','13254202','13354202',
 #                 '13454202'
-#             ) 
-#             OR SUBSTRING(CODIGO_CONTABLE FROM 1 FOR 6) IN ('189011','189012') 
+#             )
+#             OR SUBSTRING(CODIGO_CONTABLE FROM 1 FOR 6) IN ('189011','189012')
 #             OR SUBSTRING(CODIGO_CONTABLE FROM 1 FOR 10) IN (
 #                 '1810810102','1810820102','1810810202','1810820202','1810810302','1810820302','1810810402','1810820402','1810810502','1810820502','1881610102',
 #                 '1881620102','1881610202','1881620202','1881610302','1881620302','1881610402','1881620402','1881610502','1881620502','1881610602',
@@ -261,8 +261,8 @@ def AT03_Max_Corte(**kwargs):
 #         AND SALDO <= 0
 #         AND ( SUBSTRING(oficina FROM 1 FOR 1) IN ('V','I') ) AND ( SUBSTRING(codigo_contable FROM 1 FOR 1) = '1' )
 #         AND (
-#             SUBSTRING(codigo_contable FROM 1 FOR 5) NOT IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549') 
-#             OR SUBSTRING(codigo_contable FROM 1 FOR 3) NOT IN ('129','139','149','159','169') 
+#             SUBSTRING(codigo_contable FROM 1 FOR 5) NOT IN ('11901','12125','12225','12325','12425','12625','17249','17349','17449','17549')
+#             OR SUBSTRING(codigo_contable FROM 1 FOR 3) NOT IN ('129','139','149','159','169')
 #             OR SUBSTRING(codigo_contable FROM 1 FOR 8) NOT IN (
 #                 '18101102','18101202','18102102','18102202','18103102','18103202','18105102','18105202','18105104',
 #                 '18105204','18105106','18105206','18106102','18106202','18107102','18107202','18902102','18902202','18902101',
@@ -275,8 +275,8 @@ def AT03_Max_Corte(**kwargs):
 #                 '13450102','13150202','13250202','13350202','13450202','13152102','13252102','13352102','13452102','13152202',
 #                 '13252202','13352202','13452202','13154102','13254102','13354102','13454102','13154202','13254202','13354202',
 #                 '13454202'
-#             ) 
-#             OR SUBSTRING(codigo_contable FROM 1 FOR 6) NOT IN ('189011','189012') 
+#             )
+#             OR SUBSTRING(codigo_contable FROM 1 FOR 6) NOT IN ('189011','189012')
 #             OR SUBSTRING(codigo_contable FROM 1 FOR 10) NOT IN (
 #                 '1810810102','1810820102','1810810202','1810820202','1810810302','1810820302','1810810402','1810820402','1810810502','1810820502','1881610102',
 #                 '1881620102','1881610202','1881620202','1881610302','1881620302','1881610402','1881620402','1881610502','1881620502','1881610602',
@@ -288,7 +288,7 @@ def AT03_Max_Corte(**kwargs):
 #     hook.run(sql_query_deftxt)
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',
@@ -309,9 +309,9 @@ AT_DIA_HABIL_task = PythonOperator(
     dag=dag
 )
 
-holiday_sensor = HolidayCheckSensor(    
+holiday_sensor = HolidayCheckSensor(
     task_id='holiday_sensor',
-    postgres_conn_id='ods',  
+    postgres_conn_id='ods',
     poke_interval=10,                    # Se verifica cada 10 segundos para la prueba (para produccion seria 86400seg para una verificacion diaria)
     dag=dag
 )
@@ -396,14 +396,14 @@ AT03_Max_Corte_task = PythonOperator(
 
 Execution_of_the_Scenario_AT03_version_001_task = TriggerDagRunOperator(
     task_id='Execution_of_the_Scenario_AT03_version_001_task',
-    trigger_dag_id='AT03', 
+    trigger_dag_id='AT03',
     wait_for_completion=True,
     dag=dag
 )
 
 Execution_of_the_Scenario_AT03_TO_FILE_version_001_task = TriggerDagRunOperator(
     task_id='Execution_of_the_Scenario_AT03_TO_FILE_version_001_task',
-    trigger_dag_id='AT03_TO_FILE', 
+    trigger_dag_id='AT03_TO_FILE',
     wait_for_completion=True,
     dag=dag
 )

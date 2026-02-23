@@ -1,0 +1,42 @@
+# Configuración optimizada para Airflow y Código Generado (ODI)
+
+# Longitud de línea extendida para acomodar queries SQL en los DAGs
+line-length = 120
+target-version = "py310"
+
+# EXCLUSIONES: Evitar que Ruff analice o corrija carpetas específicas
+extend-exclude = ["parsing"]
+
+[lint]
+# E: pycodestyle (estilo)
+# F: pyflakes (errores lógicos)
+# I: isort (orden de imports)
+# W: warnings (avisos de estilo)
+select = ["E", "F", "I", "W"]
+
+# REGLAS QUE NO SE DEBEN CORREGIR AUTOMÁTICAMENTE (--fix)
+unfixable = ["F401", "F811"]
+
+# Ignorar errores comunes en código generado que no afectan la ejecución
+ignore = [
+    "E501", # Líneas demasiado largas
+    "I001", # Conflictos menores en orden de imports
+    "F401", # Silenciamos los avisos de imports no usados
+    "W291", # Espacios al final de la línea
+    "W293", # Espacios en líneas en blanco
+    "W292", # Falta de línea en blanco al final del archivo
+    "W191", # TABULACIONES (Aceptamos tabs si el parser los genera)
+    "E101", # Indentación mixta
+    "E701", # Múltiples declaraciones en una línea (Ignoramos porque ODI genera muchos if cortos)
+    "F403", # Star imports (from modulo import *). ODI lo usa mucho.
+    "F405", # Variables de star imports.
+]
+
+[lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[format]
+quote-style = "preserve"
+indent-style = "tab"
+skip-magic-trailing-comma = false
+docstring-code-format = false
