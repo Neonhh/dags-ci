@@ -100,9 +100,9 @@ def vSrcTipoCarga(**kwargs):
 #     C7_CU_FECHA_ESTADO DATE NULL,
 #     C8_CU_MONEDA INT NULL
 #     );'''
-#     logger.info("Accion a ejecutarse: Create work table") 
+#     logger.info("Accion a ejecutarse: Create work table")
 #     hook.run(sql_query_deftxt)
-#     logger.info("Accion: Create work table, ejecutada exitosamente") 
+#     logger.info("Accion: Create work table, ejecutada exitosamente")
 
 #     # Load data
 #     sql_query_coltxt = f'''SELECT
@@ -116,7 +116,7 @@ def vSrcTipoCarga(**kwargs):
 #         CB_CUENTA.cu_moneda AS C8_CU_MONEDA
 #     FROM bancaribe_core.dbo.cb_cuenta AS CB_CUENTA
 #     WHERE (CB_CUENTA.cu_empresa = 1)'''
-#     logger.info("Accion a ejecutarse: Load data") 
+#     logger.info("Accion a ejecutarse: Load data")
 
 #     conn = sybase.get_conn()
 #     cursor = conn.cursor()
@@ -125,7 +125,7 @@ def vSrcTipoCarga(**kwargs):
 #     cursor.close()
 #     conn.close()
 
-#     logger.info("Accion: Load data, ejecutada exitosamente") 
+#     logger.info("Accion: Load data, ejecutada exitosamente")
 
 #     # Load data
 #     sql_query_deftxt = '''INSERT INTO ods.col_prf0cb_cuenta (
@@ -140,16 +140,16 @@ def vSrcTipoCarga(**kwargs):
 #     )
 #     VALUES
 #     (%s,%s,%s,%s,%s,%s,%s,%s);'''
-#     logger.info("Accion a ejecutarse: Load data") 
+#     logger.info("Accion a ejecutarse: Load data")
 #     for row in registros:
 #         hook.run(sql_query_deftxt, parameters=row)
-#     logger.info("Accion: Load data, ejecutada exitosamente") 
+#     logger.info("Accion: Load data, ejecutada exitosamente")
 
 #     # Truncate target table
 #     sql_query_deftxt = f'''TRUNCATE TABLE ods.cb_cuenta;'''
-#     logger.info("Accion a ejecutarse: Truncate target table") 
+#     logger.info("Accion a ejecutarse: Truncate target table")
 #     hook.run(sql_query_deftxt)
-#     logger.info("Accion: Truncate target table, ejecutada exitosamente") 
+#     logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
 #     # Insert new rows
 #     sql_query_deftxt = f'''INSERT INTO ods.cb_cuenta (
@@ -184,15 +184,15 @@ def vSrcTipoCarga(**kwargs):
 #             c7_cu_fecha_estado AS cu_fecha_estado,
 #             c8_cu_moneda AS cu_moneda
 #         FROM ods.col_prf0cb_cuenta);'''
-#     logger.info("Accion a ejecutarse: Insert new rows") 
+#     logger.info("Accion a ejecutarse: Insert new rows")
 #     hook.run(sql_query_deftxt)
-#     logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+#     logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
 #     # Drop work table
 #     sql_query_deftxt = f'''DROP TABLE ods.COL_PRF0CB_CUENTA;'''
-#     logger.info("Accion a ejecutarse: Drop work table") 
+#     logger.info("Accion a ejecutarse: Drop work table")
 #     hook.run(sql_query_deftxt)
-#     logger.info("Accion: Drop work table, ejecutada exitosamente") 
+#     logger.info("Accion: Drop work table, ejecutada exitosamente")
 
 def IT_CB__CUENTA__COB_CONTA__ODS_DIARIA(**kwargs):
     hook = PostgresHook(postgres_conn_id='ods')
@@ -203,7 +203,7 @@ def IT_CB__CUENTA__COB_CONTA__ODS_DIARIA(**kwargs):
     vSrcPartition = get_variable('vSrcPartition')
 
     # Create work table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ods.COL_PRF0CB_CUENTA (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ods.COL_PRF0CB_CUENTA (
 	C1_CU_EMPRESA INT NULL,
 	C2_CU_CUENTA VARCHAR(34) NULL,
 	C3_CU_CUENTA_PADRE VARCHAR(20) NULL,
@@ -215,12 +215,12 @@ def IT_CB__CUENTA__COB_CONTA__ODS_DIARIA(**kwargs):
 	C9_CU_FECHA_ESTADO DATE NULL,
 	C10_CU_MONEDA INT NULL
     );'''
-    logger.info("Accion a ejecutarse: Create work table") 
+    logger.info("Accion a ejecutarse: Create work table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Create work table, ejecutada exitosamente") 
+    logger.info("Accion: Create work table, ejecutada exitosamente")
 
     # Load data
-    sql_query_coltxt = f'''SELECT
+    sql_query_coltxt = '''SELECT
         CB_CUENTA.cu_empresa AS C1_CU_EMPRESA,
         LTRIM(RTRIM(CB_CUENTA.cu_cuenta)) AS C2_CU_CUENTA,
         LTRIM(RTRIM(CB_CUENTA.cu_cuenta_padre)) AS C3_CU_CUENTA_PADRE,
@@ -233,14 +233,14 @@ def IT_CB__CUENTA__COB_CONTA__ODS_DIARIA(**kwargs):
         CB_CUENTA.cu_moneda AS C10_CU_MONEDA
     FROM bancaribe_core.dbo.cb_cuenta AS CB_CUENTA
     WHERE (CB_CUENTA.cu_empresa=1)'''
-    logger.info("Accion a ejecutarse: Load data") 
+    logger.info("Accion a ejecutarse: Load data")
 
     # conexion a sybase
     sybase_conn = sybase_hook.get_conn()
     sybase_cursor = sybase_conn.cursor()
     sybase_cursor.execute(sql_query_coltxt)
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
     # Load data
     sql_query_deftxt = '''INSERT INTO ods.col_prf0cb_cuenta (
@@ -256,8 +256,8 @@ def IT_CB__CUENTA__COB_CONTA__ODS_DIARIA(**kwargs):
 	c10_cu_moneda
     )
     VALUES %s'''
-    logger.info("Accion a ejecutarse: Load data") 
-    
+    logger.info("Accion a ejecutarse: Load data")
+
     # insercion por lotes en postgres
     pg_conn = hook.get_conn()
     pg_cursor = pg_conn.cursor()
@@ -284,14 +284,14 @@ def IT_CB__CUENTA__COB_CONTA__ODS_DIARIA(**kwargs):
     pg_cursor.close()
     pg_conn.close()
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
     # Truncate target table
     sql_query_deftxt = f'''DELETE FROM ods.cb_cuenta
     WHERE fechacarga = '{vSrcPartition}';'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    logger.info("Accion a ejecutarse: Truncate target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Truncate target table, ejecutada exitosamente") 
+    logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
     # Insert new rows
     sql_query_deftxt = f'''INSERT INTO ods.cb_cuenta (
@@ -320,18 +320,18 @@ def IT_CB__CUENTA__COB_CONTA__ODS_DIARIA(**kwargs):
         c10_cu_moneda AS cu_moneda,
         to_char(to_date('{vSrcFechaCarga}', '{vSrcFormatoFecha}'), 'DDMM') AS fechacarga
     FROM ods.col_prf0cb_cuenta;'''
-    logger.info("Accion a ejecutarse: Insert new rows") 
+    logger.info("Accion a ejecutarse: Insert new rows")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+    logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
     # Drop work table
-    sql_query_deftxt = f'''DROP TABLE ods.col_prf0cb_cuenta;'''
-    logger.info("Accion a ejecutarse: Drop work table") 
+    sql_query_deftxt = '''DROP TABLE ods.col_prf0cb_cuenta;'''
+    logger.info("Accion a ejecutarse: Drop work table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Drop work table, ejecutada exitosamente") 
+    logger.info("Accion: Drop work table, ejecutada exitosamente")
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

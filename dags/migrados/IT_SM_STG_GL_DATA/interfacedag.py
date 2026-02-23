@@ -21,7 +21,7 @@ DEFAULT_CONTEXT_VARS = {
 	catchup=False,
 	doc_md=__doc__,
 	default_args={
-		"owner": "Astro", 
+		"owner": "Astro",
 		"retries": 0,
 		"retry_delay": timedelta(minutes=5),
 		"execution_timeout": timedelta(seconds=30),
@@ -66,7 +66,7 @@ def IT_SM_STG_GL_DATA():
 		except Exception as e:
 			logger.error(f"Error in _110_DropTablaTemporalSaldosDiariosExtraidosDeOds: {str(e)}")
 			raise
-	
+
 	# 120
 	@task
 	def _120_DropTablaTemporalSaldosDiariosDividosEnLotes(**context):
@@ -252,7 +252,7 @@ def IT_SM_STG_GL_DATA():
 	@task
 	def setup_extraction():
 		pass
-	
+
 	# Define task execution and dependencies
 	declare_vars = _100_DeclaracionDeVariablesSaldosMedios()
 	drop_extraidos = _110_DropTablaTemporalSaldosDiariosExtraidosDeOds()

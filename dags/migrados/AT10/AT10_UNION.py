@@ -85,17 +85,17 @@ def AT10_FileName_Fideicomiso(**kwargs):
     Variable.set('AT10_FileName_Fideicomiso', serialize_value(result[0][0]))
 
 def AT10_UNION(**kwargs):
-    
+
     # Obtener variables
     FileAT = get_variable('FileAT')
     FileCodSupervisado = get_variable('FileCodSupervisado')
     FechaFile = get_variable('FechaFile')
-    
+
     # Define la informacion del bucket y el objeto en GCS
     gcs_bucket = 'airflow-dags-data'
     gcs_object_fideicomiso = f'data/AT10/UNIFICADO/{FileAT}{FileCodSupervisado}{FechaFile}_FIDEICOMISO.txt'
     gcs_object_la = f'data/AT10/UNIFICADO/{FileAT}{FileCodSupervisado}{FechaFile}_LA.txt'
-    
+
     #Inicializa los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
@@ -180,7 +180,7 @@ def AT10_UNION(**kwargs):
 
 	# Vaciamos la tabla para no duplicar datos.
     hook.run("TRUNCATE TABLE ATSUDEBAN.ATS_TH_AT10;")
-    
+
     # CARGA PORCIÓN DE FIDEICOMISO
     temp_dir = tempfile.mkdtemp()
     local_file_path_fideicomiso = os.path.join(temp_dir, f'{FileAT}{FileCodSupervisado}{FechaFile}_FIDEICOMISO.txt')
@@ -189,7 +189,7 @@ def AT10_UNION(**kwargs):
         object_name=gcs_object_fideicomiso,
         filename=local_file_path_fideicomiso
     )
-    
+
     temp_sql = """
         CREATE TEMP TABLE temp_at10_union_fideicomiso (
 			OFICINA	VARCHAR(10),
@@ -417,7 +417,7 @@ def AT10_UNION(**kwargs):
     hook.copy_expert(sql=temp_sql, filename=local_file_path_fideicomiso)
     os.remove(local_file_path_fideicomiso)
     os.rmdir(temp_dir)
-    
+
 	# CARGA PORCIÓN DE LA
     temp_dir = tempfile.mkdtemp()
     local_file_path_la = os.path.join(temp_dir, f'{FileAT}{FileCodSupervisado}{FechaFile}_LA.txt')
@@ -426,7 +426,7 @@ def AT10_UNION(**kwargs):
         object_name=gcs_object_la,
         filename=local_file_path_la
     )
-    
+
     temp_sql = """
         CREATE TEMP TABLE temp_at10_union_la (
 			OFICINA	VARCHAR(10),
@@ -657,7 +657,7 @@ def AT10_UNION(**kwargs):
 
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

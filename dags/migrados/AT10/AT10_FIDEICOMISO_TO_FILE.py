@@ -13,7 +13,6 @@ import time
 import os
 import tempfile
 from airflow.providers.google.cloud.hooks.gcs import GCSHook
-from airflow.operators.python import PythonOperator
 
 
 
@@ -56,7 +55,7 @@ def FileName(**kwargs):
     Variable.set('FileName', serialize_value(value))
 
 def AT10_FIDEICOMISO_TOFILE(**kwargs):
-	
+
     #Inicializa los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
@@ -409,7 +408,7 @@ def AT10_FIDEICOMISO_TOFILE(**kwargs):
 
 
 def ATS_TH_ATnumero_TOTXT(**kwargs):
-    
+
     #Inicializa los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
@@ -482,7 +481,7 @@ def ATS_TH_ATnumero_TOTXT(**kwargs):
     # Definir la ruta del archivo de salida en GCS
     gcs_bucket = 'airflow-dags-data'
     gcs_object_path = f"data/AT10/SALIDAS/{FileAT}{FileCodSupervisado}{FechaFile}_FIDEICOMISO.txt"
-    
+
     temp_dir = tempfile.mkdtemp() # Crea un directorio temporal
     local_file_path = os.path.join(temp_dir, f"{FileAT}{FileCodSupervisado}{FechaFile}.txt") # Ruta del archivo temporal local
 
@@ -494,9 +493,9 @@ def ATS_TH_ATnumero_TOTXT(**kwargs):
                 # Convertimos cada fila (tupla) a una cadena separada por tildes y aseguramos que los valores None se traten como cadenas vaci­as
                 linea = "~".join(str(valor) if valor is not None else "" for valor in row)
                 f.write(linea + "\n")
-        
+
         logger.info(f"Archivo temporal local generado correctamente. Subiendo a GCS: gs://{gcs_bucket}/{gcs_object_path}")
-        
+
         # Subir el archivo temporal local a GCS
         gcs_hook.upload(
             bucket_name=gcs_bucket,
@@ -522,7 +521,7 @@ def ATS_TH_ATnumero_TOTXT(**kwargs):
             logger.info(f"Directorio temporal eliminado: {temp_dir}")
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

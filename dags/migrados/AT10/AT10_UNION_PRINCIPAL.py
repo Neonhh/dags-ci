@@ -72,7 +72,7 @@ class HolidayCheckSensor(BaseSensorOperator):
             if skip_holiday_check:
                 self.log.warning("⚠️  MODO PRUEBA: skip_holiday_check=True - Saltando verificación de feriados")
                 return True
-        
+
         hook = PostgresHook(postgres_conn_id=self.postgres_conn_id)
         gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
         sql_query = """
@@ -164,7 +164,7 @@ def FileName_Error(**kwargs):
     result = hook.get_records(sql_query)
     Variable.set('FileName_Error', serialize_value(result[0][0]))
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

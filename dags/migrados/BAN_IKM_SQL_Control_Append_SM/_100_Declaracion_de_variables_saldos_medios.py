@@ -14,206 +14,206 @@ import logging
 # definicion de consultarCampos
 # declaraciones de variables globales
 def consultarCampos(vListaCampos):
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 1 
-	vCampoAux.vTipoCampo = "CLAVE_PRODUCTO" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 1
+	vCampoAux.vTipoCampo = "CLAVE_PRODUCTO"
 	vCampoAux.setNombreCampo("V_GL_CODE", 1)
 	vCampoAux.vDescCampo = "VARCHAR(20)"
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 2 
-	vCampoAux.vTipoCampo = "CLAVE_PRODUCTO" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 2
+	vCampoAux.vTipoCampo = "CLAVE_PRODUCTO"
 	vCampoAux.setNombreCampo("V_ORG_UNIT_CODE", 2)
 	vCampoAux.vDescCampo = "VARCHAR(40)"
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 3 
-	vCampoAux.vTipoCampo = "CLAVE_PRODUCTO" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 3
+	vCampoAux.vTipoCampo = "CLAVE_PRODUCTO"
 	vCampoAux.setNombreCampo("", 3)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 4 
-	vCampoAux.vTipoCampo = "CLAVE_PRODUCTO" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 4
+	vCampoAux.vTipoCampo = "CLAVE_PRODUCTO"
 	vCampoAux.setNombreCampo("", 4)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 5 
-	vCampoAux.vTipoCampo = "CLAVE_PRODUCTO" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 5
+	vCampoAux.vTipoCampo = "CLAVE_PRODUCTO"
 	vCampoAux.setNombreCampo("", 5)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 1 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 1
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("N_AMOUNT_LCY", 1)
 	vCampoAux.vDescCampo = "NUMERIC(22,3)"
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 2 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 2
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("N_AMOUNT_ACY", 2)
 	vCampoAux.vDescCampo = "NUMERIC(22,3)"
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 3 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 3
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 3)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 4 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 4
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 4)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 5 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 5
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 5)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 6 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 6
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 6)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 7 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 7
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 7)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 8 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 8
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 8)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 9 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 9
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 9)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 10 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 10
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 10)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 11 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 11
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 11)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 12 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 12
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 12)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 13 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 13
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 13)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 14 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 14
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 14)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 15 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 15
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 15)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 16 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 16
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 16)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 17 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 17
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 17)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 18 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 18
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 18)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 19 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 19
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 19)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 20 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 20
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 20)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	vCampoAux = Campo(); 
-	vCampoAux.vNumero = 21 
-	vCampoAux.vTipoCampo = "SALDO_PUNTUAL" 
-	vCampoAux.vFlagCambioInteres = "" 
+	vCampoAux = Campo()
+	vCampoAux.vNumero = 21
+	vCampoAux.vTipoCampo = "SALDO_PUNTUAL"
+	vCampoAux.vFlagCambioInteres = ""
 	vCampoAux.setNombreCampo("", 21)
 	vCampoAux.vDescCampo = ""
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-			
+
 	# Otros Campos
 	# Fecha Utimo Reprecio
-	vFechaUltRe = "";
-	vCampoAux = Campo();
+	vFechaUltRe = ""
+	vCampoAux = Campo()
 	vCampoAux.vNumero = 1
 	vCampoAux.vTipoCampo = "FECHA_REPRECIO"
 	vCampoAux.vNombreCampo = vFechaUltRe
 	vCampoAux.vDescCampo = "DATE"
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	
+
 	# Fecha Proximo Reprecio
-	vFechaUltRe = "";
-	vCampoAux = Campo();
+	vFechaUltRe = ""
+	vCampoAux = Campo()
 	vCampoAux.vNumero = 1
 	vCampoAux.vTipoCampo = "FECHA_PROX_REPRE"
 	vCampoAux.vNombreCampo = vFechaUltRe
 	vCampoAux.vDescCampo = "DATE"
 	if vCampoAux.vNombreCampo: vListaCampos.append(vCampoAux)
-	
+
 	# Tipo de interes
-	vFechaUltRe = "";
-	vCampoAux = Campo();
+	vFechaUltRe = ""
+	vCampoAux = Campo()
 	vCampoAux.vNumero = 1
 	vCampoAux.vTipoCampo = "TIPO_INTERES"
 	vCampoAux.vNombreCampo = vFechaUltRe
@@ -226,7 +226,7 @@ def declaracionDeVariablesSaldosMedios(**context):
 	# ******************************************************************************
 	# Set default values for other required variables if not already set
 	default_vars = context['ti'].xcom_pull(task_ids='default_vars')
-	
+
 	# Push default values to XCom if they don't exist
 	for key, default_value in default_vars.items():
 		existing_value = context['ti'].xcom_pull(key=key)
@@ -243,7 +243,7 @@ def declaracionDeVariablesSaldosMedios(**context):
 
 	# Nombre de la tabla STG, se limpia en caso de que tenga el nombre del esquema o del dblink
 	# * CODIGO ORIGINAL: vNombreTablaSTG = '<?=snpRef.getObjectName("L", "STG_GL_DATA", "LS_STG", "", "D") ?>';
-	vNombreTablaSTG = 'STG_GL_DATA';
+	vNombreTablaSTG = 'STG_GL_DATA'
 	context['ti'].xcom_push(key='vNombreTablaSTG', value=vNombreTablaSTG)
 	if '.' in vNombreTablaSTG:
 		vNombreTablaSTG = vNombreTablaSTG.split('.', 1)[1]
@@ -297,7 +297,7 @@ def declaracionDeVariablesSaldosMedios(**context):
 		# *DEBUG: Log what we're pushing to XCom
 		logger = logging.getLogger(__name__)
 		logger.info(f"Pushing to XCom - {k}: {v}")
-		
+
 		# Si es una lista de objetos Campo
 		if isinstance(v, list) and v and hasattr(v[0], '__dict__'):
 			context['ti'].xcom_push(key=k, value=[obj.__dict__ for obj in v])

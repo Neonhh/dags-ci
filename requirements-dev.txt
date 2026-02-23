@@ -1,0 +1,11 @@
+#Herramientas de Calidad y Estilo
+
+ruff>=0.1.0
+pytest>=7.0.0
+
+#Dependencias de Airflow necesarias para ejecutar tests locales
+
+apache-airflow>=2.5.0
+
+#Hooks para automatizar la ejecución de Ruff antes de cada commit (Opcional)
+#pre-commit>=3.0.0

@@ -73,7 +73,7 @@ class HolidayCheckSensor(BaseSensorOperator):
             if skip_holiday_check:
                 self.log.warning("⚠️  MODO PRUEBA: skip_holiday_check=True - Saltando verificación de feriados")
                 return True
-        
+
         hook = PostgresHook(postgres_conn_id=self.postgres_conn_id)
         sql_query = """
             SELECT CASE 
@@ -127,7 +127,7 @@ def FechaInicio(**kwargs):
 
 def FechaFile(**kwargs):
 	hook = PostgresHook(postgres_conn_id='ods')
-	
+
 	FechaFin = get_variable('FechaFin')
 
 	sql_query = f'''SELECT TO_CHAR(TO_DATE('{FechaFin}', 'MM/DD/YY'), 'YYMMDD') AS result;'''
@@ -187,7 +187,7 @@ def FileDate(**kwargs):
 # 	MONTODESTINO	NUMERIC(20,2)
 # 	);'''
 # 	hook.run(sql_query_deftxt)
-	
+
 # 	# TRUNCATE
 # 	sql_query_deftxt = '''TRUNCATE TABLE ATSUDEBAN.E$_ATS_TH_AT13;'''
 # 	hook.run(sql_query_deftxt)
@@ -227,7 +227,7 @@ def FileDate(**kwargs):
 # 	CODIGOCUENTADESTINO,
 # 	MONTODESTINO
 # 	)
-# 	SELECT 	
+# 	SELECT
 # 		RECLAMO,
 # 		OFICINA,
 # 		TIPOCLIENTE,
@@ -338,40 +338,40 @@ def FileDate(**kwargs):
 # 			(ATS_TH_AT13.ESTADORECLAMO NOT IN ('2','3') AND ATS_TH_AT13.FECHASOLUCION = '19000101')
 # 		)
 # 		AND (
-# 			(tiporeclamo IN ('1','2','3','4','5','7','11','13','17','22','23') 
+# 			(tiporeclamo IN ('1','2','3','4','5','7','11','13','17','22','23')
 # 			AND estadoreclamo IN ('2','5') AND montoreintegro > 0)
 # 			OR
-# 			(tiporeclamo IN ('1','2','3','4','5','7','11','13','17','22','23') 
+# 			(tiporeclamo IN ('1','2','3','4','5','7','11','13','17','22','23')
 # 			AND estadoreclamo NOT IN ('2','5') AND montoreintegro = 0)
 # 			OR
-# 			(tiporeclamo NOT IN ('1','2','3','4','5','7','11','13','17','22','23') 
+# 			(tiporeclamo NOT IN ('1','2','3','4','5','7','11','13','17','22','23')
 # 			AND montoreintegro = 0)
 # 			OR
-# 			(tiporeclamo IN ('14') 
+# 			(tiporeclamo IN ('14')
 # 			AND estadoreclamo IN ('2','5') AND montoreintegro >= 0)
 # 		)
 # 		AND (
 # 			(TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') AND
-# 			ESTADORECLAMO IN ('2','5') AND 
+# 			ESTADORECLAMO IN ('2','5') AND
 # 			FECHAREINTEGRO >= FECHARECLAMO)
 # 		OR
 # 			(TIPORECLAMO IN ('1','2','3','4','5','7','11','13','17','22','23') AND
-# 			ESTADORECLAMO IN ('1','3') AND 
+# 			ESTADORECLAMO IN ('1','3') AND
 # 			FECHAREINTEGRO = '19000101')
 # 		OR
 # 			(TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND
-# 			MONTOREINTEGRO = 0 AND 
+# 			MONTOREINTEGRO = 0 AND
 # 			FECHAREINTEGRO = '19000101')
 # 		OR
 # 			(TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND
 # 			MONTOREINTEGRO > 0 AND (TIPORECLAMO NOT IN ('1','2','3','4','5','7','11','13','17','22','23') AND
 # 			MONTOREINTEGRO > 0))
 # 		OR
-# 			(MONTOREINTEGRO = 0 AND 
+# 			(MONTOREINTEGRO = 0 AND
 # 			FECHAREINTEGRO = '19000101')
 # 		)
 # 		AND (
-# 			(estadoreclamo IN ('2','3','5') AND 
+# 			(estadoreclamo IN ('2','3','5') AND
 # 			(fechanotificacion::DATE >= fechasolucion::DATE OR fechanotificacion::DATE <= DATE_TRUNC('month', fechareclamo::DATE) + INTERVAL '1 month - 1 day'))
 # 			OR
 # 			(estadoreclamo NOT IN ('2','3','5') AND fechanotificacion = '19000101')
@@ -384,10 +384,10 @@ def FileDate(**kwargs):
 # 			(tipoinstrumento NOT IN ('30','31','32') AND codigoente = '0')
 # 		)
 # 		AND (
-# 			(tiporeclamo IN ('2','3','5','6','11','13') AND tipoinstrumento IN ('30','31','32') AND idpos IS NOT NULL AND idpos <> '0') 
-# 			OR 
-# 			(tiporeclamo NOT IN ('2','3','5','6','11','13') AND tipoinstrumento IN ('30','31','32') AND idpos = '0') 
-# 			OR 
+# 			(tiporeclamo IN ('2','3','5','6','11','13') AND tipoinstrumento IN ('30','31','32') AND idpos IS NOT NULL AND idpos <> '0')
+# 			OR
+# 			(tiporeclamo NOT IN ('2','3','5','6','11','13') AND tipoinstrumento IN ('30','31','32') AND idpos = '0')
+# 			OR
 # 			(tipoinstrumento NOT IN ('30','31','32') AND idpos = '0')
 # 		)
 # 		AND (
@@ -426,7 +426,7 @@ def FileDate(**kwargs):
 # 	hook.run(sql_query_deftxt)
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 local_tz = timezone("America/Caracas")
 
 default_args = {
@@ -439,15 +439,15 @@ default_args = {
 dag = DAG(
     dag_id="AT13_PRINCIPAL",
     default_args=default_args,
-    schedule=None, #"0 11 * * *", 
+    schedule=None, #"0 11 * * *",
     catchup=False,
 	tags=['Principal']
 )
 
 wait_for_file = GCSObjectExistenceSensor(
     task_id='wait_for_file',
-    bucket='airflow-dags-data', 
-    object='data/AT13/INSUMOS/TRANS_PROCESADAS.csv',                    
+    bucket='airflow-dags-data',
+    object='data/AT13/INSUMOS/TRANS_PROCESADAS.csv',
     poke_interval=10,
     timeout=60 * 10,
     dag=dag
@@ -461,7 +461,7 @@ AT_DIA_HABIL_task = PythonOperator(
 
 holiday_sensor = HolidayCheckSensor(
     task_id='holiday_sensor',
-    postgres_conn_id='ods',  
+    postgres_conn_id='ods',
     poke_interval=10,    # verificamos cada 10 segundos para la prueba pero se verifica al dia, 1 dia = 86400 segundos.
     dag=dag
 )
@@ -523,7 +523,7 @@ Execution_of_the_Scenario_AT13_task = TriggerDagRunOperator(
 
 Execution_of_the_Scenario_AT13_TO_FILE_task = TriggerDagRunOperator(
 	task_id='Execution_of_the_Scenario_AT13_TO_FILE_task',
-	trigger_dag_id='AT13_TO_FILE', 
+	trigger_dag_id='AT13_TO_FILE',
 	wait_for_completion=True,
 	dag=dag
 )

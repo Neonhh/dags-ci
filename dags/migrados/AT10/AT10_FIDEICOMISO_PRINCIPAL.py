@@ -72,7 +72,7 @@ class HolidayCheckSensor(BaseSensorOperator):
             if skip_holiday_check:
                 self.log.warning("⚠️  MODO PRUEBA: skip_holiday_check=True - Saltando verificación de feriados")
                 return True
-        
+
         hook = PostgresHook(postgres_conn_id=self.postgres_conn_id)
         sql_query = """
             SELECT CASE 
@@ -141,11 +141,11 @@ def FileDate(**kwargs):
     Variable.set('FileDate', serialize_value(result[0][0]))
 
 def AT10_COD_HOMOLOGACION(**kwargs):
-    
+
     # Define la informacion del bucket y el objeto en GCS
     gcs_bucket = 'airflow-dags-data'
     gcs_object = 'data/AT10/INSUMOS/AT10_COD_HOMOLOGACION.csv'
-        
+
 	#Inicializa los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
@@ -169,7 +169,7 @@ def AT10_COD_HOMOLOGACION(**kwargs):
         object_name=gcs_object,
         filename=local_file_path
     )
-    
+
     sql = """
     COPY AT_STG.AT10_COD_HOMOLOGACION (
         INSTRUMENTO,
@@ -192,7 +192,7 @@ def AT10_PRECIO_TMP(**kwargs):
     # Define la informacion del bucket y el objeto en GCS
     gcs_bucket = 'airflow-dags-data'
     gcs_object = 'data/AT10/INSUMOS/AT10_PRECIO_NACIONAL.csv'
-        
+
 	#Inicializa los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
@@ -228,8 +228,8 @@ def AT10_PRECIO_TMP(**kwargs):
         object_name=gcs_object,
         filename=local_file_path
     )
-    
-    temp_sql = """
+
+    temp_sql = r"""
         CREATE TEMP TABLE temp_precio_nacional (
             DECRETO VARCHAR(50),
             PROXCUPON VARCHAR(20),
@@ -277,12 +277,12 @@ def AT10_PRECIO_TMP(**kwargs):
     hook.copy_expert(sql=temp_sql, filename=local_file_path)
     os.remove(local_file_path)
     os.rmdir(temp_dir)
-    
+
 	#INSUMO DE MONEDA EXTRANJERA
     #Define la informacion del bucket y el objeto en GCS
     gcs_bucket = 'airflow-dags-data'
     gcs_object = 'data/AT10/INSUMOS/AT10_PRECIO_MO_EXTRANJERA.csv'
-        
+
 	#Inicializa los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
@@ -319,8 +319,8 @@ def AT10_PRECIO_TMP(**kwargs):
         filename=local_file_path
     )
 
-    
-    temp_sql = """
+
+    temp_sql = r"""
         CREATE TEMP TABLE temp_precio_mo_extranjera (
             TITULO VARCHAR(100) NULL,
             PAIS VARCHAR(100) NULL,
@@ -392,7 +392,7 @@ def AT10_PRECIO_TMP(**kwargs):
     hook.copy_expert(sql=temp_sql, filename=local_file_path)
     os.remove(local_file_path)
     os.rmdir(temp_dir)
-    
+
     # Se hace drop de la tabla si existe
     hook.run("DROP TABLE IF EXISTS AT_STG.AT10_PRECIO_TMP;")
 
@@ -415,7 +415,7 @@ def AT10_PRECIO_TMP(**kwargs):
 
     # Vaciamos la tabla para no duplicar datos.
     hook.run("TRUNCATE TABLE AT_STG.AT10_PRECIO_TMP;")
-    
+
     hook.run('''
 		INSERT INTO AT_STG.AT10_PRECIO_TMP
 		SELECT * FROM AT_STG.AT10_PRECIO_NACIONAL
@@ -428,7 +428,7 @@ def AT10_PRECIO_ALL(**kwargs):
 
     # Se hace drop de la tabla si existe
     hook.run("DROP TABLE IF EXISTS AT_STG.AT10_PRECIO_ALL;")
-    
+
 	# Crea tabla para insumo de PRECIO ALL si no existe
     hook.run('''
         CREATE TABLE IF NOT EXISTS AT_STG.AT10_PRECIO_ALL (
@@ -446,7 +446,7 @@ def AT10_PRECIO_ALL(**kwargs):
 		INSTRUMENTO VARCHAR(200)
         );
     ''')
-    
+
     # Vaciamos la tabla para no duplicar datos.
     hook.run("TRUNCATE TABLE AT_STG.AT10_PRECIO_ALL;")
 
@@ -500,14 +500,14 @@ def AT10_HOM_ACCIONES(**kwargs):
     # Define la informacion del bucket y el objeto en GCS
     gcs_bucket = 'airflow-dags-data'
     gcs_object = 'data/AT10/INSUMOS/HOM_ACCIONES.csv'
-        
+
 	#Inicializa los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
-    
+
     # Se hace drop de la tabla si existe
     hook.run("DROP TABLE IF EXISTS AT_STG.AT10_HOM_ACCIONES_TMP;")
-    
+
 	# Crea tabla para insumo de PRECIO ALL si no existe
     hook.run('''
         CREATE TABLE IF NOT EXISTS AT_STG.AT10_HOM_ACCIONES_TMP (
@@ -518,10 +518,10 @@ def AT10_HOM_ACCIONES(**kwargs):
 		CAPITAL_SOCIAL BIGINT
         );
     ''')
-    
+
     # Vaciamos la tabla para no duplicar datos.
     hook.run("TRUNCATE TABLE AT_STG.AT10_HOM_ACCIONES_TMP;")
-    
+
     # CARGA INSUMO PRECIO DE MONEDA NACIONAL
     temp_dir = tempfile.mkdtemp()
     local_file_path = os.path.join(temp_dir, 'HOM_ACCIONES.csv')
@@ -564,14 +564,14 @@ def AT10_CARTERA_MANUAL(**kwargs):
     # Define la informacion del bucket y el objeto en GCS
     gcs_bucket = 'airflow-dags-data'
     gcs_object = 'data/AT10/INSUMOS/AT10_CARTERA_FIDEICOMISO.csv'
-        
+
 	#Inicializa los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
 
     # Se hace drop de la tabla si existe
     hook.run("DROP TABLE IF EXISTS AT_STG.AT10_CARTERA_MANUAL;")
-    
+
 	# Crea tabla para insumo de CARTERA FIDEICOMISO si no existe
     hook.run('''
         CREATE TABLE IF NOT EXISTS AT_STG.AT10_CARTERA_MANUAL (
@@ -661,7 +661,7 @@ def AT10_CARTERA_MANUAL(**kwargs):
 
     # Se hace drop de la tabla si existe
     hook.run("DROP TABLE IF EXISTS AT_STG.AT10_CARTERA_FIDEICOMISO_TMP;")
-    
+
 	# Crea tabla para insumo de CARTERA FIDEICOMISO si no existe
     hook.run('''
         CREATE TABLE IF NOT EXISTS AT_STG.AT10_CARTERA_FIDEICOMISO_TMP (
@@ -748,7 +748,7 @@ def AT10_CARTERA_MANUAL(**kwargs):
 
     # Vaciamos la tabla para no duplicar datos.
     hook.run("TRUNCATE TABLE AT_STG.AT10_CARTERA_FIDEICOMISO_TMP;")
-    
+
     # CARGA INSUMO CARTERA FIDEICOMISO MANUAL (PRUEBA)
     temp_dir = tempfile.mkdtemp()
     local_file_path = os.path.join(temp_dir, 'AT10_CARTERA_FIDEICOMISO.csv')
@@ -757,7 +757,7 @@ def AT10_CARTERA_MANUAL(**kwargs):
         object_name=gcs_object,
         filename=local_file_path
     )
-    
+
     temp_sql = """
         CREATE TEMP TABLE temp_cartera_fideicomiso (
 		PORTAFOLIO	VARCHAR(20),
@@ -1106,14 +1106,14 @@ def AT10_CARTERA_MANUAL(**kwargs):
 
 
 def AT10_FIDEICOMISO_TMP(**kwargs):
-    
+
 	#Se inicializan los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
-    
+
 	# Se hace drop de la tabla si existe
     hook.run("DROP TABLE IF EXISTS AT_STG.AT10_FIDEICOMISO_TMP;")
-    
+
 	# Crea tabla para insumo de CARTERA FIDEICOMISO si no existe
     hook.run('''
         CREATE TABLE IF NOT EXISTS AT_STG.AT10_FIDEICOMISO_TMP (
@@ -1190,10 +1190,10 @@ def AT10_FIDEICOMISO_TMP(**kwargs):
 		BASECALCULO VARCHAR(30)
 		);
     ''')
-    
+
     # Vaciamos la tabla para no duplicar datos.
     hook.run("TRUNCATE TABLE AT_STG.AT10_FIDEICOMISO_TMP;")
-    
+
     # Insertamos join en la tabla
     hook.run('''
     INSERT INTO AT_STG.AT10_FIDEICOMISO_TMP (
@@ -1461,15 +1461,15 @@ FROM (
     ''')
 
 def AT10_FIDEICOMISO_FINAL(**kwargs):
-    
+
     #Se inicializan los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
     fecha_inicio_variable = get_variable("FechaInicio")
-    
+
 	# Se hace drop de la tabla si existe
     hook.run("DROP TABLE IF EXISTS AT_STG.AT10_FIDEICOMISO_FINAL;")
-    
+
 	# Crea tabla para insumo de CARTERA FIDEICOMISO si no existe
     hook.run('''
         CREATE TABLE IF NOT EXISTS AT_STG.AT10_FIDEICOMISO_FINAL (
@@ -1546,12 +1546,12 @@ def AT10_FIDEICOMISO_FINAL(**kwargs):
 		BASECALCULO	VARCHAR(30)
 	);
     ''')
-    
+
     # Vaciamos la tabla para no duplicar datos.
     hook.run("TRUNCATE TABLE AT_STG.AT10_FIDEICOMISO_FINAL;")
-    
+
     # Insertamos join en la tabla
-    hook.run(f'''
+    hook.run(rf'''
     INSERT INTO AT_STG.AT10_FIDEICOMISO_FINAL (
 	OFICINA,
 	CODINSTRUMENTO,
@@ -1764,10 +1764,10 @@ def ATS_TH_AT10_FIDEICOMISO(**kwargs):
     #Se inicializan los hooks
     hook = PostgresHook(postgres_conn_id='repodataprd')
     gcs_hook = GCSHook(gcp_conn_id='google_cloud_default')
-    
+
 	# Se hace drop de la tabla si existe
     hook.run("DROP TABLE IF EXISTS ATSUDEBAN.ATS_TH_AT10;")
-    
+
 	# Crea tabla ATSUDEBAN.ATS_TH_AT10
     hook.run('''
         CREATE TABLE IF NOT EXISTS ATSUDEBAN.ATS_TH_AT10 (
@@ -2016,7 +2016,7 @@ def AT10_FileName_Fideicomiso(**kwargs):
 
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

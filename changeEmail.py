@@ -42,10 +42,10 @@ print("=" * 60)
 
 for email in emails_found.keys():
     print(f"\n📧 Correo encontrado: {email}")
-    response = input(f"¿Desea reemplazar este correo? (s/n): ").strip().lower()
-    
+    response = input("¿Desea reemplazar este correo? (s/n): ").strip().lower()
+
     if response == 's':
-        new_email = input(f"Ingrese el nuevo correo: ").strip()
+        new_email = input("Ingrese el nuevo correo: ").strip()
         # Validar formato básico
         if re.match(r'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Za-z]{2,}$', new_email, re.IGNORECASE):
             replacements[email] = new_email
@@ -69,35 +69,35 @@ total_replacements = 0
 for dag_file in dag_folder.rglob("*.py"):
     with open(dag_file, "r") as file:
         content = file.read()
-    
+
     original_content = content
-    
+
     # Aplicar cada reemplazo
     for old_email, new_email in replacements.items():
         # Buscar con comillas simples y dobles
         pattern_single = f"'{old_email}'"
         pattern_double = f'"{old_email}"'
-        
+
         if pattern_single in content:
             content = content.replace(pattern_single, f"'{new_email}'")
         if pattern_double in content:
             content = content.replace(pattern_double, f'"{new_email}"')
-    
+
     if content != original_content:
         with open(dag_file, "w") as file:
             file.write(content)
-        
+
         # Contar reemplazos en este archivo
         for old_email, new_email in replacements.items():
             count = original_content.count(f"'{old_email}'") + original_content.count(f'"{old_email}"')
             total_replacements += count
-        
+
         files_updated += 1
         rel_path = dag_file.relative_to(dag_folder.parent)
         print(f"✏️  Actualizado: {rel_path}")
 
 print(f"\n{'=' * 60}")
-print(f"✅ Completado!")
+print("✅ Completado!")
 print(f"   - Archivos modificados: {files_updated}")
 print(f"   - Reemplazos totales: {total_replacements}")
 print(f"{'=' * 60}")

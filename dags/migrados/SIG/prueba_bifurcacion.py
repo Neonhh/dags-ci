@@ -52,9 +52,9 @@ with DAG(
 
 
     # ======== SECUENCIA ==========
-    vStgNombreTablaStg_task >> vStgFechaCarga_task 
-    vStgFechaCarga_task >> vStgFechaCargaBan_task 
-    vStgFechaCargaBan_task >> vStgCargaStatus_task 
+    vStgNombreTablaStg_task >> vStgFechaCarga_task
+    vStgFechaCarga_task >> vStgFechaCargaBan_task
+    vStgFechaCargaBan_task >> vStgCargaStatus_task
     vStgCargaStatus_task >> IT_STG_ACTIVITY_B_INTF_ODS_STG_task
 
     # Bifurcacion de dependencias tipo ok y ko

@@ -14,10 +14,10 @@ logger = logging.getLogger(__name__)
 ### FUNCIONES DE CADA TAREA ###
 def IT_CB_CORTE_COB_CONTA__ODS_DIARIA(**kwargs):
     hook = PostgresHook(postgres_conn_id='ods')
-    sybase_hook = JdbcHook(jdbc_conn_id='sybase_ase_conn') 
+    sybase_hook = JdbcHook(jdbc_conn_id='sybase_ase_conn')
 
     # Create work table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ods.COL_PRF0CB_CORTE (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ods.COL_PRF0CB_CORTE (
 	c1_co_corte NUMERIC(10) NULL,
 	c2_co_periodo NUMERIC(10) NULL,
 	c3_co_empresa NUMERIC(10) NULL,
@@ -25,12 +25,12 @@ def IT_CB_CORTE_COB_CONTA__ODS_DIARIA(**kwargs):
 	c5_co_fecha_fin DATE NULL,
 	c6_co_estado VARCHAR(1) NULL
     );'''
-    logger.info("Accion a ejecutarse: Create work table") 
+    logger.info("Accion a ejecutarse: Create work table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Create work table, ejecutada exitosamente") 
+    logger.info("Accion: Create work table, ejecutada exitosamente")
 
     # Load data
-    sql_query_coltxt = f'''SELECT
+    sql_query_coltxt = '''SELECT
         cb_corte.co_corte AS c1_co_corte,
         cb_corte.co_periodo AS c2_co_periodo,
         cb_corte.co_empresa AS c3_co_empresa,
@@ -40,14 +40,14 @@ def IT_CB_CORTE_COB_CONTA__ODS_DIARIA(**kwargs):
     FROM bancaribe_core.dbo.cb_corte AS cb_corte
     WHERE (cb_corte.co_empresa = 1)
     AND (cb_corte.co_fecha_fin >= convert(char(10) , dateadd(day,-365, convert(date,getdate()) ) , 23 ))'''
-    logger.info("Accion a ejecutarse: Load data") 
-    
+    logger.info("Accion a ejecutarse: Load data")
+
     # conexion a sybase
     sybase_conn = sybase_hook.get_conn()
     sybase_cursor = sybase_conn.cursor()
     sybase_cursor.execute(sql_query_coltxt)
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
     # Load data
     sql_query_deftxt = '''INSERT INTO ods.COL_PRF0CB_CORTE (
@@ -59,7 +59,7 @@ def IT_CB_CORTE_COB_CONTA__ODS_DIARIA(**kwargs):
     C6_CO_ESTADO
     ) 
     VALUES %s'''
-    logger.info("Accion a ejecutarse: Load data") 
+    logger.info("Accion a ejecutarse: Load data")
 
     # insercion por lotes en postgres
     pg_conn = hook.get_conn()
@@ -87,11 +87,11 @@ def IT_CB_CORTE_COB_CONTA__ODS_DIARIA(**kwargs):
     pg_cursor.close()
     pg_conn.close()
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
 
     # create target table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ods.cb_corte (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ods.cb_corte (
 	co_corte NUMERIC(10),
 	co_periodo NUMERIC(10),
 	co_empresa NUMERIC(10),
@@ -99,18 +99,18 @@ def IT_CB_CORTE_COB_CONTA__ODS_DIARIA(**kwargs):
 	co_fecha_fin DATE,
 	co_estado VARCHAR(1)
     );'''
-    logger.info("Accion a ejecutarse: create target table") 
+    logger.info("Accion a ejecutarse: create target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: create target table, ejecutada exitosamente") 
+    logger.info("Accion: create target table, ejecutada exitosamente")
 
     # Truncate target table
-    sql_query_deftxt = f'''TRUNCATE TABLE ods.cb_corte;'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    sql_query_deftxt = '''TRUNCATE TABLE ods.cb_corte;'''
+    logger.info("Accion a ejecutarse: Truncate target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Truncate target table, ejecutada exitosamente") 
+    logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
     # Insert new rows
-    sql_query_deftxt = f'''INSERT INTO ods.cb_corte (
+    sql_query_deftxt = '''INSERT INTO ods.cb_corte (
 	co_corte,
 	co_periodo,
 	co_empresa,
@@ -135,19 +135,19 @@ def IT_CB_CORTE_COB_CONTA__ODS_DIARIA(**kwargs):
             c6_co_estado AS co_estado
         FROM ods.COL_PRF0CB_CORTE
     );'''
-    logger.info("Accion a ejecutarse: Insert new rows") 
+    logger.info("Accion a ejecutarse: Insert new rows")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+    logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
     # Drop work table
-    sql_query_deftxt = f'''DROP TABLE ods.COL_PRF0CB_CORTE;'''
-    logger.info("Accion a ejecutarse: Drop work table") 
+    sql_query_deftxt = '''DROP TABLE ods.COL_PRF0CB_CORTE;'''
+    logger.info("Accion a ejecutarse: Drop work table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Drop work table, ejecutada exitosamente") 
+    logger.info("Accion: Drop work table, ejecutada exitosamente")
 
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

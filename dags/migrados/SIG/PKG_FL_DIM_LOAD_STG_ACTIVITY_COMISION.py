@@ -13,7 +13,7 @@ import time
 import tempfile
 import os
 from airflow.providers.google.cloud.hooks.gcs import GCSHook
-from airflow.providers.google.cloud.sensors.gcs import GCSObjectExistenceSensor 
+from airflow.providers.google.cloud.sensors.gcs import GCSObjectExistenceSensor
 from pendulum import timezone
 from airflow.operators.empty import EmptyOperator
 from airflow.utils.trigger_rule import TriggerRule
@@ -52,7 +52,7 @@ def get_variable(key, default_var=""):
         return json.loads(raw)
     except Exception:
         return raw
-# tabla origen: STG.BAN_DIM_COMISION_V 
+# tabla origen: STG.BAN_DIM_COMISION_V
 
 ### FUNCIONES DE CADA TAREA ###
 def vStgNombreTablaStg(**kwargs):
@@ -116,13 +116,13 @@ def IT_STG_ACTIVITY_B_INTF_ODS_STG(**kwargs):
 
 
     # Truncate target table
-    sql_query_deftxt = f'''TRUNCATE TABLE ofsaa.stg_activity_b_intf;'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    sql_query_deftxt = '''TRUNCATE TABLE ofsaa.stg_activity_b_intf;'''
+    logger.info("Accion a ejecutarse: Truncate target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Truncate target table, ejecutada exitosamente") 
+    logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
     # Insert new rows
-    sql_query_deftxt = f'''INSERT INTO ofsaa.stg_activity_b_intf (
+    sql_query_deftxt = '''INSERT INTO ofsaa.stg_activity_b_intf (
 	n_activity_display_code,
 	v_leaf_only_flag,
     v_created_by,
@@ -138,9 +138,9 @@ def IT_STG_ACTIVITY_B_INTF_ODS_STG(**kwargs):
         CASE WHEN VC.STATUS IN ('A', 'V') THEN 'Y' ELSE 'N' END AS V_ENABLED_FLAG,
         VC.CodNivel AS V_ACTIVITY_CODE
     FROM STG.BAN_DIM_COMISION_V AS VC;'''
-    logger.info("Accion a ejecutarse: Insert new rows") 
+    logger.info("Accion a ejecutarse: Insert new rows")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+    logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
 def IT_STG_ACTIVITY_TL_INTF_ODS_STG(**kwargs):
     hook = PostgresHook(postgres_conn_id='ods')
@@ -159,13 +159,13 @@ def IT_STG_ACTIVITY_TL_INTF_ODS_STG(**kwargs):
     logger.info("Tabla verificada/creada.")
 
     # Truncate target table
-    sql_query_deftxt = f'''TRUNCATE TABLE ofsaa.stg_activity_tl_intf;'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    sql_query_deftxt = '''TRUNCATE TABLE ofsaa.stg_activity_tl_intf;'''
+    logger.info("Accion a ejecutarse: Truncate target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Truncate target table, ejecutada exitosamente") 
+    logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
     # Insert new rows
-    sql_query_deftxt = f'''INSERT INTO ofsaa.stg_activity_tl_intf (
+    sql_query_deftxt = '''INSERT INTO ofsaa.stg_activity_tl_intf (
     n_activity_display_code, 
     v_activity_code_name, 
     v_description, 
@@ -181,9 +181,9 @@ def IT_STG_ACTIVITY_TL_INTF_ODS_STG(**kwargs):
         'FILE', 
         'FILE' 
     FROM STG.BAN_DIM_COMISION_V AS VC;'''
-    logger.info("Accion a ejecutarse: Insert new rows") 
+    logger.info("Accion a ejecutarse: Insert new rows")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+    logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
 def IT_STG_ACTIVITY_HIER_INTF_ODS_STG(**kwargs):
     hook = PostgresHook(postgres_conn_id='ods')
@@ -202,13 +202,13 @@ def IT_STG_ACTIVITY_HIER_INTF_ODS_STG(**kwargs):
     logger.info("Tabla verificada/creada.")
 
     # Truncate target table
-    sql_query_deftxt = f'''TRUNCATE TABLE ofsaa.stg_activity_hier_intf;'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    sql_query_deftxt = '''TRUNCATE TABLE ofsaa.stg_activity_hier_intf;'''
+    logger.info("Accion a ejecutarse: Truncate target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Truncate target table, ejecutada exitosamente") 
+    logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
     # Insert new rows
-    sql_query_deftxt = f'''INSERT INTO ofsaa.stg_activity_hier_intf (
+    sql_query_deftxt = '''INSERT INTO ofsaa.stg_activity_hier_intf (
     n_parent_display_code, 
     n_child_display_code, 
     n_display_order_num, 
@@ -224,9 +224,9 @@ def IT_STG_ACTIVITY_HIER_INTF_ODS_STG(**kwargs):
         'FILE', 
         'FILE'
     FROM STG.BAN_DIM_COMISION_V AS VC;'''
-    logger.info("Accion a ejecutarse: Insert new rows") 
+    logger.info("Accion a ejecutarse: Insert new rows")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+    logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
 
 def Actualizar_status_carga(**kwargs):
@@ -237,7 +237,7 @@ def Actualizar_status_carga(**kwargs):
     vStgCargaStatus = get_variable('vStgCargaStatus')
     vStgFechaCargaBan = get_variable('vStgFechaCargaBan')
     vStgFechaCarga = get_variable('vStgFechaCarga')
-    
+
     # UPD BAN_CONF_STG Last Date Sucess
     sql_query_deftxt = f'''DO $$
     BEGIN
@@ -248,9 +248,9 @@ def Actualizar_status_carga(**kwargs):
         AND cos_last_date_sucess < TO_DATE('{vStgFechaCarga}', '{vStgFormatoFecha}');
     END IF;
     END $$;'''
-    logger.info("Accion a ejecutarse: UPD BAN_CONF_STG Last Date Sucess") 
+    logger.info("Accion a ejecutarse: UPD BAN_CONF_STG Last Date Sucess")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: UPD BAN_CONF_STG Last Date Sucess, ejecutada exitosamente") 
+    logger.info("Accion: UPD BAN_CONF_STG Last Date Sucess, ejecutada exitosamente")
 
     # OFSAA UPD BAN_CONF_STG_DATE Status Carga
     sql_query_deftxt = f''' UPDATE stg.ban_config_stg_date
@@ -265,15 +265,15 @@ def Actualizar_status_carga(**kwargs):
         AND con.cds_status_carga LIKE 'STG_%'
         AND con.cds_date = TO_DATE('{vStgFechaCarga}', '{vStgFormatoFecha}')
         GROUP BY con.cds_source);'''
-    logger.info("Accion a ejecutarse: OFSAA UPD BAN_CONF_STG_DATE Status Carga") 
+    logger.info("Accion a ejecutarse: OFSAA UPD BAN_CONF_STG_DATE Status Carga")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: OFSAA UPD BAN_CONF_STG_DATE Status Carga, ejecutada exitosamente") 
+    logger.info("Accion: OFSAA UPD BAN_CONF_STG_DATE Status Carga, ejecutada exitosamente")
 
 def vStgCargaStatus_Error(**kwargs):
     value = 'ERROR'
     Variable.set('vStgCargaStatus', serialize_value(value))
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 local_tz = timezone('America/Caracas')
 
 default_args = {

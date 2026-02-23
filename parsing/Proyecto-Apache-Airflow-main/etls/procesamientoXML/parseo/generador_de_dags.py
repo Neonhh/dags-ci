@@ -681,11 +681,13 @@ def generate_dag_code_procedure(json_file):
 if __name__ == '__main__':
 
 	if len(sys.argv) < 3:
-		print("Uso: python3 generador_de_dags.py <ruta_al_json> <ruta_al_output_py>")
+		print("Uso: python3 generador_de_dags.py <ruta_al_json> <ruta_al_output_py> [--force]")
+		print("  --force: Sobrescribir si el archivo ya existe")
 		sys.exit(1)
 
 	json_file = sys.argv[1]
 	output_py = sys.argv[2]
+	force_overwrite = "--force" in sys.argv
 
 	# Leemos el JSON y extraemos el tipo
 	with open(json_file, 'r', encoding='utf-8') as f:
@@ -702,6 +704,10 @@ if __name__ == '__main__':
 		dag_code = generate_dag_code_procedure(json_file)
 	else:
 		raise ValueError(f"Tipo de objeto desconocido en el JSON: {tipo!r}")
+
+	if os.path.exists(output_py) and not force_overwrite:
+		print(f"El archivo {output_py} ya existe. Por seguridad, no se sobrescribirá. Use --force para permitir sobrescritura.")
+		sys.exit(1)
 
 	# Escribimos el DAG generado
 	with open(output_py, 'w', encoding='utf-8') as f:

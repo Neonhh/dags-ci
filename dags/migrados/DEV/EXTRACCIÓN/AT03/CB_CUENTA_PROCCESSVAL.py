@@ -79,9 +79,9 @@ def PROC_UPD_CONFIG_ODS(**kwargs):
 		AND COO_SOURCE = '{vSrcNombreTablaOds}'
 		AND '{vOdsFechaInicio}' <> '01/01/1801'
 		AND TO_DATE('{vOdsFechaInicio}', '{vSrcFormatoFecha}') <= TO_DATE(CASE WHEN '{vOdsFechaFin}' = '01/01/1801' THEN '{vOdsFechaInicio}' ELSE '{vOdsFechaFin}' END, '{vSrcFormatoFecha}');'''
-	logger.info("Accion a ejecutarse: UPD_CONFIG_ONE") 
+	logger.info("Accion a ejecutarse: UPD_CONFIG_ONE")
 	hook.run(sql_query_deftxt)
-	logger.info("Accion: UPD_CONFIG_ONE, ejecutada exitosamente") 
+	logger.info("Accion: UPD_CONFIG_ONE, ejecutada exitosamente")
 
 def vSrcFechaCarga(**kwargs):
 	hook = PostgresHook(postgres_conn_id='ods')
@@ -150,12 +150,12 @@ def PROC_UPD_STATUS_BAN_CONFIG_ODS(**kwargs):
 			AND COO_STATUS_CARGA != nuevoEstatus;
 		END IF;
 	END $$;'''
-	logger.info("Accion a ejecutarse: Actualiza el status en la tabla BAN_CONFIG_ODS") 
+	logger.info("Accion a ejecutarse: Actualiza el status en la tabla BAN_CONFIG_ODS")
 	hook.run(sql_query_deftxt)
-	logger.info("Accion: Actualiza el status en la tabla BAN_CONFIG_ODS, ejecutada exitosamente") 
+	logger.info("Accion: Actualiza el status en la tabla BAN_CONFIG_ODS, ejecutada exitosamente")
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
 	'owner': 'airflow',
@@ -208,7 +208,7 @@ vSrcFechaCarga_task = PythonOperator(
 
 PKG_CON_LOAD_CB_CUENTA_COB_CONTA_ODS_task = TriggerDagRunOperator(
 	task_id='PKG_CON_LOAD_CB_CUENTA_COB_CONTA_ODS_task',
-	trigger_dag_id='PKG_CON_LOAD_CB_CUENTA_COB_CONTA_ODS', 
+	trigger_dag_id='PKG_CON_LOAD_CB_CUENTA_COB_CONTA_ODS',
 	wait_for_completion=True,
 	dag=dag
 )

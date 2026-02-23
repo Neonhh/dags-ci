@@ -11,8 +11,8 @@ with DAG(
     tags=['test', 'email'],
     default_args={'email_on_failure': True, 'email': 'daniel.figueroa@kreadata.com'}
 ) as dag:
-    
-        def send_email_callable(**kwargs):
+
+    def send_email_callable(**kwargs):
         """Envía email usando send_email() - Convertido desde EmailOperator"""
         from airflow.utils.email import send_email
         send_email(
@@ -60,7 +60,7 @@ with DAG(
         # Obtener la configuración del DAG run (Configuration JSON desde la UI)
         dag_run_conf = context.get('dag_run').conf or {}
         skip_failure = dag_run_conf.get('skip_failure', False)
-        
+
         if skip_failure:
             print("✅ skip_failure=true detectado en Configuration JSON")
             print("✅ La tarea pasará exitosamente sin fallar")

@@ -18,32 +18,32 @@ def IT_CB_RELOFI_COB_CONTA_ODS(**kwargs):
     sybase_hook = JdbcHook(jdbc_conn_id='sybase_ase_conn')
 
     # Create work table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ods.COL_PRF0CB_RELOFI (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ods.COL_PRF0CB_RELOFI (
 	C1_RE_FILIAL	NUMERIC(3) NULL,
 	C2_RE_EMPRESA	NUMERIC(3) NULL,
 	C3_RE_OFADMIN	NUMERIC(5) NULL,
 	C4_RE_OFCONTA	NUMERIC(8) NULL
     );'''
-    logger.info("Accion a ejecutarse: Create work table") 
+    logger.info("Accion a ejecutarse: Create work table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Create work table, ejecutada exitosamente") 
+    logger.info("Accion: Create work table, ejecutada exitosamente")
 
     # Load data
-    sql_query_coltxt = f'''SELECT
+    sql_query_coltxt = '''SELECT
         CB_RELOFI.re_filial AS C1_RE_FILIAL,
         CB_RELOFI.re_empresa AS C2_RE_EMPRESA,
         CB_RELOFI.re_ofadmin AS C3_RE_OFADMIN,
         CB_RELOFI.re_ofconta AS C4_RE_OFCONTA
     FROM bancaribe_core.dbo.cb_relofi AS CB_RELOFI
     WHERE (CB_RELOFI.re_empresa = 1)'''
-    logger.info("Accion a ejecutarse: Load data") 
+    logger.info("Accion a ejecutarse: Load data")
 
     # conexion a sybase
     sybase_conn = sybase_hook.get_conn()
     sybase_cursor = sybase_conn.cursor()
     sybase_cursor.execute(sql_query_coltxt)
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
     # Load data
     sql_query_deftxt = '''INSERT INTO ods.COL_PRF0CB_RELOFI (
@@ -53,7 +53,7 @@ def IT_CB_RELOFI_COB_CONTA_ODS(**kwargs):
     C4_RE_OFCONTA
     ) 
     VALUES %s'''
-    logger.info("Accion a ejecutarse: Load data") 
+    logger.info("Accion a ejecutarse: Load data")
 
     # insercion por lotes en postgres
     pg_conn = hook.get_conn()
@@ -81,27 +81,27 @@ def IT_CB_RELOFI_COB_CONTA_ODS(**kwargs):
     pg_cursor.close()
     pg_conn.close()
 
-    logger.info("Accion: Load data, ejecutada exitosamente") 
+    logger.info("Accion: Load data, ejecutada exitosamente")
 
     # create target table
-    sql_query_deftxt = f'''CREATE TABLE IF NOT EXISTS ods.cb_relofi (
+    sql_query_deftxt = '''CREATE TABLE IF NOT EXISTS ods.cb_relofi (
 	RE_FILIAL	NUMERIC(3),
 	RE_EMPRESA	NUMERIC(3),
 	RE_OFADMIN	NUMERIC(5),
 	RE_OFCONTA	NUMERIC(8)
     );'''
-    logger.info("Accion a ejecutarse: create target table") 
+    logger.info("Accion a ejecutarse: create target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: create target table, ejecutada exitosamente") 
+    logger.info("Accion: create target table, ejecutada exitosamente")
 
     # Truncate target table
-    sql_query_deftxt = f'''TRUNCATE TABLE ods.cb_relofi;'''
-    logger.info("Accion a ejecutarse: Truncate target table") 
+    sql_query_deftxt = '''TRUNCATE TABLE ods.cb_relofi;'''
+    logger.info("Accion a ejecutarse: Truncate target table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Truncate target table, ejecutada exitosamente") 
+    logger.info("Accion: Truncate target table, ejecutada exitosamente")
 
     # Insert new rows
-    sql_query_deftxt = f'''INSERT INTO ods.cb_relofi (
+    sql_query_deftxt = '''INSERT INTO ods.cb_relofi (
 	re_filial,
 	re_empresa,
 	re_ofadmin,
@@ -120,18 +120,18 @@ def IT_CB_RELOFI_COB_CONTA_ODS(**kwargs):
             c4_re_ofconta AS re_ofconta
         FROM ods.col_prf0cb_relofi AS col_prf0cb_relofi
     );'''
-    logger.info("Accion a ejecutarse: Insert new rows") 
+    logger.info("Accion a ejecutarse: Insert new rows")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Insert new rows, ejecutada exitosamente") 
+    logger.info("Accion: Insert new rows, ejecutada exitosamente")
 
     # Drop work table
-    sql_query_deftxt = f'''DROP TABLE ods.COL_PRF0CB_RELOFI;'''
-    logger.info("Accion a ejecutarse: Drop work table") 
+    sql_query_deftxt = '''DROP TABLE ods.COL_PRF0CB_RELOFI;'''
+    logger.info("Accion a ejecutarse: Drop work table")
     hook.run(sql_query_deftxt)
-    logger.info("Accion: Drop work table, ejecutada exitosamente") 
+    logger.info("Accion: Drop work table, ejecutada exitosamente")
 
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',

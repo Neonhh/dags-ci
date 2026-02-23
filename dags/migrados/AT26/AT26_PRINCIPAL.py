@@ -72,7 +72,7 @@ class HolidayCheckSensor(BaseSensorOperator):
             if skip_holiday_check:
                 self.log.warning("⚠️  MODO PRUEBA: skip_holiday_check=True - Saltando verificación de feriados")
                 return True
-        
+
         hook = PostgresHook(postgres_conn_id=self.postgres_conn_id)
         sql_query = """
             SELECT CASE 
@@ -88,12 +88,12 @@ class HolidayCheckSensor(BaseSensorOperator):
         records = hook.get_records(sql_query)
         # Suponiendo que la consulta retorna 1 fila, 1 columna:
         status = records[0][0] if records else 0
-        
+
         if status == 1:
             self.log.info("🔴 HOY ES FERIADO - Esperando hasta que sea día hábil...")
         else:
             self.log.info("✅ HOY NO ES FERIADO - Continuando con el flujo")
-        
+
         # Esperamos que status sea 0 para continuar con el flujo normal
         return status == 0
 
@@ -139,7 +139,7 @@ def FechaInicio(**kwargs):
 
 def FechaFile(**kwargs):
     hook = PostgresHook(postgres_conn_id='ods')
-    
+
     FechaFin = get_variable('FechaFin')
 
     sql_query = f'''SELECT TO_CHAR(TO_DATE('{FechaFin}', 'MM/DD/YY'), 'YYMMDD') AS result;'''
@@ -150,9 +150,9 @@ def FileDate(**kwargs):
     hook = PostgresHook(postgres_conn_id='ods')
     sql_query = '''SELECT TO_CHAR(CURRENT_DATE, 'YYMMDD');'''
     result = hook.get_records(sql_query)
-    Variable.set('FileDate', serialize_value(result[0][0]))    
+    Variable.set('FileDate', serialize_value(result[0][0]))
 
-###### DEFINICION DEL DAG ###### 
+###### DEFINICION DEL DAG ######
 
 default_args = {
     'owner': 'airflow',
@@ -181,7 +181,7 @@ AT_DIA_HABIL_task = PythonOperator(
 
 holiday_sensor = HolidayCheckSensor(
     task_id='holiday_sensor',
-    postgres_conn_id='ods',  
+    postgres_conn_id='ods',
     poke_interval=86400,   # Verificar cada 24 horas (86400 segundos = 1 día)
     timeout=86400 * 7,     # Timeout de 7 días (esperar hasta 1 semana si hay feriados largos)
     mode='reschedule',     # Modo reschedule: libera el worker mientras espera
@@ -238,14 +238,14 @@ FileDate_task = PythonOperator(
 
 Execution_of_the_Scenario_AT26_task = TriggerDagRunOperator(
     task_id='Execution_of_the_Scenario_AT26_task',
-    trigger_dag_id='AT26',  
+    trigger_dag_id='AT26',
     wait_for_completion=True,
     dag=dag
 )
 
 Execution_of_the_Scenario_AT26_TO_FILE_task = TriggerDagRunOperator(
     task_id='Execution_of_the_Scenario_AT26_TO_FILE_task',
-    trigger_dag_id='AT26_TO_FILE',  
+    trigger_dag_id='AT26_TO_FILE',
     wait_for_completion=True,
     dag=dag
 )
