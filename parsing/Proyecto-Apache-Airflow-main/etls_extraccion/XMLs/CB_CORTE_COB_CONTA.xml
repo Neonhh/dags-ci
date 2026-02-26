@@ -1573,6 +1573,7 @@
 	<Field name="StateName" type="java.lang.String"><![CDATA[Smiley 2]]></Field>
 	<Field name="StateOrder" type="com.sunopsis.sql.DbInt"><![CDATA[1]]></Field>
 </Object>
+<!-- para abrir el comentario y -->
 <Object class="com.sunopsis.dwg.dbobj.SnpState2">
 		<Field name="FirstDate" type="java.sql.Timestamp"><![CDATA[2016-04-18 17:32:19.0]]></Field>
 	<Field name="FirstUser" type="java.lang.String"><![CDATA[SUPERVISOR]]></Field>
