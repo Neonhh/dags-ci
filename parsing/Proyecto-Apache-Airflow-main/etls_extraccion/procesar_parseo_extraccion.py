@@ -1,10 +1,14 @@
 import os
 import subprocess
 
-# Carpetas
+# Raiz del proyecto (dags-ci)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
+
+# Carpetas de entrada y salida
 xml_dir = "XMLs"
 json_dir = "JSON"
-dag_dir = "DAGs"
+dag_dir = os.path.join(project_root, "dags","migrados")
 
 # Recorre TODOS los XML dentro de sus subcarpetas
 for root, dirs, files in os.walk(xml_dir):
