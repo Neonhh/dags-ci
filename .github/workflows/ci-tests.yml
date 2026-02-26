@@ -4,10 +4,11 @@
 name: CI Airflow Quality Checks
 
 on:
- # pull_request:
+  #pull_request:
   #  branches: [ main ]
   #push:
-   # branches: [ main ]
+  #  branches: [ main ]
+
 #mimimim
 jobs:
   quality-assurance:
