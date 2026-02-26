@@ -1,4 +1,4 @@
-# Pipeline de Integración Continua para GitHub Actions
+# Pruebas de calidad para GitHub Actions
 # Este workflow se activa al abrir o actualizar un Pull Request hacia la rama main.
 
 name: CI Airflow Quality Checks

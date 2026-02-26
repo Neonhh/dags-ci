@@ -1,0 +1,102 @@
+# Activa el script de parsing cuando hay cambios en la carpeta de XML
+# Crea un Pull Request a la rama main con los cambios. Esto activa ci-tests.yml
+
+name: ODI XML Automatic Parsing
+
+on:
+  push:
+    branches: [ desarrollo ]
+  paths:
+    - 'parsing/Proyecto-Apache-Airflow-main/etls/XMLs/*.xml'
+    - 'parsing/Proyecto-Apache-Airflow-main/etls_extraccion/XMLs/*.xml' # Carpetas de XML Inputs en etls y etls_extraccion
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  parse-and-open-pr:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[no parsing]')"
+    
+    steps:
+    # Paso 1: Descargar el código del repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Paso 2: Configurar el entorno de Python
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip' # Cache para acelerar instalaciones futuras
+
+      # Paso 3: Correr el script (con failover en caso de errores de API)
+      - name: Run Parser with Environment Failover
+        run: |
+          # Función de reintento: intenta desarrollo, si falla (exit code != 0), intenta produccion
+          # Actualmente solo llama al de desarrollo, porque este no falla.
+          run_with_retry() {
+            local script_path=$1
+            echo "------------------------------------------------------"
+            echo "Procesando: $script_path"
+            
+            echo "Intentando en AMBIENTE=desarrollo"
+            if AMBIENTE=desarrollo python "$script_path"; then
+              echo "Éxito en entorno de Desarrollo."
+            else
+              echo "Fallo en Desarrollo (posible límite de IA)."
+              
+              echo "Intentando en AMBIENTE=produccion"
+              if AMBIENTE=produccion python "$script_path"; then
+                echo "Éxito en entorno de Producción."
+              else
+                echo "Ambos ambientes fallaron para $script_path"
+                exit 1
+              fi
+            fi
+          }
+
+          # Ejecución para ETLs estándar
+          if [ -d "parsing/Proyecto-Apache-Airflow-main/etls/XMLs" ]; then
+            run_with_retry "parsing/Proyecto-Apache-Airflow-main/etls/procesar_parseo.py"
+          fi
+          
+          # Ejecución para ETLs de extracción
+          if [ -d "parsing/Proyecto-Apache-Airflow-main/etls_extraccion/XMLs" ]; then
+            run_with_retry "parsing/Proyecto-Apache-Airflow-main/etls_extraccion/procesar_parseo_extraccion.py"
+          fi
+
+      # Paso 4: Crear el Pull Request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Actualización de XML"
+          branch: "actualización-xml"
+    
+      - name: Commit and Push to Desarrollo
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add dags/migrados/
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: auto-generated dags from xml [skip-ci]"
+            git push origin desarrollo
+          fi
+
+      - name: Ensure Pull Request exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_EXISTS=$(gh pr list --head desarrollo --base main --json number --jq '.[0].number')
+          if [ -z "$PR_EXISTS" ]; then
+            gh pr create \
+              --base main \
+              --head desarrollo \
+              --title "🚀 Revisión de DAGs Migrados" \
+              --body "Este PR contiene los DAGs generados automáticamente. Revisar logs de QA para ajustes manuales."
+          fi
