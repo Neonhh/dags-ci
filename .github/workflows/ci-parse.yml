@@ -6,13 +6,13 @@ name: ODI XML Automatic Parsing
 on:
   push:
     branches: [ desarrollo ]
-  paths:
-    # GitHub Actions usa forward slashes (/) incluso para carpetas con nombres complejos
-    - 'parsing/Proyecto-Apache-Airflow-main/etls/XMLs/*.xml'
-    - 'parsing/Proyecto-Apache-Airflow-main/etls_extraccion/XMLs/*.xml'
-    # Agregamos patrones recursivos por si la estructura varía levemente
-    - '**/etls/XMLs/**'
-    - '**/etls_extraccion/XMLs/**'
+    paths:
+      # GitHub Actions usa forward slashes (/) incluso para carpetas con nombres complejos
+      - 'parsing/Proyecto-Apache-Airflow-main/etls/XMLs/*.xml'
+      - 'parsing/Proyecto-Apache-Airflow-main/etls_extraccion/XMLs/*.xml'
+      # Agregamos patrones recursivos por si la estructura varía levemente
+      - '**/etls/XMLs/**'
+      - '**/etls_extraccion/XMLs/**'
   workflow_dispatch:
 
 permissions:
