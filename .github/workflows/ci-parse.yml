@@ -43,6 +43,10 @@ jobs:
         run: |
           # Función de reintento con diferentes entornos (ver readme de parsing): intenta desarrollo, si falla (exit code != 0), intenta produccion
           # Actualmente solo llama al de desarrollo, porque este no falla.
+          
+          # Guardamos la ruta absoluta de la raíz del repo
+          REPO_ROOT=$(pwd)
+
           run_with_retry() {
             local script_dir=$1
             local script_name=$2
@@ -52,23 +56,23 @@ jobs:
             
             # Entramos a la carpeta donde vive el script para que sus rutas relativas funcionen
             cd "$REPO_ROOT/$script_dir"
-            echo "------------------------------------------------------"
-            echo "Procesando: $script_path"
             
-            echo "Intentando en AMBIENTE=desarrollo"
-            if AMBIENTE=desarrollo python "$script_path"; then
-              echo "Éxito en entorno de Desarrollo."
+            echo "🚀 Paso 1: Intentando en AMBIENTE=desarrollo"
+            if AMBIENTE=desarrollo python3 "$script_name"; then
+              echo "✅ Éxito en entorno de Desarrollo."
             else
-              echo "Fallo en Desarrollo (posible límite de IA)."
-              
-              echo "Intentando en AMBIENTE=produccion"
-              if AMBIENTE=produccion python "$script_path"; then
-                echo "Éxito en entorno de Producción."
+              echo "⚠️ Fallo en Desarrollo. Reintentando..."
+              echo "🚀 Paso 2: Intentando en AMBIENTE=produccion"
+              if AMBIENTE=produccion python3 "$script_name"; then
+                echo "✅ Éxito en entorno de Producción."
               else
-                echo "Ambos ambientes fallaron para $script_path"
+                echo "❌ ERROR: Ambos ambientes fallaron para $script_name"
                 exit 1
               fi
             fi
+            
+            # Volvemos a la raíz para el siguiente proceso
+            cd "$REPO_ROOT"
           }
 
           # Ejecución para ETLs estándar
