@@ -8,6 +8,10 @@ on:
   #  branches: [ main ]
   #push:
   #  branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
+  #push:
+  #  branches: [ main ]
 #mimimim
 jobs:
   quality-assurance:
