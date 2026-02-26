@@ -18,7 +18,7 @@ permissions:
 jobs:
   parse-and-open-pr:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[no parsing]')"
+    if: "!contains(github.event.head_commit.message, '[no-parsing]')"
     
     steps:
     # Paso 1: Descargar el código del repositorio
@@ -37,7 +37,7 @@ jobs:
       # Paso 3: Correr el script (con failover en caso de errores de API)
       - name: Run Parser with Environment Failover
         run: |
-          # Función de reintento: intenta desarrollo, si falla (exit code != 0), intenta produccion
+          # Función de reintento con diferentes entornos (ver readme de parsing): intenta desarrollo, si falla (exit code != 0), intenta produccion
           # Actualmente solo llama al de desarrollo, porque este no falla.
           run_with_retry() {
             local script_path=$1
@@ -84,7 +84,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add dags/migrados/
           if ! git diff --staged --quiet; then
-            git commit -m "chore: auto-generated dags from xml [skip-ci]"
+            git commit -m "chore: auto-generated dags from xml [no-parsing]"
             git push origin desarrollo
           fi
 
