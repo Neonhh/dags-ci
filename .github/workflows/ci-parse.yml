@@ -76,13 +76,14 @@ jobs:
           }
 
           # Ejecución para ETLs estándar
-          if [ -d "parsing/Proyecto-Apache-Airflow-main/etls/XMLs" ]; then
-            run_with_retry "parsing/Proyecto-Apache-Airflow-main/etls/procesar_parseo.py"
+          # Pasamos la CARPETA y luego el NOMBRE del script
+          if [ -f "parsing/Proyecto-Apache-Airflow-main/etls/procesar_parseo.py" ]; then
+            run_with_retry "parsing/Proyecto-Apache-Airflow-main/etls" "procesar_parseo.py"
           fi
           
           # Ejecución para ETLs de extracción
-          if [ -d "parsing/Proyecto-Apache-Airflow-main/etls_extraccion/XMLs" ]; then
-            run_with_retry "parsing/Proyecto-Apache-Airflow-main/etls_extraccion/procesar_parseo_extraccion.py"
+          if [ -f "parsing/Proyecto-Apache-Airflow-main/etls_extraccion/procesar_parseo_extraccion.py" ]; then
+            run_with_retry "parsing/Proyecto-Apache-Airflow-main/etls_extraccion" "procesar_parseo_extraccion.py"
           fi
 
       # Paso 4: Crear el Pull Request
