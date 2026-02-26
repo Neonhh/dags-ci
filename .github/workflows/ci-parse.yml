@@ -44,7 +44,14 @@ jobs:
           # Función de reintento con diferentes entornos (ver readme de parsing): intenta desarrollo, si falla (exit code != 0), intenta produccion
           # Actualmente solo llama al de desarrollo, porque este no falla.
           run_with_retry() {
-            local script_path=$1
+            local script_dir=$1
+            local script_name=$2
+            
+            echo "------------------------------------------------------"
+            echo "Cambiando a directorio: $script_dir"
+            
+            # Entramos a la carpeta donde vive el script para que sus rutas relativas funcionen
+            cd "$REPO_ROOT/$script_dir"
             echo "------------------------------------------------------"
             echo "Procesando: $script_path"
             
